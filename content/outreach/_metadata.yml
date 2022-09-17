@@ -1,14 +1,17 @@
-# Talks
-sidebar: false
+# Outreach
+
 resources: "*/*.pdf"
+
 title-block-banner: "#4B5B68"
-from: markdown+emoji
 
 published-title: "Date"
 author-title: "Presented By"
+doi-title: "Location" #TODO: change the link with JS, or better, change the template
 
 about:
   id: additional-links
   template: solana
   image: ../placeholder.avif
   image-width: "0%"
+
+sidebar: false

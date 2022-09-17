@@ -51,9 +51,13 @@ rsconnect/
 secret.yml
 
 # Quarto
-.quarto/
+/.quarto/
 _freeze/
 
 # Data
 res/data/
 res/models/
+
+# HTML
+**/index_files/*
+site_libs/

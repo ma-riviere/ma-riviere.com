@@ -6,6 +6,8 @@ author:
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
 
+doi: "Linz, Austria"
+
 description: "Short academic talk given during the ICCHP 2018 international conference to present the TactiBelt."
 
 abstract: "Integration of Spatial Cognition models into the design of the TactiBelt, a novel Electronic Travel and Orientation Aid for Visually Impaired People."
@@ -24,7 +26,7 @@ about:
       aria-label: "Download the slides as PDF"
 ---
 
-{{< include ../../additional-links.qmd >}}
+{{< include ../../../additional-links.qmd >}}
 
 <iframe 
   src="https://docs.google.com/presentation/d/1KfvRnhKkKlYE1otE_U0HODx4FjikQ0PFhsM_8V6dJiU/embed?start=false&loop=false&delayms=30000" 

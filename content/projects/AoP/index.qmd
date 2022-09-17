@@ -6,6 +6,8 @@ date: 2019-08
 author:
   - "[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)"
 
+image: circlize.png
+
 description: "This project studies the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, through a mouse model using intermittent hypoxia"
 
 abstract: |

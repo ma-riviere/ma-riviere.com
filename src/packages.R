@@ -33,6 +33,7 @@ project_pkgs <- c(
   
   ### Model analysis
   "posterior",
+  "tidybayes",
   
   ### Visualizations
   "ggplot2",

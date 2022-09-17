@@ -8,9 +8,19 @@ author:
 
 date: 2022-06-05
 
+abstract: |
+  This is an extension (in R) of [PyMC-Labs' benchmarking](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) of MCMC for Big Data. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
+
+categories:
+  - "Statistics"
+  - "ML"
+  - "Bayesian Modeling"
+  - "Big Data"
+  - "Stan"
+  - "R"
+
 format:
   html:
-    number-sections: true
     code-tools:
       source: true
       toggle: false
@@ -22,12 +32,10 @@ format:
 #   match: auto
 ---
 
-:::{.callout-note}
-This is an extension (in R) of [PyMC-Labs' benchmarking](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) of MCMC for Big Data.
+<hr>
 
-Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_29/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_29/stan-users-guide/optimization.html) for faster CPU sampling.
-
-You can check the source code by clicking on the **</> Code** button at the top-right.
+:::{.callout-tip}
+You can check the page's source code by clicking on the **</> Code** button at the top-right.
 :::
 
 <!------------------------------------------------------------------------------>
@@ -111,7 +119,7 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 ```{r}
 #| code-fold: true
 #| code-summary: Setting up knitr's engine for CmdStan
-#| file: !expr here::here("src", "quarto", "cmdstan_engine.R")
+#| file: !expr here("src", "quarto", "cmdstan_engine.R")
 ```
 
 ***
@@ -126,6 +134,8 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 si <- sessioninfo::session_info(pkgs = "attached")
 
 si$platform$Quarto <- system("quarto --version", intern = TRUE)
+
+si$platform$pandoc <- strsplit(si$platform$pandoc, "@")[[1]][1]
 
 si$platform$`Stan (CmdStan)` <- cmdstanr::cmdstan_version()
 
@@ -161,7 +171,7 @@ knitr::knit_hooks$set(time_it = local({
 
 ```{r}
 #| echo: false
-#| file: !expr c(here::here("src", "quarto", "style_ggplot_bi.R"), here::here("src", "quarto", "style_gt_mono.R"))
+#| file: !expr c(here("src", "quarto", "quarto_theme.R"), here("src", "quarto", "style_ggplot_bi.R"), here("src", "quarto", "style_gt_mono.R"))
 ```
 
 

@@ -5,10 +5,6 @@
 library(ggplot2)
 library(knitr)
 
-color_light <- ifelse(exists("color_light"), color_light, "black")
-color_dark <- ifelse(exists("color_dark"), color_dark, "white")
-strip_color <- ifelse(exists("strip_color"), strip_color, "#D4D4D4")
-
 base_theme_mar <- ggplot2::theme_minimal() +
   ggplot2::theme(
     plot.background = ggplot2::element_rect(fill = "transparent", colour = NA),
@@ -35,41 +31,41 @@ base_theme_mar <- ggplot2::theme_minimal() +
   )
 
 light_addon_mar <- ggplot2::theme(
-  text = ggplot2::element_text(color = color_light),
+  text = ggplot2::element_text(color = primary_color_light),
   ## Panel
-  panel.border = ggplot2::element_rect(colour = color_light),
+  panel.border = ggplot2::element_rect(colour = primary_color_light),
   ## Titles
-  plot.title = ggtext::element_markdown(colour = color_light),
-  plot.subtitle = ggtext::element_markdown(colour = color_light),
+  plot.title = ggtext::element_markdown(colour = primary_color_light),
+  plot.subtitle = ggtext::element_markdown(colour = primary_color_light),
   ## Legend
-  legend.title = ggplot2::element_text(colour = color_light),
+  legend.title = ggplot2::element_text(colour = primary_color_light),
   ## Facets
   strip.background = ggplot2::element_rect(fill = strip_color),
-  strip.text = ggplot2::element_text(colour = color_light),
+  strip.text = ggplot2::element_text(colour = primary_color_light),
   ## Axes
-  axis.text = ggplot2::element_text(colour = color_light),
-  axis.title.x = ggtext::element_markdown(colour = color_light),
-  axis.title.y = ggtext::element_markdown(colour = color_light)
+  axis.text = ggplot2::element_text(colour = primary_color_light),
+  axis.title.x = ggtext::element_markdown(colour = primary_color_light),
+  axis.title.y = ggtext::element_markdown(colour = primary_color_light)
 )
 
 theme_light_mar <- base_theme_mar + light_addon_mar
 
 dark_addon_mar <- ggplot2::theme(
-  text = ggplot2::element_text(color = color_dark),
+  text = ggplot2::element_text(color = primary_color_dark),
   ## Panel
-  panel.border = ggplot2::element_rect(colour = color_dark),
+  panel.border = ggplot2::element_rect(colour = primary_color_dark),
   ## Titles
-  plot.title = ggtext::element_markdown(colour = color_dark),
-  plot.subtitle = ggtext::element_markdown(colour = color_dark),
+  plot.title = ggtext::element_markdown(colour = primary_color_dark),
+  plot.subtitle = ggtext::element_markdown(colour = primary_color_dark),
   ## Legend
-  legend.title = ggplot2::element_text(colour = color_dark),
+  legend.title = ggplot2::element_text(colour = primary_color_dark),
   ## Facets
   strip.background = ggplot2::element_rect(fill = strip_color),
-  strip.text = ggplot2::element_text(colour = color_dark),
+  strip.text = ggplot2::element_text(colour = primary_color_dark),
   ## Axes
-  axis.text = ggplot2::element_text(colour = color_dark),
-  axis.title.x = ggtext::element_markdown(colour = color_dark),
-  axis.title.y = ggtext::element_markdown(colour = color_dark)
+  axis.text = ggplot2::element_text(colour = primary_color_dark),
+  axis.title.x = ggtext::element_markdown(colour = primary_color_dark),
+  axis.title.y = ggtext::element_markdown(colour = primary_color_dark)
 )
 
 theme_dark_mar <- base_theme_mar + dark_addon_mar

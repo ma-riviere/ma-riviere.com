@@ -1,4 +1,5 @@
 /* Fira code font for code blocks */
+
 @import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
 
 pre code { font-family: 'Fira Code', monospace; }
@@ -6,6 +7,8 @@ pre code { font-family: 'Fira Code', monospace; }
 @supports (font-variation-settings: normal) {
   pre code { font-family: 'Fira Code VF', monospace; }
 }
+
+pre code { font-size: 0.8rem; }
 
 details > summary { color: rgb(136, 136, 136); }
 

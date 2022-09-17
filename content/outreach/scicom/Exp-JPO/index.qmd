@@ -1,12 +1,14 @@
 ---
-title: "[:fr:] Percieving our surroundings without our eyes"
+title: "Percieving our surroundings without our eyes"
 subtitle: "[Expéruimentarium](https://www.experimentarium.fr/) (Journées Portes Ouvertes URN)"
 date: 2017-11-23
 author:
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
 
-description: "Presenting the [ACCESSPACE](/content/projects/ACCESSPACE) project to highschool students during the College Fair of Fall 2017"
+doi: "Rouen, France"
+
+description: "Presenting the [ACCESSPACE](/content/projects/ACCESSPACE) project to highschool students during the College Fair of Fall 2017 (in French)"
 
 categories:
   - "Sensory Substitution"
@@ -14,7 +16,7 @@ categories:
   - "Project ACCESSPACE"
 ---
 
-{{< include ../../additional-links.qmd >}}
+{{< include ../../../additional-links.qmd >}}
 
 Here is a video recording of a talk I gave to high-school students during my University's College Fair:
 

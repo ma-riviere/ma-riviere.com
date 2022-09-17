@@ -18,7 +18,7 @@ website:
   # image-alt: 
   
   site-url: https://ma-riviere.me
-  repo-url: https://github.com/ma-riviere/ma-riviere/
+  repo-url: https://github.com/ma-riviere/ma-riviere.me/
   repo-branch: main
   repo-actions: [source, issue]
   
@@ -27,7 +27,6 @@ website:
     location: navbar
     type: overlay
     collapse-after: 10
-    # algolia: See https://quarto.org/docs/reference/projects/websites.html#algolia-options
   
   ### Navigation ###
   navbar:
@@ -43,9 +42,9 @@ website:
       - text: "Publications"
         file: content/pubs/index.qmd
         aria-label: "Publications"
-      - text: "Talks"
-        file: content/talks/index.qmd
-        aria-label: "Talks"
+      - text: "Outreach"
+        file: content/outreach/index.qmd
+        aria-label: "Outreach"
       - text: "Blog"
         file: content/posts/index.qmd
         aria-label: "Blog"
@@ -54,7 +53,7 @@ website:
         file: content/about.qmd
         aria-label: "About"
       - icon: code-slash
-        href: https://github.com/ma-riviere/ma-riviere/
+        href: https://github.com/ma-riviere/ma-riviere.me/
         aria-label: "Website's source code"
       - icon: twitter
         href: https://twitter.com/mariviere1
@@ -65,7 +64,7 @@ website:
   
   ## See https://quarto.org/docs/reference/projects/websites.html#sidebar
   ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
-  ## Sidebar tools: https://github.com/ma-riviere/ma-riviere/
+  ## Sidebar tools: 
   # sidebar:
   #   - id: code
   #     title: "Code"
@@ -94,7 +93,9 @@ website:
     card-style: summary
   
   ### Commenting ###
-  ## https://quarto.org/docs/reference/projects/websites.html#comments
+  ## See: 
+  ### - https://quarto.org/docs/reference/projects/websites.html#comments
+  ### - https://robjhyndman.com/hyndsight/disqus2giscus.html
   # comments:
   #   giscus:
   #     repo: ma-riviere/ma-riviere.me # Must be public, have giscus app installed, and discussions enabled
@@ -111,7 +112,9 @@ website:
         href: https://quarto.org/
         aria-label: "Quarto's website"
 
-### Bibliography ###
+# abbreviations: # TODO: VIP -> 
+
+# bibliography: 
 csl: apa.csl
 
 format:
@@ -123,17 +126,17 @@ format:
     df-print: paged
     # mainfont: "Lato"
     # monofont: "Fira Mono"
+    # linestretch: 1.25
     toc: true
-    toc-location: right
     fig-align: center
     fig-dpi: 500
     fig-format: svg
     anchor-sections: true
     footnotes-hover: true
     code-link: true
-    code-copy: true
+    code-copy: hover
     code-block-bg: true
-    # code-overflow: wrap
+    code-overflow: wrap
     code-block-border-left: "#31BAE9" # 5A6570
     highlight-style:
       light: res/highlight-styles/mar-light.theme
@@ -142,12 +145,14 @@ format:
 
 engine: knitr
 
+from: markdown+emoji
+
 knitr:
   opts_chunk:
     warning: false
     message: false
     fig.align: center
-    dpi: 300
+    dpi: 500
     dev: svg
     dev.args:
       bg: transparent
@@ -159,5 +164,5 @@ execute:
   message: false
   cache: false
   freeze: auto
-  
+
 editor: source

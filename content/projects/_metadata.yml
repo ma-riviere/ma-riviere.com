@@ -1,8 +1,8 @@
 # Projects
-sidebar: false
+
 resources: "*/*.pdf"
+
 title-block-banner: "#4B5B68"
-from: markdown+emoji
 
 published-title: "Began Around"
 author-title: "Partners Involved"
@@ -12,3 +12,5 @@ about:
   template: solana
   image: ../placeholder.avif
   image-width: "0%"
+
+sidebar: false

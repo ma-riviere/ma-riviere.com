@@ -1,9 +1,13 @@
 # Blog posts
-sidebar: false
+
+title-block-banner: "#4B5B68"
+
 citation: true
 
-about:
-  id: additional-links
-  template: solana
-  image: ../placeholder.avif
-  image-width: "0%"
+published-title: "First Published"
+
+page-layout: article
+
+format:
+  html:
+    number-sections: true

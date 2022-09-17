@@ -1,6 +1,13 @@
 ---
 title: "Marc-Aurèle Rivière"
-subtitle: "Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n and Human-Machine Interfaces."
+subtitle: | 
+  Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n 
+  and Human-Machine Interfaces<br>
+  ![](res/img/flags/PF.png){width=25px style="margin-right: 5px"}
+  ![](res/img/flags/FR.png){width=25px style="margin-right: 5px"}
+  ![](res/img/flags/USA.png){width=25px height=17px style="margin-right: 5px"}
+  ![](res/img/flags/NO.png){width=25px height=17px}
+
 description: "Research Enginner - [LITIS Lab](https://litislab.fr/en/litis)"
 
 about:

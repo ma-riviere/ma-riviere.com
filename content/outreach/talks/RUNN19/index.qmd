@@ -1,12 +1,14 @@
 ---
-title: "[:fr:] ACCESSPACE: overview and future prospects"
+title: "ACCESSPACE: overview and future prospects"
 subtitle: "[Rencontres Universitaires Numériques Normandes (RUNN'19)](http://www.normandie-univ.fr/rencontres-universitaires-numeriques-normandes-runn-2019-63109.kjsp)"
 date: 2019-11-21
 author:
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
 
-description: "An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors."
+doi: "Caen, France"
+
+description: "An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors (in French)"
 
 # abstract: "ACCESSPACE is a project aiming to ..."
 
@@ -23,9 +25,11 @@ about:
       aria-label: "Download the slides as PDF"
 ---
 
-{{< include ../../additional-links.qmd >}}
+{{< include ../../../additional-links.qmd >}}
 
 <iframe 
   src="https://docs.google.com/presentation/d/e/2PACX-1vSbnk5cY-fClNMKzcvZlavK8PufHlX-izZPi8bgvw9oSBa2Gi7D0ZONlVy0Q6bSyuwH8G-jNbxPMU7_/embed?start=false&loop=false&delayms=30000" 
   width="100%" height=500> 
 </iframe>
+
+This talk got the best presentation award of RUNN'19
