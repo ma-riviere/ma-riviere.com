@@ -1,0 +1,28 @@
+---
+title: "Blog Posts"
+# image: 
+
+from: markdown+emoji
+license: "CC BY"
+
+listing:
+  id: blog-listings
+  feed: true
+  contents: "*.qmd"
+  type: default
+  fields: [image, date, title, author, subtitle, description, reading-time, categories, file-modified]
+  categories: cloud
+  date-format: medium
+  sort: [date desc, title desc]
+  page-size: 10
+  filter-ui: true
+  sort-ui: [date, title]
+  # image-height: 
+  # image-placeholder: TODO
+
+comments: false
+citation: false
+---
+
+::: {#blog-listings}
+:::

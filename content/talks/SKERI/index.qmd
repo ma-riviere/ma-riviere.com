@@ -1,0 +1,32 @@
+---
+title: "Sensory substitution as a framework to access visual and spatial information for VIP"
+subtitle: "[SKERI Brown Bag](https://www.ski.org/event/sensory-substitution-framework-access-visual-and-spatial-information-blind-and-visually)"
+date: 2019-01-09
+author:
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+
+description: "Academic seminar hosted at Smith-Kettlewell Eye-Research Institute, to present the Sensory Substitution framework and its use in designing non-visual interfaces for VIP."
+
+abstract: |
+  Despite the progress on assistive technologies for the visually impaired, numerous sources of information remain difficult to access without vision. Most of the existing solutions for visually impaired people rely on language to convey information, whether it is through an auditory (text-to-speech synthesis) or tactile (braille) medium. However, those solutions often fall short when the information to provide is highly dynamic or difficult to efficiently convey through language (e.g. spatial or image-based information).
+
+  The Sensory Substitution framework provides a means to overcome those limitations by providing said information through low-level sensory stimulation which can be, after some training, processed and interpreted quickly, with very little attentional resources. However, a lot of questions on this particular type of human-machine communication still remain open. During this talk, I will present the projects I have been working on during the first 2 years of my Ph.D., in the context of sensory-substitution-based assistive devices, both on the accessibility of image-based content and on the autonomous navigation of visually impaired people.
+
+categories:
+  - "Spatial Cognition"
+  - "Sensory Substitution"
+  - "Project ACCESSPACE"
+  - "Project NAV-VIR"
+  
+about:
+  links:
+    - text: "PDF"
+      icon: file-pdf
+      url: content/talks/SKERI/SKERI.pdf
+      aria-label: "Download the slides as PDF"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+<iframe src="https://drive.google.com/file/d/1_IfC2g8roLR06QraUr3O1po2Vbmuu9zX/preview" width="100%" height=480></iframe>

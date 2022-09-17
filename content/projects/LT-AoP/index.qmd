@@ -1,0 +1,49 @@
+---
+title: "LT-AoP"
+subtitle: "Apnea of Prematurity - IHC"
+date: 2017-08
+
+author:
+  - "[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)"
+
+description: "This project studied the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, through a mouse model using intermittent hypoxia"
+
+abstract: |
+  ???
+
+categories:
+  - "Cerebellum"
+  - "Hypoxia"
+  - "Immunohistochemistry"
+  - "RT-qPCR"
+  - "Biostatistics"
+  - "Data Science"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Article"
+      icon: file-pdf
+      url: https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-022-00869-5
+      aria-label: "See a journal article illustrating the project"
+    - text: "Documentation"
+      icon: globe
+      url: https://ma-riviere.github.io/LT-AoP-22/
+      aria-label: "See the GitHub repository hosting the project's and related paper's code"
+    - text: "Code"
+      icon: github
+      url: https://github.com/ma-riviere/LT-AoP-22
+      aria-label: "See the GitHub repository hosting the project's and related paper's code"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+<!-- TODO: add one of the composite figures ? -->
+
+My role within this project was to manage the data analysis of both immunohistochemistry and qPCR data, using Generalized Linear Multilevel Models.
+
+I also made [a documentation website](https://ma-riviere.github.io/LT-AoP-22/) showcasing the project's data and analyses. It uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project:
+
+<!-- TODO: put the iframe in a summary ? -->
+
+<iframe src="https://ma-riviere.github.io/LT-AoP-22/" width="100%" height="800"></iframe>

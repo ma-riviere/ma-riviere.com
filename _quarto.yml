@@ -1,0 +1,163 @@
+project:
+  type: website
+  output-dir: "docs"
+  # lib-dir: libs
+  resources: [.nojekyll, "/res/*"]
+  # pre-render: src/common/setup.R
+  # post-render: 
+  render:
+    - "*.qmd"
+    - "!test/"
+    - "!src/"
+
+website:
+  title: "Marc-Aurèle Rivière"
+  description: "Marc-Aurèle Rivière's personal website"
+  favicon: res/favicon.png
+  # image: res/image.png
+  # image-alt: 
+  
+  site-url: https://ma-riviere.me
+  repo-url: https://github.com/ma-riviere/ma-riviere/
+  repo-branch: main
+  repo-actions: [source, issue]
+  
+  ### Search ###
+  search:
+    location: navbar
+    type: overlay
+    collapse-after: 10
+    # algolia: See https://quarto.org/docs/reference/projects/websites.html#algolia-options
+  
+  ### Navigation ###
+  navbar:
+    # logo: TODO: ask bun to make a logo (tree of DeepMind)
+    # logo-alt: 
+    pinned: true
+    collapse: true
+    # collapse-below: md
+    left:
+      - text: "Projects"
+        file: content/projects/index.qmd
+        aria-label: "Projects"
+      - text: "Publications"
+        file: content/pubs/index.qmd
+        aria-label: "Publications"
+      - text: "Talks"
+        file: content/talks/index.qmd
+        aria-label: "Talks"
+      - text: "Blog"
+        file: content/posts/index.qmd
+        aria-label: "Blog"
+    right:
+      - text: "About"
+        file: content/about.qmd
+        aria-label: "About"
+      - icon: code-slash
+        href: https://github.com/ma-riviere/ma-riviere/
+        aria-label: "Website's source code"
+      - icon: twitter
+        href: https://twitter.com/mariviere1
+        aria-label: "Twitter"
+      - icon: github
+        href: https://github.com/ma-riviere/
+        aria-label: "GitHub"
+  
+  ## See https://quarto.org/docs/reference/projects/websites.html#sidebar
+  ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
+  ## Sidebar tools: https://github.com/ma-riviere/ma-riviere/
+  # sidebar:
+  #   - id: code
+  #     title: "Code"
+  #     style: floating
+  #     alignment: left
+  #     collapse-level: 3
+  #     tools: false
+  #     contents:
+  #       - section: "R"
+  #         contents:
+  #           - section: "Data Wrangling"
+  #           - text: "---"
+  #           - section: "Modeling"
+  
+  ### Analytics ###
+  # google-analytics:
+    # See: https://quarto.org/docs/websites/website-tools.html#google-analytics
+  cookie-consent:
+    type: implied
+  
+  ### Sharing ###
+  open-graph:
+    locale: en_US
+  twitter-card: 
+    site: "@mariviere1"
+    card-style: summary
+  
+  ### Commenting ###
+  ## https://quarto.org/docs/reference/projects/websites.html#comments
+  # comments:
+  #   giscus:
+  #     repo: ma-riviere/ma-riviere.me # Must be public, have giscus app installed, and discussions enabled
+  
+  ### Footer ###
+  page-footer:
+    border: true
+    left: 
+      - text: "© 2021-2022, Marc-Aurele Rivière"
+        href: content/LICENSE.md
+        aria-label: "Website's license"
+    right:
+      - text: "Made with Quarto ♥️"
+        href: https://quarto.org/
+        aria-label: "Quarto's website"
+
+### Bibliography ###
+csl: apa.csl
+
+format:
+  html:
+    theme:
+      light: [default, res/css/light.scss]
+      dark: [darkly, res/css/dark.scss]
+    css: res/css/style.css
+    df-print: paged
+    # mainfont: "Lato"
+    # monofont: "Fira Mono"
+    toc: true
+    toc-location: right
+    fig-align: center
+    fig-dpi: 500
+    fig-format: svg
+    anchor-sections: true
+    footnotes-hover: true
+    code-link: true
+    code-copy: true
+    code-block-bg: true
+    # code-overflow: wrap
+    code-block-border-left: "#31BAE9" # 5A6570
+    highlight-style:
+      light: res/highlight-styles/mar-light.theme
+      dark: res/highlight-styles/mar-dark.theme
+    link-external-newwindow: true
+
+engine: knitr
+
+knitr:
+  opts_chunk:
+    warning: false
+    message: false
+    fig.align: center
+    dpi: 300
+    dev: svg
+    dev.args:
+      bg: transparent
+    # R.options:
+    #   scipen: 999
+
+execute:
+  warning: false
+  message: false
+  cache: false
+  freeze: auto
+  
+editor: source

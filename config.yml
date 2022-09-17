@@ -1,0 +1,2 @@
+default:
+  cmdstan_path: !expr ifelse(Sys.info()[["sysname"]] == "Windows", "D:\\Dev\\SDK\\.cmdstan\\", "/home/mar/Dev/SDK/.cmdstan/")

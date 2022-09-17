@@ -1,0 +1,50 @@
+---
+title: "TactiBelt: integrating spatial cognition and mobility theories into the design of a novel orientation and mobility assistive device for the blind"
+subtitle: "Lecture Notes in Computer Science"
+date: 2018-07-12
+author:
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+  - name: "Simon Gay"
+  - name: "Edwige Pissaloux"
+doi: 10.1007/978-3-319-94274-2_16
+
+description: "We introduce spatial cognition models as a framework to design novel mobility assistive devices for Visually Impaired People."
+
+abstract: |
+  The aim of this paper is to introduce a novel functional design for an indoor and outdoor mobility assistive device for the visually impaired, based on the theoretical frameworks of mobility and spatial cognition. The originality of the proposed approach comes from the integration of two main aspects of navigation, locomotion and wayfinding. The cognitive theories which underpin the design of the proposed sensory substitution device, called TactiBelt, are identified and discussed in the framework of spatial knowledge acquisition. The paper is organized as follows: section 1 gives a brief overview of the sensory substitution framework, while sections 2 & 3 introduce the importance of navigation and spatial cognition models for the design of mobility aids. Section 4 details the functional design of the TactiBelt.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Augmented Reality"
+  - "Sensory Substitution"
+  - "Haptic Interface"
+  - "Spatial Cognition"
+
+citation:
+  type: paper-conference
+  container-title: "Lecture Notes in Computer Science"
+  publisher: "Springer International Publishing"
+  editor:
+    - "Miesenberger Klaus"
+    - "Kouroupetroglou Georgios"
+  doi: 10.1007/978-3-319-94274-2_16
+  url: http://link.springer.com/10.1007/978-3-319-94274-2_16
+  volume: 10897
+  page: "110-113"
+  isbn: "978-3-319-94273-5 978-3-319-94274-2"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "PDF"
+      icon: file-pdf
+      url: https://hal.archives-ouvertes.fr/hal-02353413/document
+      aria-label: "See the article's PDF"
+    - text: "{{< fa 'person-chalkboard' >}}  Associated Talk"
+      url: /content/talks/ICCHP18/
+      aria-label: "See the associated presentation slides"
+---
+
+{{< include ../../additional-links.qmd >}}

@@ -1,0 +1,11 @@
+# Pubs
+sidebar: false
+resources: "*/*.pdf"
+title-block-banner: "#4B5B68"
+from: markdown+emoji
+
+about:
+  id: additional-links
+  template: solana
+  image: ../placeholder.avif
+  image-width: "0%"

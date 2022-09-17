@@ -1,0 +1,18 @@
+/* Fira code font for code blocks */
+@import url(https://cdn.jsdelivr.net/npm/firacode@6.2.0/distr/fira_code.css);
+
+pre code { font-family: 'Fira Code', monospace; }
+
+@supports (font-variation-settings: normal) {
+  pre code { font-family: 'Fira Code VF', monospace; }
+}
+
+details > summary { color: rgb(136, 136, 136); }
+
+.about-entity {
+  justify-content: center;
+}
+
+.quarto-about-solana.column-body {
+  padding-top: 0 !important
+}

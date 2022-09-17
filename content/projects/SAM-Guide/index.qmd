@@ -1,0 +1,35 @@
+---
+title: "SAM-Guide"
+subtitle: "Spatial Awareness for Multimodal Guidance (ANR AAPG 2021)"
+date: 2021-11
+
+author:
+  - "[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)"
+  - "[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)"
+  - "[CMAP (Paris-Saclay, France)](https://portail.polytechnique.edu/cmap/en)"
+  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
+  - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
+
+description: "???"
+
+abstract: |
+  The SAM-Guide project aims to ???  
+  
+  SAM-Guide is a joint collaboration project between three poles: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University (Grenoble, France), (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Visual Impairment"
+  - "Augmented Reality"
+  - "Sensory Substitution"
+  - "Auditory Interface"
+  - "Haptic Interface"
+  - "Computer Vision"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+SAM-Guide uses ... Unity / Motion Capture
+
+<!-- TODO: add a few photos/videos (with sound) (Unity, ...) -->

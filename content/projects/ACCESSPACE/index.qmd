@@ -1,0 +1,79 @@
+---
+title: "ACCESSPACE"
+subtitle: "Helping Visually Impaired People travel autonomously"
+date: 2017-01
+
+author:
+  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
+  - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
+
+image: logo.png
+
+description: "Developing a wearable vibro-tactile electronic Orientation & Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models"
+
+abstract: |
+  The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user's location & surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Visual Impairment"
+  - "Augmented Reality"
+  - "Sensory Substitution"
+  - "Haptic Interface"
+  - "Computer Vision"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Project's homepage [FR]"
+      icon: globe
+      url: http://accesspace.univ-rouen.fr/index.php
+      aria-label: "See the project's official website (in French)"
+    - text: "{{< fa 'person-chalkboard' >}} Presentation [FR]"
+      url: content/talks/RUNN19/index.qmd
+      aria-label: "See a presentation illustrating the project (in French)"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+ACCESSPACE's goal is to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way. By not having to blindly follow directions, and by progressively learning the topography of their environment, ACCESSPACE will help VIP feel less lost when in novel environments, improving their feeling of safety and autonomy, their mobility, and their integration in our society.
+
+This project has been warmly welcomed by the VIP community and was awarded the “Applied research on disability” award from the CCAH in 2017.
+
+<!-- TODO: my role in this project -->
+
+<!-- TODO: add a few photos (virtual env SG, Belt, section with obstacle detection/ORB, depth map) -->
+
+<!--
+Official project link:
+
+On en parle:
+- Normandie Actu
+- RTL
+- PhDTalent
+- Guide Néret, Acuité, Oxytude
+- CCAH, FIRAH
+
+--->
+
+<!--
+
+AdViS is coded in C++ (and Qt for the GUI). It uses [PureData](https://puredata.info/) for complex sound generation, and [???]() combined with a [VICON](https://www.vicon.com/) to track participant's movements in an augmented reality environment.
+
+Project investigated
+- Finger-guided image exploration (on a touch screen)
+- Eye-movement guided image exploration
+- Finger-pointing to invisible target in 3D
+
+Provide auditory feedback in various tasks ...
+- Pitch = elevation
+- ...
+- Natural pointers
+
+My role within this project was to 
+- Modify the existing code to include the ability to transcode grey-scale images into soundscapes
+- Touch-based exploration (capture information from touchscreen interactions)
+- Theory: Focal exploratory area -> higher density of information feedback
+
+-->

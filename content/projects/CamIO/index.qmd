@@ -1,0 +1,46 @@
+---
+title: "CamIO"
+subtitle: "Camera Input-Output"
+date: 2018-03-01
+
+author: 
+  - name: "[SKERI (San Francisco, USA)](https://www.ski.org/center/rehabilitation-engineering-research-center)"
+
+image: logo.jpg
+
+description: "Smart pen providing real-time audio-feedback on touched objects using a smartphone built-in camera"
+
+abstract: |
+  CamIO is a system to make physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons, by providing real-time audio feedback in response to the location on an object that the user is touching. CamIO currently works on iOS using the built-in camera and an inexpensive hand-held stylus made out of paper and cardboard or wood.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Visual Impairment"
+  - "Augmented Reality"
+  - "Sensory Substitution"
+  - "Auditory Interface"
+  - "Computer Vision"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Project's homepage"
+      icon: globe
+      url: https://www.ski.org/project/camio
+      aria-label: "See the project's official website"
+    - text: "Conference Article"
+      icon: file-pdf
+      url: content/pubs/ICCHP20/index.qmd
+      aria-label: "See an article illustrating the project"
+    - text: "Journal Article"
+      icon: file-pdf
+      url: https://pubmed.ncbi.nlm.nih.gov/32802916/
+      aria-label: "See an article illustrating the project"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+<!-- TODO: My role in this project ... invited/indoc -->
+
+{{< youtube GmD1GbNI9Jw >}}

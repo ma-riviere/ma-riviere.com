@@ -1,0 +1,51 @@
+---
+title: "NAV-VIR: an audio-tactile virtual environment to assist visually impaired people"
+subtitle: "International IEEE/EMBS Conference on Neural Engineering"
+date: 2019-05-20
+author:
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+  - name: "Simon Gay"
+  - name: "Katerine Romeo"
+  - name: "Edwige Pissaloux"
+  - name: "Michal Bujacz"
+  - name: "Piotr Skulimowski"
+  - name: "Pawel Strumillo"
+doi: 10.1109/NER.2019.8717086
+
+description: "We introduce NAV-VIR, a multimodal interface for the interactive exploration of maps by Visually Impaired People."
+
+abstract: |
+  This paper introduces the [NAV-VIR](/content/projects/NAV-VIR) system, a multimodal virtual environment to assist visually impaired people in virtually discovering and exploring unknown areas from the safety of their home. The originality of NAV-VIR resides in (1) an optimized representation of the surrounding topography, the spatial gist, based on human spatial cognition models and the sensorimotor supplementation framework, and (2) a multimodal orientation-aware immersive virtual environment relying on two synergetic interfaces: an interactive force feedback tablet, the F2T, and an immersive HRTF-based 3D audio simulation relying on binaural recordings of real environments. This paper presents NAV-VIR functionalities and its preliminary evaluation through a simple shape and movement perception task.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Augmented Reality"
+  - "Sensory Substitution"
+  - "Auditory Interface"
+  - "Haptic Interface"
+
+citation:
+  type: paper-conference
+  container-title: "Proceedings of the International IEEE/EMBS Conference on Neural Engineering"
+  publisher: "IEEE"
+  doi: 10.1109/NER.2019.8717086
+  url: https://ieeexplore.ieee.org/document/8717086
+  page: "1038-1041"
+  isbn: "978-1-5386-7921-0"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "PDF"
+      icon: file-pdf
+      url: https://hal.archives-ouvertes.fr/hal-02353327/document
+      aria-label: "See the article's PDF"
+    - text: "Poster"
+      icon: file-image
+      url: /content/pubs/NER19/NER19.pdf
+      aria-label: "See the associated poster's PDF"
+---
+
+{{< include ../../additional-links.qmd >}}

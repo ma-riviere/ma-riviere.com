@@ -1,0 +1,29 @@
+---
+title: "Spatial Cognition and Computer Vision for better assistive devices"
+subtitle: "[French-Norwegian Workshop Day (2019)](https://www.france.no/oslo/sciences/frenchnorwegian-workshop-day-on-june-2nd-in-trondheim-as-part-of-the-probai-school/)"
+date: 2019-06-02
+author:
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+
+description: "Academic talk presenting my work on using Cognitive Neurosciences and Computer Vision to develop better assistive devices for VIP."
+
+abstract: "Exploring the use Computer Vision, combined with human Perception & Navigation models, to design more ergonomic assistive devices for VIP."
+
+categories:
+  - "Sensory Substitution"
+  - "Spatial Cognition"
+  - "Computer Vision"
+  - "Project ACCESSPACE"
+  
+about:
+  links:
+    - text: "PDF"
+      icon: file-pdf
+      url: https://drive.google.com/file/d/1S47ljI3BVJhbLGIhPf40q8uTjYQm9TMF/view?usp=sharing
+      aria-label: "Download the slides as PDF"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+<iframe src="https://drive.google.com/file/d/1S47ljI3BVJhbLGIhPf40q8uTjYQm9TMF/preview" width="100%" height="480" allow="autoplay"></iframe>

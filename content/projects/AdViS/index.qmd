@@ -1,0 +1,60 @@
+---
+title: "AdViS"
+subtitle: "Adaptative Visual Substitution"
+date: 2015-02
+
+author:
+  - "[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)"
+  - "[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)"
+
+description: "Developing a wearable visuo-auditive substitution system to assist Visually Impaired People in navigation and object-reaching tasks."
+
+abstract: |
+  The AdViS project aims to develop a wearable device that will assist Visually Impaired People during **spatial interaction tasks** (such as **indoor navigation** and **object-reaching**), using an audio-based Human-Machine Interface which converts relevant spatial metrics into ergonomic auditory cues.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Visual Impairment"
+  - "Augmented Reality"
+  - "Sensory Substitution"
+  - "Auditory Interface"
+  - "Computer Vision"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Project's homepage [FR]"
+      icon: globe
+      url: https://persyval-lab.org/fr/exploratory-project/myssiv-mouvements-des-yeux-substitution-sensorielle-immersion-virtuelle
+      aria-label: "See the project's official website (in French)"
+    - text: "Article"
+      icon: file-pdf
+      url: https://hal.archives-ouvertes.fr/hal-01663686/document
+      aria-label: "See the PDF of a journal article illustrating the project"
+    - text: "Poster"
+      icon: file-image
+      url: /content/projects/ADVIS/ADVIS.pdf
+      aria-label: "See the PDF of a poster illustrating the project"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+AdViS is coded in C++ (and Qt for the GUI). It uses [PureData](https://puredata.info/) for complex sound generation, and [???]() combined with a [VICON](https://www.vicon.com/) to track participant's movements in an augmented reality environment.
+
+Project investigated
+- Finger-guided image exploration (on a touch screen)
+- Eye-movement guided image exploration
+- Finger-pointing to invisible target in 3D
+
+Provide auditory feedback in various tasks ...
+- Pitch = elevation
+- ...
+- Natural pointers
+
+My role within this project was to 
+- Modify the existing code to include the ability to transcode grey-scale images into soundscapes
+- Touch-based exploration (capture information from touchscreen interactions)
+- Theory: Focal exploratory area --> higher density of information feedback
+
+<!-- TODO: add a few photos (navigation/depth, object identification, eye-tracking, finger-pointing) -->

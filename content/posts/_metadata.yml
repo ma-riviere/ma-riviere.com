@@ -1,0 +1,9 @@
+# Blog posts
+sidebar: false
+citation: true
+
+about:
+  id: additional-links
+  template: solana
+  image: ../placeholder.avif
+  image-width: "0%"

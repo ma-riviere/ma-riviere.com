@@ -1,0 +1,37 @@
+---
+title: "NAV-VIR"
+subtitle: "Virtual Navigation for Visually Impaired People"
+date: 2017-09
+
+author:
+  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
+  - "[Institute of Electronics (Lodz, Poland)](http://www.eletel.p.lodz.pl/eng/)"
+
+description: "Developing a multi-modal interface for Visually Impaired People to virtually explore a map in order to prepare for a journey"
+
+abstract: |
+  The goal of the NAV-VIR project was to develop a multimodal interface to allow Visually Impaired People in virtually discovering and exploring unknown areas from the safety of their home. It relies on an interactive Force-Feedback Tablet, the F2T, and an immersive HRTF-based 3D audio simulation relying on binaural recordings of real environments.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Visual Impairment"
+  - "Virtual Reality"
+  - "Sensory Substitution"
+  - "Haptic Interface"
+  - "Auditory Interface"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Article"
+      icon: file-pdf
+      url: content/pubs/NER19/index.qmd
+      aria-label: "See an article illustrating the project"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+<!-- TODO: photo & descriptif F2T -->
+
+<!-- Role in this project -->

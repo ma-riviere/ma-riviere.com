@@ -1,0 +1,45 @@
+---
+title: "Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen"
+subtitle: "Journal of Experimental Psychology: Applied"
+date: 2022-09-02
+author:
+  - name: "Elise Faugloire"
+    orcid: 0000-0003-2753-8858
+  - name: "Laure Lejeune"
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+  - name: "Bruno Mantel"
+doi: 10.1037/xap0000404
+
+description: "This study reveals that patterns made up of several vibration points are better recognized when pattern elements are clearly isolated in time and space. The feeling of a single point moving continuously along the skin, as if the pattern was manually drawn on the skin, does not appear to favor the recognition of patterns’ shape."
+
+abstract: |
+  Spatial and temporal factors are known to highly influence tactile perception, but their role has been largely unexplored in the case of two-dimensional (2D) pattern recognition. We investigated whether recognition is facilitated by the spatial and/or temporal separation of pattern elements, or by conditions known to favor perceptual integration, such as the ones eliciting apparent movement. 2D vibrotactile patterns were presented to the abdomen of novice participants. In Experiment 1, we manipulated the spatial (inter-tactor distance) and temporal (burst duration and inter-burst interval) parameters applied to the tracing mode (sequential activation of pattern elements). In Experiment 2, we compared display modes differing in their level of temporal overlap in the presentation of pattern elements: the static mode (simultaneous activation of pattern elements), the slit-scan mode (pattern revealed line by line), and the tracing mode. The results of both experiments reveal that (a) recognition performance increases with the isolation of pattern elements in space and/or in time, (b) spatial and temporal factors interact in pattern recognition, and (c) conditions leading to apparent movement tend to be associated with lower recognition accuracy. These results further our understanding of tactile perception and provide guidance for the design of future vibrotactile communication systems.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Sensory Substitution"
+  - "Haptic Interface"
+  - "Psychophysics"
+
+citation:
+  type: article-journal
+  container-title: "Journal of Experimental Psychology: Applied"
+  container-title-short: "JEPA"
+  doi: 10.1037/xap0000404
+  url: https://psycnet.apa.org/record/2022-01207-001
+  volume: 28
+  issue: 3
+  page: "606-628"
+  issn: "1939-2192, 1076-898X"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "{{< ai osf >}} Open Access data"
+      url: https://osf.io/pxat3/
+      aria-label: "See the article's data on OSF"
+---
+
+{{< include ../../additional-links.qmd >}}
