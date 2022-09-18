@@ -1,11 +1,15 @@
 ---
 title: "NAV-VIR"
-subtitle: "Virtual Navigation for Visually Impaired People"
+subtitle: "Virtual Map exploration for Visually Impaired People"
 date: 2017-09
+doi: "PHC Polonium (French-Polish EU grant)" # TODO: make specific param
 
 author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[Institute of Electronics (Lodz, Poland)](http://www.eletel.p.lodz.pl/eng/)"
+
+image: F2T.jpg
+image-alt: "Photography of the F2T, the main device used during the NAV-VIR project"
 
 description: "Developing a multi-modal interface for Visually Impaired People to virtually explore a map in order to prepare for a journey"
 
@@ -32,6 +36,14 @@ about:
 
 {{< include ../../additional-links.qmd >}}
 
+## Project's summary
+
 <!-- TODO: photo & descriptif F2T -->
 
-<!-- Role in this project -->
+## My role in this project
+
+**My role in this project was many-fold:**
+
+1) Participated in the development of a [Java application](https://github.com/ma-riviere/F2T-interface) to control the F2T, and to display various tactile "images".
+
+2) Participate in the first round of experimental evaluations where participants where tasked with recognizing simple geometrical shapes, as well as the layout of mock appartment.

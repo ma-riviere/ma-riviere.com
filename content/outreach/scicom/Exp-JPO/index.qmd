@@ -1,6 +1,6 @@
 ---
-title: "Percieving our surroundings without our eyes"
-subtitle: "[Expéruimentarium](https://www.experimentarium.fr/) (Journées Portes Ouvertes URN)"
+title: "Percieving our world without vision"
+subtitle: "College Fair of the University of Rouen"
 date: 2017-11-23
 author:
   - name: "Marc-Aurèle Rivière"
@@ -8,21 +8,17 @@ author:
 
 doi: "Rouen, France"
 
-description: "Presenting the [ACCESSPACE](/content/projects/ACCESSPACE) project to highschool students during the College Fair of Fall 2017 (in French)"
+description: "Presenting my doctoral research project to highschool students during the College Fair of Fall 2017 ({{< iconify twemoji flag-france >}})"
 
 categories:
+  - "Assistive Devices"
+  - "Accessibility"
   - "Sensory Substitution"
   - "Spatial Cognition"
-  - "Project ACCESSPACE"
 ---
 
 {{< include ../../../additional-links.qmd >}}
 
-Here is a video recording of a talk I gave to high-school students during my University's College Fair:
-
-<!-- {{< video src="https://webtv.univ-rouen.fr/downloads/file/v125874a12b846wu0get/?url=v125874a12b846wu0get_720.mp4"
-    title='Presentation of the ACCESSPACE project' 
-    height="530" 
-    start="0" >}} -->
+Here is a video recording of a talk I gave to high-school students during my University's College Fair, in collaboration with the [Expérimentarium](https://www.experimentarium.fr/) program, filmed by the University:
 
 <iframe width="100%" height="530" src="https://webtv.univ-rouen.fr/permalink/v125874a12b846wu0get/iframe/" allowfullscreen="allowfullscreen" allow="autoplay"></iframe>

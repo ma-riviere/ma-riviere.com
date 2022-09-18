@@ -10,7 +10,7 @@ author:
   - name: "Huiying Shen"
 doi: 10.1007/978-3-030-58796-3_55
 
-description: "We introduce CamIO, an AR app for Visually Impaired People (VIP) to reach objects in their immediate environment through real-time 3D audio guidance."
+description: "We introduce CamIO, an AR app for Visually Impaired People (VIP) to reach objects in their immediate environment through real-time 3D audio guidance"
 
 abstract: |
   Augmented reality (AR) has great potential for blind users because it enables a range of applications that provide audio information about specific locations or directions in the user’s environment. For instance, the [CamIO](/content/projects/CamIO) (“Camera Input-Output”) AR app makes physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons by providing real-time audio feedback in response to the location on an object that the user is touching (using an inexpensive stylus). An important feature needed by blind users of AR apps such as CamIO is a 3D spatial guidance feature that provides real-time audio feedback to help the user find a desired location on an object. We have devised a simple audio interface to provide verbal guidance towards a target of interest in 3D. The experiment we report with blind participants using this guidance interface demonstrates the feasibility of the approach and its benefit for helping users find locations of interest.
@@ -52,5 +52,3 @@ about:
 ---
 
 {{< include ../../additional-links.qmd >}}
-
-{{< youtube GmD1GbNI9Jw >}}

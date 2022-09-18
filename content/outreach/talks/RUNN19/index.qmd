@@ -8,21 +8,22 @@ author:
 
 doi: "Caen, France"
 
-description: "An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors (in French)"
+description: "An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors  ({{< iconify twemoji flag-france >}})"
 
-# abstract: "ACCESSPACE is a project aiming to ..."
+abstract: "In this short talk, I present the various models and tools we have developed or adapted during the [ACCESSPACE](/content/projects/ACCESSPACE) project."
 
 categories:
+  - "Assistive Devices"
+  - "Accessibility"
   - "Sensory Substitution"
   - "Spatial Cognition"
-  - "Project ACCESSPACE"
   
 about:
   links:
-    - text: "PDF"
+    - text: "PDF ({{< iconify twemoji flag-france >}})"
       icon: file-pdf
       url: content/talks/RUNN19/RUNN19.pdf
-      aria-label: "Download the slides as PDF"
+      aria-label: "Download the slides as PDF (in French)"
 ---
 
 {{< include ../../../additional-links.qmd >}}
@@ -32,4 +33,4 @@ about:
   width="100%" height=500> 
 </iframe>
 
-This talk got the best presentation award of RUNN'19
+*This talk got the best presentation award of RUNN'19 🥇*

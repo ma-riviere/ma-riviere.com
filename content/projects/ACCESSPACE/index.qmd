@@ -2,12 +2,14 @@
 title: "ACCESSPACE"
 subtitle: "Helping Visually Impaired People travel autonomously"
 date: 2017-01
+doi: "CCAH & FIRAH" # TODO: make specific param
 
 author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
 
 image: logo.png
+image-alt: "Logo of the ACCESSPACE project"
 
 description: "Developing a wearable vibro-tactile electronic Orientation & Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models"
 
@@ -26,54 +28,49 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Project's homepage [FR]"
+    - text: "Project's homepage ({{< iconify twemoji flag-france >}})"
       icon: globe
       url: http://accesspace.univ-rouen.fr/index.php
       aria-label: "See the project's official website (in French)"
-    - text: "{{< fa 'person-chalkboard' >}} Presentation [FR]"
+    - text: "{{< fa 'person-chalkboard' >}} Presentation ({{< iconify twemoji flag-france >}})"
       url: content/talks/RUNN19/index.qmd
       aria-label: "See a presentation illustrating the project (in French)"
 ---
 
 {{< include ../../additional-links.qmd >}}
 
+![](/res/img/ACCESSPACE - Header 2.jpg){alt="Banner illustrating the ACCESSPACE project"}
+
+## Project's summary
+
+<!--# TODO: summary: two main components: belt & software to localize / extract important spatial information from the environment -->
+
 ACCESSPACE's goal is to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way. By not having to blindly follow directions, and by progressively learning the topography of their environment, ACCESSPACE will help VIP feel less lost when in novel environments, improving their feeling of safety and autonomy, their mobility, and their integration in our society.
 
+<!--# TODO: add images + work on CV (ORB-SLAM, MonoDepth, ...) -->
+
+## My role in this project
+
+:::{.callout-note appearance="minimal"}
+
+## My role in this project was many-fold:  
+
+- Participated in the design of the vibro-tactile belt (aka **TactiBelt**).
+- Participated in the development of a [Java application](https://github.com/ma-riviere/BeltControl) to control and test the TactiBelt.
+- Handling the preliminary experimental evaluations to improve upon the design.
+- Review the related literature around navigation assisitive devices for VIP.
+- Presenting the project through [scientific papers](/content/pubs/ICCHP18-TactiBelt/), talks at [conferences](/content/outreach/talks/ICCHP18/), and outreach events (see the *dissemination section* below for more details).
+:::
+
+
+## Project's dissemination
+
+The ACCESSPACE project was promoted in various mainstream and technical media, such as:  
+- On [RTL](https://www.rtl.fr/actu/sciences-tech/tactbelt-la-ceinture-qui-aide-les-non-voyants-a-se-diriger-7797538766), a French national radio station  ({{< iconify twemoji flag-france >}})  
+- On [PhDTalent](https://app.phdtalent.fr/publication/accesspace-un-outil-pour-ce-deplacer-sans-la-vue_3/details), a platform and network for PhD Students who wish to transition to industry ({{< iconify twemoji flag-france >}})  
+- On [Guide Néret](https://guideneret.com/content/une-ceinture-intelligente-cr%c3%a9%c3%a9e-pour-que-les-malvoyants-se-d%c3%a9placent-sans-la-vue), a specialized website on Handicap in France ({{< iconify twemoji flag-france >}})  
+- On [Acuité](https://www.acuite.fr/actualite/sante/157415/un-nouveau-dispositif-ad-hoc-pour-les-malvoyants), a specialized website dedicated to Opticians and news around visual impairment ({{< iconify twemoji flag-france >}})  
+- On [Oxytude](https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/), a weekly podcast reviewing news related to visual impairment ({{< iconify twemoji flag-france >}})  
+- On [FIRAH](https://www.firah.org/fr/accesspace.html), the French Foundation on Applied Research for Handicap ({{< iconify twemoji flag-france >}})
+
 This project has been warmly welcomed by the VIP community and was awarded the “Applied research on disability” award from the CCAH in 2017.
-
-<!-- TODO: my role in this project -->
-
-<!-- TODO: add a few photos (virtual env SG, Belt, section with obstacle detection/ORB, depth map) -->
-
-<!--
-Official project link:
-
-On en parle:
-- Normandie Actu
-- RTL
-- PhDTalent
-- Guide Néret, Acuité, Oxytude
-- CCAH, FIRAH
-
---->
-
-<!--
-
-AdViS is coded in C++ (and Qt for the GUI). It uses [PureData](https://puredata.info/) for complex sound generation, and [???]() combined with a [VICON](https://www.vicon.com/) to track participant's movements in an augmented reality environment.
-
-Project investigated
-- Finger-guided image exploration (on a touch screen)
-- Eye-movement guided image exploration
-- Finger-pointing to invisible target in 3D
-
-Provide auditory feedback in various tasks ...
-- Pitch = elevation
-- ...
-- Natural pointers
-
-My role within this project was to 
-- Modify the existing code to include the ability to transcode grey-scale images into soundscapes
-- Touch-based exploration (capture information from touchscreen interactions)
-- Theory: Focal exploratory area -> higher density of information feedback
-
--->

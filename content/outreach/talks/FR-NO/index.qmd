@@ -8,15 +8,16 @@ author:
 
 doi: "Trondheim, Norway"
 
-description: "Academic talk presenting my work on using Cognitive Neurosciences and Computer Vision to develop better assistive devices for VIP."
+description: "Academic talk presenting my work on using Cognitive Neurosciences and Computer Vision to develop better assistive devices for VIP"
 
-abstract: "Exploring the use Computer Vision, combined with human Perception & Navigation models, to design more ergonomic assistive devices for VIP."
+abstract: "In this talk, I explore how our team uses Spatial Cognition and Computer Vision models to design more ergonomic and efficient assistive devices for VIP."
 
 categories:
+  - "Assistive Devices"
+  - "Accessibility"
   - "Sensory Substitution"
   - "Spatial Cognition"
   - "Computer Vision"
-  - "Project ACCESSPACE"
   
 about:
   links:

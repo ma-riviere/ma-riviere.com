@@ -8,15 +8,16 @@ author:
 
 doi: "Linz, Austria"
 
-description: "Short academic talk given during the ICCHP 2018 international conference to present the TactiBelt."
+description: "Short academic talk given during the ICCHP 2018 international conference to present the TactiBelt"
 
-abstract: "Integration of Spatial Cognition models into the design of the TactiBelt, a novel Electronic Travel and Orientation Aid for Visually Impaired People."
+abstract: "In this talk, I present how we integrated Spatial Cognition models into the design of the TactiBelt, a novel Electronic Travel and Orientation Aid for Visually Impaired People."
 
 categories:
+  - "Assistive Devices"
+  - "Accessibility"
   - "Spatial Cognition"
   - "Sensory Substitution"
   - "Virtual Reality"
-  - "Project ACCESSPACE"
   
 about:
   links:

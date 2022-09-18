@@ -2,13 +2,14 @@
 title: "CamIO"
 subtitle: "Camera Input-Output"
 date: 2018-03-01
+doi: "NIH/NEI & NIDILRR RERC" # TODO: make specific param
 
 author: 
   - name: "[SKERI (San Francisco, USA)](https://www.ski.org/center/rehabilitation-engineering-research-center)"
 
 image: logo.jpg
 
-description: "Smart pen providing real-time audio-feedback on touched objects using a smartphone built-in camera"
+description: "Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera"
 
 abstract: |
   CamIO is a system to make physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons, by providing real-time audio feedback in response to the location on an object that the user is touching. CamIO currently works on iOS using the built-in camera and an inexpensive hand-held stylus made out of paper and cardboard or wood.
@@ -31,7 +32,7 @@ about:
       aria-label: "See the project's official website"
     - text: "Conference Article"
       icon: file-pdf
-      url: content/pubs/ICCHP20/index.qmd
+      url: content/pubs/ICCHP20/
       aria-label: "See an article illustrating the project"
     - text: "Journal Article"
       icon: file-pdf
@@ -41,6 +42,16 @@ about:
 
 {{< include ../../additional-links.qmd >}}
 
-<!-- TODO: My role in this project ... invited/indoc -->
+## Project's summary
 
 {{< youtube GmD1GbNI9Jw >}}
+
+## [TODO] My role in this project 
+
+**My role in this project was two-fold:**
+
+1) Explore software solutions to improve the localisation & tracking capabilities of the device.
+
+<!--# TODO: insert iLocalize & Indoor Atlas -->
+
+2) Assist in writing a [scientific paper](/content/pubs/ICCHP20/) presenting the project.

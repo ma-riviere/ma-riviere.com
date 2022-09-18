@@ -6,6 +6,7 @@ title-block-banner: "#4B5B68"
 
 published-title: "Began Around"
 author-title: "Partners Involved"
+doi-title: "Funding Instrument" #TODO: change the link with JS, or better, change the template
 
 about:
   id: additional-links

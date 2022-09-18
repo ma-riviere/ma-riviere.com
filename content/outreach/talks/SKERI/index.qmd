@@ -8,7 +8,7 @@ author:
 
 doi: "San Francisco, USA"
 
-description: "Academic seminar hosted at Smith-Kettlewell Eye-Research Institute, to present the Sensory Substitution framework and its use in designing non-visual interfaces for VIP."
+description: "Seminar hosted at Smith-Kettlewell Eye-Research Institute, presenting the Sensory Substitution framework and its use in designing non-visual interfaces for VIP"
 
 abstract: |
   Despite the progress on assistive technologies for the visually impaired, numerous sources of information remain difficult to access without vision. Most of the existing solutions for visually impaired people rely on language to convey information, whether it is through an auditory (text-to-speech synthesis) or tactile (braille) medium. However, those solutions often fall short when the information to provide is highly dynamic or difficult to efficiently convey through language (e.g. spatial or image-based information).
@@ -16,10 +16,11 @@ abstract: |
   The Sensory Substitution framework provides a means to overcome those limitations by providing said information through low-level sensory stimulation which can be, after some training, processed and interpreted quickly, with very little attentional resources. However, a lot of questions on this particular type of human-machine communication still remain open. During this talk, I will present the projects I have been working on during the first 2 years of my Ph.D., in the context of sensory-substitution-based assistive devices, both on the accessibility of image-based content and on the autonomous navigation of visually impaired people.
 
 categories:
+  - "Assistive Devices"
+  - "Accessibility"
   - "Spatial Cognition"
   - "Sensory Substitution"
-  - "Project ACCESSPACE"
-  - "Project NAV-VIR"
+  - "Computer Vision"
   
 about:
   links:

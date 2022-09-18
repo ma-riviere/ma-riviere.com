@@ -1,11 +1,11 @@
 ---
 title: "About Me"
 # image: 
+title-block-banner: "#4B5B68"
+
 sidebar: false
 toc: false
 ---
-
-<!--# See: https://twitter.com/thomas_mock/status/1563513015151996928 -->
 
 ## {{< fa graduation-cap >}} Education
 
@@ -14,10 +14,14 @@ toc: false
   [University of Rouen-Normandy]{.small style="color: #888888"}
 
 - MSc in Cognitive Neurosciences (2015-2016)  
-  [Grenoble INP]{.small style="color: #888888"}
+  [Grenoble INP - Phelma]{.small style="color: #888888"}
 
 - MSc in Organisational Psychology (2013-2015)  
   [University of Strasbourg]{.small style="color: #888888"}
+
+## {{< fa address-book >}} Contact Me
+
+You can send me an [email](mailto:marc.aurele.riviere+site@gmail.com) or directly message me on twitter at [@mariviere1](https://twitter.com/mariviere1)
 
 ## {{< fa location-dot >}} Location
 

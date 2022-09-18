@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: "docs"
   # lib-dir: libs
-  resources: [.nojekyll, "/res/*"]
+  resources: [.nojekyll, "/res/*", abbreviations.yml]
   # pre-render: src/common/setup.R
   # post-render: 
   render:
@@ -112,8 +112,9 @@ website:
         href: https://quarto.org/
         aria-label: "Quarto's website"
 
-# abbreviations: # TODO: VIP -> 
 
+from: markdown+smart+emoji
+abbreviations: abbreviations.yml
 # bibliography: 
 csl: apa.csl
 
@@ -144,8 +145,6 @@ format:
     link-external-newwindow: true
 
 engine: knitr
-
-from: markdown+emoji
 
 knitr:
   opts_chunk:

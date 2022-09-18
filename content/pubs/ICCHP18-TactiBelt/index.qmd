@@ -9,7 +9,7 @@ author:
   - name: "Edwige Pissaloux"
 doi: 10.1007/978-3-319-94274-2_16
 
-description: "We introduce spatial cognition models as a framework to design novel mobility assistive devices for Visually Impaired People."
+description: "We introduce spatial cognition models as a framework to design novel mobility assistive devices for Visually Impaired People"
 
 abstract: |
   The aim of this paper is to introduce a novel functional design for an indoor and outdoor mobility assistive device for the visually impaired, based on the theoretical frameworks of mobility and spatial cognition. The originality of the proposed approach comes from the integration of two main aspects of navigation, locomotion and wayfinding. The cognitive theories which underpin the design of the proposed sensory substitution device, called TactiBelt, are identified and discussed in the framework of spatial knowledge acquisition. The paper is organized as follows: section 1 gives a brief overview of the sensory substitution framework, while sections 2 & 3 introduce the importance of navigation and spatial cognition models for the design of mobility aids. Section 4 details the functional design of the TactiBelt.

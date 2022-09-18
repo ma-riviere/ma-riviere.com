@@ -6,9 +6,9 @@ license: "CC BY"
 
 listing:
   - id: outreach-scicom
-    type: table
+    type: grid
     contents: "scicom/*/*.qmd"
-    fields: [doi, date, title, subtitle, description]
+    fields: [title, subtitle, description]
     categories: numbered
     date-format: medium
     sort: [date desc, title desc]
@@ -32,7 +32,7 @@ listing:
 comments: false
 ---
 
-## Scientific Communication
+## Scientific Outreach
 
 :::{#outreach-scicom}
 :::

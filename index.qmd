@@ -1,12 +1,6 @@
 ---
 title: "Marc-Aurèle Rivière"
-subtitle: | 
-  Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n 
-  and Human-Machine Interfaces<br>
-  ![](res/img/flags/PF.png){width=25px style="margin-right: 5px"}
-  ![](res/img/flags/FR.png){width=25px style="margin-right: 5px"}
-  ![](res/img/flags/USA.png){width=25px height=17px style="margin-right: 5px"}
-  ![](res/img/flags/NO.png){width=25px height=17px}
+subtitle: "Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
 
 description: "Research Enginner - [LITIS Lab](https://litislab.fr/en/litis)"
 
@@ -46,7 +40,7 @@ comments: false
 
 **Cognitive Neuroscientist** with a keen interest in Perception, Spatial Cognition, Memory, and Human-Machine Interfaces. 
 
-I'm a recovering academic who worked on several projects at the intersection between Cognitive Neurosciences and Biomedical Engineering. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP) providing them with a non-visual experience of their surroundings through a clever use of Computer Vision and Augmented-Reality within the Sensory Substitution framework.
+I'm a recovering academic who worked on several projects at the intersection between Cognitive Neurosciences and Biomedical Engineering. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP) providing them with a non-visual experience of their surroundings through a clever use of Computer Vision and Augmented-Reality within the Sensory Substitution framework. 
 
 I have since retrained as a **Data Scientist** and Bayesian enthusiast, with an unhealthy fondness of the R ecosystem and its community. I also dabble in more generic programming language such as Java, C# (Unity), and JavaScript.
 
@@ -55,12 +49,12 @@ I have since retrained as a **Data Scientist** and Bayesian enthusiast, with an 
 #| output: false
 
 source(here::here("src", "init.R"), echo = FALSE)
-# source(here::here("src", "quarto", "style_ggplot_bi.R"), echo = FALSE) # TODO: harmonizer avec theme.R
 ```
 
 ```{r}
 #| echo: false
 #| fig-width: 8
+#| fig-alt: A radar chart of my main skills
 
 skills <- tibble::tibble(
   `Behavioral \n Research  ` = 0.95,
@@ -100,6 +94,6 @@ skills_radar$layers[[6]]$aes_params$colour <- "grey70"
 skills_radar
 ```
 
-I use this website to gather information on the various [projects](/content/projects) I have worked on, my [publications](/content/pubs) and [academic talks](/content/talks), as well as some [blog posts](/content/blog) (which mainly pertain to R and statistics).
+I use this website to gather information on the various [projects](/content/projects) I have worked on, my [publications](/content/pubs) and [scientific communications](/content/outreach), as well as some [blog posts](/content/blog) (which mainly pertain to R and statistics). I also maintain an up-to-date [resumé](res/cv.pdf).
 
 :::

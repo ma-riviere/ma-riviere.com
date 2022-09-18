@@ -1,12 +1,16 @@
 ---
 title: "LT-AoP"
-subtitle: "Apnea of Prematurity - IHC"
-date: 2017-08
+subtitle: "Long Term effects of Apnea of Prematurity"
+date: 2016-08
+# doi: 
 
 author:
   - "[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)"
 
-description: "This project studied the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, through a mouse model using intermittent hypoxia"
+image: img.png
+image-alt: "Immunohistochemistry marking of a mouse cerebellum"
+
+description: "This project studied the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, using intermittent hypoxia in a mouse model"
 
 abstract: |
   ???
@@ -38,12 +42,21 @@ about:
 
 {{< include ../../additional-links.qmd >}}
 
+## Project's summary
+
+*To Be Completed*
+
 <!-- TODO: add one of the composite figures ? -->
 
-My role within this project was to manage the data analysis of both immunohistochemistry and qPCR data, using Generalized Linear Multilevel Models.
+## My role in this project
 
-I also made [a documentation website](https://ma-riviere.github.io/LT-AoP-22/) showcasing the project's data and analyses. It uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project:
+**My role within this project was two-fold:**
 
-<!-- TODO: put the iframe in a summary ? -->
+1) Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data.
 
-<iframe src="https://ma-riviere.github.io/LT-AoP-22/" width="100%" height="800"></iframe>
+2) Make [a website](https://ma-riviere.github.io/LT-AoP-22/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project:
+
+<details>
+  <summary>Click to see a preview of the documentation</summary>
+  <iframe src="https://ma-riviere.github.io/LT-AoP-22/" width="100%" height="800"></iframe>
+</details>
