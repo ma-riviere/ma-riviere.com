@@ -14,4 +14,9 @@ about:
   image: ../placeholder.avif
   image-width: "0%"
 
-sidebar: false
+page-layout: article
+
+format:
+  html:
+    number-sections: true
+    toc: true

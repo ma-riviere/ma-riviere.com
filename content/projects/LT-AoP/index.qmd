@@ -10,18 +10,18 @@ author:
 image: img.png
 image-alt: "Immunohistochemistry marking of a mouse cerebellum"
 
-description: "This project studied the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, using intermittent hypoxia in a mouse model"
+description: "This project studied the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, using intermittent hypoxia in a mouse model."
 
 abstract: |
-  ???
+  This study aimed to identify the effects of AoP on cerebellar development, and to demonstrate that the cerebellum is vulnerable to AoP. This was shown via enzymatic assay studies and RT-qPCR. Results confirmed the presence of alterations of cellular mechanisms, such as oxidative stress, leading to a delay in cerebellar maturation. This was further assessed through visible changes in cellular phenotype and histology via immunocytochemistry. Furthermore, behavioral studies showed that functional and behavioral alterations persisted in adulthood.
 
 categories:
+  - "Biostatistics"
+  - "Transcriptomics"
+  - "Data Science"
   - "Cerebellum"
   - "Hypoxia"
-  - "Immunohistochemistry"
   - "RT-qPCR"
-  - "Biostatistics"
-  - "Data Science"
 
 # Dirty trick to get some links/buttons
 about:
@@ -42,19 +42,12 @@ about:
 
 {{< include ../../additional-links.qmd >}}
 
-## Project's summary
+# My role in this project
+***
 
-*To Be Completed*
+**1)** Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data.
 
-<!-- TODO: add one of the composite figures ? -->
-
-## My role in this project
-
-**My role within this project was two-fold:**
-
-1) Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data.
-
-2) Make [a website](https://ma-riviere.github.io/LT-AoP-22/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project:
+**2)** Make [a website](https://ma-riviere.github.io/LT-AoP-22/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project:
 
 <details>
   <summary>Click to see a preview of the documentation</summary>

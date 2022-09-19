@@ -9,7 +9,7 @@ author:
 
 image: logo.jpg
 
-description: "Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera"
+description: "Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera."
 
 abstract: |
   CamIO is a system to make physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons, by providing real-time audio feedback in response to the location on an object that the user is touching. CamIO currently works on iOS using the built-in camera and an inexpensive hand-held stylus made out of paper and cardboard or wood.
@@ -38,20 +38,37 @@ about:
       icon: file-pdf
       url: https://pubmed.ncbi.nlm.nih.gov/32802916/
       aria-label: "See an article illustrating the project"
+bibliography: references.bib
 ---
 
 {{< include ../../additional-links.qmd >}}
 
-## Project's summary
+# Project summary
+***
 
 {{< youtube GmD1GbNI9Jw >}}
 
-## [TODO] My role in this project 
+# My role in this project
+***
 
-**My role in this project was two-fold:**
+**1)** Explore new solutions to improve the localisation & tracking capabilities of CamIO:
 
-1) Explore software solutions to improve the localisation & tracking capabilities of the device.
+Their existing solution, iLocalize [@fusco2018] (Swift / iOS), used a combination of Visuo-Inertial Odometry (VIO) through Apple's ARKit, particle filtering based on a simplified map of the environment, and drift-correction through visual identification of known landmarks (using a gradient boosting algorithm).
 
-<!--# TODO: insert iLocalize & Indoor Atlas -->
+![](iLocalize.jpg){fig-alt="Screenshot showcasing the iLocalize app" width=50% fig-align="center"}
 
-2) Assist in writing a [scientific paper](/content/pubs/ICCHP20/) presenting the project.
+I developed a [web app](https://github.com/ma-riviere/redast) to send the live camera stream from a mobile phone (JavaScript / socket.io) to a backend server (Python / Flask).
+The goal of the application was to facilitate the exploration of new Computer Vision algorithms to process the captured video and IMU data, which would send back location or navigational information.
+
+I also explored existing 3rd-party services for indoor localization, such as [Indoor Atlas](https://www.indooratlas.com/platform/) (which combines VIO, GPS data, WiFi & geomagnetic fingerprinting, dead-reckoning, and barometric readings for altitude changes), for which I made a small demo.
+
+::: {#fig-IA layout-ncol=2}
+![Indoor Atlas' localization](IA-loc.png){#fig-IA-loc fig-alt="Illustration of the Indoor Atlas service at work"}  
+
+![Indoor Atlas' navigation graph](IA-graph.png){#fig-IA-graph fig-alt="Illustration of the Indoor Atlas navigation graph" fig-align="center"}  
+
+Indoor Atlas
+
+:::
+
+**2)** Assist in writing a [scientific paper](/content/pubs/ICCHP20/) presenting the project.

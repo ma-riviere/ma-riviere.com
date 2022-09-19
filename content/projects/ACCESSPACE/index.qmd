@@ -11,7 +11,7 @@ author:
 image: logo.png
 image-alt: "Logo of the ACCESSPACE project"
 
-description: "Developing a wearable vibro-tactile electronic Orientation & Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models"
+description: "Developing a wearable vibro-tactile electronic Orientation & Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models."
 
 abstract: |
   The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user's location & surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.
@@ -32,16 +32,29 @@ about:
       icon: globe
       url: http://accesspace.univ-rouen.fr/index.php
       aria-label: "See the project's official website (in French)"
+    - text: "Conference Article"
+      url: content/pubs/ICCHP18-TactiBelt/
+      icon: file-pdf
+      aria-label: "See a conference article about the TactiBelt"
+    - text: "Journal Article"
+      url: content/pubs/JEP22/
+      icon: file-pdf
+      aria-label: "See a journal article about the TactiBelt"
     - text: "{{< fa 'person-chalkboard' >}} Presentation ({{< iconify twemoji flag-france >}})"
-      url: content/talks/RUNN19/index.qmd
+      url: content/talks/RUNN19/
       aria-label: "See a presentation illustrating the project (in French)"
+    - text: "Poster ({{< iconify twemoji flag-france >}})"
+      icon: file-image
+      url: content/projects/ACCESSPACE/poster.pdf
+      aria-label: "See a poster illustrating the project (in French)"
 ---
 
 {{< include ../../additional-links.qmd >}}
 
-![](/res/img/ACCESSPACE - Header 2.jpg){alt="Banner illustrating the ACCESSPACE project"}
+![](ACCESSPACE - Header 2.jpg){alt="Banner illustrating the ACCESSPACE project"}
 
-## Project's summary
+# Project summary
+***
 
 <!--# TODO: summary: two main components: belt & software to localize / extract important spatial information from the environment -->
 
@@ -49,21 +62,7 @@ ACCESSPACE's goal is to allow VIP to navigate indoors or outdoors in autonomy, h
 
 <!--# TODO: add images + work on CV (ORB-SLAM, MonoDepth, ...) -->
 
-## My role in this project
-
-:::{.callout-note appearance="minimal"}
-
-## My role in this project was many-fold:  
-
-- Participated in the design of the vibro-tactile belt (aka **TactiBelt**).
-- Participated in the development of a [Java application](https://github.com/ma-riviere/BeltControl) to control and test the TactiBelt.
-- Handling the preliminary experimental evaluations to improve upon the design.
-- Review the related literature around navigation assisitive devices for VIP.
-- Presenting the project through [scientific papers](/content/pubs/ICCHP18-TactiBelt/), talks at [conferences](/content/outreach/talks/ICCHP18/), and outreach events (see the *dissemination section* below for more details).
-:::
-
-
-## Project's dissemination
+## Project dissemination
 
 The ACCESSPACE project was promoted in various mainstream and technical media, such as:  
 - On [RTL](https://www.rtl.fr/actu/sciences-tech/tactbelt-la-ceinture-qui-aide-les-non-voyants-a-se-diriger-7797538766), a French national radio station  ({{< iconify twemoji flag-france >}})  
@@ -73,4 +72,17 @@ The ACCESSPACE project was promoted in various mainstream and technical media, s
 - On [Oxytude](https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/), a weekly podcast reviewing news related to visual impairment ({{< iconify twemoji flag-france >}})  
 - On [FIRAH](https://www.firah.org/fr/accesspace.html), the French Foundation on Applied Research for Handicap ({{< iconify twemoji flag-france >}})
 
-This project has been warmly welcomed by the VIP community and was awarded the “Applied research on disability” award from the CCAH in 2017.
+This project has been warmly welcomed by the VIP community and was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇.
+
+# My role in this project
+***
+
+**1)** Participated in the design of the vibro-tactile belt (aka **TactiBelt**).
+
+**2)** Participated in the development of a [Java application](https://github.com/ma-riviere/BeltControl) to control and test the TactiBelt.
+
+**3)** Handling the preliminary experimental evaluations to improve upon the design.
+
+**4)** Review the related literature around navigation assisitive devices for VIP.
+
+**5)** Presenting the project through [scientific papers](/content/pubs/ICCHP18-TactiBelt/), talks at [conferences](/content/outreach/talks/ICCHP18/), and outreach events (see the *dissemination section* above for more details).

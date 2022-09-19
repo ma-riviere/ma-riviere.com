@@ -132,6 +132,7 @@ format:
     fig-align: center
     fig-dpi: 500
     fig-format: svg
+    # fig-cap-location: bottom
     anchor-sections: true
     footnotes-hover: true
     code-link: true

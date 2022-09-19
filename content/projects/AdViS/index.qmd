@@ -1,8 +1,8 @@
 ---
 title: "AdViS"
 subtitle: "Adaptative Visual Substitution"
-date: 2015-02
-doi: "ANR (LabEx PERSYVAL)" # TODO: make specific param
+date: 2014-07
+doi: "AUTON (CNRS) & LabEx PERSYVAL (PIA)" # TODO: make specific param
 
 author:
   - "[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)"
@@ -28,7 +28,7 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Project's homepage [FR]"
+    - text: "Project's homepage ({{< iconify twemoji flag-france >}})"
       icon: globe
       url: https://persyval-lab.org/fr/exploratory-project/myssiv-mouvements-des-yeux-substitution-sensorielle-immersion-virtuelle
       aria-label: "See the project's official website (in French)"
@@ -48,7 +48,8 @@ about:
 
 {{< include ../../additional-links.qmd >}}
 
-## Project's summary
+# Project summary
+***
 
 AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role:
 
@@ -68,18 +69,17 @@ AdViS aims to explore various ways to provide visuo-spatial information through 
 The AdViS platform is coded in C++ (and Qt for the GUI).
 It currently uses [PureData](https://puredata.info/) for complex sound generation, and the [VICON](https://www.vicon.com/) system to track participant's movements in an augmented reality environment.
 
-## My role in this project
+# My role in this project
+***
 
-**My role within this project was four-fold:**
+**1)**  Propose a new model for image exploration using a touch-to-audio-feedback loop, where a VIP explores an image by moving its finger across it and gets auditive feedback from the explored regions and its surroundings.
 
-1)  Propose a new model for image exploration using a touch-to-audio-feedback loop, where a VIP explores an image by moving its finger across it and gets auditive feedback from the explored regions and its surroundings.
+**2)**  Modify the existing AdViS code to include the ability to transcode grey-scale images into soundscapes, and to capture finger movements information on a touchscreen.
 
-2)  Modify the existing AdViS code to include the ability to transcode grey-scale images into soundscapes, and to capture finger movements information on a touchscreen.
-
-3)  Organize experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyse the results.
+**3)**  Organize experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyse the results.
 
 ![](geom-finger.jpg){alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"}
 
-4)  Participate in implementing an eye-tracking-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).
+**4)**  Participate in implementing an eye-tracking-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).
 
 ![](geom-eye.jpg){alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"}

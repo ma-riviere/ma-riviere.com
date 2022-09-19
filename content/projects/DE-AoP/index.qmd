@@ -10,34 +10,28 @@ author:
 image: circlize.png
 image-alt: "Circular plot illustrating the impact of the multiple genes tested on several key biological pathways"
 
-description: "This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model"
+description: "This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model."
 
 abstract: |
-  ???
+  This work aims at shedding light on the mechanisms underlying cerebellar hypoxic injury. To this end, a transcriptomic study (by RT-qPCR) of genes involved in oxydative stress, cell differentiation, and migration was performed. We analyzed the expression of these genes in different developmental stages (P4, P8, P12, P21 and adults), and in different cell types, using laser capture microdissection to separate cerebellar layers. This project provides cues to better understand the cellular and molecular aspects of AoP-induced cerebellar injury.
 
 categories:
+  - "Biostatistics"
+  - "Transcriptomics"
+  - "Data Science"
   - "Cerebellum"
   - "Hypoxia"
   - "RT-qPCR"
-  - "Biostatistics"
-  - "Data Science"
 ---
 
 {{< include ../../additional-links.qmd >}}
 
-## Project's summary
+# My role in this project
+***
 
-*To Be Completed*
-
-<!--# TODO: circlize ? -->
-
-## My role in this project
-
-**My role within this project is three-fold:**
-
-1) Develop tools to assist the project's researchers exploration of the collected data. To this end, I developed a modular [
+**1)** Develop tools to assist the project's researchers exploration of the collected data. To this end, I developed a modular [
 Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process.
 
-2) Handle the RT-qPCR data processing and analysis.
+**2)** Handle the RT-qPCR data processing and analysis.
 
-3) Participate in writing the final scientific paper resulting from this project *(ongoing)*
+**3)** Participate in writing the final scientific paper resulting from this project *(ongoing)*.

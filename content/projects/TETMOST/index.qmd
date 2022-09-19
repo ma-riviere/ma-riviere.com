@@ -1,0 +1,111 @@
+---
+title: "TETMOST"
+subtitle: "Making Art more accessible to Visually Impaired People"
+date: 2017-09
+doi: "AUTON (CNRS)" # TODO: make specific param
+
+author:
+  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
+  - "[LIR3S (Bourgogne, France)](http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm)"
+  - "[IHRIM (Lyon, France)](https://ihrim.ens-lyon.fr/)"
+
+image: logo.png
+image-alt: "Logo illustrating the TETMOST project"
+
+description: "Developping a haptic interface and studying ways to intuitively represent images and Art pieces haptically for Visually Impaired People."
+
+abstract: |
+  The goal of the TETMOST project was to make Art more accessible to Visually Impaired People. The project had two main axes: (1) researching and experimenting to find the most intuitive way to transcode an image into haptic sensations whilst retaining its original meaning and peculiarities, and (2) developping a novel haptic interface allowing VIP to explore images with their fingers.
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Visual Impairment"
+  - "Virtual Reality"
+  - "Sensory Substitution"
+  - "Haptic Interface"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Article (F2T)"
+      icon: file-pdf
+      url: content/pubs/ICCHP18-F2T/
+      aria-label: "See an article about the F2T"
+    - text: "Article (segmentation)"
+      icon: file-pdf
+      url: content/pubs/ICISP20/
+      aria-label: "See an article about the Art segmentation"
+    - text: "Poster"
+      icon: file-image
+      url: content/projects/TETMOST/poster.pdf
+      aria-label: "See a poster about the project"
+---
+
+{{< include ../../additional-links.qmd >}}
+
+# Project summary
+***
+
+<!--# TODO: summary -->
+
+*To Be Filled*
+
+![](schema.png){fig-alt="Schema illustrating the objectives of the TETMOST project"}
+
+## Exploring existing haptic interfaces
+
+We researched and tried different categories of haptic interfaces in order to asses their strengths and weaknesses for our purposes:
+
+:::{#fig-device-types layout='[32,34,34]' layout-valign="center"}
+
+![Taxel mechanical interfaces](taxels.png){#fig-taxel fig-alt="Photo of the StimTACT interface"}
+
+![Electro-friction interfaces](friction.png){#fig-elec fig-alt="Photo of the Hap2U interface"}
+
+![Vibrational interfaces](gloves.png){#fig-vibro fig-alt="Photo of the vibrotactile gloves"}
+
+The three main categories of haptic interfaces
+
+:::
+
+Our experience with the existing categories of haptic interfaces allowed us to designed one best adapted to our need: the **Force-Feedback Tablet (F2T)**
+
+## Our interface: F2T (v1)
+
+The first prototype of the F2T was assembled with legos and a camera to better asses the position of the joystick within the frame of the device.
+
+:::{layout='[46,54]' layout-valign="center"}
+
+![](F2T-v1.jpg){fig-alt="Photo of the first prototype of the F2T device"}
+
+![](F2T-explanation.png){fig-alt="Schema explaining the F2T interface"}
+
+:::
+
+## Our tools
+
+**1)** We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:
+
+![](F2T-interface.png){fig-alt="Screenshot of the F2T control interface"}
+
+**2)** In order to display an image haptically, we first needed a way to simplify the image's content without losing its meaning. To do so, we explored various Computer Vision techniques such as image segmentation and edge detection:
+
+:::{layout='[48,52]'}
+
+![](art.png){fig-alt="Antique drawing of a horse passed through an edge-detection algorithm to remove unneeded details"}
+
+![](art2.png){fig-alt="Antique painting of a woman carrying a milk jug, passed through another type of edge-detection algorithm to remove unneeded details"}
+
+:::
+
+# My role in this project
+***
+
+**1)** Participate in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
+
+**2)** Reviewing the literature and finding existing haptic interfaces, classifying them based on our needs, and buying/lending a prorotype from each category.
+
+**3)** Organizing experimental evaluations with VIP to see the strengths and weaknesses of each type.
+
+**4)** Participate in writing a [poster](poster.pdf) and two conference articles: one on the [F2T](/content/pubs/ICCHP18-F2T/), and one on the [image segmentation](/content/pubs/ICISP20/).

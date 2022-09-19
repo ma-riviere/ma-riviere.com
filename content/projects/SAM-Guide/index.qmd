@@ -11,10 +11,10 @@ author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
 
-# image: logo.png
-# image-alt: "Logo of the SAM-Guide project"
+image: logo.jpg
+image-alt: "Logo illustrating the SAM-Guide project"
 
-description: "Designing an efficient multi-modal interface to help VIP during spatial interactions and sports"
+description: "Designing an efficient multi-modal interface to help VIP during spatial interactions and sports."
 
 abstract: |
   The SAM-Guide project aims to ???  
@@ -34,7 +34,8 @@ categories:
 
 {{< include ../../additional-links.qmd >}}
 
-## Project summary
+# Project summary
+***
 
 <!-- # TODO: summarizes this -->
 
@@ -58,13 +59,14 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 
 -->
 
-## My role in this project
+# [TODO] My role in this project
+***
 
-**My role in this project is many-fold:**
+**1)** Before the project began, I put connected the consortium members together, organised meetings and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€)
 
-- Before the project began, I put connected the consortium members together, organised meetings and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€)  
-- Since then, I lead the design and development of the project's experimental platform (a series of automated testing environment in Unity)  
-- I also participated in the development of the second prototype of the vibro-tactile belt (which includes wireless communication and amovible vibrators)
+**2)** Since then, I lead the design and development of the project's experimental platform (a series of automated testing environment in Unity)  
+
+**3)** I also participated in the development of the second prototype of the vibro-tactile belt (which includes wireless communication and amovible vibrators)
 
 
 <!-- TODO: add a few photos/videos (with sound) (Unity, ...) -->

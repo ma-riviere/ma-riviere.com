@@ -1,6 +1,5 @@
 ---
 title: "Past & Current Projects"
-# image: 
 
 listing:
   feed: true

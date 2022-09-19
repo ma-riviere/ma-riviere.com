@@ -22,7 +22,11 @@ about:
   links:
     - text: "PDF ({{< iconify twemoji flag-france >}})"
       icon: file-pdf
-      url: content/talks/RUNN19/RUNN19.pdf
+      url: content/talks/RUNN19/slides.pdf
+      aria-label: "Download the slides as PDF (in French)"
+    - text: "Poster ({{< iconify twemoji flag-france >}})"
+      icon: file-image
+      url: content/projects/ACCESSPACE/poster.pdf
       aria-label: "Download the slides as PDF (in French)"
 ---
 
