@@ -26,6 +26,8 @@ project_pkgs <- c(
   "dbplyr",
   "DBI",
   "RSQLite",
+  "duckdb",
+  "fuzzyjoin",
   
   ### Model fitting
   "ma-riviere/cmdstanr",
