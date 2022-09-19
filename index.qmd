@@ -94,6 +94,6 @@ skills_radar$layers[[6]]$aes_params$colour <- "grey70"
 skills_radar
 ```
 
-I use this website to gather information on the various [projects](/content/projects) I have worked on, my [publications](/content/pubs) and [scientific communications](/content/outreach), as well as some [blog posts](/content/blog) (which mainly pertain to R and statistics). I also maintain an up-to-date [resumé](res/cv.pdf).
+I use this website to gather information on the various [projects](/content/projects/) I have worked on, my [publications](/content/pubs/) and [scientific communications](/content/outreach/), as well as some [blog posts](/content/posts/) (which mainly pertain to R and statistics). I also maintain an up-to-date [resumé](res/cv.pdf).
 
 :::
