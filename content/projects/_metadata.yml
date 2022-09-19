@@ -20,3 +20,9 @@ format:
   html:
     number-sections: true
     toc: true
+
+filters:
+  - lightbox
+
+lightbox:
+  match: auto

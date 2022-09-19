@@ -9,7 +9,7 @@ author:
 date: 2022-06-05
 
 abstract: |
-  This is an extension (in R) of [PyMC-Labs' benchmarking](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) of MCMC for Big Data. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
+  This is an extension (and a translation to R) of [PyMC-Labs' benchmarking](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) of MCMC for Big Data. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
 
 categories:
   - "Statistics"
@@ -24,12 +24,6 @@ format:
     code-tools:
       source: true
       toggle: false
-
-# filters:
-#   - lightbox
-# 
-# lightbox:
-#   match: auto
 ---
 
 <hr>

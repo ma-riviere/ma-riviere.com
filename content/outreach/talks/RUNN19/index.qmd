@@ -20,9 +20,9 @@ categories:
   
 about:
   links:
-    - text: "PDF ({{< iconify twemoji flag-france >}})"
+    - text: "Slides ({{< iconify twemoji flag-france >}})"
       icon: file-pdf
-      url: content/talks/RUNN19/slides.pdf
+      url: content/outreach/talks/RUNN19/RUNN19.pdf
       aria-label: "Download the slides as PDF (in French)"
     - text: "Poster ({{< iconify twemoji flag-france >}})"
       icon: file-image

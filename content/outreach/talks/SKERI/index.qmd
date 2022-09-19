@@ -24,9 +24,9 @@ categories:
   
 about:
   links:
-    - text: "PDF"
+    - text: "Slides"
       icon: file-pdf
-      url: content/talks/SKERI/SKERI.pdf
+      url: content/outreach/talks/SKERI/SKERI.pdf
       aria-label: "Download the slides as PDF"
 ---
 

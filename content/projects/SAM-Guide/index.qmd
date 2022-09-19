@@ -11,14 +11,13 @@ author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
 
-image: logo.jpg
-image-alt: "Logo illustrating the SAM-Guide project"
+image: header.jpg
+image-alt: "Image illustrating the SAM-Guide project"
 
 description: "Designing an efficient multi-modal interface to help VIP during spatial interactions and sports."
 
 abstract: |
-  The SAM-Guide project aims to ???  
-  
+  SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g. laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements.
   SAM-Guide is a inter-disciplinary collaboration project between three sites: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University, (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
 
 categories:
@@ -33,6 +32,8 @@ categories:
 ---
 
 {{< include ../../additional-links.qmd >}}
+
+![](header.jpg){fig-alt="Banner illustrating the SAM-Guide project"}
 
 # Project summary
 ***
@@ -52,21 +53,18 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 <!-- # TODO
 
 - This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes.
-- This project will finance the recruitment of two PhD students, one post-doc and one Research Engineer
-- SAM-Guide uses ... Unity / Motion Capture
-- Image of second TactiBelt
-- Image of AdViS & CMAP prototypes
 
 -->
 
-# [TODO] My role in this project
+# My role in this project
 ***
 
-**1)** Before the project began, I put connected the consortium members together, organised meetings and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€)
+**1)** I was the driving force behind the genesis of this project. I connected the consortium members together and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€). This project will last 4 years and allow the recruitment of 2 PhD students, one post-doc, and one Research Engineer.
 
-**2)** Since then, I lead the design and development of the project's experimental platform (a series of automated testing environment in Unity)  
+**2)** Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:
 
-**3)** I also participated in the development of the second prototype of the vibro-tactile belt (which includes wireless communication and amovible vibrators)
+![](TactiBelt-v2.jpg "Photography of the second iteration of the TactiBelt"){fig-alt="Photography of the second iteration of the TactiBelt"}
 
+**3)** Lead the design and development of the project's experimental platform. The platform uses Unity, connects to various motion tracking devices (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation, and [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling.
 
-<!-- TODO: add a few photos/videos (with sound) (Unity, ...) -->
+![](Unity.png){fig-alt="Screenshot of the experimental plateform of SAM-Guide"}

@@ -21,7 +21,7 @@ categories:
   
 about:
   links:
-    - text: "PDF"
+    - text: "Slides"
       icon: file-pdf
       url: https://drive.google.com/file/d/1S47ljI3BVJhbLGIhPf40q8uTjYQm9TMF/view?usp=sharing
       aria-label: "Download the slides as PDF"

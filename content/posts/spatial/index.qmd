@@ -12,11 +12,11 @@ abstract: |
   This document was made in response to the following [reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is linked to a case study of Google's Data Analytics certificate.
 
 categories:
-  - "Statistics"
-  - "ML"
-  - "Bayesian Modeling"
-  - "Stan"
+  - "Big Data"
+  - "Data Manipulation"
+  - "Spatial Data"
   - "R"
+  - "SQL"
 
 format:
   html:
