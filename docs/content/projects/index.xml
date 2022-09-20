@@ -1,0 +1,602 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.me/content/projects/index.html</link>
+<atom:link href="https://ma-riviere.me/content/projects/index.xml" rel="self" type="application/rss+xml"/>
+<description>Marc-Aurèle Rivière's personal website</description>
+<generator>quarto-1.1.251</generator>
+<lastBuildDate>Sun, 31 Oct 2021 23:00:00 GMT</lastBuildDate>
+<item>
+  <title>SAM-Guide</title>
+  <dc:creator>[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)</dc:creator>
+  <dc:creator>[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)</dc:creator>
+  <dc:creator>[CMAP (Paris-Saclay, France)](https://portail.polytechnique.edu/cmap/en)</dc:creator>
+  <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
+  <dc:creator>[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/SAM-Guide/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/SAM-Guide/header.jpg" class="img-fluid figure-img" alt="Banner illustrating the SAM-Guide project"></a></p>
+</figure>
+</div>
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<!-- # TODO: summarizes this -->
+<p>Interacting with space is a constant challenge for Visually Impaired People (VIP) since spatial information in Humans is typically provided by vision. Sensory Substitution Devices (SSDs) have been promising Human-Machine Interfaces (HMI) to assist VIP. They re-code missing visual information as stimuli for other sensory channels. Our project redirects somehow from SSD’s initial ambition for a single universal integrated device that would replace the whole sense organ, towards common encoding schemes for multiple applications.</p>
+<p>SAM-Guide will search for the most natural way to give online access to geometric variables that are necessary to achieve a range of tasks without eyes. Defining such encoding schemes requires selecting a crucial set of geometrical variables, and building efficient and comfortable auditory and/or tactile signals to represent them. We propose to concentrate on action-perception loops representing target-reaching affordances, where spatial properties are defined as ego-centered deviations from selected beacons.</p>
+<p>The same grammar of cues could better help VIP to get autonomy along with a range of vital or leisure activities. Among such activities, the consortium has advances in orienting and navigating, object locating and reaching, laser shooting. Based on current neurocognitive models of human action-perception and spatial cognition, the design of the encoding schemes will lay on common theoretical principles: parsimony (minimum yet sufficient information for a task), congruency (leverage existing sensorimotor control laws), and multimodality (redundant or complementary signals across modalities). To ensure an efficient collaboration all partners will develop and evaluate their transcoding schemes based on common principles, methodology, and tools. An inclusive user-centered “living-lab” approach will ensure constant adequacy of our solutions with VIP’s needs.</p>
+<p>Five labs (three campuses) comprising ergonomists, neuroscientists, engineers, and mathematicians, united by their interest and experience with designing assistive devices for VIP, will duplicate, combine and share their pre-existing SSDs prototypes: a vibrotactile navigation belt, an audio-spatialized virtual guide for jogging, and an object-reaching sonic pointer. Using those prototypes, they will iteratively evaluate and improve their transcoding schemes in a 3-phase approach: First, in controlled experimental settings through augmented-reality serious games in motion capture (virtual prototyping indeed facilitates the creation of ad-hoc environments, and gaming eases the participants’ engagement). Next, spatial interaction subtasks will be progressively combined and tested in wider and more ecological indoor and outdoor environments. Finally, SAM-Guide’s system will be fully transitioned to real-world conditions through a friendly sporting event of laser-run, a novel handi-sport, which will involve each subtask.</p>
+<p>SAM-Guide will develop action-perception and spatial cognition theories relevant to nonvisual interfaces. It will provide guidelines for the efficient representation of spatial interactions to facilitate the emergence of spatial awareness in a task-oriented perspective. Our portable modular transcoding libraries are independent of hardware consideration. The principled experimental platform offered by AR games will be a tool for evaluating VIP spatial cognition, and novel strategies for mobility training.</p>
+<!-- # TODO
+- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes.
+-->
+<!--# TODO: Our tools > ceinture & Unity -->
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> I was the driving force behind the genesis of this project. I connected the consortium members together and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€). This project will last 4 years and allow the recruitment of 2 PhD students, one post-doc, and one Research Engineer.</p>
+<p><strong>2)</strong> Participated in the Data Management plan creation (compliance to the GPDR).</p>
+<p><strong>3)</strong> Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:</p>
+<div id="fig-tactibelt-v2" class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="TactiBelt-v2.jpg" class="lightbox" title="Second prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/SAM-Guide/TactiBelt-v2.jpg" title="fig:Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Second prototype of the TactiBelt</figcaption><p></p>
+</figure>
+</div>
+<p><strong>4)</strong> Lead the design and development of the project’s experimental platform (choice of tools, lead developer). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses <a href="https://puredata.info/">PureData</a> for sound-wave generation, uses <a href="https://valvesoftware.github.io/steam-audio/">Steam Audio</a> for 3D audio modeling, and communicates to the TactiBelt wirelessly using the <a href="https://en.wikipedia.org/wiki/Open_Sound_Control">OSC protocol</a>.</p>
+<div id="fig-unity" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="fig-unity-testenv" class="quarto-figure quarto-figure-center" style="flex-basis: 50.3%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity.png" class="lightbox" title="Testing environment with a PureData audio beacon" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity.png" class="img-fluid figure-img" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a></p>
+<p></p><figcaption class="figure-caption">(a) Testing environment with a PureData audio beacon</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 0.5%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+<div id="fig-unity-maze" class="quarto-figure quarto-figure-center" style="flex-basis: 49.2%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity-maze.png" class="lightbox" title="Auto-generated maze with 3D audio beacons on waypoints" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity-maze.png" class="img-fluid figure-img" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a></p>
+<p></p><figcaption class="figure-caption">(b) Auto-generated maze with 3D audio beacons on waypoints</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Screenshots from SAM-Guide’s experimental platform <em>(in development)</em></figcaption><p></p>
+</figure>
+</div>
+<p><strong>5)</strong> Handling the experimental design of the first wave of experiments <em>(ongoing)</em>.</p>
+
+
+</section>
+ ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Visual Impairment</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Auditory Interface</category>
+  <category>Haptic Interface</category>
+  <category>Computer Vision</category>
+  <guid>https://ma-riviere.me/content/projects/SAM-Guide/index.html</guid>
+  <pubDate>Sun, 31 Oct 2021 23:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/SAM-Guide/header.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>DE-AoP</title>
+  <dc:creator>[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/DE-AoP/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<section id="my-role-in-this-project" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> Develop tools to assist the project’s researchers exploration of the collected data. To this end, I developed a modular <a href="https://mar-studio.shinyapps.io/ShinyQPCR2/">Shiny dashboard</a> to assist in the data exploration process.</p>
+<p><strong>2)</strong> Handle the RT-qPCR data processing and analysis.</p>
+<p><strong>3)</strong> Participate in writing the final scientific paper resulting from this project <em>(ongoing)</em>.</p>
+
+
+</section>
+ ]]></description>
+  <category>Biostatistics</category>
+  <category>Transcriptomics</category>
+  <category>Data Science</category>
+  <category>Cerebellum</category>
+  <category>Hypoxia</category>
+  <category>RT-qPCR</category>
+  <guid>https://ma-riviere.me/content/projects/DE-AoP/index.html</guid>
+  <pubDate>Wed, 31 Jul 2019 22:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/DE-AoP/circlize.png" medium="image" type="image/png" height="132" width="144"/>
+</item>
+<item>
+  <title>NAV-VIR</title>
+  <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
+  <dc:creator>[Institute of Electronics (Lodz, Poland)](http://www.eletel.p.lodz.pl/eng/)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/NAV-VIR/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<!--# TODO: summary -->
+<p><em>To Be Filled</em></p>
+<section id="our-interface-f2t-v2" class="level2" data-number="1.1">
+<h2 data-number="1.1" data-anchor-id="our-interface-f2t-v2"><span class="header-section-number">1.1</span> Our interface: F2T (v2)</h2>
+<p>During this project, we improved upon the first iteration of the <strong>Force Feedback Tablet (F2T)</strong> from the <a href="../../../content/projects/TETMOST/">TETMOST project</a> to design the finalized prototype of this interface:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 46.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="F2T-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/NAV-VIR/F2T-v2.jpg" class="img-fluid figure-img" alt="Photo of the F2T interface"></a></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 54.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/NAV-VIR/F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="our-tools" class="level2" data-number="1.2">
+<h2 data-number="1.2" data-anchor-id="our-tools"><span class="header-section-number">1.2</span> Our tools</h2>
+<p><strong>1)</strong> We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/NAV-VIR/F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
+</figure>
+</div>
+<p><strong>2)</strong> We investigated and developed tools to automatically generate a navigation graph from a floor plan, which can then be converted into a tactile image and explored with the F2T:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="map-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/NAV-VIR/map-graph.png" class="img-fluid figure-img" alt="Illustrations of the navigation graph generation"></a></p>
+</figure>
+</div>
+</section>
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> Participate in the development of a <a href="https://github.com/ma-riviere/F2T-interface">Java app</a> to control the F2T and display tactile “images”.</p>
+<p><strong>2)</strong> Help design the first round of experimental evaluations, where participants where tasked with recognizing simple geometrical shapes, as well as the layout of a simple mock apartment.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 40.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="exp-setup.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/NAV-VIR/exp-setup.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 60.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="rooms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/NAV-VIR/rooms.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>3)</strong> Write a first-author <a href="../../../content/pubs/NER19/">conference article</a> and a <a href="poster.pdf">poster</a>.</p>
+
+
+</section>
+ ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Visual Impairment</category>
+  <category>Virtual Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <category>Auditory Interface</category>
+  <guid>https://ma-riviere.me/content/projects/NAV-VIR/index.html</guid>
+  <pubDate>Fri, 31 Aug 2018 22:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/NAV-VIR/F2T-v2-render.png" medium="image" type="image/png" height="81" width="144"/>
+</item>
+<item>
+  <title>CamIO</title>
+  <dc:creator>[SKERI (San Francisco, USA)](https://www.ski.org/center/rehabilitation-engineering-research-center)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/CamIO/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<p></p><div id="youtube-frame" style="position: relative; padding-bottom: 56.25%; /* 16:9 */ height: 0;"><iframe width="100%" height="" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" src="https://www.youtube.com/embed/GmD1GbNI9Jw" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div><p></p>
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> Explore new solutions to improve the localisation &amp; tracking capabilities of CamIO:</p>
+<p>Their existing solution, iLocalize <span class="citation" data-cites="fusco2018">(Fusco &amp; Coughlan, 2018)</span> (Swift / iOS), used a combination of Visuo-Inertial Odometry (VIO) through Apple’s ARKit, particle filtering based on a simplified map of the environment, and drift-correction through visual identification of known landmarks (using a gradient boosting algorithm).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="iLocalize.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/CamIO/iLocalize.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot showcasing the iLocalize app"></a></p>
+</figure>
+</div>
+<p>I developed a <a href="https://github.com/ma-riviere/redast">web app</a> to send the live camera stream from a mobile phone (JavaScript / socket.io) to a backend server (Python / Flask). The goal of the application was to facilitate the exploration of new Computer Vision algorithms to process the captured video and IMU data, which would send back location or navigational information.</p>
+<p>I also explored existing 3rd-party services for indoor localization, such as <a href="https://www.indooratlas.com/platform/">Indoor Atlas</a> (which combines VIO, GPS data, WiFi &amp; geomagnetic fingerprinting, dead-reckoning, and barometric readings for altitude changes), for which I made a small demo.</p>
+<div id="fig-IA" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="fig-IA-loc" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
+<p></p><figcaption class="figure-caption">(a) Indoor Atlas’ localization</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-IA-graph" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
+<p></p><figcaption class="figure-caption">(b) Indoor Atlas’ navigation graph</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Indoor Atlas</figcaption><p></p>
+</figure>
+</div>
+<p><strong>2)</strong> Assist in writing a <a href="../../../content/pubs/ICCHP20/">scientific paper</a> presenting the project.</p>
+
+
+
+</section>
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-line-spacing="2">
+<div id="ref-fusco2018" class="csl-entry">
+Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer vision and visual-inertial odometry</em> (pp. 86–93). Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_13">https://doi.org/10.1007/978-3-319-94274-2_13</a>
+</div>
+</div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Visual Impairment</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Auditory Interface</category>
+  <category>Computer Vision</category>
+  <guid>https://ma-riviere.me/content/projects/CamIO/index.html</guid>
+  <pubDate>Wed, 28 Feb 2018 23:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/CamIO/logo.jpg" medium="image" type="image/jpeg"/>
+</item>
+<item>
+  <title>TETMOST</title>
+  <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
+  <dc:creator>[LIR3S (Bourgogne, France)](http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm)</dc:creator>
+  <dc:creator>[IHRIM (Lyon, France)](https://ihrim.ens-lyon.fr/)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/TETMOST/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<!--# TODO: summary -->
+<p><em>To Be Filled</em></p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="schema.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/TETMOST/schema.png" class="img-fluid figure-img" alt="Schema illustrating the objectives of the TETMOST project"></a></p>
+</figure>
+</div>
+<section id="exploring-existing-haptic-interfaces" class="level2" data-number="1.1">
+<h2 data-number="1.1" data-anchor-id="exploring-existing-haptic-interfaces"><span class="header-section-number">1.1</span> Exploring existing haptic interfaces</h2>
+<p>We researched and tried different categories of haptic interfaces in order to asses their strengths and weaknesses for our purposes:</p>
+<div id="fig-device-types" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div id="fig-taxel" class="quarto-figure quarto-figure-center" style="flex-basis: 32.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="taxels.png" class="lightbox" title="Taxel mechanical interfaces" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/TETMOST/taxels.png" class="img-fluid figure-img" alt="Photo of the StimTACT interface"></a></p>
+<p></p><figcaption class="figure-caption">(a) Taxel mechanical interfaces</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-elec" class="quarto-figure quarto-figure-center" style="flex-basis: 34.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="friction.png" class="lightbox" title="Electro-friction interfaces" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/TETMOST/friction.png" class="img-fluid figure-img" alt="Photo of the Hap2U interface"></a></p>
+<p></p><figcaption class="figure-caption">(b) Electro-friction interfaces</figcaption><p></p>
+</figure>
+</div>
+<div id="fig-vibro" class="quarto-figure quarto-figure-center" style="flex-basis: 34.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="gloves.png" class="lightbox" title="Vibrational interfaces" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/TETMOST/gloves.png" class="img-fluid figure-img" alt="Photo of the vibrotactile gloves"></a></p>
+<p></p><figcaption class="figure-caption">(c) Vibrational interfaces</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: The three main categories of haptic interfaces</figcaption><p></p>
+</figure>
+</div>
+<p>Our experience with the existing categories of haptic interfaces allowed us to designed one best adapted to our need: the <strong>Force-Feedback Tablet (F2T)</strong></p>
+</section>
+<section id="our-interface-f2t-v1" class="level2" data-number="1.2">
+<h2 data-number="1.2" data-anchor-id="our-interface-f2t-v1"><span class="header-section-number">1.2</span> Our interface: F2T (v1)</h2>
+<p>The first prototype of the F2T was assembled with legos and a camera to better asses the position of the joystick within the frame of the device.</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-center">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 46.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="F2T-v1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/TETMOST/F2T-v1.jpg" class="img-fluid figure-img" alt="Photo of the first prototype of the F2T device"></a></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 54.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/TETMOST/F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="our-tools" class="level2" data-number="1.3">
+<h2 data-number="1.3" data-anchor-id="our-tools"><span class="header-section-number">1.3</span> Our tools</h2>
+<p><strong>1)</strong> We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://ma-riviere.me/content/projects/TETMOST/F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
+</figure>
+</div>
+<p><strong>2)</strong> In order to display an image haptically, we first needed a way to simplify the image’s content without losing its meaning. To do so, we explored various Computer Vision techniques such as image segmentation and edge detection:</p>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 48.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="art.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://ma-riviere.me/content/projects/TETMOST/art.png" class="img-fluid figure-img" alt="Antique drawing of a horse passed through an edge-detection algorithm to remove unneeded details"></a></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 52.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="art2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://ma-riviere.me/content/projects/TETMOST/art2.png" class="img-fluid figure-img" alt="Antique painting of a woman carrying a milk jug, passed through another type of edge-detection algorithm to remove unneeded details"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> Participate in the development of a <a href="https://github.com/ma-riviere/F2T-interface">Java app</a> to control the F2T and display tactile “images”.</p>
+<p><strong>2)</strong> Reviewing the literature and finding existing haptic interfaces, classifying them based on our needs, and buying/lending a prorotype from each category.</p>
+<p><strong>3)</strong> Organizing experimental evaluations with VIP to see the strengths and weaknesses of each type.</p>
+<p><strong>4)</strong> Participate in writing a <a href="poster.pdf">poster</a> and two conference articles: one on the <a href="../../../content/pubs/ICCHP18-F2T/">F2T</a>, and one on the <a href="../../../content/pubs/ICISP20/">image segmentation</a>.</p>
+
+
+</section>
+ ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Visual Impairment</category>
+  <category>Virtual Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <guid>https://ma-riviere.me/content/projects/TETMOST/index.html</guid>
+  <pubDate>Thu, 31 Aug 2017 22:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/TETMOST/logo.png" medium="image" type="image/png" height="40" width="144"/>
+</item>
+<item>
+  <title>ACCESSPACE</title>
+  <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
+  <dc:creator>[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/ACCESSPACE/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/header.jpg" class="img-fluid figure-img" alt="Banner illustrating the ACCESSPACE project"></a></p>
+</figure>
+</div>
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<p>ACCESSPACE’s high-level goal was to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way.</p>
+<p><strong>ACCESSPACE had three main axes of research:</strong><br>
+<strong>1)</strong> Devise an intuitive and efficient way to provide real-time spatial cues through tactile signals<br>
+<strong>2)</strong> Design a haptic interface that allows to communicate said spatial representation easily to the user<br>
+<strong>3)</strong> Implement the software require to support the various functions of this interface (e.g.&nbsp;Indoor Localisation, Obstacle Detection, Mapping, …)</p>
+<p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
+<div id="fig-neuro" class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ACCESSPACE guiding principle"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption><p></p>
+</figure>
+</div>
+<p>Using those principles, we devised an <strong>encoding scheme</strong> that provides the user with 3 types of information through egocentered tactile feedback:</p>
+<ul>
+<li>The orientation and distance to the destination of the journey (as the crow flies)<br>
+</li>
+<li>The available path possibilities around the user (i.e.&nbsp;the various branching streets they could take, the current room’s center), which form a navigation graph, and will allow the VIP to mentally visualize the layout of its immediate environment<br>
+</li>
+<li>The closest obstacles</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p></p><figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption><p></p>
+</figure>
+</div>
+<section id="our-interface-the-tactibelt" class="level2" data-number="1.1">
+<h2 data-number="1.1" data-anchor-id="our-interface-the-tactibelt"><span class="header-section-number">1.1</span> Our interface: the TactiBelt</h2>
+<p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
+<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="First prototype of the TactiBelt"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="our-tools" class="level2" data-number="1.2">
+<h2 data-number="1.2" data-anchor-id="our-tools"><span class="header-section-number">1.2</span> Our tools</h2>
+<p>To capture and extract the information we need from the VIP’s environment, we devised a series of software tools relying mostly on Computer Vision:</p>
+<p><strong>1)</strong> Obstacle detection and indoor localisation using the <a href="https://github.com/raulmur/ORB_SLAM2">ORB-SLAM</a> algorithm:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="ORB-SLAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/ORB-SLAM.png" title="Image showing the ORB-SLAM algorithm running inside our office" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the ORB-SLAM algorithm running inside our office"></a></p>
+</figure>
+</div>
+<p><strong>2)</strong> Depth estimation from a monocular RGB camera, using the <a href="https://github.com/mrharicot/monodepth">MonoDepth</a> algorithm:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="MonoDepth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/MonoDepth.png" title="Image showing the MonoDepth algorithm running just outside our lab" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the MonoDepth algorithm running just outside our lab"></a></p>
+</figure>
+</div>
+<p><strong>3)</strong> Generating a mobility graph of the environment during movement using Reinforcement Learning:</p>
+<p>Applied to an artificial agent exploring a virtual maze, looking for food:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/graph.png" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" class="img-fluid figure-img" alt="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"></a></p>
+</figure>
+</div>
+<p>Applied to a real agent (human pushing a cart with a camera and the computer running the algorithm around a meeting table):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="graph2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/graph2.png" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" class="img-fluid figure-img" alt="Image showing the navigation graph generated by moving the camera around a metting table in a room"></a></p>
+</figure>
+</div>
+<p><strong>4)</strong> A virtual environment to test the TactiBelt and our candidate spatial encoding schemes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="VR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/VR.png" class="img-fluid figure-img" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
+</figure>
+</div>
+</section>
+<section id="project-dissemination" class="level2" data-number="1.3">
+<h2 data-number="1.3" data-anchor-id="project-dissemination"><span class="header-section-number">1.3</span> Project dissemination</h2>
+<p>The ACCESSPACE project was promoted in various mainstream and technical media, such as:<br>
+- On <a href="https://www.rtl.fr/actu/sciences-tech/tactbelt-la-ceinture-qui-aide-les-non-voyants-a-se-diriger-7797538766">RTL</a>, a French national radio station (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://app.phdtalent.fr/publication/accesspace-un-outil-pour-ce-deplacer-sans-la-vue_3/details">PhDTalent</a>, a platform and network for PhD Students who wish to transition to industry (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://guideneret.com/content/une-ceinture-intelligente-cr%c3%a9%c3%a9e-pour-que-les-malvoyants-se-d%c3%a9placent-sans-la-vue">Guide Néret</a>, a specialized website on Handicap in France (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://www.acuite.fr/actualite/sante/157415/un-nouveau-dispositif-ad-hoc-pour-les-malvoyants">Acuité</a>, a specialized website dedicated to Opticians and news around visual impairment (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/">Oxytude</a>, a weekly podcast reviewing news related to visual impairment (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://www.firah.org/fr/accesspace.html">FIRAH</a>, the French Foundation on Applied Research for Handicap (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)</p>
+<p>This project has been warmly welcomed by the VIP community and was awarded the <strong>“Applied research on disability” award from the CCAH</strong> in 2017 🥇.</p>
+</section>
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>ACCESSPACE was my main PhD project:</strong></p>
+<p><strong>1)</strong> Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, …).</p>
+<p><strong>2)</strong> Designed the TactiBelt and participated in its conception (Arduino).</p>
+<p><strong>3)</strong> Participated in the development of a <a href="https://github.com/ma-riviere/BeltControl">Java application</a> to control and test the TactiBelt.</p>
+<p><strong>4)</strong> Handled the preliminary experimental evaluations of the TactiBelt.</p>
+<p><strong>5)</strong> Presenting the project a a <a href="../../../content/pubs/JEP22/">journal paper</a>, a <a href="../../../content/pubs/ICCHP18-TactiBelt/">conference paper</a>, a talk at an <a href="../../../content/outreach/talks/ICCHP18/">international conference</a>, and various outreach events (see the <em>dissemination section</em> above for more details).</p>
+
+
+</section>
+ ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Visual Impairment</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <category>Computer Vision</category>
+  <guid>https://ma-riviere.me/content/projects/ACCESSPACE/index.html</guid>
+  <pubDate>Sat, 31 Dec 2016 23:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/ACCESSPACE/logo.png" medium="image" type="image/png" height="151" width="144"/>
+</item>
+<item>
+  <title>LT-AoP</title>
+  <dc:creator>[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/LT-AoP/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<section id="my-role-in-this-project" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data.</p>
+<p><strong>2)</strong> Make <a href="https://ma-riviere.github.io/LT-AoP-22/">a website</a> documenting and showcasing the project’s data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project:</p>
+<details>
+<summary>
+Click to see a preview of the documentation
+</summary>
+<iframe src="https://ma-riviere.github.io/LT-AoP-22/" width="100%" height="800">
+</iframe>
+</details>
+
+
+</section>
+ ]]></description>
+  <category>Biostatistics</category>
+  <category>Transcriptomics</category>
+  <category>Data Science</category>
+  <category>Cerebellum</category>
+  <category>Hypoxia</category>
+  <category>RT-qPCR</category>
+  <guid>https://ma-riviere.me/content/projects/LT-AoP/index.html</guid>
+  <pubDate>Sun, 31 Jul 2016 22:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/LT-AoP/img.png" medium="image" type="image/png" height="123" width="144"/>
+</item>
+<item>
+  <title>AdViS</title>
+  <dc:creator>[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)</dc:creator>
+  <dc:creator>[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)</dc:creator>
+  <link>https://ma-riviere.me/content/projects/AdViS/index.html</link>
+  <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<p>AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role:</p>
+<ul>
+<li>Navigating a small maze using a depth-map-to-auditory-cues transcoding<br>
+</li>
+<li>Finger-guided image exploration (on a touch screen)<br>
+</li>
+<li>Eye-movement guided image exploration (on a turned off computer screen)<br>
+</li>
+<li>Pointing towards and reaching a virtual target in 3D space using a motion capture environment</li>
+</ul>
+<div class="quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 47.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AdViS - Depth Map navigation"><img src="https://ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
+<p></p><figcaption class="figure-caption">AdViS - Depth Map navigation</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure quarto-figure-center" style="flex-basis: 53.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="advis-mocap-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Motion Capture"><img src="https://ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
+<p></p><figcaption class="figure-caption">AdViS - Motion Capture</figcaption><p></p>
+</figure>
+</div>
+</div>
+</div>
+<p>The AdViS platform is coded in C++ (and Qt for the GUI). It currently uses <a href="https://puredata.info/">PureData</a> for complex sound generation, and the <a href="https://www.vicon.com/">VICON</a> system to track participant’s movements in an augmented reality environment.</p>
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>1)</strong> Propose a new model for image exploration using a touch-to-audio-feedback loop, where a VIP explores an image by moving its finger across it and gets auditive feedback from the explored regions and its surroundings.</p>
+<p><strong>2)</strong> Modify the existing AdViS code to include the ability to transcode grey-scale images into soundscapes, and to capture finger movements information on a touchscreen.</p>
+<p><strong>3)</strong> Organize experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyse the results.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="geom-finger.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/AdViS/geom-finger.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"></a></p>
+</figure>
+</div>
+<p><strong>4)</strong> Participate in implementing an eye-tracking-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="geom-eye.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/AdViS/geom-eye.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"></a></p>
+</figure>
+</div>
+
+
+</section>
+ ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Visual Impairment</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Auditory Interface</category>
+  <category>Computer Vision</category>
+  <guid>https://ma-riviere.me/content/projects/AdViS/index.html</guid>
+  <pubDate>Mon, 30 Jun 2014 22:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" medium="image" type="image/png" height="79" width="144"/>
+</item>
+</channel>
+</rss>

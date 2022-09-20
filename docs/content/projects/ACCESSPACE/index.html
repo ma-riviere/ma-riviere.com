@@ -1,0 +1,607 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.1.251">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="LITIS (Rouen, France)">
+<meta name="author" content="CERREV (Caen, France)">
+<meta name="dcterms.date" content="2017-01-01">
+<meta name="description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
+
+<title>Marc-Aurèle Rivière - ACCESSPACE</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<link href="../../../res/favicon.png" rel="icon" type="image/png">
+<script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
+<link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-contrib/nutshell-1.0.0/nutshell.min.js"></script>
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-contrib/iconify-1.0.0-beta.2/iconify-icon.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 10,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script type="text/javascript" charset="UTF-8">
+document.addEventListener('DOMContentLoaded', function () {
+cookieconsent.run({
+  "notice_banner_type":"simple",
+  "consent_type":"implied",
+  "palette":"light",
+  "language":"en",
+  "page_load_consent_levels":["strictly-necessary","functionality","tracking","targeting"],
+  "notice_banner_reject_button_hide":false,
+  "preferences_center_close_button_hide":false,
+  "website_name":""
+  });
+});
+</script> 
+  
+<style>
+    .quarto-title-block .quarto-title-banner {
+      background: #4B5B68;
+    }
+    </style>
+
+
+<link rel="stylesheet" href="../../../res/css/style.css">
+<meta property="og:title" content="Marc-Aurèle Rivière - ACCESSPACE">
+<meta property="og:description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
+<meta property="og:image" content="https://ma-riviere.me/content/projects/ACCESSPACE/logo.png">
+<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="352">
+<meta property="og:image:width" content="336">
+<meta property="og:image:alt" content="Logo of the ACCESSPACE project">
+<meta name="twitter:title" content="Marc-Aurèle Rivière - ACCESSPACE">
+<meta name="twitter:description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
+<meta name="twitter:image" content="https://ma-riviere.me/content/projects/ACCESSPACE/logo.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="352">
+<meta name="twitter:image-width" content="336">
+<meta name="twitter:image:alt" content="Logo of the ACCESSPACE project">
+</head>
+
+<body class="nav-fixed fullcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-md navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a class="navbar-brand" href="../../../index.html">
+    <span class="navbar-title">Marc-Aurèle Rivière</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/projects/index.html">Projects</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/pubs/index.html">Publications</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/outreach/index.html">Outreach</a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/posts/index.html">Blog</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/about.html">About</a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ma-riviere/ma-riviere.me/"><i class="bi bi-code-slash" role="img" aria-label="Website's source code">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://twitter.com/mariviere1"><i class="bi bi-twitter" role="img" aria-label="Twitter">
+</i> 
+ </a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/ma-riviere/"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-color-scheme-toggle nav-link" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<header id="title-block-header" class="quarto-title-block default page-columns page-full">
+  <div class="quarto-title-banner page-columns page-full">
+    <div class="quarto-title column-body">
+      <h1 class="title">ACCESSPACE</h1>
+            <p class="subtitle lead">Helping Visually Impaired People travel autonomously</p>
+                  <div>
+        <div class="description">
+          Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.
+        </div>
+      </div>
+                          <div class="quarto-categories">
+                <div class="quarto-category">Assistive Devices</div>
+                <div class="quarto-category">Accessibility</div>
+                <div class="quarto-category">Visual Impairment</div>
+                <div class="quarto-category">Augmented Reality</div>
+                <div class="quarto-category">Sensory Substitution</div>
+                <div class="quarto-category">Haptic Interface</div>
+                <div class="quarto-category">Computer Vision</div>
+              </div>
+                  </div>
+  </div>
+  <div class="quarto-title-meta">
+      <div>
+      <div class="quarto-title-meta-heading">Partners Involved</div>
+      <div class="quarto-title-meta-contents">
+               <p><a href="https://www.litislab.fr/en/">LITIS (Rouen, France)</a> </p>
+               <p><a href="http://ufrhss.unicaen.fr/recherche/cerrev/">CERREV (Caen, France)</a> </p>
+            </div>
+    </div>
+      <div>
+      <div class="quarto-title-meta-heading">Began Around</div>
+      <div class="quarto-title-meta-contents">
+        <p class="date">January 1, 2017</p>
+      </div>
+    </div>
+      <div>
+      <div class="quarto-title-meta-heading">Funding Instrument</div>
+      <div class="quarto-title-meta-contents">
+        <p class="doi">
+          <a href="https://doi.org/CCAH &amp; FIRAH">CCAH &amp; FIRAH</a>
+        </p>
+      </div>
+    </div>
+    </div>
+  <div>
+    <div class="abstract">
+      <div class="abstract-title">Abstract</div>
+      <p>The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user’s location &amp; surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.</p>
+    </div>
+  </div>
+  </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<div class="quarto-about-solana column-body">
+  <div class="about-entity">
+    <div class="entity-contents">
+       <div class="about-links">
+  <a href="http://accesspace.univ-rouen.fr/index.php" class="about-link">
+    <i class="bi bi-globe"></i>
+     <span class="about-link-text">Project’s homepage (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)</span>
+  </a>
+  <a href="/content/pubs/ICCHP18-TactiBelt/" class="about-link">
+    <i class="bi bi-file-pdf"></i>
+     <span class="about-link-text">Conference Article</span>
+  </a>
+  <a href="/content/pubs/JEP22/" class="about-link">
+    <i class="bi bi-file-pdf"></i>
+     <span class="about-link-text">Journal Article</span>
+  </a>
+  <a href="/content/talks/RUNN19/" class="about-link">
+     <span class="about-link-text"><i class="fa-solid fa-person-chalkboard" aria-hidden="true"></i> Presentation (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)</span>
+  </a>
+  <a href="/content/projects/ACCESSPACE/poster.pdf" class="about-link">
+    <i class="bi bi-file-image"></i>
+     <span class="about-link-text">Poster (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)</span>
+  </a>
+</div>
+      <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="header.jpg" class="img-fluid figure-img" alt="Banner illustrating the ACCESSPACE project"></a></p>
+</figure>
+</div>
+<section id="project-summary" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Project summary</h1>
+<hr>
+<p>ACCESSPACE’s high-level goal was to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way.</p>
+<p><strong>ACCESSPACE had three main axes of research:</strong><br>
+<strong>1)</strong> Devise an intuitive and efficient way to provide real-time spatial cues through tactile signals<br>
+<strong>2)</strong> Design a haptic interface that allows to communicate said spatial representation easily to the user<br>
+<strong>3)</strong> Implement the software require to support the various functions of this interface (e.g.&nbsp;Indoor Localisation, Obstacle Detection, Mapping, …)</p>
+<p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
+<div id="fig-neuro" class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ACCESSPACE guiding principle"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption><p></p>
+</figure>
+</div>
+<p>Using those principles, we devised an <strong>encoding scheme</strong> that provides the user with 3 types of information through egocentered tactile feedback:</p>
+<ul>
+<li>The orientation and distance to the destination of the journey (as the crow flies)<br>
+</li>
+<li>The available path possibilities around the user (i.e.&nbsp;the various branching streets they could take, the current room’s center), which form a navigation graph, and will allow the VIP to mentally visualize the layout of its immediate environment<br>
+</li>
+<li>The closest obstacles</li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p></p><figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption><p></p>
+</figure>
+</div>
+<section id="our-interface-the-tactibelt" class="level2" data-number="1.1">
+<h2 data-number="1.1" data-anchor-id="our-interface-the-tactibelt"><span class="header-section-number">1.1</span> Our interface: the TactiBelt</h2>
+<p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
+<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="First prototype of the TactiBelt"><img src="TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption><p></p>
+</figure>
+</div>
+</section>
+<section id="our-tools" class="level2" data-number="1.2">
+<h2 data-number="1.2" data-anchor-id="our-tools"><span class="header-section-number">1.2</span> Our tools</h2>
+<p>To capture and extract the information we need from the VIP’s environment, we devised a series of software tools relying mostly on Computer Vision:</p>
+<p><strong>1)</strong> Obstacle detection and indoor localisation using the <a href="https://github.com/raulmur/ORB_SLAM2">ORB-SLAM</a> algorithm:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="ORB-SLAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="ORB-SLAM.png" title="Image showing the ORB-SLAM algorithm running inside our office" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the ORB-SLAM algorithm running inside our office"></a></p>
+</figure>
+</div>
+<p><strong>2)</strong> Depth estimation from a monocular RGB camera, using the <a href="https://github.com/mrharicot/monodepth">MonoDepth</a> algorithm:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="MonoDepth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="MonoDepth.png" title="Image showing the MonoDepth algorithm running just outside our lab" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the MonoDepth algorithm running just outside our lab"></a></p>
+</figure>
+</div>
+<p><strong>3)</strong> Generating a mobility graph of the environment during movement using Reinforcement Learning:</p>
+<p>Applied to an artificial agent exploring a virtual maze, looking for food:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="graph.png" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" class="img-fluid figure-img" alt="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"></a></p>
+</figure>
+</div>
+<p>Applied to a real agent (human pushing a cart with a camera and the computer running the algorithm around a meeting table):</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="graph2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="graph2.png" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" class="img-fluid figure-img" alt="Image showing the navigation graph generated by moving the camera around a metting table in a room"></a></p>
+</figure>
+</div>
+<p><strong>4)</strong> A virtual environment to test the TactiBelt and our candidate spatial encoding schemes:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="VR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="VR.png" class="img-fluid figure-img" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
+</figure>
+</div>
+</section>
+<section id="project-dissemination" class="level2" data-number="1.3">
+<h2 data-number="1.3" data-anchor-id="project-dissemination"><span class="header-section-number">1.3</span> Project dissemination</h2>
+<p>The ACCESSPACE project was promoted in various mainstream and technical media, such as:<br>
+- On <a href="https://www.rtl.fr/actu/sciences-tech/tactbelt-la-ceinture-qui-aide-les-non-voyants-a-se-diriger-7797538766">RTL</a>, a French national radio station (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://app.phdtalent.fr/publication/accesspace-un-outil-pour-ce-deplacer-sans-la-vue_3/details">PhDTalent</a>, a platform and network for PhD Students who wish to transition to industry (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://guideneret.com/content/une-ceinture-intelligente-cr%c3%a9%c3%a9e-pour-que-les-malvoyants-se-d%c3%a9placent-sans-la-vue">Guide Néret</a>, a specialized website on Handicap in France (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://www.acuite.fr/actualite/sante/157415/un-nouveau-dispositif-ad-hoc-pour-les-malvoyants">Acuité</a>, a specialized website dedicated to Opticians and news around visual impairment (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/">Oxytude</a>, a weekly podcast reviewing news related to visual impairment (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
+- On <a href="https://www.firah.org/fr/accesspace.html">FIRAH</a>, the French Foundation on Applied Research for Handicap (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)</p>
+<p>This project has been warmly welcomed by the VIP community and was awarded the <strong>“Applied research on disability” award from the CCAH</strong> in 2017 🥇.</p>
+</section>
+</section>
+<section id="my-role-in-this-project" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
+<hr>
+<p><strong>ACCESSPACE was my main PhD project:</strong></p>
+<p><strong>1)</strong> Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, …).</p>
+<p><strong>2)</strong> Designed the TactiBelt and participated in its conception (Arduino).</p>
+<p><strong>3)</strong> Participated in the development of a <a href="https://github.com/ma-riviere/BeltControl">Java application</a> to control and test the TactiBelt.</p>
+<p><strong>4)</strong> Handled the preliminary experimental evaluations of the TactiBelt.</p>
+<p><strong>5)</strong> Presenting the project a a <a href="../../../content/pubs/JEP22/">journal paper</a>, a <a href="../../../content/pubs/ICCHP18-TactiBelt/">conference paper</a>, a talk at an <a href="../../../content/outreach/talks/ICCHP18/">international conference</a>, and various outreach events (see the <em>dissemination section</em> above for more details).</p>
+
+
+</section>
+</main></div>
+    </div>
+    <img src="../../placeholder.avif" class="about-image
+  rounded " style="width: 0%;">
+  </div>
+</div>
+ <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } 
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var filterRegex = new RegExp(/https:\/\/ma-riviere\.me/);
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+      }
+    }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../../LICENSE.md">© 2021-2022, Marc-Aurele Rivière</a>
+  </li>  
+</ul>
+    </div>   
+      <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="https://quarto.org/">Made with Quarto ♥️</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":true,"closeEffect":"zoom"});</script>
+
+
+
+</body></html>

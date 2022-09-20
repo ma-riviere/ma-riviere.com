@@ -1,0 +1,368 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.me/content/pubs/index.html</link>
+<atom:link href="https://ma-riviere.me/content/pubs/index.xml" rel="self" type="application/rss+xml"/>
+<description>Marc-Aurèle Rivière's personal website</description>
+<generator>quarto-1.1.251</generator>
+<lastBuildDate>Thu, 01 Sep 2022 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen</title>
+  <dc:creator>Elise Faugloire</dc:creator>
+  <dc:creator>Laure Lejeune</dc:creator>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Bruno Mantel</dc:creator>
+  <link>https://ma-riviere.me/content/pubs/JEP22/index.html</link>
+  <description><![CDATA[ 
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{faugloire2022,
+  author = {Elise Faugloire and Laure Lejeune and Marc-Aurèle Rivière
+    and Bruno Mantel},
+  editor = {},
+  title = {Spatiotemporal Influences on the Recognition of
+    Two-Dimensional Vibrotactile Patterns on the Abdomen},
+  journal = {Journal of Experimental Psychology: Applied},
+  volume = {28},
+  number = {3},
+  pages = {606-628},
+  date = {2022-09-02},
+  url = {https://psycnet.apa.org/record/2022-01207-001},
+  doi = {10.1037/xap0000404},
+  issn = {1939-2192, 1076-898X},
+  langid = {en},
+  abstract = {Spatial and temporal factors are known to highly influence
+    tactile perception, but their role has been largely unexplored in
+    the case of two-dimensional (2D) pattern recognition. We
+    investigated whether recognition is facilitated by the spatial
+    and/or temporal separation of pattern elements, or by conditions
+    known to favor perceptual integration, such as the ones eliciting
+    apparent movement. 2D vibrotactile patterns were presented to the
+    abdomen of novice participants. In Experiment 1, we manipulated the
+    spatial (inter-tactor distance) and temporal (burst duration and
+    inter-burst interval) parameters applied to the tracing mode
+    (sequential activation of pattern elements). In Experiment 2, we
+    compared display modes differing in their level of temporal overlap
+    in the presentation of pattern elements: the static mode
+    (simultaneous activation of pattern elements), the slit-scan mode
+    (pattern revealed line by line), and the tracing mode. The results
+    of both experiments reveal that (a) recognition performance
+    increases with the isolation of pattern elements in space and/or in
+    time, (b) spatial and temporal factors interact in pattern
+    recognition, and (c) conditions leading to apparent movement tend to
+    be associated with lower recognition accuracy. These results further
+    our understanding of tactile perception and provide guidance for the
+    design of future vibrotactile communication systems.}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-faugloire2022" class="csl-entry quarto-appendix-citeas">
+Elise Faugloire, Laure Lejeune, Marc-Aurèle Rivière, &amp; Bruno Mantel.
+(2022). Spatiotemporal influences on the recognition of two-dimensional
+vibrotactile patterns on the abdomen. <em>Journal of Experimental
+Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10.1037/xap0000404">https://doi.org/10.1037/xap0000404</a>
+</div></div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <category>Psychophysics</category>
+  <guid>https://ma-riviere.me/content/pubs/JEP22/index.html</guid>
+  <pubDate>Thu, 01 Sep 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>An Audio-Based 3D Spatial Guidance AR System for Blind Users</title>
+  <dc:creator>James Coughlan</dc:creator>
+  <dc:creator>Brandon Biggs</dc:creator>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Huiying Shen</dc:creator>
+  <link>https://ma-riviere.me/content/pubs/ICCHP20/index.html</link>
+  <description><![CDATA[ 
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{coughlan2020,
+  author = {James Coughlan and Brandon Biggs and Marc-Aurèle Rivière and
+    Huiying Shen},
+  editor = {Miesenberger Klaus and Manduchi Roberto and Covarrubias
+    Rodriguez Mario and Peňáz Petr},
+  publisher = {Springer International Publishing},
+  title = {An {Audio-Based} {3D} {Spatial} {Guidance} {AR} {System} for
+    {Blind} {Users}},
+  booktitle = {Lecture Notes in Computer Science},
+  volume = {12376},
+  pages = {475-484},
+  date = {2020-09-12},
+  url = {https://link.springer.com/chapter/10.1007/978-3-030-58796-3_55},
+  doi = {10.1007/978-3-030-58796-3_55},
+  isbn = {978-3-030-58795-6 978-3-030-58796-3},
+  langid = {en},
+  abstract = {Augmented reality (AR) has great potential for blind users
+    because it enables a range of applications that provide audio
+    information about specific locations or directions in the user’s
+    environment. For instance, the {[}CamIO{]}(/content/projects/CamIO)
+    (“Camera Input-Output”) AR app makes physical objects (such as
+    documents, maps, devices and 3D models) accessible to blind and
+    visually impaired persons by providing real-time audio feedback in
+    response to the location on an object that the user is touching
+    (using an inexpensive stylus). An important feature needed by blind
+    users of AR apps such as CamIO is a 3D spatial guidance feature that
+    provides real-time audio feedback to help the user find a desired
+    location on an object. We have devised a simple audio interface to
+    provide verbal guidance towards a target of interest in 3D. The
+    experiment we report with blind participants using this guidance
+    interface demonstrates the feasibility of the approach and its
+    benefit for helping users find locations of interest.}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-coughlan2020" class="csl-entry quarto-appendix-citeas">
+James Coughlan, Brandon Biggs, Marc-Aurèle Rivière, &amp; Huiying Shen.
+(2020). An Audio-Based 3D Spatial Guidance AR System for Blind Users. In
+Miesenberger Klaus, Manduchi Roberto, Covarrubias Rodriguez Mario, &amp;
+Peňáz Petr (Eds.), <em>Lecture Notes in Computer Science</em> (Vol.
+12376, pp. 475–484). Springer International Publishing. <a href="https://doi.org/10.1007/978-3-030-58796-3_55">https://doi.org/10.1007/978-3-030-58796-3_55</a>
+</div></div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Auditory Interface</category>
+  <category>Computer Vision</category>
+  <guid>https://ma-riviere.me/content/pubs/ICCHP20/index.html</guid>
+  <pubDate>Fri, 11 Sep 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Towards the Tactile Discovery of Cultural Heritage with Multi-approach Segmentation</title>
+  <dc:creator>Ali Souradi</dc:creator>
+  <dc:creator>Christele Lecomte</dc:creator>
+  <dc:creator>Katerine Romeo</dc:creator>
+  <dc:creator>Simon Gay</dc:creator>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Abderrahim El Moataz</dc:creator>
+  <dc:creator>Edwige Pissaloux</dc:creator>
+  <link>https://ma-riviere.me/content/pubs/ICISP20/index.html</link>
+  <description><![CDATA[ 
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{souradi2020,
+  author = {Ali Souradi and Christele Lecomte and Katerine Romeo and
+    Simon Gay and Marc-Aurèle Rivière and Abderrahim El Moataz and
+    Edwige Pissaloux},
+  editor = {Abderrahim El Moataz and Driss Mammass and Alamin Mansouri
+    and Fathallah Nouboud},
+  publisher = {Springer International Publishing},
+  title = {Towards the {Tactile} {Discovery} of {Cultural} {Heritage}
+    with {Multi-approach} {Segmentation}},
+  booktitle = {Lecture Notes in Computer Science},
+  volume = {12119},
+  pages = {14-23},
+  date = {2020-07-08},
+  url = {http://link.springer.com/10.1007/978-3-030-51935-3_2},
+  doi = {10.1007/978-3-030-51935-3_2},
+  isbn = {978-3-030-51934-6 978-3-030-51935-3},
+  langid = {en},
+  abstract = {This paper presents a new way to access visual information
+    in museums through tactile exploration, and related techniques to
+    efficiently transform visual data into tactile objects.
+    Accessibility to cultural heritage and artworks for people with
+    visual impairments requires the segmentation of images and paintings
+    to extract and classify their contents into meaningful elements
+    which can then be presented through a tactile medium. In this paper,
+    we investigate the feasibility and how to optimize the tactile
+    discovery of an image. First, we study the emergence of image
+    comprehension through tactile discovery, using 3D-printed objects
+    extracted from paintings. Later, we present a dynamic Force Feedback
+    Tablet (F2T) used to convey the 2D shape and texture information of
+    objects through haptic feedback. We then explore several image
+    segmentation methods to automate the extraction of meaningful
+    objects from selected artworks, to be presented to visually impaired
+    people through the F2T. Finally, we evaluate how to best combine the
+    F2T’s haptic effects in order to convey the extracted objects and
+    features to the users, with the aim of facilitating the
+    comprehension of the represented objects and their affordances.}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-souradi2020" class="csl-entry quarto-appendix-citeas">
+Ali Souradi, Christele Lecomte, Katerine Romeo, Simon Gay, Marc-Aurèle
+Rivière, Abderrahim El Moataz, &amp; Edwige Pissaloux. (2020). Towards
+the Tactile Discovery of Cultural Heritage with Multi-approach
+Segmentation. In Abderrahim El Moataz, Driss Mammass, Alamin Mansouri,
+&amp; Fathallah Nouboud (Eds.), <em>Lecture Notes in Computer
+Science</em> (Vol. 12119, pp. 14–23). Springer International Publishing.
+<a href="https://doi.org/10.1007/978-3-030-51935-3_2">https://doi.org/10.1007/978-3-030-51935-3_2</a>
+</div></div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Computer Vision</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <guid>https://ma-riviere.me/content/pubs/ICISP20/index.html</guid>
+  <pubDate>Tue, 07 Jul 2020 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>NAV-VIR: an audio-tactile virtual environment to assist visually impaired people</title>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Simon Gay</dc:creator>
+  <dc:creator>Katerine Romeo</dc:creator>
+  <dc:creator>Edwige Pissaloux</dc:creator>
+  <dc:creator>Michal Bujacz</dc:creator>
+  <dc:creator>Piotr Skulimowski</dc:creator>
+  <dc:creator>Pawel Strumillo</dc:creator>
+  <link>https://ma-riviere.me/content/pubs/NER19/index.html</link>
+  <description><![CDATA[ 
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{rivière2019,
+  author = {Marc-Aurèle Rivière and Simon Gay and Katerine Romeo and
+    Edwige Pissaloux and Michal Bujacz and Piotr Skulimowski and Pawel
+    Strumillo},
+  editor = {},
+  publisher = {IEEE},
+  title = {NAV-VIR: An Audio-Tactile Virtual Environment to Assist
+    Visually Impaired People},
+  booktitle = {Proceedings of the International IEEE/EMBS Conference on
+    Neural Engineering},
+  pages = {1038-1041},
+  date = {2019-05-20},
+  url = {https://ieeexplore.ieee.org/document/8717086},
+  doi = {10.1109/NER.2019.8717086},
+  isbn = {978-1-5386-7921-0},
+  langid = {en},
+  abstract = {This paper introduces the
+    {[}NAV-VIR{]}(/content/projects/NAV-VIR) system, a multimodal
+    virtual environment to assist visually impaired people in virtually
+    discovering and exploring unknown areas from the safety of their
+    home. The originality of NAV-VIR resides in (1) an optimized
+    representation of the surrounding topography, the spatial gist,
+    based on human spatial cognition models and the sensorimotor
+    supplementation framework, and (2) a multimodal orientation-aware
+    immersive virtual environment relying on two synergetic interfaces:
+    an interactive force feedback tablet, the F2T, and an immersive
+    HRTF-based 3D audio simulation relying on binaural recordings of
+    real environments. This paper presents NAV-VIR functionalities and
+    its preliminary evaluation through a simple shape and movement
+    perception task.}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-rivière2019" class="csl-entry quarto-appendix-citeas">
+Marc-Aurèle Rivière, Simon Gay, Katerine Romeo, Edwige Pissaloux, Michal
+Bujacz, Piotr Skulimowski, &amp; Pawel Strumillo. (2019). NAV-VIR: an
+audio-tactile virtual environment to assist visually impaired people.
+<em>Proceedings of the International IEEE/EMBS Conference on Neural
+Engineering</em>, 1038–1041. <a href="https://doi.org/10.1109/NER.2019.8717086">https://doi.org/10.1109/NER.2019.8717086</a>
+</div></div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Auditory Interface</category>
+  <category>Haptic Interface</category>
+  <guid>https://ma-riviere.me/content/pubs/NER19/index.html</guid>
+  <pubDate>Sun, 19 May 2019 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Towards Haptic Surface Devices with Force Feedback for Visually Impaired People</title>
+  <dc:creator>Simon Gay</dc:creator>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Edwige Pissaloux</dc:creator>
+  <link>https://ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</link>
+  <description><![CDATA[ 
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{gay2018,
+  author = {Simon Gay and Marc-Aurèle Rivière and Edwige Pissaloux},
+  editor = {Miesenberger Klaus and Kouroupetroglou Georgios},
+  publisher = {Springer International Publishing},
+  title = {Towards {Haptic} {Surface} {Devices} with {Force} {Feedback}
+    for {Visually} {Impaired} {People}},
+  booktitle = {Lecture Notes in Computer Science},
+  volume = {10897},
+  pages = {258-266},
+  date = {2018-07-12},
+  url = {http://link.springer.com/10.1007/978-3-319-94274-2_36},
+  doi = {10.1007/978-3-319-94274-2_36},
+  isbn = {978-3-319-94273-5 978-3-319-94274-2},
+  langid = {en},
+  abstract = {This paper presents a new haptic surface tablet that can
+    provide force feedback to the user. Force feedback means that the
+    device can react to the user’s movements and apply a force against
+    or in-line with these movements, according to the tactile properties
+    of a displayed image. The device consists of a frame attached to a
+    tactile tablet that generates a force feedback to user’s finger when
+    exploring the surface, providing haptic informations about the
+    displayed image. The experimental results suggest the relevance of
+    this tablet as an assistive device for visually impaired people in
+    perceiving and understanding the content of a displayed image.
+    Several potential applications are briefly presented.}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-gay2018" class="csl-entry quarto-appendix-citeas">
+Simon Gay, Marc-Aurèle Rivière, &amp; Edwige Pissaloux. (2018). Towards
+Haptic Surface Devices with Force Feedback for Visually Impaired People.
+In Miesenberger Klaus &amp; Kouroupetroglou Georgios (Eds.), <em>Lecture
+Notes in Computer Science</em> (Vol. 10897, pp. 258–266). Springer
+International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_36">https://doi.org/10.1007/978-3-319-94274-2_36</a>
+</div></div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <guid>https://ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</guid>
+  <pubDate>Wed, 11 Jul 2018 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>TactiBelt: integrating spatial cognition and mobility theories into the design of a novel orientation and mobility assistive device for the blind</title>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Simon Gay</dc:creator>
+  <dc:creator>Edwige Pissaloux</dc:creator>
+  <link>https://ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</link>
+  <description><![CDATA[ 
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@inproceedings{rivière2018,
+  author = {Marc-Aurèle Rivière and Simon Gay and Edwige Pissaloux},
+  editor = {Miesenberger Klaus and Kouroupetroglou Georgios},
+  publisher = {Springer International Publishing},
+  title = {TactiBelt: Integrating Spatial Cognition and Mobility
+    Theories into the Design of a Novel Orientation and Mobility
+    Assistive Device for the Blind},
+  booktitle = {Lecture Notes in Computer Science},
+  volume = {10897},
+  pages = {110-113},
+  date = {2018-07-12},
+  url = {http://link.springer.com/10.1007/978-3-319-94274-2_16},
+  doi = {10.1007/978-3-319-94274-2_16},
+  isbn = {978-3-319-94273-5 978-3-319-94274-2},
+  langid = {en},
+  abstract = {The aim of this paper is to introduce a novel functional
+    design for an indoor and outdoor mobility assistive device for the
+    visually impaired, based on the theoretical frameworks of mobility
+    and spatial cognition. The originality of the proposed approach
+    comes from the integration of two main aspects of navigation,
+    locomotion and wayfinding. The cognitive theories which underpin the
+    design of the proposed sensory substitution device, called
+    TactiBelt, are identified and discussed in the framework of spatial
+    knowledge acquisition. The paper is organized as follows: section 1
+    gives a brief overview of the sensory substitution framework, while
+    sections 2 \&amp; 3 introduce the importance of navigation and spatial
+    cognition models for the design of mobility aids. Section 4 details
+    the functional design of the TactiBelt.}
+}
+</code></pre><div class="quarto-appendix-secondary-label">For attribution, please cite this work as:</div><div id="ref-rivière2018" class="csl-entry quarto-appendix-citeas">
+Marc-Aurèle Rivière, Simon Gay, &amp; Edwige Pissaloux. (2018).
+TactiBelt: integrating spatial cognition and mobility theories into the
+design of a novel orientation and mobility assistive device for the
+blind. In Miesenberger Klaus &amp; Kouroupetroglou Georgios (Eds.),
+<em>Lecture Notes in Computer Science</em> (Vol. 10897, pp. 110–113).
+Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_16">https://doi.org/10.1007/978-3-319-94274-2_16</a>
+</div></div></section></div> ]]></description>
+  <category>Assistive Devices</category>
+  <category>Accessibility</category>
+  <category>Augmented Reality</category>
+  <category>Sensory Substitution</category>
+  <category>Haptic Interface</category>
+  <category>Spatial Cognition</category>
+  <guid>https://ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</guid>
+  <pubDate>Wed, 11 Jul 2018 22:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

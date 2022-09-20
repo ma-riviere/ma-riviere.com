@@ -1,0 +1,187 @@
+/* quarto syntax highlight colors */
+:root {
+  --quarto-hl-co-color: #D0D0D0;
+  --quarto-hl-fu-color: #5D8CC9;
+  --quarto-hl-va-color: #f8f8f2;
+  --quarto-hl-at-color: #C0D6FF;
+  --quarto-hl-ch-color: #3E956C;
+  --quarto-hl-st-color: #3E956C;
+  --quarto-hl-ss-color: #3E956C;
+  --quarto-hl-vs-color: #3E956C;
+  --quarto-hl-bu-color: #3E956C;
+  --quarto-hl-dt-color: #8F7CA9;
+  --quarto-hl-kw-color: #3F7BF4;
+  --quarto-hl-cf-color: #3F7BF4;
+  --quarto-hl-im-color: #3F7BF4;
+  --quarto-hl-op-color: #909CAC;
+  --quarto-hl-sc-color: #909CAC;
+  --quarto-hl-cv-color: #C3892B;
+  --quarto-hl-cn-color: #C3892B;
+  --quarto-hl-fl-color: #C53E3E;
+  --quarto-hl-bn-color: #C53E3E;
+  --quarto-hl-dv-color: #C53E3E;
+  --quarto-hl-in-color: #909CAC;
+  --quarto-hl-an-color: #F118E2;
+  --quarto-hl-do-color: #f8f8f2;
+  --quarto-hl-ot-color: #656b6e;
+  --quarto-hl-ex-color: #656b6e;
+  --quarto-hl-re-color: #656b6e;
+  --quarto-hl-pp-color: #dcc6e0;
+  --quarto-hl-wa-color: #dcc6e0;
+  --quarto-hl-er-color: #f07178;
+  --quarto-hl-al-color: #f07178;
+}
+
+/* other quarto variables */
+:root {
+  --quarto-font-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+pre > code.sourceCode > span {
+  color: #C0D6FF;
+}
+
+code span {
+  color: #C0D6FF;
+}
+
+code.sourceCode > span {
+  color: #C0D6FF;
+}
+
+div.sourceCode,
+div.sourceCode pre.sourceCode {
+  color: #C0D6FF;
+}
+
+code span.co {
+  font-style: italic;
+  color: #D0D0D0;
+}
+
+code span.fu {
+  color: #5D8CC9;
+}
+
+code span.va {
+  color: #f8f8f2;
+}
+
+code span.at {
+  color: #C0D6FF;
+}
+
+code span.ch {
+  color: #3E956C;
+}
+
+code span.st {
+  color: #3E956C;
+}
+
+code span.ss {
+  color: #3E956C;
+}
+
+code span.vs {
+  color: #3E956C;
+}
+
+code span.bu {
+  color: #3E956C;
+}
+
+code span.dt {
+  color: #8F7CA9;
+}
+
+code span.kw {
+  font-weight: bold;
+  color: #3F7BF4;
+}
+
+code span.cf {
+  font-weight: bold;
+  color: #3F7BF4;
+}
+
+code span.im {
+  color: #3F7BF4;
+}
+
+code span.op {
+  color: #909CAC;
+}
+
+code span.sc {
+  color: #909CAC;
+}
+
+code span.cv {
+  color: #C3892B;
+}
+
+code span.cn {
+  color: #C3892B;
+}
+
+code span.fl {
+  color: #C53E3E;
+}
+
+code span.bn {
+  color: #C53E3E;
+}
+
+code span.dv {
+  color: #C53E3E;
+}
+
+code span.in {
+  color: #909CAC;
+}
+
+code span.an {
+  color: #F118E2;
+}
+
+code span.do {
+  color: #f8f8f2;
+}
+
+code span.ot {
+  color: #656b6e;
+}
+
+code span.ex {
+  font-weight: bold;
+  color: #656b6e;
+}
+
+code span.re {
+  color: #656b6e;
+}
+
+code span.pp {
+  color: #dcc6e0;
+}
+
+code span.wa {
+  color: #dcc6e0;
+}
+
+code span.er {
+  color: #f07178;
+  text-decoration: underline;
+}
+
+code span.al {
+  font-weight: bold;
+  color: #f07178;
+}
+
+.prevent-inlining {
+  content: "</";
+}
+
+/*# sourceMappingURL=935a306eefa94366c21e1a970dddb765.css.map */

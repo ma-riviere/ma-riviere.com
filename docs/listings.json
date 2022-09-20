@@ -1,0 +1,45 @@
+[
+  {
+    "listing": "/content/outreach/index.html",
+    "items": [
+      "/content/outreach/scicom/Exp-JPO/index.html",
+      "/content/outreach/scicom/Exp/index.html",
+      "/content/outreach/talks/RUNN19/index.html",
+      "/content/outreach/talks/FR-NO/index.html",
+      "/content/outreach/talks/SKERI/index.html",
+      "/content/outreach/talks/ICCHP18/index.html"
+    ]
+  },
+  {
+    "listing": "/content/posts/index.html",
+    "items": [
+      "/content/posts/spatial/index.html",
+      "/content/posts/big-bayes/index.html",
+      "/content/posts/climbing/index.html"
+    ]
+  },
+  {
+    "listing": "/content/projects/index.html",
+    "items": [
+      "/content/projects/SAM-Guide/index.html",
+      "/content/projects/DE-AoP/index.html",
+      "/content/projects/NAV-VIR/index.html",
+      "/content/projects/CamIO/index.html",
+      "/content/projects/TETMOST/index.html",
+      "/content/projects/ACCESSPACE/index.html",
+      "/content/projects/LT-AoP/index.html",
+      "/content/projects/AdViS/index.html"
+    ]
+  },
+  {
+    "listing": "/content/pubs/index.html",
+    "items": [
+      "/content/pubs/JEP22/index.html",
+      "/content/pubs/ICCHP20/index.html",
+      "/content/pubs/ICISP20/index.html",
+      "/content/pubs/NER19/index.html",
+      "/content/pubs/ICCHP18-F2T/index.html",
+      "/content/pubs/ICCHP18-TactiBelt/index.html"
+    ]
+  }
+]
