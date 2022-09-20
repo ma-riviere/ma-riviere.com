@@ -48,7 +48,7 @@
 <p><strong>3)</strong> Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:</p>
 <div id="fig-tactibelt-v2" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="TactiBelt-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Second prototype of the TactiBelt"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/TactiBelt-v2.jpg" title="fig:Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
+<p><a href="TactiBelt-v2.jpg" class="lightbox" title="Second prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/TactiBelt-v2.jpg" title="fig:Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Second prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
@@ -58,7 +58,7 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-unity-testenv" class="quarto-figure quarto-figure-center" style="flex-basis: 50.3%;justify-content: center;">
 <figure class="figure">
-<p><a href="Unity.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Testing environment with a PureData audio beacon"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/Unity.png" class="img-fluid figure-img" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a></p>
+<p><a href="Unity.png" class="lightbox" title="Testing environment with a PureData audio beacon" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/Unity.png" class="img-fluid figure-img" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a></p>
 <p></p><figcaption class="figure-caption">(a) Testing environment with a PureData audio beacon</figcaption><p></p>
 </figure>
 </div>
@@ -67,7 +67,7 @@
 </div>
 <div id="fig-unity-maze" class="quarto-figure quarto-figure-center" style="flex-basis: 49.2%;justify-content: center;">
 <figure class="figure">
-<p><a href="Unity-maze.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Auto-generated maze with 3D audio beacons on waypoints"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/Unity-maze.png" class="img-fluid figure-img" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a></p>
+<p><a href="Unity-maze.png" class="lightbox" title="Auto-generated maze with 3D audio beacons on waypoints" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/Unity-maze.png" class="img-fluid figure-img" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a></p>
 <p></p><figcaption class="figure-caption">(b) Auto-generated maze with 3D audio beacons on waypoints</figcaption><p></p>
 </figure>
 </div>
@@ -227,13 +227,13 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-IA-loc" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
+<p><a href="IA-loc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Indoor Atlas’ localization"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
 <p></p><figcaption class="figure-caption">(a) Indoor Atlas’ localization</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-IA-graph" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
+<p><a href="IA-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Indoor Atlas’ navigation graph"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
 <p></p><figcaption class="figure-caption">(b) Indoor Atlas’ navigation graph</figcaption><p></p>
 </figure>
 </div>
@@ -552,13 +552,13 @@ Click to see a preview of the documentation
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 47.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-diagram.png" class="lightbox" title="AdViS - Depth Map navigation" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
+<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AdViS - Depth Map navigation"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Depth Map navigation</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 53.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-mocap-diagram.png" class="lightbox" title="AdViS - Motion Capture" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
+<p><a href="advis-mocap-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Motion Capture"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Motion Capture</figcaption><p></p>
 </figure>
 </div>
