@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: "docs"
   # lib-dir: libs
-  resources: [.nojekyll, "/res/*"]
+  resources: [.nojekyll, "/res/*", CNAME]
   # pre-render: src/common/setup.R
   # post-render: 
   render:
@@ -14,7 +14,8 @@ website:
   title: "Marc-Aurèle Rivière"
   description: "Marc-Aurèle Rivière's personal website"
   favicon: res/favicon.png
-  site-url: https://ma-riviere.github.io/ma-riviere.me
+  site-url: https://ma-riviere.me/
+  # site-path: ma-riviere.me/
   repo-url: https://github.com/ma-riviere/ma-riviere.me/
   repo-branch: main
   repo-actions: [source, issue]

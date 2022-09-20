@@ -244,6 +244,26 @@
       "Hash": "976cf154dfb043c012d87cddd8bca363",
       "Requirements": []
     },
+    "broom": {
+      "Package": "broom",
+      "Version": "1.0.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "c90ff735b7812b60f067a3f7a3b4de63",
+      "Requirements": [
+        "backports",
+        "dplyr",
+        "ellipsis",
+        "generics",
+        "ggplot2",
+        "glue",
+        "purrr",
+        "rlang",
+        "stringr",
+        "tibble",
+        "tidyr"
+      ]
+    },
     "bslib": {
       "Package": "bslib",
       "Version": "0.4.0",
@@ -424,6 +444,16 @@
       "Hash": "bf0e26913c49b37762bcfc999de229db",
       "Requirements": []
     },
+    "datawizard": {
+      "Package": "datawizard",
+      "Version": "0.6.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "a74c2a453bf10ea1fe55e1dbcf05114d",
+      "Requirements": [
+        "insight"
+      ]
+    },
     "dbplyr": {
       "Package": "dbplyr",
       "Version": "2.2.1",
@@ -508,10 +538,16 @@
     },
     "dplyr": {
       "Package": "dplyr",
-      "Version": "1.0.10",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "539412282059f7f0c07295723d23f987",
+      "Version": "1.0.99.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "Tidyverse",
+      "RemoteRepo": "dplyr",
+      "RemoteRef": "main",
+      "RemoteSha": "f2c7dd580eb3ec16651e02ee5e907a488cb338b1",
+      "Remotes": "r-lib/tidyselect, r-lib/vctrs",
+      "Hash": "0206689b7195624a1a97eab3660c6708",
       "Requirements": [
         "R6",
         "generics",
@@ -970,6 +1006,14 @@
       "Hash": "1deaf1de3eac7e1d3377954b3a283652",
       "Requirements": []
     },
+    "insight": {
+      "Package": "insight",
+      "Version": "0.18.3",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "199e92287e8e39cec4a462ab6f5b1767",
+      "Requirements": []
+    },
     "isoband": {
       "Package": "isoband",
       "Version": "0.2.5",
@@ -1161,6 +1205,19 @@
       "Hash": "4a0b3a68f846cb999ff0e8e519524fbb",
       "Requirements": [
         "lattice"
+      ]
+    },
+    "nplyr": {
+      "Package": "nplyr",
+      "Version": "0.1.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "e1b899dfb5c8da7e5ba6d2c9c1a45d9a",
+      "Requirements": [
+        "assertthat",
+        "dplyr",
+        "purrr",
+        "rlang"
       ]
     },
     "numDeriv": {
@@ -1690,16 +1747,22 @@
     },
     "tidyselect": {
       "Package": "tidyselect",
-      "Version": "1.1.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "17f6da8cfd7002760a859915ce7eef8f",
+      "Version": "1.1.2.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "Tidyverse",
+      "RemoteRepo": "tidyselect",
+      "RemoteRef": "main",
+      "RemoteSha": "ced63f3f4e48609050bc050892781c24869c8b6d",
+      "Hash": "d529594ec520920589ec06d71c43508f",
       "Requirements": [
-        "ellipsis",
+        "cli",
         "glue",
-        "purrr",
+        "lifecycle",
         "rlang",
-        "vctrs"
+        "vctrs",
+        "withr"
       ]
     },
     "tinytex": {
@@ -1760,13 +1823,19 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.4.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "8b54f22e2a58c4f275479c92ce041a57",
+      "Version": "0.4.1.9000",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "r-lib",
+      "RemoteRepo": "vctrs",
+      "RemoteRef": "main",
+      "RemoteSha": "0a219ba242ee368df63bc3876f06f9a6220e85c0",
+      "Hash": "78e991a983f92bbbe0b858623ee92124",
       "Requirements": [
         "cli",
         "glue",
+        "lifecycle",
         "rlang"
       ]
     },

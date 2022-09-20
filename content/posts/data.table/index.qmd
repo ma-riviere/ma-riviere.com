@@ -24,9 +24,6 @@ format:
 
 execute: 
   output: asis
-
-# filters:
-#   - grouped-tabsets
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
@@ -64,25 +61,12 @@ execute:
 
 ## Grouped tabsets
 
-# head(MT, 1)
-first(MT$cyl)
-MT[, first(cyl)]
+## Subset/filter: subset by position/random -> slice_*
 
-# tail(MT, 1)
-last(MT$cyl)
-MT[, last(cyl)]
-
-getElement(MT$cyl, 5)
-nth(MT$cyl, 5)
-MT[5, cyl]
-
-## last_col()
-
-## dplyr::consecutive_id() (v1.1) vs data.table::rleid() : move from example to own section ?
+## dplyr::consecutive_id() (v1.1) vs data.table::rleid() : move from example to section
 ### See: https://github.com/tidyverse/dplyr/blob/main/NEWS.md
 
 ## Rework JOINS
-### See: https://r4ds.had.co.nz/relational-data.html#filtering-joins
 ### - New dplyr::join_by() argument for joins -> non-equi, rolling, ...
 ### - Overlap join example (value -1+1)
 ### - Rework .EACHI example (and add to joins)
@@ -181,23 +165,6 @@ library(xml2)
 library(withr)
 ```
 
-```{css, echo=FALSE}
-.panel-tabset > .tab-content {
-  display: flex;
-}
-
-.panel-tabset > .tab-content > .tab-pane {
-  display: block !important;
-  visibility: hidden;
-  margin-right: -100%;
-  width: 100%;
-}
-
-.panel-tabset > .tab-content > .active {
-  visibility: visible;
-}
-```
-
 ```{r}
 #| echo: false
 #| file: !expr c(here("src", "quarto", "quarto_theme.R"), here("src", "quarto", "style_gt_mono.R"))
@@ -224,25 +191,11 @@ IRIS <- as.data.table(iris)[, Species := as.character(Species)]
 
 
 <!-------------------------------------------------------->
-## Arrange / Order
-
-### Basic ordering
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
+## Arrange / Order:
 
 ```{r}
 mtcars |> arrange(desc(cyl))
 ```
-
-**Ordering on multiple columns**
-
-```{r}
-mtcars |> arrange(desc(cyl), gear)
-```
-
-##### data.table
 
 ```{r}
 MT[order(-cyl)]
@@ -250,11 +203,10 @@ MT[order(-cyl)]
 setorder(MT, -cyl)[]
 ```
 
-**Ordering on multiple columns**
-
 ```{r}
 MT[order(-cyl, gear)]
 ```
+
 
 **Ordering on a character column**
 
@@ -262,9 +214,8 @@ MT[order(-cyl, gear)]
 IRIS[chorder(Species)]
 ```
 
-:::
 
-### Ordering with keys
+**Ordering with keys**
 
 - Keys physically reorders the dataset within the RAM (by reference)  
   - No memory is used for sorting (other than marking which columns is the key)  
@@ -297,7 +248,7 @@ Unless our task involves repeated subsetting on the same column, the speed gain 
 :::
 
 
-### Ordering with (secondary) indices
+**Ordering with (secondary) indices**
 
 - `setindex` creates an index for the provided columns, but doesn’t physically reorder the dataset in RAM.  
 - It computes the ordering vector of the dataset's rows according to the provided columns in an additional attribute called _index_  
@@ -345,7 +296,7 @@ We can thus use indices to pre-compute the ordering for the columns (or combinat
 
 
 <!-------------------------------------------------------->
-## Subset / Filter
+## Subset / Filter:
 
 ```{r}
 #| echo: false
@@ -354,21 +305,19 @@ MT <- as.data.table(mtcars)
 IRIS <- as.data.table(iris)[, Species := as.character(Species)]
 ```
 
-### Basic filtering
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
 
 ```{r}
 mtcars |> filter(cyl >= 6 & disp < 180)
-```
 
-##### data.table
-
-```{r}
 MT[cyl >= 6 & disp < 180]
 ```
+
+**Filter based on a range:**
+
+```{r}
+MT[disp %between% c(200, 300)]
+```
+
 
 **Filtering on characters:**
 
@@ -378,42 +327,14 @@ For non-regex, use `%chin%`, which is a character-optimized version of `%in%`.
 IRIS[Species %chin% c("setosa")]
 ```
 
-:::
 
-### Filter based on a range
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
-
-```{r}
-mtcars |> filter(between(disp, 200, 300))
-```
-
-##### data.table
-
-```{r}
-MT[disp %between% c(200, 300)]
-```
-
-:::
-
-
-### Filter with a pattern
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
-
-```{r}
-mtcars |> filter(str_detect(disp, "^\\d{3}\\."))
-```
-
-##### data.table
+**Filter with pattern:**
 
 For regex patterns, use `%like%`
 
 ```{r}
+mtcars |> filter(str_detect(disp, "^\\d{3}\\."))
+
 MT[like(disp, "^\\d{3}\\.")]
 ```
 
@@ -423,88 +344,8 @@ Alternatively:
 MT[disp %like% "^\\d{3}\\."]
 ```
 
-:::
 
-
-### Filter on row number (slicing)
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
-
-```{r}
-mtcars |> slice(1)
-
-mtcars |> slice_head(n = 1)
-```
-
-```{r}
-mtcars |> slice(n())
-
-mtcars |> slice_tail(n = 1)
-```
-
-**Slice a random sample of rows**
-
-```{r}
-mtcars |> slice_sample(n = 5)
-```
-
-
-##### data.table
-
-```{r}
-MT[1]
-```
-
-```{r}
-MT[.N]
-```
-
-**Slice a random sample of rows**
-
-```{r}
-MT[sample(.N, 5)]
-```
-
-
-:::
-
-
-### Filter distinct/unique rows
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
-
-```{r}
-mtcars |> distinct(mpg, hp, .keep_all = TRUE)
-```
-
-**Number of unique rows/values**
-
-```{r}
-n_distinct(mtcars$gear)
-```
-
-
-##### data.table
-
-```{r}
-unique(MT, by = c("mpg", "hp"))
-```
-
-**Number of unique rows/values**
-
-```{r}
-uniqueN(MT, by = "gear")
-```
-
-:::
-
-
-
-### Filter by keys
+**Filter by keys**
 
 When keys or indices are defined, we can filter based on them, which is often a lot faster.  
 
@@ -526,7 +367,7 @@ MT[.(6, 4)] # Equivalent to MT[cyl == 6 & gear == 4]
 ```
 
 
-### Filter by indices
+**Filter by indices**
 
 To filter by indices, we can use the `on` argument, which creates a **temporary secondary index** on the fly (if it doesn't already exist).
 
@@ -547,69 +388,88 @@ MT[.(4:6, 4), on = c("cyl", "gear"), nomatch = NULL]
 ```
 
 
-
-### Filtering on multiple columns
-
-**Filtering with one function taking multiple columns:**
+**Filter based on position:**
 
 ```{r}
-fcn <- \(x, y) x > y
+dplyr::first(MT$cyl)
 
-fdat <- \(d) with(d, gear > cyl)
+MT[, first(cyl)]
 ```
 
 ```{r}
-cols <- c("gear", "cyl")
+dplyr::last(MT$cyl)
+
+MT[, last(cyl)]
 ```
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
-
-* Manually:
 
 ```{r}
-mtcars |> filter(fcn(gear, cyl))
+dplyr::nth(MT$cyl, 5)
+
+MT[5, cyl]
 ```
 
-* Programatically:
 
-_With the column names_
+**Distinct / Unique**
 
 ```{r}
-mtcars |> filter(fcn(!!!syms(cols)))
+mtcars |> distinct(mpg, hp, .keep_all = TRUE)
+
+unique(MT, by = c("mpg", "hp"))
 ```
 
-_With the data_
+
+**N Distinct / Unique N**
 
 ```{r}
-mtcars |> filter(fdat(cur_data()))
+n_distinct(mtcars$gear)
+
+uniqueN(MT, by = "gear")
 ```
 
 
-##### data.table
+**Applying a filtering function on multiple columns**
 
-* Manually:
+_Function to filter rows that have 2 or more non-zero decimals in one column_
 
 ```{r}
-MT[fcn(gear, cyl),]
+decp <- \(x) str_length(str_remove(as.character(abs(x)), ".*\\.")) > 1
 ```
 
-* Programatically:
-
-_With the column names:_
+Manual solution:
 
 ```{r}
-MT[do.call(fcn, args), env = list(args = as.list(cols))]
+mtcars |> filter(decp(drat) & decp(wt) & decp(qsec))
 
-MT[rlang::exec(fcn, !!!args), env = list(args = as.list(cols))]
+MT[decp(drat) & decp(wt) & decp(qsec), ]
 ```
 
-_With the data:_
+Programmatically applying the method to the different columns:
 
 ```{r}
-MT[fdat(MT),] # Can't use .SD in i
+cols <- c("drat", "wt", "qsec")
 ```
+
+```{r}
+mtcars |> filter(if_all(cols, decp))
+```
+
+```{r}
+MT[Reduce(`&`, lapply(mget(cols), decp)), ]
+
+MT[Reduce(`&`, lapply(MT[, ..cols], decp)), ]
+```
+
+
+_With the newer [`env`](https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html) meta-programming interface:_
+
+```{r}
+MT[Reduce(`&`, lapply(v1, decp)), env = list(v1 = as.list(cols))]
+```
+
+```{r}
+MT[f1(`&`, f2(v1, decp)), env = list(f1 = "Reduce", f2 = "lapply", v1 = as.list(cols))]
+```
+
 
 :::{.callout-note}
 We can't use `.SD` in the `i` clause of a `data.table`, but we can bypass that constraint by doing the operation in two steps:  
@@ -618,72 +478,10 @@ We can't use `.SD` in the `i` clause of a `data.table`, but we can bypass that c
 :::
 
 ```{r}
-MT[MT[, fdat(.SD)]]
-```
-
-
-:::
-
-
-**Combining multiple filtering functions:**
-
-This function filters rows that have 2 or more non-zero decimals, and we're going to call it on multiple columns:
-
-```{r}
-decp <- \(x) str_length(str_remove(as.character(abs(x)), ".*\\.")) >= 2
-```
-
-```{r}
-cols <- c("drat", "wt", "qsec")
-```
-
-::: {.panel-tabset group="framework"}
-
-##### Tidyverse
-
-Manually:
-
-```{r}
-mtcars |> filter(decp(drat) & decp(wt) & decp(qsec))
-```
-
-Programatically:
-
-```{r}
-mtcars |> filter(if_all(cols, decp))
-```
-
-##### data.table
-
-Manually:
-
-```{r}
-MT[decp(drat) & decp(wt) & decp(qsec), ]
-```
-
-Programatically:
-
-```{r}
-MT[Reduce(`&`, lapply(mget(cols), decp)), ]
-
-MT[Reduce(`&`, lapply(MT[, ..cols], decp)), ]
-```
-
-_With the newer [`env`](https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html) meta-programming interface:_
-
-```{r}
-MT[Reduce(`&`, lapply(v1, decp)), env = list(v1 = as.list(cols))]
-```
-
-_In two steps:_
-
-```{r}
 MT[MT[, Reduce(`&`, lapply(.SD, decp)), .SDcols = cols]]
 
 MT[MT[, Reduce(`&`, lapply(.SD[, mget(cols)], decp))]]
 ```
-
-:::
 
 
 
@@ -1247,7 +1045,15 @@ copy(MT)[, I_GRP := 1:.N, keyby = gear][]
 ```
 
 
-**Random sample by group:**
+**Random sample:**
+
+```{r}
+mtcars |> slice_sample(n = 5)
+
+MT[sample(.N, 5)]
+```
+
+Sample by group:
 
 ```{r}
 mtcars |> group_by(cyl) |> slice_sample(n = 5)

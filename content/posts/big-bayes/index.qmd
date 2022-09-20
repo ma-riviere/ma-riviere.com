@@ -26,7 +26,7 @@ format:
       toggle: false
 ---
 
-<hr>
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 :::{.callout-tip}
 You can check the page's source code by clicking on the **</> Code** button at the top-right.
@@ -34,7 +34,7 @@ You can check the page's source code by clicking on the **</> Code** button at t
 
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>
-# Setup
+# Setup {.unnumbered}
 ***
 
 ```{r}
