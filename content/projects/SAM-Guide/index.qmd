@@ -56,6 +56,8 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 
 -->
 
+<!--# TODO: Our tools > ceinture & Unity -->
+
 # My role in this project
 ***
 
@@ -63,8 +65,18 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 
 **2)** Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:
 
-![](TactiBelt-v2.jpg "Photography of the second iteration of the TactiBelt"){fig-alt="Photography of the second iteration of the TactiBelt"}
+![Second prototype of the TactiBelt](TactiBelt-v2.jpg "Photography of the second iteration of the TactiBelt"){#fig-tactibelt-v2 fig-alt="Photography of the second iteration of the TactiBelt"}
 
-**3)** Lead the design and development of the project's experimental platform. The platform uses Unity, connects to various motion tracking devices (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation, and [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling.
+**3)** Lead the design and development of the project's experimental platform (choice of tools, lead developer). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation, uses [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling, and communicates to the TactiBelt wirelessly using the [OSC protocol](https://en.wikipedia.org/wiki/Open_Sound_Control).
 
-![](Unity.png){fig-alt="Screenshot of the experimental plateform of SAM-Guide"}
+:::{#fig-unity layout='[505,495]'}
+
+![Testing environment with a PureData audio beacon](Unity.png){#fig-unity-testenv fig-alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"}
+
+![Auto-generated maze with 3D audio beacons on waypoints](Unity-maze.png){#fig-unity-maze fig-alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"}
+
+Screenshots from SAM-Guide's experimental platform *(in development)*
+
+:::
+
+**4)** Handling the experimental design of the first wave of experiments *(ongoing)*.
