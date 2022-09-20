@@ -2,24 +2,23 @@
 
 resources: "*/*.pdf"
 
-title-block-banner: "#4B5B68"
-
 published-title: "Began Around"
 author-title: "Partners Involved"
 doi-title: "Funding Instrument" #TODO: change the link with JS, or better, change the template
 
+# page-layout: article
+
 about:
-  id: additional-links
+  # id: additional-links
   template: solana
   image: ../placeholder.avif
   image-width: "0%"
-
-page-layout: article
 
 format:
   html:
     number-sections: true
     toc: true
+    toc-depth: 3
 
 filters:
   - lightbox

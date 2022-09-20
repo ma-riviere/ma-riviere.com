@@ -2,8 +2,6 @@
 
 resources: "*/*.pdf"
 
-title-block-banner: "#4B5B68"
-
 about:
   id: additional-links
   template: solana
@@ -11,3 +9,9 @@ about:
   image-width: "0%"
 
 sidebar: false
+
+filters:
+  - lightbox
+
+lightbox:
+  match: auto

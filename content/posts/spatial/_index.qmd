@@ -143,7 +143,7 @@ data_path <- here::here("res", "data", "stations")
 <!-------------------------------------------------------->
 ## Wide format (original)
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -213,11 +213,10 @@ if (!interactive()) TIMES$loading_sql1 + TIMES$loading_sql2
 DBI::dbGetQuery(rides_con, "SELECT * FROM rides ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-
 <!-------------------------------------------------------->
 ## Long format
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -295,10 +294,6 @@ UNION ALL
 
 CREATE INDEX station_idx ON rides_l (id);
 ```
-
-:::{.callout-note .column-margin appearance="simple"}
-No need to re-define an index for `ride_id` here, it was passed down from the table `rides`
-:::
 
 ```{r}
 #| echo: false
@@ -419,7 +414,7 @@ CREATE FUNCTION dec5(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(
 ```
 
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -529,7 +524,7 @@ rides_l_clean
 
 **Entries missing one or both coordinates but having an `id` or `name`:**
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -581,7 +576,7 @@ rm(rides_l_clean_lost.sql)
 
 **Entries missing either `name` or `id`, but having coordinates:**
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -654,7 +649,7 @@ Although, if we look at the original dataset (before filtering the inaccurate co
 :::
 
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -735,7 +730,7 @@ There were `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id`
 
 First, we need to assemble a dataset linking each unique station `id` (and `name`) with a set of coordinates (here, we use the average `lat` & `lng`)
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -820,7 +815,7 @@ haversine <- \(ref_lat, ref_lng, lat, lng) {
 To save time, let's only apply the procedure to the entries that actually need to be matched (i.e. the ones having coordinates but missing either `name` or `id`).
 
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### fuzzyjoin
 
@@ -940,7 +935,7 @@ What if we did the same procedure on the non-cleaned data (the one with coordina
 
 First, we need to recompute the `stations` data from `rides_l` (i.e. rides data before cleaning):
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -1016,7 +1011,7 @@ As expected, none. But we're still going to do the matching, for posterity !
 To save time, let's only apply the procedure to the entries that actually need to be matched (i.e. the ones having coordinates but missing either `name` or `id`):
 
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### fuzzyjoin
 
@@ -1150,7 +1145,7 @@ Finally, we need to update the original dataset (`rides_l_clean`) with the entri
 <!-------------------------------------------------------->
 ## Merging the two datasets
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 
@@ -1303,7 +1298,7 @@ We can see that the resulting dataset no longer has any entries that have coordi
 
 To finish, let's pivot the resulting data back into the wider format it was originally in:
 
-:::{.panel-tabset group="framework"}
+:::{.panel-tabset}
 
 #### data.table
 

@@ -13,9 +13,5 @@ listing:
   page-size: 10
   filter-ui: true
   sort-ui: [date, title, author]
-  # image-height: 
-  # image-placeholder: TODO
-
-comments: false
 ---
 

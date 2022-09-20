@@ -61,3 +61,5 @@ res/models/
 # HTML
 **/index_files/*
 site_libs/
+/*.html
+content/**/*.html

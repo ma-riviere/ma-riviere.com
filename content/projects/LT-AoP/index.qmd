@@ -40,7 +40,7 @@ about:
       aria-label: "See the GitHub repository hosting the project's and related paper's code"
 ---
 
-{{< include ../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 # My role in this project
 ***

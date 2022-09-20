@@ -24,7 +24,7 @@ categories:
   - "RT-qPCR"
 ---
 
-{{< include ../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 # My role in this project
 ***

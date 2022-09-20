@@ -2,8 +2,6 @@
 
 resources: "*/*.pdf"
 
-title-block-banner: "#4B5B68"
-
 published-title: "Date"
 author-title: "Presented By"
 doi-title: "Location" #TODO: change the link with JS, or better, change the template
@@ -13,3 +11,9 @@ about:
   template: solana
   image: ../placeholder.avif
   image-width: "0%"
+  
+filters:
+  - lightbox
+
+lightbox:
+  match: auto

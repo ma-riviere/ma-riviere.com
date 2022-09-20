@@ -31,7 +31,7 @@ categories:
   - "Computer Vision"
 ---
 
-{{< include ../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 ![](header.jpg){fig-alt="Banner illustrating the SAM-Guide project"}
 
@@ -63,13 +63,15 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 
 **1)** I was the driving force behind the genesis of this project. I connected the consortium members together and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€). This project will last 4 years and allow the recruitment of 2 PhD students, one post-doc, and one Research Engineer.
 
-**2)** Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:
+**2)** Participated in the Data Management plan creation (compliance to the GPDR).
+
+**3)** Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:
 
 ![Second prototype of the TactiBelt](TactiBelt-v2.jpg "Photography of the second iteration of the TactiBelt"){#fig-tactibelt-v2 fig-alt="Photography of the second iteration of the TactiBelt"}
 
-**3)** Lead the design and development of the project's experimental platform (choice of tools, lead developer). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation, uses [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling, and communicates to the TactiBelt wirelessly using the [OSC protocol](https://en.wikipedia.org/wiki/Open_Sound_Control).
+**4)** Lead the design and development of the project's experimental platform (choice of tools, lead developer). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation, uses [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling, and communicates to the TactiBelt wirelessly using the [OSC protocol](https://en.wikipedia.org/wiki/Open_Sound_Control).
 
-:::{#fig-unity layout='[505,495]'}
+:::{#fig-unity layout='[503,-5,492]'}
 
 ![Testing environment with a PureData audio beacon](Unity.png){#fig-unity-testenv fig-alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"}
 
@@ -79,4 +81,4 @@ Screenshots from SAM-Guide's experimental platform *(in development)*
 
 :::
 
-**4)** Handling the experimental design of the first wave of experiments *(ongoing)*.
+**5)** Handling the experimental design of the first wave of experiments *(ongoing)*.

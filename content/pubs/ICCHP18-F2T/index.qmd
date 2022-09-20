@@ -28,7 +28,6 @@ citation:
   editor:
     - "Miesenberger Klaus"
     - "Kouroupetroglou Georgios"
-  # doi: 10.1007/978-3-319-94274-2_36
   url: http://link.springer.com/10.1007/978-3-319-94274-2_36
   volume: 10897
   page: "258-266"
@@ -42,5 +41,3 @@ about:
       url: content/pubs/ICCHP18-F2T/F2T.pdf
       aria-label: "See the article's PDF"
 ---
-
-{{< include ../../additional-links.qmd >}}

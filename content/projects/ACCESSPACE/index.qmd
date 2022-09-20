@@ -49,7 +49,7 @@ about:
       aria-label: "See a poster illustrating the project (in French)"
 ---
 
-{{< include ../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 ![](header.jpg){fig-alt="Banner illustrating the ACCESSPACE project"}
 

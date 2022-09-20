@@ -50,5 +50,3 @@ about:
       url: https://github.com/ma-riviere/ICCHP20-CamIO
       aria-label: "See the article's code and data on GitHub"
 ---
-
-{{< include ../../additional-links.qmd >}}

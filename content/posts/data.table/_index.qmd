@@ -173,6 +173,23 @@ library(xml2)
 library(withr)
 ```
 
+```{css, echo=FALSE}
+.panel-tabset > .tab-content {
+  display: flex;
+}
+
+.panel-tabset > .tab-content > .tab-pane {
+  display: block !important;
+  visibility: hidden;
+  margin-right: -100%;
+  width: 100%;
+}
+
+.panel-tabset > .tab-content > .active {
+  visibility: visible;
+}
+```
+
 ```{r}
 #| echo: false
 #| file: !expr c(here("src", "quarto", "quarto_theme.R"), here("src", "quarto", "style_gt_mono.R"))

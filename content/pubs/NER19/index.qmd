@@ -47,5 +47,3 @@ about:
       url: /content/pubs/NER19/NER19.pdf
       aria-label: "See the associated poster's PDF"
 ---
-
-{{< include ../../additional-links.qmd >}}

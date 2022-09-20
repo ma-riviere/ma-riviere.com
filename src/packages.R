@@ -43,10 +43,11 @@ project_pkgs <- c(
   "patchwork",
   "bayesplot",
   "ggridges",
+  "ricardo-bion/ggradar",
 
   ### Publishing
   "gt",
-  "gtExtras",
+  "jthomasmock/gtExtras",
   "sessioninfo",
   "quarto",
   "downlit",

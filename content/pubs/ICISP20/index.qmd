@@ -48,5 +48,3 @@ about:
       url: https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf
       aria-label: "See the article's PDF"
 ---
-
-{{< include ../../additional-links.qmd >}}

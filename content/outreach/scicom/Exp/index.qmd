@@ -24,7 +24,7 @@ about:
       aria-label: "See my Expérimentarium record (in French)"
 ---
 
-{{< include ../../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 For 3 years (2017 to 2020), I participated in the [Experimentarium](https://www.experimentarium.fr/) program: a French initiative to popularize research to the wider public. During the year, they would organize single-day interventions of multiple PhD students into local middle & high-schools, where we would each present our research in an accessible manner to multiple groups of students, and answer their questions about the academic world. 
 

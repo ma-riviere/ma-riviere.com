@@ -1,7 +1,5 @@
 # Blog posts
 
-title-block-banner: "#4B5B68"
-
 citation: true
 
 published-title: "First Published"
@@ -11,3 +9,11 @@ page-layout: article
 format:
   html:
     number-sections: true
+    
+### Commenting ###
+## See: 
+### - https://quarto.org/docs/reference/projects/websites.html#comments
+### - https://robjhyndman.com/hyndsight/disqus2giscus.html
+# comments:
+#   giscus:
+#     repo: ma-riviere/ma-riviere.me # Must be public, have giscus app installed, and discussions enabled

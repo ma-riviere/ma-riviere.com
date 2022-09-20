@@ -2,24 +2,20 @@
 title: "Blog Posts"
 # image: 
 
-from: markdown+emoji
 license: "CC BY"
 
 listing:
   id: blog-listings
   contents: "*.qmd"
-  type: grid
-  fields: [date, title, subtitle, description, reading-time, categories, file-modified] # 
+  # type: default
+  fields: [date, title, subtitle, description, reading-time, categories] # file-modified 
   categories: numbered
   date-format: medium
   sort: [date desc, title desc]
   page-size: 10
   filter-ui: true
   sort-ui: [date, title]
-  # image-height: 
-  # image-placeholder: TODO
 
-comments: false
 citation: false
 ---
 

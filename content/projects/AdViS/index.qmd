@@ -46,7 +46,7 @@ about:
       aria-label: "See the PDF of a poster illustrating the project"
 ---
 
-{{< include ../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 # Project summary
 ***

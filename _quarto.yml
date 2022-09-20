@@ -2,7 +2,7 @@ project:
   type: website
   output-dir: "docs"
   # lib-dir: libs
-  resources: [.nojekyll, "/res/*", abbreviations.yml]
+  resources: [.nojekyll, "/res/*"]
   # pre-render: src/common/setup.R
   # post-render: 
   render:
@@ -14,9 +14,6 @@ website:
   title: "Marc-Aurèle Rivière"
   description: "Marc-Aurèle Rivière's personal website"
   favicon: res/favicon.png
-  # image: res/image.png
-  # image-alt: 
-  
   site-url: https://ma-riviere.me
   repo-url: https://github.com/ma-riviere/ma-riviere.me/
   repo-branch: main
@@ -34,7 +31,7 @@ website:
     # logo-alt: 
     pinned: true
     collapse: true
-    # collapse-below: md
+    collapse-below: md
     left:
       - text: "Projects"
         file: content/projects/index.qmd
@@ -92,20 +89,12 @@ website:
     site: "@mariviere1"
     card-style: summary
   
-  ### Commenting ###
-  ## See: 
-  ### - https://quarto.org/docs/reference/projects/websites.html#comments
-  ### - https://robjhyndman.com/hyndsight/disqus2giscus.html
-  # comments:
-  #   giscus:
-  #     repo: ma-riviere/ma-riviere.me # Must be public, have giscus app installed, and discussions enabled
-  
   ### Footer ###
   page-footer:
     border: true
     left: 
       - text: "© 2021-2022, Marc-Aurele Rivière"
-        href: content/LICENSE.md
+        href: LICENSE.md
         aria-label: "Website's license"
     right:
       - text: "Made with Quarto ♥️"
@@ -113,8 +102,7 @@ website:
         aria-label: "Quarto's website"
 
 
-from: markdown+smart+emoji
-abbreviations: abbreviations.yml
+from: markdown+emoji
 # bibliography: 
 csl: apa.csl
 
@@ -138,7 +126,7 @@ format:
     code-link: true
     code-copy: hover
     code-block-bg: true
-    code-overflow: wrap
+    code-overflow: scroll
     code-block-border-left: "#31BAE9" # 5A6570
     highlight-style:
       light: res/highlight-styles/mar-light.theme
@@ -164,5 +152,8 @@ execute:
   message: false
   cache: false
   freeze: auto
+
+filters:
+  - nutshell
 
 editor: source

@@ -28,8 +28,6 @@ listing:
     page-size: 5
     filter-ui: true
     sort-ui: [date, title]
-
-comments: false
 ---
 
 ## Scientific Outreach

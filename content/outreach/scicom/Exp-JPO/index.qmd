@@ -17,7 +17,7 @@ categories:
   - "Spatial Cognition"
 ---
 
-{{< include ../../../additional-links.qmd >}}
+<hr style="margin-bottom: 30px; margin-top: -12px">
 
 Here is a video recording of a talk I gave to high-school students during my University's College Fair, in collaboration with the [Expérimentarium](https://www.experimentarium.fr/) program, filmed by the University:
 

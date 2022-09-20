@@ -23,12 +23,6 @@ format:
     code-tools:
       source: true
       toggle: false
-
-# filters:
-#   - lightbox
-# 
-# lightbox:
-#   match: auto
 ---
 
 <hr>
