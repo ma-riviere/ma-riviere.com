@@ -6,8 +6,8 @@
       version="2.0">
 <channel>
 <title>Marc-Aurèle Rivière</title>
-<link>https://ma-riviere.me/content/projects/index.html</link>
-<atom:link href="https://ma-riviere.me/content/projects/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://ma-riviere.github.io/ma-riviere.me/content/projects/index.html</link>
+<atom:link href="https://ma-riviere.github.io/ma-riviere.me/content/projects/index.xml" rel="self" type="application/rss+xml"/>
 <description>Marc-Aurèle Rivière's personal website</description>
 <generator>quarto-1.1.251</generator>
 <lastBuildDate>Sun, 31 Oct 2021 23:00:00 GMT</lastBuildDate>
@@ -18,12 +18,12 @@
   <dc:creator>[CMAP (Paris-Saclay, France)](https://portail.polytechnique.edu/cmap/en)</dc:creator>
   <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
   <dc:creator>[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/SAM-Guide/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/SAM-Guide/header.jpg" class="img-fluid figure-img" alt="Banner illustrating the SAM-Guide project"></a></p>
+<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/header.jpg" class="img-fluid figure-img" alt="Banner illustrating the SAM-Guide project"></a></p>
 </figure>
 </div>
 <section id="project-summary" class="level1" data-number="1">
@@ -48,7 +48,7 @@
 <p><strong>3)</strong> Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:</p>
 <div id="fig-tactibelt-v2" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="TactiBelt-v2.jpg" class="lightbox" title="Second prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/SAM-Guide/TactiBelt-v2.jpg" title="fig:Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
+<p><a href="TactiBelt-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Second prototype of the TactiBelt"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/TactiBelt-v2.jpg" title="fig:Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Second prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
@@ -58,7 +58,7 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-unity-testenv" class="quarto-figure quarto-figure-center" style="flex-basis: 50.3%;justify-content: center;">
 <figure class="figure">
-<p><a href="Unity.png" class="lightbox" title="Testing environment with a PureData audio beacon" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity.png" class="img-fluid figure-img" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a></p>
+<p><a href="Unity.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Testing environment with a PureData audio beacon"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/Unity.png" class="img-fluid figure-img" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a></p>
 <p></p><figcaption class="figure-caption">(a) Testing environment with a PureData audio beacon</figcaption><p></p>
 </figure>
 </div>
@@ -67,7 +67,7 @@
 </div>
 <div id="fig-unity-maze" class="quarto-figure quarto-figure-center" style="flex-basis: 49.2%;justify-content: center;">
 <figure class="figure">
-<p><a href="Unity-maze.png" class="lightbox" title="Auto-generated maze with 3D audio beacons on waypoints" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity-maze.png" class="img-fluid figure-img" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a></p>
+<p><a href="Unity-maze.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Auto-generated maze with 3D audio beacons on waypoints"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/Unity-maze.png" class="img-fluid figure-img" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a></p>
 <p></p><figcaption class="figure-caption">(b) Auto-generated maze with 3D audio beacons on waypoints</figcaption><p></p>
 </figure>
 </div>
@@ -88,14 +88,14 @@
   <category>Auditory Interface</category>
   <category>Haptic Interface</category>
   <category>Computer Vision</category>
-  <guid>https://ma-riviere.me/content/projects/SAM-Guide/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/index.html</guid>
   <pubDate>Sun, 31 Oct 2021 23:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/SAM-Guide/header.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/SAM-Guide/header.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>DE-AoP</title>
   <dc:creator>[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/DE-AoP/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/DE-AoP/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="my-role-in-this-project" class="level1" data-number="1">
@@ -114,15 +114,15 @@
   <category>Cerebellum</category>
   <category>Hypoxia</category>
   <category>RT-qPCR</category>
-  <guid>https://ma-riviere.me/content/projects/DE-AoP/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/DE-AoP/index.html</guid>
   <pubDate>Wed, 31 Jul 2019 22:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/DE-AoP/circlize.png" medium="image" type="image/png" height="132" width="144"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/DE-AoP/circlize.png" medium="image" type="image/png" height="132" width="144"/>
 </item>
 <item>
   <title>NAV-VIR</title>
   <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
   <dc:creator>[Institute of Electronics (Lodz, Poland)](http://www.eletel.p.lodz.pl/eng/)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/NAV-VIR/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="project-summary" class="level1" data-number="1">
@@ -137,12 +137,12 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 46.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="F2T-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/NAV-VIR/F2T-v2.jpg" class="img-fluid figure-img" alt="Photo of the F2T interface"></a></p>
+<p><a href="F2T-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/F2T-v2.jpg" class="img-fluid figure-img" alt="Photo of the F2T interface"></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 54.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/NAV-VIR/F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
+<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
 </figure>
 </div>
 </div>
@@ -153,13 +153,13 @@
 <p><strong>1)</strong> We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/NAV-VIR/F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
+<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
 </figure>
 </div>
 <p><strong>2)</strong> We investigated and developed tools to automatically generate a navigation graph from a floor plan, which can then be converted into a tactile image and explored with the F2T:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="map-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/NAV-VIR/map-graph.png" class="img-fluid figure-img" alt="Illustrations of the navigation graph generation"></a></p>
+<p><a href="map-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/map-graph.png" class="img-fluid figure-img" alt="Illustrations of the navigation graph generation"></a></p>
 </figure>
 </div>
 </section>
@@ -173,12 +173,12 @@
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 40.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="exp-setup.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/NAV-VIR/exp-setup.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
+<p><a href="exp-setup.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/exp-setup.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 60.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="rooms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/NAV-VIR/rooms.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
+<p><a href="rooms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/rooms.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
 </figure>
 </div>
 </div>
@@ -195,14 +195,14 @@
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
   <category>Auditory Interface</category>
-  <guid>https://ma-riviere.me/content/projects/NAV-VIR/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/index.html</guid>
   <pubDate>Fri, 31 Aug 2018 22:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/NAV-VIR/F2T-v2-render.png" medium="image" type="image/png" height="81" width="144"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/NAV-VIR/F2T-v2-render.png" medium="image" type="image/png" height="81" width="144"/>
 </item>
 <item>
   <title>CamIO</title>
   <dc:creator>[SKERI (San Francisco, USA)](https://www.ski.org/center/rehabilitation-engineering-research-center)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/CamIO/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="project-summary" class="level1" data-number="1">
@@ -217,7 +217,7 @@
 <p>Their existing solution, iLocalize <span class="citation" data-cites="fusco2018">(Fusco &amp; Coughlan, 2018)</span> (Swift / iOS), used a combination of Visuo-Inertial Odometry (VIO) through Apple’s ARKit, particle filtering based on a simplified map of the environment, and drift-correction through visual identification of known landmarks (using a gradient boosting algorithm).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="iLocalize.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/CamIO/iLocalize.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot showcasing the iLocalize app"></a></p>
+<p><a href="iLocalize.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/iLocalize.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot showcasing the iLocalize app"></a></p>
 </figure>
 </div>
 <p>I developed a <a href="https://github.com/ma-riviere/redast">web app</a> to send the live camera stream from a mobile phone (JavaScript / socket.io) to a backend server (Python / Flask). The goal of the application was to facilitate the exploration of new Computer Vision algorithms to process the captured video and IMU data, which would send back location or navigational information.</p>
@@ -227,13 +227,13 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-IA-loc" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
+<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
 <p></p><figcaption class="figure-caption">(a) Indoor Atlas’ localization</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-IA-graph" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
+<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
 <p></p><figcaption class="figure-caption">(b) Indoor Atlas’ navigation graph</figcaption><p></p>
 </figure>
 </div>
@@ -258,16 +258,16 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
   <category>Sensory Substitution</category>
   <category>Auditory Interface</category>
   <category>Computer Vision</category>
-  <guid>https://ma-riviere.me/content/projects/CamIO/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/index.html</guid>
   <pubDate>Wed, 28 Feb 2018 23:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/CamIO/logo.jpg" medium="image" type="image/jpeg"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/CamIO/logo.jpg" medium="image" type="image/jpeg"/>
 </item>
 <item>
   <title>TETMOST</title>
   <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
   <dc:creator>[LIR3S (Bourgogne, France)](http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm)</dc:creator>
   <dc:creator>[IHRIM (Lyon, France)](https://ihrim.ens-lyon.fr/)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/TETMOST/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="project-summary" class="level1" data-number="1">
@@ -277,7 +277,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p><em>To Be Filled</em></p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="schema.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/TETMOST/schema.png" class="img-fluid figure-img" alt="Schema illustrating the objectives of the TETMOST project"></a></p>
+<p><a href="schema.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/schema.png" class="img-fluid figure-img" alt="Schema illustrating the objectives of the TETMOST project"></a></p>
 </figure>
 </div>
 <section id="exploring-existing-haptic-interfaces" class="level2" data-number="1.1">
@@ -288,19 +288,19 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div id="fig-taxel" class="quarto-figure quarto-figure-center" style="flex-basis: 32.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="taxels.png" class="lightbox" title="Taxel mechanical interfaces" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/TETMOST/taxels.png" class="img-fluid figure-img" alt="Photo of the StimTACT interface"></a></p>
+<p><a href="taxels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Taxel mechanical interfaces"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/taxels.png" class="img-fluid figure-img" alt="Photo of the StimTACT interface"></a></p>
 <p></p><figcaption class="figure-caption">(a) Taxel mechanical interfaces</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-elec" class="quarto-figure quarto-figure-center" style="flex-basis: 34.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="friction.png" class="lightbox" title="Electro-friction interfaces" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/TETMOST/friction.png" class="img-fluid figure-img" alt="Photo of the Hap2U interface"></a></p>
+<p><a href="friction.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Electro-friction interfaces"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/friction.png" class="img-fluid figure-img" alt="Photo of the Hap2U interface"></a></p>
 <p></p><figcaption class="figure-caption">(b) Electro-friction interfaces</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-vibro" class="quarto-figure quarto-figure-center" style="flex-basis: 34.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="gloves.png" class="lightbox" title="Vibrational interfaces" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/TETMOST/gloves.png" class="img-fluid figure-img" alt="Photo of the vibrotactile gloves"></a></p>
+<p><a href="gloves.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Vibrational interfaces"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/gloves.png" class="img-fluid figure-img" alt="Photo of the vibrotactile gloves"></a></p>
 <p></p><figcaption class="figure-caption">(c) Vibrational interfaces</figcaption><p></p>
 </figure>
 </div>
@@ -317,12 +317,12 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 46.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="F2T-v1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/TETMOST/F2T-v1.jpg" class="img-fluid figure-img" alt="Photo of the first prototype of the F2T device"></a></p>
+<p><a href="F2T-v1.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/F2T-v1.jpg" class="img-fluid figure-img" alt="Photo of the first prototype of the F2T device"></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 54.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/TETMOST/F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
+<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
 </figure>
 </div>
 </div>
@@ -333,7 +333,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p><strong>1)</strong> We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://ma-riviere.me/content/projects/TETMOST/F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
+<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
 </figure>
 </div>
 <p><strong>2)</strong> In order to display an image haptically, we first needed a way to simplify the image’s content without losing its meaning. To do so, we explored various Computer Vision techniques such as image segmentation and edge detection:</p>
@@ -341,12 +341,12 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 48.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="art.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://ma-riviere.me/content/projects/TETMOST/art.png" class="img-fluid figure-img" alt="Antique drawing of a horse passed through an edge-detection algorithm to remove unneeded details"></a></p>
+<p><a href="art.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/art.png" class="img-fluid figure-img" alt="Antique drawing of a horse passed through an edge-detection algorithm to remove unneeded details"></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 52.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="art2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://ma-riviere.me/content/projects/TETMOST/art2.png" class="img-fluid figure-img" alt="Antique painting of a woman carrying a milk jug, passed through another type of edge-detection algorithm to remove unneeded details"></a></p>
+<p><a href="art2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/art2.png" class="img-fluid figure-img" alt="Antique painting of a woman carrying a milk jug, passed through another type of edge-detection algorithm to remove unneeded details"></a></p>
 </figure>
 </div>
 </div>
@@ -370,20 +370,20 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
   <category>Virtual Reality</category>
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
-  <guid>https://ma-riviere.me/content/projects/TETMOST/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/index.html</guid>
   <pubDate>Thu, 31 Aug 2017 22:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/TETMOST/logo.png" medium="image" type="image/png" height="40" width="144"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/TETMOST/logo.png" medium="image" type="image/png" height="40" width="144"/>
 </item>
 <item>
   <title>ACCESSPACE</title>
   <dc:creator>[LITIS (Rouen, France)](https://www.litislab.fr/en/)</dc:creator>
   <dc:creator>[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/ACCESSPACE/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/header.jpg" class="img-fluid figure-img" alt="Banner illustrating the ACCESSPACE project"></a></p>
+<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/header.jpg" class="img-fluid figure-img" alt="Banner illustrating the ACCESSPACE project"></a></p>
 </figure>
 </div>
 <section id="project-summary" class="level1" data-number="1">
@@ -397,7 +397,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
 <div id="fig-neuro" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ACCESSPACE guiding principle"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
+<p><a href="neuro.png" class="lightbox" title="ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption><p></p>
 </figure>
 </div>
@@ -411,7 +411,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p><a href="nav.png" class="lightbox" title="Illustration of the navigation graph idea" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption><p></p>
 </figure>
 </div>
@@ -420,7 +420,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
 <div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="First prototype of the TactiBelt"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
+<p><a href="TactiBelt.png" class="lightbox" title="First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
@@ -431,32 +431,32 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p><strong>1)</strong> Obstacle detection and indoor localisation using the <a href="https://github.com/raulmur/ORB_SLAM2">ORB-SLAM</a> algorithm:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="ORB-SLAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/ORB-SLAM.png" title="Image showing the ORB-SLAM algorithm running inside our office" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the ORB-SLAM algorithm running inside our office"></a></p>
+<p><a href="ORB-SLAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/ORB-SLAM.png" title="Image showing the ORB-SLAM algorithm running inside our office" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the ORB-SLAM algorithm running inside our office"></a></p>
 </figure>
 </div>
 <p><strong>2)</strong> Depth estimation from a monocular RGB camera, using the <a href="https://github.com/mrharicot/monodepth">MonoDepth</a> algorithm:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="MonoDepth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/MonoDepth.png" title="Image showing the MonoDepth algorithm running just outside our lab" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the MonoDepth algorithm running just outside our lab"></a></p>
+<p><a href="MonoDepth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/MonoDepth.png" title="Image showing the MonoDepth algorithm running just outside our lab" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the MonoDepth algorithm running just outside our lab"></a></p>
 </figure>
 </div>
 <p><strong>3)</strong> Generating a mobility graph of the environment during movement using Reinforcement Learning:</p>
 <p>Applied to an artificial agent exploring a virtual maze, looking for food:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/graph.png" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" class="img-fluid figure-img" alt="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"></a></p>
+<p><a href="graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/graph.png" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" class="img-fluid figure-img" alt="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"></a></p>
 </figure>
 </div>
 <p>Applied to a real agent (human pushing a cart with a camera and the computer running the algorithm around a meeting table):</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="graph2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/graph2.png" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" class="img-fluid figure-img" alt="Image showing the navigation graph generated by moving the camera around a metting table in a room"></a></p>
+<p><a href="graph2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/graph2.png" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" class="img-fluid figure-img" alt="Image showing the navigation graph generated by moving the camera around a metting table in a room"></a></p>
 </figure>
 </div>
 <p><strong>4)</strong> A virtual environment to test the TactiBelt and our candidate spatial encoding schemes:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="VR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/VR.png" class="img-fluid figure-img" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
+<p><a href="VR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/VR.png" class="img-fluid figure-img" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
 </figure>
 </div>
 </section>
@@ -492,14 +492,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
   <category>Computer Vision</category>
-  <guid>https://ma-riviere.me/content/projects/ACCESSPACE/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/index.html</guid>
   <pubDate>Sat, 31 Dec 2016 23:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/ACCESSPACE/logo.png" medium="image" type="image/png" height="151" width="144"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/ACCESSPACE/logo.png" medium="image" type="image/png" height="151" width="144"/>
 </item>
 <item>
   <title>LT-AoP</title>
   <dc:creator>[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/LT-AoP/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/LT-AoP/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="my-role-in-this-project" class="level1" data-number="1">
@@ -524,15 +524,15 @@ Click to see a preview of the documentation
   <category>Cerebellum</category>
   <category>Hypoxia</category>
   <category>RT-qPCR</category>
-  <guid>https://ma-riviere.me/content/projects/LT-AoP/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/LT-AoP/index.html</guid>
   <pubDate>Sun, 31 Jul 2016 22:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/LT-AoP/img.png" medium="image" type="image/png" height="123" width="144"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/LT-AoP/img.png" medium="image" type="image/png" height="123" width="144"/>
 </item>
 <item>
   <title>AdViS</title>
   <dc:creator>[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)</dc:creator>
   <dc:creator>[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)</dc:creator>
-  <link>https://ma-riviere.me/content/projects/AdViS/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/index.html</link>
   <description><![CDATA[ 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="project-summary" class="level1" data-number="1">
@@ -552,13 +552,13 @@ Click to see a preview of the documentation
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 47.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AdViS - Depth Map navigation"><img src="https://ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
+<p><a href="advis-diagram.png" class="lightbox" title="AdViS - Depth Map navigation" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Depth Map navigation</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 53.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-mocap-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Motion Capture"><img src="https://ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
+<p><a href="advis-mocap-diagram.png" class="lightbox" title="AdViS - Motion Capture" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Motion Capture</figcaption><p></p>
 </figure>
 </div>
@@ -574,13 +574,13 @@ Click to see a preview of the documentation
 <p><strong>3)</strong> Organize experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyse the results.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="geom-finger.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/AdViS/geom-finger.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"></a></p>
+<p><a href="geom-finger.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/geom-finger.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"></a></p>
 </figure>
 </div>
 <p><strong>4)</strong> Participate in implementing an eye-tracking-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="geom-eye.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/AdViS/geom-eye.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"></a></p>
+<p><a href="geom-eye.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/geom-eye.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"></a></p>
 </figure>
 </div>
 
@@ -594,9 +594,9 @@ Click to see a preview of the documentation
   <category>Sensory Substitution</category>
   <category>Auditory Interface</category>
   <category>Computer Vision</category>
-  <guid>https://ma-riviere.me/content/projects/AdViS/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/index.html</guid>
   <pubDate>Mon, 30 Jun 2014 22:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" medium="image" type="image/png" height="79" width="144"/>
+  <media:content url="https://ma-riviere.github.io/ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" medium="image" type="image/png" height="79" width="144"/>
 </item>
 </channel>
 </rss>

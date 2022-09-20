@@ -6,8 +6,8 @@
       version="2.0">
 <channel>
 <title>Marc-Aurèle Rivière</title>
-<link>https://ma-riviere.me/content/pubs/index.html</link>
-<atom:link href="https://ma-riviere.me/content/pubs/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/index.html</link>
+<atom:link href="https://ma-riviere.github.io/ma-riviere.me/content/pubs/index.xml" rel="self" type="application/rss+xml"/>
 <description>Marc-Aurèle Rivière's personal website</description>
 <generator>quarto-1.1.251</generator>
 <lastBuildDate>Thu, 01 Sep 2022 22:00:00 GMT</lastBuildDate>
@@ -17,7 +17,7 @@
   <dc:creator>Laure Lejeune</dc:creator>
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Bruno Mantel</dc:creator>
-  <link>https://ma-riviere.me/content/pubs/JEP22/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/JEP22/index.html</link>
   <description><![CDATA[ 
 
 
@@ -70,7 +70,7 @@ Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
   <category>Psychophysics</category>
-  <guid>https://ma-riviere.me/content/pubs/JEP22/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/pubs/JEP22/index.html</guid>
   <pubDate>Thu, 01 Sep 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -79,7 +79,7 @@ Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10
   <dc:creator>Brandon Biggs</dc:creator>
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Huiying Shen</dc:creator>
-  <link>https://ma-riviere.me/content/pubs/ICCHP20/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICCHP20/index.html</link>
   <description><![CDATA[ 
 
 
@@ -129,7 +129,7 @@ Peňáz Petr (Eds.), <em>Lecture Notes in Computer Science</em> (Vol.
   <category>Sensory Substitution</category>
   <category>Auditory Interface</category>
   <category>Computer Vision</category>
-  <guid>https://ma-riviere.me/content/pubs/ICCHP20/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICCHP20/index.html</guid>
   <pubDate>Fri, 11 Sep 2020 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -141,7 +141,7 @@ Peňáz Petr (Eds.), <em>Lecture Notes in Computer Science</em> (Vol.
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Abderrahim El Moataz</dc:creator>
   <dc:creator>Edwige Pissaloux</dc:creator>
-  <link>https://ma-riviere.me/content/pubs/ICISP20/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICISP20/index.html</link>
   <description><![CDATA[ 
 
 
@@ -196,7 +196,7 @@ Science</em> (Vol. 12119, pp. 14–23). Springer International Publishing.
   <category>Computer Vision</category>
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
-  <guid>https://ma-riviere.me/content/pubs/ICISP20/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICISP20/index.html</guid>
   <pubDate>Tue, 07 Jul 2020 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -208,7 +208,7 @@ Science</em> (Vol. 12119, pp. 14–23). Springer International Publishing.
   <dc:creator>Michal Bujacz</dc:creator>
   <dc:creator>Piotr Skulimowski</dc:creator>
   <dc:creator>Pawel Strumillo</dc:creator>
-  <link>https://ma-riviere.me/content/pubs/NER19/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/NER19/index.html</link>
   <description><![CDATA[ 
 
 
@@ -256,7 +256,7 @@ Engineering</em>, 1038–1041. <a href="https://doi.org/10.1109/NER.2019.8717086
   <category>Sensory Substitution</category>
   <category>Auditory Interface</category>
   <category>Haptic Interface</category>
-  <guid>https://ma-riviere.me/content/pubs/NER19/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/pubs/NER19/index.html</guid>
   <pubDate>Sun, 19 May 2019 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -264,7 +264,7 @@ Engineering</em>, 1038–1041. <a href="https://doi.org/10.1109/NER.2019.8717086
   <dc:creator>Simon Gay</dc:creator>
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Edwige Pissaloux</dc:creator>
-  <link>https://ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</link>
   <description><![CDATA[ 
 
 
@@ -306,7 +306,7 @@ International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_36"
   <category>Augmented Reality</category>
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
-  <guid>https://ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</guid>
   <pubDate>Wed, 11 Jul 2018 22:00:00 GMT</pubDate>
 </item>
 <item>
@@ -314,7 +314,7 @@ International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_36"
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Simon Gay</dc:creator>
   <dc:creator>Edwige Pissaloux</dc:creator>
-  <link>https://ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</link>
+  <link>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</link>
   <description><![CDATA[ 
 
 
@@ -361,7 +361,7 @@ Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-94
   <category>Sensory Substitution</category>
   <category>Haptic Interface</category>
   <category>Spatial Cognition</category>
-  <guid>https://ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</guid>
+  <guid>https://ma-riviere.github.io/ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</guid>
   <pubDate>Wed, 11 Jul 2018 22:00:00 GMT</pubDate>
 </item>
 </channel>
