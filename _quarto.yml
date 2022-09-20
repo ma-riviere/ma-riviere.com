@@ -14,7 +14,7 @@ website:
   title: "Marc-Aurèle Rivière"
   description: "Marc-Aurèle Rivière's personal website"
   favicon: res/favicon.png
-  site-url: https://ma-riviere.me
+  site-url: https://ma-riviere.github.io/ma-riviere.me
   repo-url: https://github.com/ma-riviere/ma-riviere.me/
   repo-branch: main
   repo-actions: [source, issue]
@@ -27,7 +27,7 @@ website:
   
   ### Navigation ###
   navbar:
-    # logo: TODO: ask bun to make a logo (tree of DeepMind)
+    # logo: TODO: make a logo from tree of DeepMind (Bun)
     # logo-alt: 
     pinned: true
     collapse: true
@@ -61,7 +61,6 @@ website:
   
   ## See https://quarto.org/docs/reference/projects/websites.html#sidebar
   ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
-  ## Sidebar tools: 
   # sidebar:
   #   - id: code
   #     title: "Code"
