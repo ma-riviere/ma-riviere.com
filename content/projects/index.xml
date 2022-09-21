@@ -552,13 +552,13 @@ Click to see a preview of the documentation
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 47.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-diagram.png" class="lightbox" title="AdViS - Depth Map navigation" data-gallery="quarto-lightbox-gallery-1"><img src="https://ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
+<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AdViS - Depth Map navigation"><img src="https://ma-riviere.me/content/projects/AdViS/advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Depth Map navigation</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 53.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-mocap-diagram.png" class="lightbox" title="AdViS - Motion Capture" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
+<p><a href="advis-mocap-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Motion Capture"><img src="https://ma-riviere.me/content/projects/AdViS/advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Motion Capture</figcaption><p></p>
 </figure>
 </div>

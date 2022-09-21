@@ -120,12 +120,12 @@ cookieconsent.run({
 <link rel="stylesheet" href="../../res/css/style.css">
 <link rel="alternate" type="application/rss+xml" title="Marc-Aurèle Rivière" href="index.xml"><meta property="og:title" content="Marc-Aurèle Rivière - Scientific Publications">
 <meta property="og:description" content="Marc-Aurèle Rivière's personal website">
-<meta property="og:image" content="https://ma-riviere.me//res/avatar.jpg">
+<meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Marc-Aurèle Rivière">
 <meta name="twitter:description" content="Marc-Aurèle Rivière's personal website">
-<meta name="twitter:image" content="https://ma-riviere.me//res/avatar.jpg">
+<meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 </head>
@@ -724,7 +724,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     });
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-      var filterRegex = new RegExp(/https:\/\/ma-riviere\.me\//);
+      var filterRegex = new RegExp(/https:\/\/ma-riviere\.me/);
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
