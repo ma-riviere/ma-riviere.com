@@ -219,7 +219,8 @@ cookieconsent.run({
   <div>
     <div class="abstract">
       <div class="abstract-title">Abstract</div>
-      <p>SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g.&nbsp;laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements. SAM-Guide is a inter-disciplinary collaboration project between three sites: (1) the <a href="https://lpnc.univ-grenoble-alpes.fr/">LPNC</a> and <a href="http://www.gipsa-lab.fr/en/about-gipsa-lab.php">GIPSA</a> laboratories from the Grenoble-Alpes University, (2) the <a href="https://portail.polytechnique.edu/cmap/en">CMAP</a> from Ecole Polytechnique in Paris-Saclay, and the <a href="https://www.litislab.fr/en/">LITIS</a> and <a href="http://ufrhss.unicaen.fr/recherche/cerrev/">CERREV</a> from Normandy University.</p>
+      <p>SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g.&nbsp;laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements.</p>
+      <p>SAM-Guide is a inter-disciplinary collaboration project between three sites: (1) the <a href="https://lpnc.univ-grenoble-alpes.fr/">LPNC</a> and <a href="http://www.gipsa-lab.fr/en/about-gipsa-lab.php">GIPSA</a> laboratories from the Grenoble-Alpes University, (2) the <a href="https://portail.polytechnique.edu/cmap/en">CMAP</a> from Ecole Polytechnique in Paris-Saclay, and the <a href="https://www.litislab.fr/en/">LITIS</a> and <a href="http://ufrhss.unicaen.fr/recherche/cerrev/">CERREV</a> from Normandy University.</p>
     </div>
   </div>
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -247,10 +248,8 @@ cookieconsent.run({
 <p>The same grammar of cues could better help VIP to get autonomy along with a range of vital or leisure activities. Among such activities, the consortium has advances in orienting and navigating, object locating and reaching, laser shooting. Based on current neurocognitive models of human action-perception and spatial cognition, the design of the encoding schemes will lay on common theoretical principles: parsimony (minimum yet sufficient information for a task), congruency (leverage existing sensorimotor control laws), and multimodality (redundant or complementary signals across modalities). To ensure an efficient collaboration all partners will develop and evaluate their transcoding schemes based on common principles, methodology, and tools. An inclusive user-centered “living-lab” approach will ensure constant adequacy of our solutions with VIP’s needs.</p>
 <p>Five labs (three campuses) comprising ergonomists, neuroscientists, engineers, and mathematicians, united by their interest and experience with designing assistive devices for VIP, will duplicate, combine and share their pre-existing SSDs prototypes: a vibrotactile navigation belt, an audio-spatialized virtual guide for jogging, and an object-reaching sonic pointer. Using those prototypes, they will iteratively evaluate and improve their transcoding schemes in a 3-phase approach: First, in controlled experimental settings through augmented-reality serious games in motion capture (virtual prototyping indeed facilitates the creation of ad-hoc environments, and gaming eases the participants’ engagement). Next, spatial interaction subtasks will be progressively combined and tested in wider and more ecological indoor and outdoor environments. Finally, SAM-Guide’s system will be fully transitioned to real-world conditions through a friendly sporting event of laser-run, a novel handi-sport, which will involve each subtask.</p>
 <p>SAM-Guide will develop action-perception and spatial cognition theories relevant to nonvisual interfaces. It will provide guidelines for the efficient representation of spatial interactions to facilitate the emergence of spatial awareness in a task-oriented perspective. Our portable modular transcoding libraries are independent of hardware consideration. The principled experimental platform offered by AR games will be a tool for evaluating VIP spatial cognition, and novel strategies for mobility training.</p>
-<!-- # TODO
-- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes.
--->
-<!--# TODO: Our tools > ceinture & Unity -->
+<!-- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes. -->
+<!--# TODO: Our tools > Belt & Unity -->
 </section>
 <section id="my-role-in-this-project" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
@@ -285,6 +284,29 @@ cookieconsent.run({
 </div>
 </div>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: Screenshots from SAM-Guide’s experimental platform <em>(in development)</em></figcaption><p></p>
+</figure>
+</div>
+<p>This platform allows one to <strong>easily spin up experimental trials</strong> by specifying the desired characteristics in a JSON file (based on the <a href="https://openmaze.duncanlab.org/documentation">OpenMaze</a> project). Unity will automatically generate the trial’s environment according to those specifications and populate it with the relevant items (e.g.&nbsp;a tactile-signal emitting beacon signalling a target to reach in a maze), handle the transition between successive trials and blocks of trials, and log all the relevant user metrics into a data file.</p>
+<div id="fig-specs" class="quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="fig-unity-protocol1" class="quarto-figure quarto-figure-center" style="flex-basis: 50.5%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity-protocol%201.png" class="lightbox" title="Specifying the avatar and the experimental blocks’ characteristics" data-gallery="quarto-lightbox-gallery-5"><img src="Unity-protocol%201.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"></a></p>
+<p></p><figcaption class="figure-caption">(a) Specifying the avatar and the experimental blocks’ characteristics</figcaption><p></p>
+</figure>
+</div>
+<div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 0.5%;justify-content: center;">
+<p>&nbsp;</p>
+</div>
+<div id="fig-unity-protocol3" class="quarto-figure quarto-figure-center" style="flex-basis: 49.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity-protocol%203.png" class="lightbox" title="Specifying experimental trials, which can be repeated and randomized within blocks" data-gallery="quarto-lightbox-gallery-6"><img src="Unity-protocol%203.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"></a></p>
+<p></p><figcaption class="figure-caption">(b) Specifying experimental trials, which can be repeated and randomized within blocks</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Examples of settings used to generate experimental trials on the fly.</figcaption><p></p>
 </figure>
 </div>
 <p><strong>5)</strong> Handling the experimental design of the first wave of experiments <em>(ongoing)</em>.</p>
@@ -536,7 +558,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":true});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":true,"closeEffect":"zoom"});</script>
 
 
 
