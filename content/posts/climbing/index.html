@@ -144,12 +144,12 @@ cookieconsent.run({
 <script src="../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><link rel="stylesheet" href="../../../res/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - Bayesian Rock Climbing Rankings">
 <meta property="og:description" content="This is simply a transposition of Ethan Rosenthal’s article on Bayesian Rock Climbing to R. The Stan code was updated to use within-chain parallelization and compiler optimization for faster CPU sampling.">
-<meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
+<meta property="og:image" content="https://ma-riviere.me//res/avatar.jpg">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Marc-Aurèle Rivière">
 <meta name="twitter:description" content="This is simply a transposition of Ethan Rosenthal’s article on Bayesian Rock Climbing to R. The Stan code was updated to use within-chain parallelization and compiler optimization for faster CPU sampling.">
-<meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
+<meta name="twitter:image" content="https://ma-riviere.me//res/avatar.jpg">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 </head>
@@ -256,7 +256,7 @@ cookieconsent.run({
 <li>
 <a href="#setup" id="toc-setup" class="nav-link active" data-scroll-target="#setup">Setup</a>
   <ul class="collapse">
-<li><a href="#stan-setup" id="toc-stan-setup" class="nav-link" data-scroll-target="#stan-setup"><span class="toc-section-number">0.1</span>  Stan setup</a></li>
+<li><a href="#stan-setup" id="toc-stan-setup" class="nav-link" data-scroll-target="#stan-setup">Stan setup</a></li>
   </ul>
 </li>
   <li>
@@ -341,8 +341,7 @@ Tip
 <span><span class="fu">data.table</span><span class="fu">::</span><span class="fu"><a href="https://Rdatatable.gitlab.io/data.table/reference/openmp-utils.html">setDTthreads</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/options.html">getOption</a></span><span class="op">(</span><span class="st">"mc.cores"</span><span class="op">)</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <!------------------------------------------------------------------------------>
-<section id="stan-setup" class="level2" data-number="0.1"><h2 data-number="0.1" class="anchored" data-anchor-id="stan-setup">
-<span class="header-section-number">0.1</span> Stan setup</h2>
+<section id="stan-setup" class="level2 unnumbered"><h2 class="unnumbered anchored" data-anchor-id="stan-setup">Stan setup</h2>
 <div class="cell" data-layout-align="center">
 <details><summary>Installing CmdStan</summary><div class="sourceCode" id="cb2"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">cmdstanr</span><span class="fu">::</span><span class="fu"><a href="https://mc-stan.org/cmdstanr/reference/install_cmdstan.html">check_cmdstan_toolchain</a></span><span class="op">(</span>fix <span class="op">=</span> <span class="cn">TRUE</span>, quiet <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span></span>
@@ -968,7 +967,7 @@ Redpoint
 <em>[ omitted 658,807 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 2.766 secs</p>
+</table></details><p>Time difference of 1.256 secs</p>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -1413,7 +1412,7 @@ Redpoint
 <em>[ omitted 658,807 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 0.9861 secs</p>
+</table></details><p>Time difference of 0.985 secs</p>
 </div>
 </div>
 </div>
@@ -2112,7 +2111,7 @@ V7
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 9.867 secs</code></pre>
+<pre><code>Time difference of 9.845 secs</code></pre>
 </div>
 </div>
 </div>
@@ -2772,7 +2771,7 @@ V7
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 33.64 secs</code></pre>
+<pre><code>Time difference of 34.16 secs</code></pre>
 </div>
 </div>
 </div>
@@ -3447,7 +3446,7 @@ V6
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 11.05 secs</code></pre>
+<pre><code>Time difference of 11.06 secs</code></pre>
 </div>
 </div>
 </div>
@@ -4080,7 +4079,7 @@ V5
 <em>[ omitted 4,273 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.853 secs</p>
+</table></details><p>Time difference of 1.711 secs</p>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
@@ -4381,7 +4380,7 @@ V5
 <em>[ omitted 4,273 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.031 secs</p>
+</table></details><p>Time difference of 0.9842 secs</p>
 </div>
 </div>
 </div>
@@ -4825,7 +4824,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-82"><a href="#cb33-82" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-83"><a href="#cb33-83" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-84"><a href="#cb33-84" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
-<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stan setup</span></span>
+<span id="cb33-85"><a href="#cb33-85" aria-hidden="true" tabindex="-1"></a><span class="fu">## Stan setup {.unnumbered}</span></span>
 <span id="cb33-86"><a href="#cb33-86" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb33-89"><a href="#cb33-89" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
 <span id="cb33-90"><a href="#cb33-90" aria-hidden="true" tabindex="-1"></a><span class="co">#| eval: false</span></span>
