@@ -75,7 +75,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      valueNames: ['listing-title','listing-subtitle','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-title","listing-author","listing-date","listing-description","listing-categories"],
     };
@@ -148,9 +148,14 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../res/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - Outreach Activities">
+<meta property="og:description" content="Marc-Aurèle Rivière's personal website">
+<meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Marc-Aurèle Rivière - Outreach Activities">
+<meta name="twitter:title" content="Marc-Aurèle Rivière">
+<meta name="twitter:description" content="Marc-Aurèle Rivière's personal website">
+<meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
+<meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 </head>
 
@@ -235,22 +240,6 @@ cookieconsent.run({
 <section id="scientific-outreach" class="level2">
 <h2 data-anchor-id="scientific-outreach">Scientific Outreach</h2>
 <div id="listing-outreach-scicom" class="quarto-listing quarto-listing-container-grid">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-outreach-scicom-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-outreach-scicom'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-     </select>
-  </div>
-    <div class="input-group input-group-sm quarto-listing-filter">
-      <span class="input-group-text"><i class="bi bi-search"></i></span>
-      <input type="text" class="search form-control" placeholder="Filter">
-    </div>
-</div>
 <div class="list grid quarto-listing-cols-3">
 <div class="g-col-1" data-index="0" data-categories="Assistive Devices,Accessibility,Sensory Substitution,Spatial Cognition" data-listing-date-sort="1511391600000" data-listing-file-modified-sort="1663688957544" data-listing-reading-time-sort="0.185">
 <a href="../../content/outreach/scicom/Exp-JPO/index.html" class="quarto-grid-link">
