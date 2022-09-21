@@ -43,6 +43,10 @@ about:
       url: https://hal.archives-ouvertes.fr/hal-02353413/document
       aria-label: "See the article's PDF"
     - text: "{{< fa 'person-chalkboard' >}}  Associated Talk"
-      url: /content/talks/ICCHP18/
+      url: /content/outreach/talks/ICCHP18/
       aria-label: "See the associated presentation slides"
 ---
+
+<object data="https://hal.archives-ouvertes.fr/hal-02353413/document" type="application/pdf" width="100%" height="900">
+  <p><a href="https://hal.archives-ouvertes.fr/hal-02353413/document">Link to the PDF</a></p>
+</object>

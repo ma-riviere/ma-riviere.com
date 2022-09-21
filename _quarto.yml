@@ -64,7 +64,7 @@ website:
   ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
   # sidebar:
   #   - id: code
-  #     title: "Code"
+  #     title: "Code" # Will auto-link to page with same title ?
   #     style: floating
   #     alignment: left
   #     collapse-level: 3
@@ -84,9 +84,16 @@ website:
   
   ### Sharing ###
   open-graph:
+    site-name: "Marc-Aurèle Rivière"
+    description: "Marc-Aurèle Rivière's personal website"
+    image: /res/avatar.jpg
     locale: en_US
-  twitter-card: 
-    site: "@mariviere1"
+  twitter-card:
+    title: "Marc-Aurèle Rivière"
+    description: "Marc-Aurèle Rivière's personal website"
+    image: /res/avatar.jpg
+    # site: "@mariviere1"
+    creator: "@mariviere1"
     card-style: summary
   
   ### Footer ###

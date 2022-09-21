@@ -41,7 +41,7 @@ about:
       icon: file-pdf
       aria-label: "See a journal article about the TactiBelt"
     - text: "{{< fa 'person-chalkboard' >}} Presentation ({{< iconify twemoji flag-france >}})"
-      url: content/talks/RUNN19/
+      url: content/outreach/talks/RUNN19/
       aria-label: "See a presentation illustrating the project (in French)"
     - text: "Poster ({{< iconify twemoji flag-france >}})"
       icon: file-image

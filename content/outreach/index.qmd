@@ -13,8 +13,6 @@ listing:
     date-format: medium
     sort: [date desc, title desc]
     page-size: 5
-    filter-ui: true
-    sort-ui: [date, title]
     field-display-names:
       doi: "Location"
       subtitle: "Event"

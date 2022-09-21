@@ -740,7 +740,7 @@ First, we need to assemble a dataset linking each unique station `id` (and `name
 stations_clean <- ((rides_l_clean
   |> na.omit(cols = c("id", "name"))
   |> dcast(id + name ~ ., fun.aggregate = list(min, max, mean), value.var = c("lat", "lng"))
-  |> pipebind::bind(x, setcolorder(x, c("id", "name", str_subset(names(x), "lat_|_lng"))))
+  |> bind(x, setcolorder(x, c("id", "name", str_subset(names(x), "lat_|_lng"))))
   |> unique(by = "id")
   )
 )
@@ -945,7 +945,7 @@ First, we need to recompute the `stations` data from `rides_l` (i.e. rides data 
 stations <- ((rides_l
   |> na.omit(cols = c("id", "name"))
   |> dcast(id + name ~ ., fun.aggregate = list(min, max, mean), value.var = c("lat", "lng"))
-  |> pipebind::bind(x, setcolorder(x, c("id", "name", str_subset(names(x), "lat_|_lng"))))
+  |> bind(x, setcolorder(x, c("id", "name", str_subset(names(x), "lat_|_lng"))))
   |> unique(by = "id")
   )
 )
