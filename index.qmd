@@ -42,7 +42,7 @@ comments: false
 
 I'm a recovering academic who worked on several projects at the intersection between Cognitive Neurosciences and Biomedical Engineering. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through a clever use of [:Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) and Augmented Reality, within the [:Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
 
-I have since retrained as a **Data Scientist** with a fondness for Bayesian methods and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming language such as Java, C# (Unity), and JavaScript.
+I have since retrained as a **Data Scientist** with a fondness for Bayesian methods and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
 
 ```{r}
 #| echo: false
@@ -53,20 +53,23 @@ source(here::here("src", "init.R"), echo = FALSE)
 
 ```{r}
 #| echo: false
-#| fig-width: 8
+#| fig-width: 10
+#| fig-height: 6
 #| fig-alt: A radar chart of my main skills
 
 skills <- tibble::tibble(
   `Behavioral \n Research  ` = 0.95,
   `  Data       \nScience` = 0.85,
-  `    Scientific  \nCommunication` = 0.85,
+  `      Scientific  \nCommunication` = 0.85,
+  `Human-Machine  \n    Interfaces    ` = 0.75,
+  `Computer  \n   Vision    ` = 0.625,
   `Project     \nManagement` = 0.75,
-  `Computer  \n   Vision    ` = 0.6
 ) |> mutate(ID = row_number(), .before = 1)
 
 skills_radar <- (ggradar::ggradar(
     skills,
     values.radar = NA,
+    grid.mid = 0,
     grid.label.size = 0,
     axis.label.size = 4.7,
     group.line.width = 1,
@@ -74,6 +77,9 @@ skills_radar <- (ggradar::ggradar(
     group.colours = "#00AFBB",
     background.circle.colour = NA,
     gridline.mid.colour = "grey",
+    gridline.min.linetype = "solid",
+    gridline.mid.linetype = "dotted",
+    gridline.max.linetype = "longdash",
     fill = TRUE,
     fill.alpha = 0.3
   ) 

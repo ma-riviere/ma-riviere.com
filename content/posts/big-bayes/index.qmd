@@ -76,7 +76,7 @@ data.table::setDTthreads(getOption("mc.cores"))
 
 
 <!------------------------------------------------------------------------------>
-## Stan setup
+## Stan setup {.unnumbered}
 
 ```{r}
 #| eval: false
