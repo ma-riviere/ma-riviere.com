@@ -19,6 +19,12 @@
   <dc:creator>Bruno Mantel</dc:creator>
   <link>https://ma-riviere.me/content/pubs/JEP22/index.html</link>
   <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<object data="Preprint.pdf" type="application/pdf" width="100%" height="900">
+<p>
+<a href="Preprint.pdf">Link to the PDF (preprint)</a>
+</p>
+</object>
 
 
 <div id="quarto-appendix" class="default"><section class="quarto-appendix-contents"><h2 class="anchored quarto-appendix-heading">Citation</h2><div><div class="quarto-appendix-secondary-label">BibTeX citation:</div><pre class="sourceCode code-with-copy quarto-appendix-bibtex"><code class="sourceCode bibtex">@article{faugloire2022,
@@ -81,9 +87,10 @@ Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10
   <dc:creator>Huiying Shen</dc:creator>
   <link>https://ma-riviere.me/content/pubs/ICCHP20/index.html</link>
   <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf" type="application/pdf" width="100%" height="900">
 <p>
-<a href="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf">Link to the PDF</a>
+<a href="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf">Link to the PDF (preprint)</a>
 </p>
 </object>
 
@@ -148,6 +155,7 @@ Peňáz Petr (Eds.), <em>Lecture Notes in Computer Science</em> (Vol.
   <dc:creator>Edwige Pissaloux</dc:creator>
   <link>https://ma-riviere.me/content/pubs/ICISP20/index.html</link>
   <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf" type="application/pdf" width="100%" height="900">
 <p>
 <a href="https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf">Link to the PDF</a>
@@ -220,6 +228,7 @@ Science</em> (Vol. 12119, pp. 14–23). Springer International Publishing.
   <dc:creator>Pawel Strumillo</dc:creator>
   <link>https://ma-riviere.me/content/pubs/NER19/index.html</link>
   <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://hal.archives-ouvertes.fr/hal-02353327/document" type="application/pdf" width="100%" height="900">
 <p>
 <a href="https://hal.archives-ouvertes.fr/hal-02353327/document">Link to the PDF</a>
@@ -281,9 +290,10 @@ Engineering</em>, 1038–1041. <a href="https://doi.org/10.1109/NER.2019.8717086
   <dc:creator>Edwige Pissaloux</dc:creator>
   <link>https://ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</link>
   <description><![CDATA[ 
-<object data="content/pubs/ICCHP18-F2T/F2T.pdf" type="application/pdf" width="100%" height="900">
+<hr style="margin-bottom: 30px; margin-top: -12px">
+<object data="F2T.pdf" type="application/pdf" width="100%" height="900">
 <p>
-<a href="content/pubs/ICCHP18-F2T/F2T.pdf">Link to the PDF</a>
+<a href="F2T.pdf">Link to the PDF</a>
 </p>
 </object>
 
@@ -336,6 +346,7 @@ International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_36"
   <dc:creator>Edwige Pissaloux</dc:creator>
   <link>https://ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</link>
   <description><![CDATA[ 
+<hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://hal.archives-ouvertes.fr/hal-02353413/document" type="application/pdf" width="100%" height="900">
 <p>
 <a href="https://hal.archives-ouvertes.fr/hal-02353413/document">Link to the PDF</a>
