@@ -16,6 +16,7 @@ details > summary { color: rgb(136, 136, 136); }
   justify-content: center;
 }
 
+/* For the about trick to add link buttons */
 .quarto-about-solana.column-body {
   padding-top: 0 !important
 }
