@@ -18,6 +18,7 @@ description: "Designing an efficient multi-modal interface to help VIP during sp
 
 abstract: |
   SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g. laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements.
+  
   SAM-Guide is a inter-disciplinary collaboration project between three sites: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University, (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
 
 categories:
@@ -33,9 +34,9 @@ categories:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-![](header.jpg){fig-alt="Banner illustrating the SAM-Guide project"}
+![](header.jpg){.preview-image fig-alt="Banner illustrating the SAM-Guide project"}
 
-# Project summary
+# Introduction
 ***
 
 <!-- # TODO: summarizes this -->
@@ -50,13 +51,9 @@ Five labs (three campuses) comprising ergonomists, neuroscientists, engineers, a
 
 SAM-Guide will develop action-perception and spatial cognition theories relevant to nonvisual interfaces. It will provide guidelines for the efficient representation of spatial interactions to facilitate the emergence of spatial awareness in a task-oriented perspective. Our portable modular transcoding libraries are independent of hardware consideration. The principled experimental platform offered by AR games will be a tool for evaluating VIP spatial cognition, and novel strategies for mobility training.
 
-<!-- # TODO
+<!-- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes. -->
 
-- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes.
-
--->
-
-<!--# TODO: Our tools > ceinture & Unity -->
+<!--# TODO: Outcomes > Belt & Unity -->
 
 # My role in this project
 ***
@@ -78,6 +75,18 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 ![Auto-generated maze with 3D audio beacons on waypoints](Unity-maze.png){#fig-unity-maze fig-alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"}
 
 Screenshots from SAM-Guide's experimental platform *(in development)*
+
+:::
+
+This platform allows one to **easily spin up experimental trials** by specifying the desired characteristics in a JSON file (based on the [OpenMaze](https://openmaze.duncanlab.org/documentation) project). Unity will automatically generate the trial's environment according to those specifications and populate it with the relevant items (e.g. a tactile-signal emitting beacon signalling a target to reach in a maze), handle the transition between successive trials and blocks of trials, and log all the relevant user metrics into a data file.
+
+:::{#fig-specs layout='[505,-5,490]'}
+
+![Specifying the avatar and the experimental blocks' characteristics](Unity-protocol 1.png){#fig-unity-protocol1 fig-alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"}
+
+![Specifying experimental trials, which can be repeated and randomized within blocks](Unity-protocol 3.png){#fig-unity-protocol3 fig-alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"}
+
+Examples of settings used to generate experimental trials on the fly.
 
 :::
 

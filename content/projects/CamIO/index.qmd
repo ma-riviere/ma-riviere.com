@@ -43,7 +43,7 @@ bibliography: references.bib
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-# Project summary
+# Introduction
 ***
 
 {{< youtube GmD1GbNI9Jw >}}

@@ -14,9 +14,9 @@ website:
   title: "Marc-Aurèle Rivière"
   description: "Marc-Aurèle Rivière's personal website"
   favicon: res/favicon.png
-  site-url: https://ma-riviere.me/
-  # site-path: ma-riviere.me/
-  repo-url: https://github.com/ma-riviere/ma-riviere.me/
+  site-url: 'https://ma-riviere.me'
+  # site-path: '/'
+  repo-url: https://github.com/ma-riviere/ma-riviere.me
   repo-branch: main
   repo-actions: [source, issue]
   
@@ -28,22 +28,22 @@ website:
   
   ### Navigation ###
   navbar:
-    # logo: TODO: make a logo from tree of DeepMind (Bun)
+    # logo: TODO
     # logo-alt: 
     pinned: true
     collapse: true
     collapse-below: md
     left:
-      - text: "Projects"
+      - text: "{{< fa business-time >}} Projects"
         file: content/projects/index.qmd
         aria-label: "Projects"
-      - text: "Publications"
+      - text: "{{< fa book >}} Publications"
         file: content/pubs/index.qmd
         aria-label: "Publications"
-      - text: "Outreach"
+      - text: "{{< iconify file-icons keynote height=20px >}} Outreach"
         file: content/outreach/index.qmd
         aria-label: "Outreach"
-      - text: "Blog"
+      - text: "{{< fa blog >}} Blog"
         file: content/posts/index.qmd
         aria-label: "Blog"
     right:
@@ -77,8 +77,8 @@ website:
   #           - section: "Modeling"
   
   ### Analytics ###
-  # google-analytics:
-    # See: https://quarto.org/docs/websites/website-tools.html#google-analytics
+  google-analytics:
+    tracking-id: "G-QP3K4HM02B"
   cookie-consent:
     type: implied
   
@@ -86,12 +86,12 @@ website:
   open-graph:
     site-name: "Marc-Aurèle Rivière"
     description: "Marc-Aurèle Rivière's personal website"
-    image: /res/avatar.jpg
+    image: res/avatar.jpg
     locale: en_US
   twitter-card:
     title: "Marc-Aurèle Rivière"
     description: "Marc-Aurèle Rivière's personal website"
-    image: /res/avatar.jpg
+    image: res/avatar.jpg
     # site: "@mariviere1"
     creator: "@mariviere1"
     card-style: summary
@@ -100,7 +100,7 @@ website:
   page-footer:
     border: true
     left: 
-      - text: "© 2021-2022, Marc-Aurele Rivière"
+      - text: "© 2021-2022, Marc-Aurèle Rivière"
         href: LICENSE.md
         aria-label: "Website's license"
     right:

@@ -1,5 +1,5 @@
 ---
-title: "Blog Posts"
+title: "{{< fa blog >}} Blog Posts"
 # image: 
 
 license: "CC BY"

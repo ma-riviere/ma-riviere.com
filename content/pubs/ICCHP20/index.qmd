@@ -41,16 +41,18 @@ citation:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "PDF"
+    - text: "Preprint"
       icon: file-pdf
       url: https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf
-      aria-label: "See the article's PDF"
+      aria-label: "See the preprint's PDF"
     - text: "Code"
       icon: github
       url: https://github.com/ma-riviere/ICCHP20-CamIO
       aria-label: "See the article's code and data on GitHub"
 ---
 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+
 <object data="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf" type="application/pdf" width="100%" height="900">
-  <p><a href="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf">Link to the PDF</a></p>
+  <p><a href="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf">Link to the PDF (preprint)</a></p>
 </object>

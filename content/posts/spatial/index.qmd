@@ -9,7 +9,9 @@ author:
 date: 2022-06-18
 
 abstract: |
-  This document was prompted by [this reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is linked to a case study of **Google's Data Analytics certificate**.
+  This document was prompted by [this reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is linked to a case study of **Google's Data Analytics certificate**.  
+  
+  To answer the question in a nutshell: the proposed matching by position won't yield anything with this dataset since the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to another station by proximity alone.
 
 categories:
   - "Big Data"

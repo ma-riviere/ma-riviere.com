@@ -1,5 +1,5 @@
 ---
-title: "Scientific Publications"
+title: "{{< fa book >}} Scientific Publications"
 # image: 
 
 listing:

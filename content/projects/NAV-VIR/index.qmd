@@ -40,7 +40,7 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-# Project summary
+# Introduction
 ***
 
 <!--# TODO: summary -->
@@ -59,7 +59,9 @@ During this project, we improved upon the first iteration of the **Force Feedbac
 
 :::
 
-## Our tools
+
+# Outcomes
+***
 
 **1)** We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:
 
@@ -68,6 +70,7 @@ During this project, we improved upon the first iteration of the **Force Feedbac
 **2)** We investigated and developed tools to automatically generate a navigation graph from a floor plan, which can then be converted into a tactile image and explored with the F2T:
 
 ![](map-graph.png){fig-alt="Illustrations of the navigation graph generation"}
+
 
 # My role in this project
 ***

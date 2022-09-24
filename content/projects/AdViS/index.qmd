@@ -48,7 +48,7 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-# Project summary
+# Introduction
 ***
 
 AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role:

@@ -44,7 +44,7 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-# Project summary
+# Introduction
 ***
 
 <!--# TODO: summary -->
@@ -71,6 +71,10 @@ The three main categories of haptic interfaces
 
 Our experience with the existing categories of haptic interfaces allowed us to designed one best adapted to our need: the **Force-Feedback Tablet (F2T)**
 
+
+# Outcomes
+***
+
 ## Our interface: F2T (v1)
 
 The first prototype of the F2T was assembled with legos and a camera to better asses the position of the joystick within the frame of the device.
@@ -83,7 +87,7 @@ The first prototype of the F2T was assembled with legos and a camera to better a
 
 :::
 
-## Our tools
+## Software tools
 
 **1)** We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:
 

@@ -2,7 +2,7 @@
 title: "Marc-Aurèle Rivière"
 subtitle: "Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
 
-description: "Research Enginner - [LITIS Lab](https://litislab.fr/en/litis)"
+description: "Research Engineer - [LITIS Lab](https://litislab.fr/en/litis)"
 
 about:
   template: trestles
@@ -28,8 +28,7 @@ about:
       icon: envelope
       url: "mailto:marc.aurele.riviere+site@gmail.com"
       aria-label: "Email"
-    - text: "CV"
-      icon: file-pdf
+    - text: "{{< fa user-tie >}} CV"
       url: res/cv.pdf
       aria-label: "My CV (PDF)"
 
@@ -38,7 +37,7 @@ comments: false
 
 ::: {.column-page}
 
-**Cognitive Neuroscientist** with a keen interest in Perception, Spatial Cognition, Memory, and Human-Machine Interfaces. 
+**Cognitive Neuroscientist** with a keen interest in Perception, Spatial Cognition, and Human-Machine Interfaces. 
 
 I'm a recovering academic who worked on several projects at the intersection between Cognitive Neurosciences and Biomedical Engineering. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through a clever use of [:Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) and Augmented Reality, within the [:Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
 

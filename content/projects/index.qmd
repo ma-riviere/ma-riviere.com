@@ -1,5 +1,5 @@
 ---
-title: "Past & Current Projects"
+title: "{{< fa business-time >}} Past & Current Projects"
 
 listing:
   feed: true

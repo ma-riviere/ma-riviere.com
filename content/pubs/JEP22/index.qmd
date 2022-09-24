@@ -37,8 +37,17 @@ citation:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "{{< ai osf >}} Open Access data"
+    - text: "Preprint"
+      icon: file-pdf
+      url: /content/pubs/JEP22/Preprint.pdf
+      aria-label: "See the preprint's PDF"
+    - text: "{{< ai osf >}} Data"
       url: https://osf.io/pxat3/
       aria-label: "See the article's data on OSF"
 ---
 
+<hr style="margin-bottom: 30px; margin-top: -12px">
+
+<object data="Preprint.pdf" type="application/pdf" width="100%" height="900">
+  <p><a href="Preprint.pdf">Link to the PDF (preprint)</a></p>
+</object>

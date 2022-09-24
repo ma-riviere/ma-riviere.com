@@ -1,5 +1,5 @@
 ---
-title: "Outreach Activities"
+title: "{{< iconify file-icons keynote >}} Outreach Activities"
 # image: splash.avif
 
 license: "CC BY"
@@ -28,12 +28,12 @@ listing:
     sort-ui: [date, title]
 ---
 
-## Scientific Outreach
+## {{< fa chalkboard-user >}} Scientific Dissemination
 
 :::{#outreach-scicom}
 :::
 
-## Conferences & Seminars
+## {{< iconify carbon group-presentation >}} Conferences & Seminars
 
 :::{#outreach-talks}
 :::

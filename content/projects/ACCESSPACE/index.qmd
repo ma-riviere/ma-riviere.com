@@ -40,7 +40,7 @@ about:
       url: content/pubs/JEP22/
       icon: file-pdf
       aria-label: "See a journal article about the TactiBelt"
-    - text: "{{< fa 'person-chalkboard' >}} Presentation ({{< iconify twemoji flag-france >}})"
+    - text: "{{< iconify file-icons keynote >}} Presentation ({{< iconify twemoji flag-france >}})"
       url: content/outreach/talks/RUNN19/
       aria-label: "See a presentation illustrating the project (in French)"
     - text: "Poster ({{< iconify twemoji flag-france >}})"
@@ -51,9 +51,9 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-![](header.jpg){fig-alt="Banner illustrating the ACCESSPACE project"}
+![](header.jpg){.preview-image fig-alt="Banner illustrating the ACCESSPACE project"}
 
-# Project summary
+# Introduction
 ***
 
 ACCESSPACE's high-level goal was to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way. 
@@ -75,6 +75,10 @@ Using those principles, we devised an **encoding scheme** that provides the user
 
 ![Illustration of the navigation graph idea](nav.png "An illustration showcasing the navigation graph used with the TactiBelt"){fig-alt="An illustration showcasing the navigation graph used with the TactiBelt" fig-align="center" width=60%}
 
+
+# Outcomes
+***
+
 ## Our interface: the TactiBelt
 
 To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the **TactiBelt**: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:
@@ -82,7 +86,7 @@ To provide the proposed egocentric encoding scheme to the user, we designed a vi
 ![First prototype of the TactiBelt](TactiBelt.png "A photography showing the first version of the TactiBelt"){#fig-tactibelt-v1 fig-alt="A photography showing the first version of the TactiBelt" fig-align="center"}
 
 
-## Our tools
+## Software tools
 
 To capture and extract the information we need from the VIP's environment, we devised a series of software tools relying mostly on Computer Vision:
 
@@ -119,6 +123,7 @@ The ACCESSPACE project was promoted in various mainstream and technical media, s
 - On [FIRAH](https://www.firah.org/fr/accesspace.html), the French Foundation on Applied Research for Handicap ({{< iconify twemoji flag-france >}})
 
 This project has been warmly welcomed by the VIP community and was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇.
+
 
 # My role in this project
 ***
