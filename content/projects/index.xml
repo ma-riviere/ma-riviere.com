@@ -249,13 +249,13 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-IA-loc" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
+<p><a href="IA-loc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Indoor Atlas’ localization"><img src="https://ma-riviere.me/content/projects/CamIO/IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
 <p></p><figcaption class="figure-caption">(a) Indoor Atlas’ localization</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-IA-graph" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
+<p><a href="IA-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Indoor Atlas’ navigation graph"><img src="https://ma-riviere.me/content/projects/CamIO/IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
 <p></p><figcaption class="figure-caption">(b) Indoor Atlas’ navigation graph</figcaption><p></p>
 </figure>
 </div>
@@ -310,19 +310,19 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div id="fig-taxel" class="quarto-figure quarto-figure-center" style="flex-basis: 32.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="taxels.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Taxel mechanical interfaces"><img src="https://ma-riviere.me/content/projects/TETMOST/taxels.png" class="img-fluid figure-img" alt="Photo of the StimTACT interface"></a></p>
+<p><a href="taxels.png" class="lightbox" title="Taxel mechanical interfaces" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/TETMOST/taxels.png" class="img-fluid figure-img" alt="Photo of the StimTACT interface"></a></p>
 <p></p><figcaption class="figure-caption">(a) Taxel mechanical interfaces</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-elec" class="quarto-figure quarto-figure-center" style="flex-basis: 34.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="friction.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Electro-friction interfaces"><img src="https://ma-riviere.me/content/projects/TETMOST/friction.png" class="img-fluid figure-img" alt="Photo of the Hap2U interface"></a></p>
+<p><a href="friction.png" class="lightbox" title="Electro-friction interfaces" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/TETMOST/friction.png" class="img-fluid figure-img" alt="Photo of the Hap2U interface"></a></p>
 <p></p><figcaption class="figure-caption">(b) Electro-friction interfaces</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-vibro" class="quarto-figure quarto-figure-center" style="flex-basis: 34.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="gloves.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Vibrational interfaces"><img src="https://ma-riviere.me/content/projects/TETMOST/gloves.png" class="img-fluid figure-img" alt="Photo of the vibrotactile gloves"></a></p>
+<p><a href="gloves.png" class="lightbox" title="Vibrational interfaces" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/TETMOST/gloves.png" class="img-fluid figure-img" alt="Photo of the vibrotactile gloves"></a></p>
 <p></p><figcaption class="figure-caption">(c) Vibrational interfaces</figcaption><p></p>
 </figure>
 </div>
@@ -423,7 +423,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
 <div id="fig-neuro" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="neuro.png" class="lightbox" title="ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
+<p><a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ACCESSPACE guiding principle"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption><p></p>
 </figure>
 </div>
@@ -437,7 +437,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="nav.png" class="lightbox" title="Illustration of the navigation graph idea" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption><p></p>
 </figure>
 </div>
@@ -450,7 +450,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
 <div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="TactiBelt.png" class="lightbox" title="First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
+<p><a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="First prototype of the TactiBelt"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
