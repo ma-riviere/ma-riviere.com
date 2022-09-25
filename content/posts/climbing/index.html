@@ -294,7 +294,39 @@ cookieconsent.run({
   </ul><div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/ma-riviere/ma-riviere.me/blob/main/content/posts/climbing/index.qmd" class="toc-action">View source</a></p><p><a href="https://github.com/ma-riviere/ma-riviere.me/issues/new" class="toc-action">Report an issue</a></p></div></div></nav>
     </div>
 <!-- main -->
-<main class="content quarto-banner-title-block" id="quarto-document-content"><hr style="margin-bottom: 30px; margin-top: -12px">
+<main class="content quarto-banner-title-block" id="quarto-document-content"><script>
+  let processScroll = () => {
+  let docElem = document.documentElement, 
+    docBody = document.body,
+    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+  
+    document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
+  }
+  
+  document.addEventListener('scroll', processScroll);
+  
+  /***/
+  
+  let navbarel = document.querySelector("#quarto-header");
+  
+  let pbc = document.createElement("div");
+  pbc.id = "progress-bar";
+  
+  navbarel.insertAdjacentElement('beforeend', pbc);
+</script><style>
+  #progress-bar {
+    --scrollAmount: 0%;
+    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+    background: #0e0e80;
+    width: var(--scrollAmount);
+    height: 5px;
+    position: fixed;
+    bottom: 0;
+  }
+</style>
+<hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="callout-tip callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -448,7 +480,7 @@ Expand for Session Info
  collate        C.UTF-8
  ctype          C.UTF-8
  tz             Europe/Paris
- date           2022-09-24
+ date           2022-09-25
  pandoc         2.19.2
  Quarto         1.1.251
  Stan (CmdStan) 2.30.1
@@ -976,7 +1008,7 @@ Redpoint
 <em>[ omitted 658,807 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.803 secs</p>
+</table></details><p>Time difference of 1.699 secs</p>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -1421,7 +1453,7 @@ Redpoint
 <em>[ omitted 658,807 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 0.9896 secs</p>
+</table></details><p>Time difference of 0.9849 secs</p>
 </div>
 </div>
 </div>
@@ -2120,7 +2152,7 @@ V7
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 9.931 secs</code></pre>
+<pre><code>Time difference of 10.29 secs</code></pre>
 </div>
 </div>
 </div>
@@ -2780,7 +2812,7 @@ V7
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 33.7 secs</code></pre>
+<pre><code>Time difference of 34.22 secs</code></pre>
 </div>
 </div>
 </div>
@@ -3455,7 +3487,7 @@ V6
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 11.35 secs</code></pre>
+<pre><code>Time difference of 11.4 secs</code></pre>
 </div>
 </div>
 </div>
@@ -4088,7 +4120,7 @@ V5
 <em>[ omitted 4,273 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.734 secs</p>
+</table></details><p>Time difference of 1.726 secs</p>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
@@ -4389,7 +4421,7 @@ V5
 <em>[ omitted 4,273 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.013 secs</p>
+</table></details><p>Time difference of 1.019 secs</p>
 </div>
 </div>
 </div>

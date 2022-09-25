@@ -254,6 +254,33 @@ cookieconsent.run({
   </a>
 </div>
       <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
+<script>
+  let processScroll = () => {
+  let docElem = document.documentElement, 
+    docBody = document.body,
+    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
+  }
+  document.addEventListener('scroll', processScroll);
+  /***/
+  let navbarel = document.querySelector("#quarto-header");
+  let pbc = document.createElement("div");
+  pbc.id = "progress-bar";
+  navbarel.insertAdjacentElement('beforeend', pbc);
+</script>
+<style>
+  #progress-bar {
+    --scrollAmount: 0%;
+    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+    background: #0e0e80;
+    width: var(--scrollAmount);
+    height: 5px;
+    position: fixed;
+    bottom: 0;
+  }
+</style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
@@ -272,13 +299,13 @@ cookieconsent.run({
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 47.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-diagram.png" class="lightbox" title="AdViS - Depth Map navigation" data-gallery="quarto-lightbox-gallery-1"><img src="advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
+<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AdViS - Depth Map navigation"><img src="advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Depth Map navigation</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 53.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-mocap-diagram.png" class="lightbox" title="AdViS - Motion Capture" data-gallery="quarto-lightbox-gallery-2"><img src="advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
+<p><a href="advis-mocap-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Motion Capture"><img src="advis-mocap-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Motion Capture</figcaption><p></p>
 </figure>
 </div>
@@ -551,7 +578,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","loop":true,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","openEffect":"zoom","loop":true});</script>
 
 
 

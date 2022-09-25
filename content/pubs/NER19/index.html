@@ -250,6 +250,33 @@ cookieconsent.run({
   </a>
 </div>
       <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
+<script>
+  let processScroll = () => {
+  let docElem = document.documentElement, 
+    docBody = document.body,
+    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
+  }
+  document.addEventListener('scroll', processScroll);
+  /***/
+  let navbarel = document.querySelector("#quarto-header");
+  let pbc = document.createElement("div");
+  pbc.id = "progress-bar";
+  navbarel.insertAdjacentElement('beforeend', pbc);
+</script>
+<style>
+  #progress-bar {
+    --scrollAmount: 0%;
+    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+    background: #0e0e80;
+    width: var(--scrollAmount);
+    height: 5px;
+    position: fixed;
+    bottom: 0;
+  }
+</style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://hal.archives-ouvertes.fr/hal-02353327/document" type="application/pdf" width="100%" height="900">
 <p>

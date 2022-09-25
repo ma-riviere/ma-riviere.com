@@ -248,6 +248,33 @@ cookieconsent.run({
     <div class="entity-contents">
        
       <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
+<script>
+  let processScroll = () => {
+  let docElem = document.documentElement, 
+    docBody = document.body,
+    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
+  }
+  document.addEventListener('scroll', processScroll);
+  /***/
+  let navbarel = document.querySelector("#quarto-header");
+  let pbc = document.createElement("div");
+  pbc.id = "progress-bar";
+  navbarel.insertAdjacentElement('beforeend', pbc);
+</script>
+<style>
+  #progress-bar {
+    --scrollAmount: 0%;
+    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+    background: #0e0e80;
+    width: var(--scrollAmount);
+    height: 5px;
+    position: fixed;
+    bottom: 0;
+  }
+</style>
 <section id="fa-chalkboard-user-scientific-dissemination" class="level2">
 <h2 data-anchor-id="fa-chalkboard-user-scientific-dissemination"><i class="fa-solid fa-chalkboard-user" aria-hidden="true"></i> Scientific Dissemination</h2>
 <div id="listing-outreach-scicom" class="quarto-listing quarto-listing-container-grid">

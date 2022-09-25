@@ -226,6 +226,33 @@ cookieconsent.run({
   </a>
 </div>
       <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
+<script>
+  let processScroll = () => {
+  let docElem = document.documentElement, 
+    docBody = document.body,
+    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
+  }
+  document.addEventListener('scroll', processScroll);
+  /***/
+  let navbarel = document.querySelector("#quarto-header");
+  let pbc = document.createElement("div");
+  pbc.id = "progress-bar";
+  navbarel.insertAdjacentElement('beforeend', pbc);
+</script>
+<style>
+  #progress-bar {
+    --scrollAmount: 0%;
+    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+    background: #0e0e80;
+    width: var(--scrollAmount);
+    height: 5px;
+    position: fixed;
+    bottom: 0;
+  }
+</style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <p>For 3 years (2017 to 2020), I participated in the <a href="https://www.experimentarium.fr/">Experimentarium</a> program: a French initiative to popularize research to the wider public. During the year, they would organize single-day interventions of multiple PhD students into local middle &amp; high-schools, where we would each present our research in an accessible manner to multiple groups of students, and answer their questions about the academic world.</p>
 <p>In addition to that, once a year, they would organize a <a href="https://www.experimentarium.fr/festival-des-jeunes-chercheurs-2022">3-days long science fair</a> in one French city, where all the PhD students involved in the program (from all around France) would gather and present their research in different settings and in different formats (from interactive presentations in schools to “speed searching” in cafés, or linking our research to relevant Art pieces in Museums, …).</p>
