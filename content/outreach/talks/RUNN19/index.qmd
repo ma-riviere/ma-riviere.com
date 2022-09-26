@@ -22,7 +22,7 @@ about:
   links:
     - text: "Slides ({{< iconify twemoji flag-france >}})"
       icon: file-pdf
-      url: content/outreach/talks/RUNN19/RUNN19.pdf
+      url: https://drive.google.com/file/d/16tYEFOkAmMLHwv20V4DKqFx1C6VqkWo1/view?usp=sharing
       aria-label: "Download the slides as PDF (in French)"
     - text: "Poster ({{< iconify twemoji flag-france >}})"
       icon: file-image
