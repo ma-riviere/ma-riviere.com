@@ -30,7 +30,7 @@ about:
       aria-label: "Download the slides as PDF (in French)"
 ---
 
-{{< include ../../../additional-links.qmd >}}
+{{< include ../../../_additional-links.qmd >}}
 
 <iframe 
   src="https://docs.google.com/presentation/d/e/2PACX-1vSbnk5cY-fClNMKzcvZlavK8PufHlX-izZPi8bgvw9oSBa2Gi7D0ZONlVy0Q6bSyuwH8G-jNbxPMU7_/embed?start=false&loop=false&delayms=30000" 

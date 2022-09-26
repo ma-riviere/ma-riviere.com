@@ -38,7 +38,11 @@ You can check the page's source code by clicking on the **</> Code** button at t
 
 ```{r}
 #| echo: false
-#| file: !expr here::here("src", "quarto", "renv_setup.R")
+#| output: false
+
+source(here::here("src", "init_min.R"), echo = FALSE)
+
+config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
@@ -115,7 +119,7 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 ```{r}
 #| code-fold: true
 #| code-summary: Setting up knitr's engine for CmdStan
-#| file: !expr here::here("src", "quarto", "cmdstan_engine.R")
+#| file: !expr here("src", "common", "stan", "cmdstan_engine.R")
 ```
 
 ***
@@ -168,7 +172,8 @@ knitr::knit_hooks$set(time_it = local({
 
 ```{r}
 #| echo: false
-#| file: !expr c(here("src", "quarto", "quarto_theme.R"), here("src", "quarto", "style_ggplot_bi.R"), here("src", "quarto", "style_gt_mono.R"))
+#| output: false
+#| file: !expr c(here("src", "common", "knitr", "knit_print_ggplot_bi.R"), here("src", "common", "knitr", "knit_print_gt_mono.R"))
 ```
 
 <!------------------------------------------------------------------------------>

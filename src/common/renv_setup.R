@@ -7,5 +7,3 @@ if (!startsWith(.libPaths()[1], here::here())) {
   if(!dir.exists(path)) dir.create(path, recursive = TRUE)
   renv::use(library = path) # .libPaths(path)
 }
-
-config <- config::get()

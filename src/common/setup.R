@@ -10,29 +10,23 @@ is_installed <- \(pkg) suppressMessages({require(pkg, quietly = TRUE, warn.confl
 
 here::i_am("src/common/setup.R")
 
-com_path <- here::here("src", "common")
+src_path <- here::here("src")
+com_path <- here::here(src_path, "common")
 source(here::here(com_path, "logger.R"), echo = FALSE)
 
 log.title("[SETUP] Setting up the project ...\n")
 
 if(is.null(renv::project())) renv::init(project = here::here(), bare = TRUE, restart = FALSE)
+source(here::here(com_path, "renv_setup.R"), echo = FALSE)
 
-if (!startsWith(.libPaths()[1], here::here())) {
-  v <- paste0("R-", version$major, ".", strsplit(version$minor, ".", fixed = TRUE)[[1]][1])
-  dir <- ifelse(Sys.info()[["sysname"]] == "Windows", "x86_64-w64-mingw32", "x86_64-pc-linux-gnu")
-  path <- here::here("renv", "library", v, dir)
-  if(!dir.exists(path)) dir.create(path, recursive = TRUE)
-  renv::use(library = path) # .libPaths(path)
+if(!file.exists(here::here("_config.yml"))) {
+  file.create(here::here("_config.yml"))
+  cat('default:\r  data: !expr here::here("data", "my_data.csv")\r', file = here::here("_config.yml"))
 }
 
-if(!file.exists(here::here("config.yml"))) {
-  file.create(here::here("config.yml"))
-  cat('default:\r  data: !expr here::here("data", "my_data.csv")\r', file = here::here("config.yml"))
-}
-
-if(!file.exists(here::here("secret.yml"))) {
-  file.create(here::here("secret.yml"))
-  cat('default:\r  api_key: ""\r', file = here::here("secret.yml"))
+if(is.null(renv::project()) && !file.exists(here::here("_secret.yml"))) {
+  file.create(here::here("_secret.yml"))
+  cat('default:\r  api_key: ""\r', file = here::here("_secret.yml"))
 }
 
 log.main("[SETUP] Loading common scripts ...")
@@ -54,24 +48,34 @@ global_config <- load_global_config()
 
 setup_project <- function(...) {
   
-  source(here::here("src", "authors.R"), echo = FALSE)
-
+  ## Packages section ##
+  source(here::here(src_path, "authors.R"), echo = FALSE)
+  
   init_project_packages(...)
   
-  source(here::here("src", "common", "theme.R"), echo = FALSE)
-
-  source(here::here("src", "config_project.R"), echo = FALSE)
+  ## Theme section ##
+  log.main("[SETUP] Loading theme-related scripts ...")
   
-  log.main("[SETUP] Loading project-specific scripts ...")
-  
-  project_scrips <- fs::dir_ls(path = here::here("src"), type = "file", glob = "*.R") |> fs::path_file()  # Loading data.R & co
-
-  tmp <- sapply(
-    project_scrips[which(project_scrips %ni% c("packages.R", "init.R", "config_project.R"))],
-    \(f) source(here::here("src", f), verbose = FALSE, echo = FALSE)
+  theme_scripts <- c(
+    here::here(com_path, "theme", "theme.R"),
+    fs::dir_ls(path = here::here(com_path, "theme"), type = "file", glob = "*.R") |> 
+      purrr::discard(\(x) fs::path_file(x) %in% c("theme.R"))
   )
+  purrr::walk(theme_scripts, \(f) source(f, verbose = FALSE, echo = FALSE))
   
-  source(here::here("src", "common", "stan.R"), echo = FALSE)
+  ## Project config section ##
+  log.main("[SETUP] Loading project-related scripts ...")
   
-  rm(tmp)
+  project_scrips <- c(
+    here::here(src_path, "config_project.R"),
+    fs::dir_ls(path = src_path, type = "file", glob = "*.R") |> 
+      purrr::discard(\(x) fs::path_file(x) %in% c("packages.R", "init.R", "config_project.R"))
+  )
+  purrr::walk(project_scrips, \(f) source(f, verbose = FALSE, echo = FALSE))
+  
+  ## Stan section ##
+  log.main("[SETUP] Loading Stan-related scripts ...")
+  
+  stan_scripts <- fs::dir_ls(path = here::here(com_path, "stan"), type = "file", glob = "*.R")
+  purrr::walk(stan_scripts, \(f) source(f, verbose = FALSE, echo = FALSE))
 }

@@ -15,7 +15,7 @@ project:
 
 website:
   title: "Marc-Aurèle Rivière"
-  description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+  # description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   image: res/avatar.jpg
   favicon: res/favicon.png
   site-url: 'https://ma-riviere.me'
@@ -36,8 +36,6 @@ website:
     image-height: 300
     locale: en_US
   twitter-card:
-    # image-width: 300
-    # image-height: 300
     creator: "@mariviere1"
     card-style: summary
   
@@ -83,6 +81,7 @@ website:
   
   ## See https://quarto.org/docs/reference/projects/websites.html#sidebar
   ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
+  sidebar: false
   # sidebar:
   #   - id: code
   #     title: "Code" # Will auto-link to page with same title ?
@@ -160,8 +159,5 @@ execute:
   message: false
   cache: false
   freeze: auto
-
-filters:
-  - nutshell
 
 editor: source

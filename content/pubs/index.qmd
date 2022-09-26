@@ -3,7 +3,6 @@ title: "{{< fa book >}} Scientific Publications"
 # image: 
 
 listing:
-  feed: true
   contents: "*.qmd"
   type: default
   fields: [date, title, author, subtitle, description, categories]

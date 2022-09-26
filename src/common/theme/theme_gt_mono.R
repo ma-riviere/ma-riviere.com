@@ -1,11 +1,9 @@
+#------------------#
+####🔺gt themes ####
+#------------------#
+
 library(gt)
 library(gtExtras, include.only = c("gt_highlight_rows"))
-
-#--------------------#
-#### Table themes ####
-#--------------------#
-
-format_pvalue <- function(p) glue::glue("{scales::pvalue(p)} {gtools::stars.pval(p) |> str_remove_all(fixed('.'))}")
 
 get_cell_dim <- function(x) {
   dim <- NULL
@@ -27,7 +25,7 @@ format_gt <- function(gt_tbl) {
   gt_tbl <- gt::fmt(
     gt_tbl,
     columns = select(gt_tbl[["_data"]], matches("p.val|^pr|pr\\(.*\\)|^p$")) |> colnames(),
-    fns = \(x) purrr::map_chr(x, \(v) ifelse(!is.na(v) && utils::type.convert(v, as.is = TRUE) |> is.numeric(), format_pvalue(as.numeric(v)), v))
+    fns = \(x) purrr::map_chr(x, \(v) ifelse(!is.na(v) && utils::type.convert(v, as.is = TRUE) |> is.numeric(), label_pval(as.numeric(v)), v))
   )
   
   gt_tbl <- gt::fmt_number(
@@ -44,8 +42,8 @@ gt_style <- function(gt_tbl) {
     gt_tbl
     |> gt::tab_style(
       style = list(
-        cell_text(color = gt_header_color, weight = "bold"),
-        cell_borders(sides = c("top", "bottom"), color = gt_header_color, style = "solid", weight = px(2))
+        cell_text(color = secondary_color_light, weight = "bold"),
+        cell_borders(sides = c("top", "bottom"), color = secondary_color_light, style = "solid", weight = px(2))
       ),
       locations = list(cells_title(), cells_column_labels())
     )
@@ -74,39 +72,3 @@ style_table <- function(data, total_rows = NULL, nrows_print = 15) {
     gt_style() |> 
     bind(x, if(nrows > nrows_print) x |> tab_source_note(md(glue::glue("*[ omitted {scales::label_comma()(nrows - nrows_print)} entries ]*"))) else x)
 }
-
-
-
-#--------------------------#
-#### Custom knit_prints ####
-#--------------------------#
-
-library(knitr)
-
-knit_print.grouped_df <- function(x, options, ...) {
-  if ("grouped_df" %in% class(x)) x <- ungroup(x)
-  
-  cl <- intersect(class(x), c("data.table", "data.frame"))[1]
-  nrows <- ifelse(!is.null(options$total_rows), as.numeric(options$total_rows), dim(x)[1])
-  
-  cat("\n<details>\n")
-  cat("<summary>\n")
-  cat(glue::glue("\n*{cl} [{scales::label_comma()(nrows)} x {dim(x)[2]}]*\n"))
-  cat("</summary>\n<br>\n")
-  print(gt::as_raw_html(style_table(x, nrows)))
-  cat("</details>\n\n")
-}
-registerS3method("knit_print", "grouped_df", knit_print.grouped_df)
-
-knit_print.data.frame <- function(x, options, ...) {
-  cl <- intersect(class(x), c("data.table", "data.frame"))[1]
-  nrows <- ifelse(!is.null(options$total_rows), as.numeric(options$total_rows), dim(x)[1])
-  
-  cat("\n<details>\n")
-  cat("<summary>\n")
-  cat(glue::glue("\n*{cl} [{scales::label_comma()(nrows)} x {dim(x)[2]}]*\n"))
-  cat("</summary>\n<br>\n")
-  print(gt::as_raw_html(style_table(x, nrows)))
-  cat("</details>\n\n")
-}
-registerS3method("knit_print", "data.frame", knit_print.data.frame)

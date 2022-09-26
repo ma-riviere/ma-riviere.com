@@ -37,7 +37,7 @@ save_png <- function(plot, filename = NULL, subfolder = NULL, device = "png", dp
 #-------------------#
 
 label_pval <- function(p) {
-  ifelse(p <= alpha, str_c(scales::label_pvalue()(p), gtools::stars.pval(p) |> str_replace(fixed("."), ""), sep = " "), scales::label_pvalue()(p) |> str_remove(">") |> str_trim())
+  str_c(scales::label_pvalue()(p) |> str_remove(">") |> str_trim(), gtools::stars.pval(p) |> str_replace(fixed("."), ""), sep = " ")
 }
 
 get_response_name <- function(var) {

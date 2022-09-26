@@ -37,6 +37,9 @@ website:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   twitter-card:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+
+filters:
+  - nutshell
 ---
 
 ::: {.column-page}
@@ -50,8 +53,7 @@ I have since retrained as a **Data Scientist** with a fondness for Bayesian meth
 ```{r}
 #| echo: false
 #| output: false
-
-source(here::here("src", "init.R"), echo = FALSE)
+#| file: !expr here::here("src", "init.R")
 ```
 
 ```{r}

@@ -93,7 +93,11 @@ execute:
 
 ```{r}
 #| echo: false
-#| file: !expr here::here("src", "quarto", "renv_setup.R")
+#| output: false
+
+source(here::here("src", "init_min.R"), echo = FALSE)
+
+config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
@@ -167,7 +171,8 @@ library(withr)
 
 ```{r}
 #| echo: false
-#| file: !expr c(here("src", "quarto", "quarto_theme.R"), here("src", "quarto", "style_gt_mono.R"))
+#| output: false
+#| file: !expr here("src", "common", "knitr", "knit_print_gt_mono.R")
 ```
 
 <!-------------------------------------------------------->
