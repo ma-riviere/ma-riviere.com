@@ -8,7 +8,12 @@
 <title>Marc-Aurèle Rivière</title>
 <link>https://ma-riviere.me/content/pubs/index.html</link>
 <atom:link href="https://ma-riviere.me/content/pubs/index.xml" rel="self" type="application/rss+xml"/>
-<description>Marc-Aurèle Rivière&#39;s personal website</description>
+<description>Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes</description>
+<image>
+<url>https://ma-riviere.me/res/avatar.jpg</url>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.me/content/pubs/index.html</link>
+</image>
 <generator>quarto-1.2.157</generator>
 <lastBuildDate>Thu, 01 Sep 2022 22:00:00 GMT</lastBuildDate>
 <item>

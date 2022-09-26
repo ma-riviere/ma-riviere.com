@@ -152,13 +152,13 @@ cookieconsent.run({
 <link href="../../../site_libs/pagedtable-1.1/css/pagedtable.css" rel="stylesheet">
 <script src="../../../site_libs/pagedtable-1.1/js/pagedtable.js"></script><link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - Bayesian Rock Climbing Rankings">
-<meta property="og:description" content="Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Statistics, Bayes">
-<meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
+<meta property="og:description" content="This is simply a transposition of Ethan Rosenthal's [article on Bayesian Rock Climbing](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R.">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:image:height" content="300">
+<meta property="og:image:width" content="300">
 <meta property="og:locale" content="en_US">
-<meta name="twitter:title" content="Marc-Aurèle Rivière">
-<meta name="twitter:description" content="Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Statistics, Bayes">
-<meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
+<meta name="twitter:title" content="Marc-Aurèle Rivière - Bayesian Rock Climbing Rankings">
+<meta name="twitter:description" content="This is simply a transposition of Ethan Rosenthal's [article on Bayesian Rock Climbing](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R.">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 </head>
@@ -1012,7 +1012,7 @@ Redpoint
 <em>[ omitted 658,807 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.298 secs</p>
+</table></details><p>Time difference of 1.335 secs</p>
 </div>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
@@ -1457,7 +1457,7 @@ Redpoint
 <em>[ omitted 658,807 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.009 secs</p>
+</table></details><p>Time difference of 0.9978 secs</p>
 </div>
 </div>
 </div>
@@ -2156,7 +2156,7 @@ V7
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 10.21 secs</code></pre>
+<pre><code>Time difference of 9.788 secs</code></pre>
 </div>
 </div>
 </div>
@@ -2816,7 +2816,7 @@ V7
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 34.06 secs</code></pre>
+<pre><code>Time difference of 34.42 secs</code></pre>
 </div>
 </div>
 </div>
@@ -3491,7 +3491,7 @@ V6
 </div>
 <div class="cell" data-layout-align="center">
 <div class="cell-output cell-output-stdout">
-<pre><code>Time difference of 11.36 secs</code></pre>
+<pre><code>Time difference of 11.13 secs</code></pre>
 </div>
 </div>
 </div>
@@ -4124,7 +4124,7 @@ V5
 <em>[ omitted 4,273 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.725 secs</p>
+</table></details><p>Time difference of 1.746 secs</p>
 </div>
 </div>
 <div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
@@ -4425,7 +4425,7 @@ V5
 <em>[ omitted 4,273 entries ]</em>
 </td>
 </tr></tfoot>
-</table></details><p>Time difference of 1.03 secs</p>
+</table></details><p>Time difference of 1.019 secs</p>
 </div>
 </div>
 </div>
@@ -4471,7 +4471,7 @@ V5
 </div>
 </div>
 <p><strong>Bouldering Grade:</strong></p>
-<div class="cell" data-layout-align="center">
+<div class="cell preview-image" data-layout-align="center">
 <div class="sourceCode" id="cb32"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">ridgeline_plot</span><span class="op">(</span><span class="va">pp</span><span class="op">[</span><span class="va">climb_type</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">&amp;</span> <span class="va">bouldering_grade</span> <span class="op">!=</span> <span class="st">"V0"</span><span class="op">]</span>, <span class="st">"bouldering_grade"</span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="light-mode">
 <div class="cell-output-display">
@@ -5682,9 +5682,10 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb33-946"><a href="#cb33-946" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.height: 14</span></span>
 <span id="cb33-947"><a href="#cb33-947" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig.width: 8</span></span>
 <span id="cb33-948"><a href="#cb33-948" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb33-949"><a href="#cb33-949" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb33-950"><a href="#cb33-950" aria-hidden="true" tabindex="-1"></a><span class="fu">ridgeline_plot</span>(pp[climb_type <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> bouldering_grade <span class="sc">!=</span> <span class="st">"V0"</span>], <span class="st">"bouldering_grade"</span>)</span>
-<span id="cb33-951"><a href="#cb33-951" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb33-949"><a href="#cb33-949" aria-hidden="true" tabindex="-1"></a><span class="co">#| classes: preview-image</span></span>
+<span id="cb33-950"><a href="#cb33-950" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-951"><a href="#cb33-951" aria-hidden="true" tabindex="-1"></a><span class="fu">ridgeline_plot</span>(pp[climb_type <span class="sc">==</span> <span class="dv">1</span> <span class="sc">&amp;</span> bouldering_grade <span class="sc">!=</span> <span class="st">"V0"</span>], <span class="st">"bouldering_grade"</span>)</span>
+<span id="cb33-952"><a href="#cb33-952" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
