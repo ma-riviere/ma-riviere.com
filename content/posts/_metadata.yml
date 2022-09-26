@@ -10,10 +10,14 @@ format:
   html:
     number-sections: true
     
-### Commenting ###
-## See: 
-### - https://quarto.org/docs/reference/projects/websites.html#comments
-### - https://robjhyndman.com/hyndsight/disqus2giscus.html
-# comments:
-#   giscus:
-#     repo: ma-riviere/ma-riviere.me # Must be public, have giscus app installed, and discussions enabled
+comments:
+  giscus:
+    repo: ma-riviere/ma-riviere.me
+    repo-id: "R_kgDOIBvARQ"
+    category: "Announcements"
+    category-id: "DIC_kwDOIBvARc4CRpfR"
+    mapping: "pathname"
+    reactions-enabled: true
+    loading: lazy
+    input-position: "bottom"
+    theme: "light"

@@ -49,6 +49,7 @@ po/*~
 rsconnect/
 
 secret.yml
+_secret.yml
 
 # Quarto
 /.quarto/

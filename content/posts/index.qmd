@@ -24,4 +24,5 @@ website:
     image: ../../res/avatar.jpg
 
 citation: false
+comments: false
 ---
