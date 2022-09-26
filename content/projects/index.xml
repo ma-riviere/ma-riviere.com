@@ -8,8 +8,8 @@
 <title>Marc-Aurèle Rivière</title>
 <link>https://ma-riviere.me/content/projects/index.html</link>
 <atom:link href="https://ma-riviere.me/content/projects/index.xml" rel="self" type="application/rss+xml"/>
-<description>Marc-Aurèle Rivière's personal website</description>
-<generator>quarto-1.1.251</generator>
+<description>Marc-Aurèle Rivière&#39;s personal website</description>
+<generator>quarto-1.2.157</generator>
 <lastBuildDate>Sun, 31 Oct 2021 23:00:00 GMT</lastBuildDate>
 <item>
   <title>SAM-Guide</title>
@@ -22,15 +22,14 @@
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -38,14 +37,14 @@
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
@@ -106,7 +105,7 @@
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-unity-protocol1" class="quarto-figure quarto-figure-center" style="flex-basis: 50.5%;justify-content: center;">
 <figure class="figure">
-<p><a href="Unity-protocol%201.png" class="lightbox" title="Specifying the avatar and the experimental blocks’ characteristics" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity-protocol%201.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"></a></p>
+<p><a href="Unity-protocol 1.png" class="lightbox" title="Specifying the avatar and the experimental blocks’ characteristics" data-gallery="quarto-lightbox-gallery-5"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity-protocol 1.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"></a></p>
 <p></p><figcaption class="figure-caption">(a) Specifying the avatar and the experimental blocks’ characteristics</figcaption><p></p>
 </figure>
 </div>
@@ -115,7 +114,7 @@
 </div>
 <div id="fig-unity-protocol3" class="quarto-figure quarto-figure-center" style="flex-basis: 49.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="Unity-protocol%203.png" class="lightbox" title="Specifying experimental trials, which can be repeated and randomized within blocks" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity-protocol%203.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"></a></p>
+<p><a href="Unity-protocol 3.png" class="lightbox" title="Specifying experimental trials, which can be repeated and randomized within blocks" data-gallery="quarto-lightbox-gallery-6"><img src="https://ma-riviere.me/content/projects/SAM-Guide/Unity-protocol 3.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"></a></p>
 <p></p><figcaption class="figure-caption">(b) Specifying experimental trials, which can be repeated and randomized within blocks</figcaption><p></p>
 </figure>
 </div>
@@ -147,15 +146,14 @@
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -163,14 +161,14 @@
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="my-role-in-this-project" class="level1" data-number="1">
@@ -201,15 +199,14 @@
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -217,14 +214,14 @@
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="introduction" class="level1" data-number="1">
@@ -309,15 +306,14 @@
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -325,14 +321,14 @@
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="introduction" class="level1" data-number="1">
@@ -401,15 +397,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -417,14 +412,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="introduction" class="level1" data-number="1">
@@ -543,15 +538,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -559,14 +553,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
@@ -585,7 +579,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
 <div id="fig-neuro" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="neuro.png" class="lightbox" title="ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
+<p><a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ACCESSPACE guiding principle"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption><p></p>
 </figure>
 </div>
@@ -599,7 +593,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="nav.png" class="lightbox" title="Illustration of the navigation graph idea" data-gallery="quarto-lightbox-gallery-3"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption><p></p>
 </figure>
 </div>
@@ -612,7 +606,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
 <div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="TactiBelt.png" class="lightbox" title="First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
+<p><a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="First prototype of the TactiBelt"><img src="https://ma-riviere.me/content/projects/ACCESSPACE/TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
@@ -695,15 +689,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -711,14 +704,14 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="my-role-in-this-project" class="level1" data-number="1">
@@ -755,15 +748,14 @@ Click to see a preview of the documentation
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -771,14 +763,14 @@ Click to see a preview of the documentation
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <section id="introduction" class="level1" data-number="1">

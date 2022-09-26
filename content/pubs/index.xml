@@ -8,8 +8,8 @@
 <title>Marc-Aurèle Rivière</title>
 <link>https://ma-riviere.me/content/pubs/index.html</link>
 <atom:link href="https://ma-riviere.me/content/pubs/index.xml" rel="self" type="application/rss+xml"/>
-<description>Marc-Aurèle Rivière's personal website</description>
-<generator>quarto-1.1.251</generator>
+<description>Marc-Aurèle Rivière&#39;s personal website</description>
+<generator>quarto-1.2.157</generator>
 <lastBuildDate>Thu, 01 Sep 2022 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen</title>
@@ -21,15 +21,14 @@
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -37,14 +36,14 @@
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="Preprint.pdf" type="application/pdf" width="100%" height="900">
@@ -116,15 +115,14 @@ Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -132,14 +130,14 @@ Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf" type="application/pdf" width="100%" height="900">
@@ -211,15 +209,14 @@ Peňáz Petr (Eds.), <em>Lecture Notes in Computer Science</em> (Vol.
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -227,14 +224,14 @@ Peňáz Petr (Eds.), <em>Lecture Notes in Computer Science</em> (Vol.
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf" type="application/pdf" width="100%" height="900">
@@ -311,15 +308,14 @@ Science</em> (Vol. 12119, pp. 14–23). Springer International Publishing.
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -327,14 +323,14 @@ Science</em> (Vol. 12119, pp. 14–23). Springer International Publishing.
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://hal.archives-ouvertes.fr/hal-02353327/document" type="application/pdf" width="100%" height="900">
@@ -400,15 +396,14 @@ Engineering</em>, 1038–1041. <a href="https://doi.org/10.1109/NER.2019.8717086
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -416,14 +411,14 @@ Engineering</em>, 1038–1041. <a href="https://doi.org/10.1109/NER.2019.8717086
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="F2T.pdf" type="application/pdf" width="100%" height="900">
@@ -483,15 +478,14 @@ International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_36"
   <description><![CDATA[ 
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -499,14 +493,14 @@ International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_36"
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <object data="https://hal.archives-ouvertes.fr/hal-02353413/document" type="application/pdf" width="100%" height="900">

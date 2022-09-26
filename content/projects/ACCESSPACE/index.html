@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.1.251">
+<meta name="generator" content="quarto-1.2.157">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -106,13 +106,13 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - ACCESSPACE">
-<meta property="og:description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
+<meta property="og:description" content="Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Statistics, Bayes">
 <meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:alt" content="Logo of the ACCESSPACE project">
 <meta name="twitter:title" content="Marc-Aurèle Rivière">
-<meta name="twitter:description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
+<meta name="twitter:description" content="Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Statistics, Bayes">
 <meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
@@ -136,36 +136,41 @@ cookieconsent.run({
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/projects/index.html"><i class="fa-solid fa-business-time" aria-hidden="true"></i> Projects</a>
+    <a class="nav-link" href="../../../content/projects/index.html">
+ <span class="menu-text"><i class="fa-solid fa-business-time" aria-hidden="true"></i> Projects</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/pubs/index.html"><i class="fa-solid fa-book" aria-hidden="true"></i> Publications</a>
+    <a class="nav-link" href="../../../content/pubs/index.html">
+ <span class="menu-text"><i class="fa-solid fa-book" aria-hidden="true"></i> Publications</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/outreach/index.html"><iconify-icon inline="" icon="file-icons:keynote" height="20px"></iconify-icon> Outreach</a>
+    <a class="nav-link" href="../../../content/outreach/index.html">
+ <span class="menu-text"><iconify-icon inline="" icon="file-icons:keynote" height="20px"></iconify-icon> Outreach</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/posts/index.html"><i class="fa-solid fa-blog" aria-hidden="true"></i> Blog</a>
+    <a class="nav-link" href="../../../content/posts/index.html">
+ <span class="menu-text"><i class="fa-solid fa-blog" aria-hidden="true"></i> Blog</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/about.html">About</a>
+    <a class="nav-link" href="../../../content/about.html">
+ <span class="menu-text">About</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ma-riviere/ma-riviere.me/"><i class="bi bi-code-slash" role="img" aria-label="Website's source code">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://twitter.com/mariviere1"><i class="bi bi-twitter" role="img" aria-label="Twitter">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ma-riviere/"><i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
- </a>
+ <span class="menu-text"></span></a>
   </li>  
 </ul>
               <div class="quarto-toggle-container">
@@ -259,15 +264,14 @@ cookieconsent.run({
       <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
 <script>
   let processScroll = () => {
-  let docElem = document.documentElement, 
-    docBody = document.body,
-    scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
-    scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
-    scrollPercent = scrollTop / scrollBottom * 100 + '%';
+    let docElem = document.documentElement, 
+      docBody = document.body,
+      scrollTop = docElem['scrollTop'] || docBody['scrollTop'],
+      scrollBottom = (docElem['scrollHeight'] || docBody['scrollHeight']) - window.innerHeight,
+      scrollPercent = scrollTop / scrollBottom * 100 + '%';
     document.getElementById("progress-bar").style.setProperty("--scrollAmount", scrollPercent); 
   }
   document.addEventListener('scroll', processScroll);
-  /***/
   let navbarel = document.querySelector("#quarto-header");
   let pbc = document.createElement("div");
   pbc.id = "progress-bar";
@@ -275,14 +279,14 @@ cookieconsent.run({
 </script>
 <style>
   #progress-bar {
-    --scrollAmount: 0%;
-    /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-    background: #0e0e80;
-    width: var(--scrollAmount);
-    height: 5px;
-    position: fixed;
-    bottom: 0;
-  }
+  --scrollAmount: 0%;
+  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
+  background: #0e0e80;
+  width: var(--scrollAmount);
+  height: 5px;
+  position: fixed;
+  bottom: 0;
+}
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
@@ -301,7 +305,7 @@ cookieconsent.run({
 <p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
 <div id="fig-neuro" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="neuro.png" class="lightbox" title="ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
+<p><a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="ACCESSPACE guiding principle"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption><p></p>
 </figure>
 </div>
@@ -315,7 +319,7 @@ cookieconsent.run({
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="nav.png" class="lightbox" title="Illustration of the navigation graph idea" data-gallery="quarto-lightbox-gallery-3"><img src="nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="nav.png" title="fig:An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption><p></p>
 </figure>
 </div>
@@ -328,7 +332,7 @@ cookieconsent.run({
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
 <div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="TactiBelt.png" class="lightbox" title="First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4"><img src="TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
+<p><a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="First prototype of the TactiBelt"><img src="TactiBelt.png" title="fig:A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
@@ -531,7 +535,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   // Switch to dark mode if need be
   if (hasAlternateSentinel()) {
     toggleColorMode(true);
-  } 
+  } else {
+    toggleColorMode(false);
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
     target: function(trigger) {
       return trigger.previousElementSibling;
@@ -546,7 +552,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     button.classList.add('code-copy-button-checked');
     var currentTitle = button.getAttribute("title");
     button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
     setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
       button.setAttribute("title", currentTitle);
       button.classList.remove('code-copy-button-checked');
     }, 1000);
@@ -582,24 +605,42 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return note.innerHTML;
     });
   }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
   var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
   for (var i=0; i<bibliorefs.length; i++) {
     const ref = bibliorefs[i];
-    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
-    tippyHover(ref, function() {
-      var popup = window.document.createElement('div');
-      cites.forEach(function(cite) {
-        var citeDiv = window.document.createElement('div');
-        citeDiv.classList.add('hanging-indent');
-        citeDiv.classList.add('csl-entry');
-        var biblioDiv = window.document.getElementById('ref-' + cite);
-        if (biblioDiv) {
-          citeDiv.innerHTML = biblioDiv.innerHTML;
-        }
-        popup.appendChild(citeDiv);
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
       });
-      return popup.innerHTML;
-    });
+    }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
       var filterRegex = new RegExp(/https:\/\/ma-riviere\.me/);
@@ -637,7 +678,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":true});</script>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":true});</script>
 
 
 
