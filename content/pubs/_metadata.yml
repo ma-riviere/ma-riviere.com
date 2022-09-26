@@ -8,7 +8,12 @@ about:
   image: ../placeholder.avif
   image-width: "0%"
 
-sidebar: false
+# Using Avatar as default image for pubs
+website:
+  open-graph:
+    image: ../../res/avatar.jpg
+  twitter-card:
+    image: ../../res/avatar.jpg
 
 filters:
   - lightbox

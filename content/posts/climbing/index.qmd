@@ -854,6 +854,7 @@ ridgeline_plot(pp[climb_type == 0], "route_rating")
 #| fig.height: 14
 #| fig.width: 8
 #| output: asis
+#| classes: preview-image
 
 ridgeline_plot(pp[climb_type == 1 & bouldering_grade != "V0"], "bouldering_grade")
 ```

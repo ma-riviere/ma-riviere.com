@@ -8,3 +8,9 @@ $hover: #20c997;
 
 div.panel-tabset li.nav-item > a.nav-link:not(.active) {color: $hover;}
 div.panel-tabset li.nav-item > a.nav-link:not(.active):hover {color: $main;}
+
+/* Fixing different size of navbar with Darkly */
+.navbar {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}

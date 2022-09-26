@@ -1,0 +1,7 @@
+quarto-ext/fontawesome
+quarto-ext/lightbox
+quarto-ext/video
+mcanouil/quarto-iconify
+schochastics/academicons
+schochastics/quarto-nutshell
+sellorm/quarto-social-embeds

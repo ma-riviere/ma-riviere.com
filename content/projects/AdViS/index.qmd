@@ -62,7 +62,7 @@ AdViS aims to explore various ways to provide visuo-spatial information through 
 
 ![AdViS - Depth Map navigation](advis-diagram.png){alt="AdViS system's operating diagram"}
 
-![AdViS - Motion Capture](advis-mocap-diagram.png){alt="AdViS system's operating diagram with motion capture"}
+![AdViS - Motion Capture](advis-mocap-diagram.png){.preview-image alt="AdViS system's operating diagram with motion capture"}
 
 :::
 

@@ -533,6 +533,7 @@ Plotting the `player_skills` posteriors of the _top 10_ players:
 #| fig.height: 14
 #| fig.width: 8
 #| output: asis
+#| classes: preview-image
 
 ridgeline_plot(head(player_skills, 10), "player_name")
 ```

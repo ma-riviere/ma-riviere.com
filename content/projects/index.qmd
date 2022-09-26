@@ -2,7 +2,6 @@
 title: "{{< fa business-time >}} Past & Current Projects"
 
 listing:
-  feed: true
   contents: "*.qmd"
   type: default
   fields: [doi, image, title, subtitle, description, categories] # author
@@ -14,5 +13,13 @@ listing:
   sort-ui: [date, title]
   field-display-names:
     doi: "Funding" #TODO: change the template instead
+
+website:
+  open-graph:
+    description: "A list of the various projects I am or was involved in"
+    image: ../../res/avatar.jpg
+  twitter-card:
+    description: "A list of the various projects I am or was involved in"
+    image: ../../res/avatar.jpg
 ---
 

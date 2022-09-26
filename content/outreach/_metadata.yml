@@ -11,6 +11,12 @@ about:
   template: solana
   image: ../placeholder.avif
   image-width: "0%"
+
+website:
+  open-graph:
+    image: ../../res/avatar.jpg
+  twitter-card:
+    image: ../../res/avatar.jpg
   
 filters:
   - lightbox

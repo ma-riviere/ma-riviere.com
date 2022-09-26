@@ -1,24 +1,45 @@
 project:
   type: website
   output-dir: "docs"
-  # lib-dir: libs
-  resources: [.nojekyll, "/res/*", CNAME]
-  # pre-render: src/common/setup.R
-  # post-render: 
+  resources:
+    - .nojekyll
+    - CNAME
+    - "/res/*"
+    - "/libs/*"
   render:
     - "*.qmd"
     - "!test/"
     - "!src/"
+  # pre-render: 
+  # post-render: 
 
 website:
   title: "Marc-Aurèle Rivière"
-  description: "Marc-Aurèle Rivière's personal website"
+  description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+  image: res/avatar.jpg
   favicon: res/favicon.png
   site-url: 'https://ma-riviere.me'
   # site-path: '/'
   repo-url: https://github.com/ma-riviere/ma-riviere.me
   repo-branch: main
   repo-actions: [source, issue]
+  
+  ### Analytics ###
+  google-analytics:
+    tracking-id: "G-QP3K4HM02B"
+  cookie-consent:
+    type: implied
+  
+  ### Sharing ###
+  open-graph:
+    image-width: 300
+    image-height: 300
+    locale: en_US
+  twitter-card:
+    # image-width: 300
+    # image-height: 300
+    creator: "@mariviere1"
+    card-style: summary
   
   ### Search ###
   search:
@@ -76,26 +97,6 @@ website:
   #           - text: "---"
   #           - section: "Modeling"
   
-  ### Analytics ###
-  google-analytics:
-    tracking-id: "G-QP3K4HM02B"
-  cookie-consent:
-    type: implied
-  
-  ### Sharing ###
-  open-graph:
-    site-name: "Marc-Aurèle Rivière"
-    description: "Marc-Aurèle Rivière's personal website"
-    image: res/avatar.jpg
-    locale: en_US
-  twitter-card:
-    title: "Marc-Aurèle Rivière"
-    description: "Marc-Aurèle Rivière's personal website"
-    image: res/avatar.jpg
-    # site: "@mariviere1"
-    creator: "@mariviere1"
-    card-style: summary
-  
   ### Footer ###
   page-footer:
     border: true
@@ -116,9 +117,9 @@ csl: apa.csl
 format:
   html:
     theme:
-      light: [default, res/css/light.scss]
-      dark: [darkly, res/css/dark.scss]
-    css: res/css/style.css
+      light: [default, libs/css/light.scss]
+      dark: [darkly, libs/css/dark.scss]
+    css: libs/css/style.css
     df-print: paged
     # mainfont: "Lato"
     # monofont: "Fira Mono"

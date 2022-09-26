@@ -26,6 +26,14 @@ listing:
     page-size: 5
     filter-ui: true
     sort-ui: [date, title]
+
+website:
+  open-graph:
+    description: "A list of my scientific outreach activities"
+    image: ../../res/avatar.jpg
+  twitter-card:
+    description: "A list of my scientific outreach activities"
+    image: ../../res/avatar.jpg
 ---
 
 ## {{< fa chalkboard-user >}} Scientific Dissemination

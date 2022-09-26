@@ -3,6 +3,14 @@ title: "{{< fa user-tie >}} About Me"
 # image: 
 title-block-banner: "#4B5B68"
 
+website:
+  open-graph:
+    description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+    image: ../res/avatar.jpg
+  twitter-card:
+    description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+    image: ../res/avatar.jpg
+
 sidebar: false
 toc: false
 ---

@@ -5,7 +5,6 @@ title: "{{< fa blog >}} Blog Posts"
 license: "CC BY"
 
 listing:
-  id: blog-listings
   contents: "*.qmd"
   # type: default
   fields: [date, title, subtitle, description, reading-time, categories] # file-modified 
@@ -16,8 +15,13 @@ listing:
   filter-ui: true
   sort-ui: [date, title]
 
+website:
+  open-graph:
+    description: "A list of blog posts I have written (mostly pertaining to R and Stats)"
+    image: ../../res/avatar.jpg
+  twitter-card:
+    description: "A list of blog posts I have written (mostly pertaining to R and Stats)"
+    image: ../../res/avatar.jpg
+
 citation: false
 ---
-
-::: {#blog-listings}
-:::
