@@ -606,7 +606,7 @@
     "href": "content/projects/LT-AoP/index.html",
     "title": "LT-AoP",
     "section": "",
-    "text": "1 My role in this project\n\n1) Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data.\n2) Make a website documenting and showcasing the project’s data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.\n\n\nClick to see a preview of a page of the documentation"
+    "text": "1 My role in this project\n\n1) Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data. The code for those analyses was made open-source and registered on Zenodo, while the results of the analyses were published in Cell & Bioscience.\n2) Make a website documenting and showcasing the project’s data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.\n\n\nClick to see a preview of a page of the documentation"
   },
   {
     "objectID": "content/projects/NAV-VIR/index.html#our-interface-f2t-v2",
