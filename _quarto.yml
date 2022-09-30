@@ -136,8 +136,8 @@ format:
     code-overflow: scroll
     code-block-border-left: "#31BAE9" # 5A6570
     highlight-style:
-      light: res/highlight-styles/mar-light.theme
-      dark: res/highlight-styles/mar-dark.theme
+      light: libs/highlight-styles/mar-light.theme
+      dark: libs/highlight-styles/mar-dark.theme
     link-external-newwindow: true
 
 engine: knitr
