@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -107,16 +107,16 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - TETMOST">
-<meta property="og:description" content="Developping a haptic interface and studying ways to intuitively represent images and Art pieces haptically for Visually Impaired People.">
-<meta property="og:image" content="https://ma-riviere.me/content/projects/TETMOST/logo.png">
+<meta property="og:description" content="Developping a haptic interface to intuitively represent images and Art to VIP">
+<meta property="og:image" content="https://ma-riviere.me/content/projects/TETMOST/feature.png">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
-<meta property="og:image:height" content="385">
 <meta property="og:image:width" content="1372">
 <meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="385">
 <meta property="og:image:alt" content="Logo illustrating the TETMOST project">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - TETMOST">
-<meta name="twitter:description" content="Developping a haptic interface and studying ways to intuitively represent images and Art pieces haptically for Visually Impaired People.">
-<meta name="twitter:image" content="https://ma-riviere.me/content/projects/TETMOST/logo.png">
+<meta name="twitter:description" content="Developping a haptic interface to intuitively represent images and Art to VIP">
+<meta name="twitter:image" content="https://ma-riviere.me/content/projects/TETMOST/feature.png">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image-height" content="385">
@@ -636,7 +636,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -666,7 +666,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","descPosition":"bottom","closeEffect":"zoom","loop":true});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true});</script>
 
 
 

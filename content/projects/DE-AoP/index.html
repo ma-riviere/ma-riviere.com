@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -102,16 +102,16 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - DE-AoP">
-<meta property="og:description" content="This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model.">
-<meta property="og:image" content="https://ma-riviere.me/content/projects/DE-AoP/circlize.png">
+<meta property="og:description" content="Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development">
+<meta property="og:image" content="https://ma-riviere.me/content/projects/DE-AoP/feature.png">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
-<meta property="og:image:height" content="690">
 <meta property="og:image:width" content="750">
 <meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="690">
 <meta property="og:image:alt" content="Circular plot illustrating the impact of the multiple genes tested on several key biological pathways">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - DE-AoP">
-<meta name="twitter:description" content="This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model.">
-<meta name="twitter:image" content="https://ma-riviere.me/content/projects/DE-AoP/circlize.png">
+<meta name="twitter:description" content="Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development">
+<meta name="twitter:image" content="https://ma-riviere.me/content/projects/DE-AoP/feature.png">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image-height" content="690">
@@ -520,7 +520,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

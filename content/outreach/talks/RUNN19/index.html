@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -101,12 +101,12 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - ACCESSPACE: overview and future prospects">
-<meta property="og:description" content="An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors  ({{< iconify twemoji flag-france >}})">
+<meta property="og:description" content="Presenting an overview of the ACCESSPACE project's progress and future endeavors">
 <meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - ACCESSPACE: overview and future prospects">
-<meta name="twitter:description" content="An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors  ({{< iconify twemoji flag-france >}})">
+<meta name="twitter:description" content="Presenting an overview of the ACCESSPACE project's progress and future endeavors">
 <meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
@@ -537,7 +537,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

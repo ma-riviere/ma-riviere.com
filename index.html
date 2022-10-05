@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="Research Engineer - LITIS Lab">
 <title>Marc-Aurèle Rivière</title>
@@ -85,12 +85,12 @@ cookieconsent.run({
 <script src="site_libs/pagedtable-1.1/js/pagedtable.js"></script><link rel="stylesheet" href="libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière">
 <meta property="og:description" content="Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes">
+<meta property="og:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
-<meta property="og:image:height" content="300">
-<meta property="og:image:width" content="300">
 <meta property="og:locale" content="en_US">
 <meta name="twitter:title" content="Marc-Aurèle Rivière">
 <meta name="twitter:description" content="Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes">
+<meta name="twitter:image" content="https://ma-riviere.me/res/avatar.jpg">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 </head>
@@ -195,7 +195,7 @@ and Human-Machine Interfaces<br><iconify-icon inline="" icon="twemoji:flag-frenc
      <span class="about-link-text">Email</span>
   </a>
   <a href="/res/cv.pdf" class="about-link">
-     <span class="about-link-text"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> CV</span>
+     <span class="about-link-text"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> Resume</span>
   </a>
 </div>
   </div>
@@ -464,7 +464,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {

@@ -2,13 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="SKERI (San Francisco, USA)">
 <meta name="dcterms.date" content="2018-03-01">
-<meta name="description" content="Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera.">
+<meta name="description" content="Smart pen providing real-time audio-feedback on objects using the smartphone’s sensors.">
 
 <title>Marc-Aurèle Rivière - CamIO</title>
 <style>
@@ -124,15 +124,19 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - CamIO">
-<meta property="og:description" content="Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera.">
-<meta property="og:image" content="https://ma-riviere.me/content/projects/CamIO/logo.jpg">
+<meta property="og:description" content="Smart pen providing real-time audio-feedback on objects using smartphone's sensors">
+<meta property="og:image" content="https://ma-riviere.me/content/projects/CamIO/feature.png">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:image:width" content="357">
 <meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="296">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - CamIO">
-<meta name="twitter:description" content="Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera.">
-<meta name="twitter:image" content="https://ma-riviere.me/content/projects/CamIO/logo.jpg">
+<meta name="twitter:description" content="Smart pen providing real-time audio-feedback on objects using smartphone's sensors">
+<meta name="twitter:image" content="https://ma-riviere.me/content/projects/CamIO/feature.png">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="296">
+<meta name="twitter:image-width" content="357">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -205,7 +209,7 @@ cookieconsent.run({
             <p class="subtitle lead">Camera Input-Output</p>
                   <div>
         <div class="description">
-          Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera.
+          Smart pen providing real-time audio-feedback on objects using the smartphone’s sensors.
         </div>
       </div>
                           <div class="quarto-categories">
@@ -319,13 +323,13 @@ cookieconsent.run({
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-IA-loc" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-2"><img src="IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
+<p><a href="IA-loc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Indoor Atlas’ localization"><img src="IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
 <p></p><figcaption class="figure-caption">(a) Indoor Atlas’ localization</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-IA-graph" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-3"><img src="IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
+<p><a href="IA-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Indoor Atlas’ navigation graph"><img src="IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
 <p></p><figcaption class="figure-caption">(b) Indoor Atlas’ navigation graph</figcaption><p></p>
 </figure>
 </div>
@@ -594,7 +598,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -624,7 +628,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":true,"selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","loop":true});</script>
 
 
 

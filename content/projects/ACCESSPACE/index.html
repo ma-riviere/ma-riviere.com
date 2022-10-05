@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -106,16 +106,16 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - ACCESSPACE">
-<meta property="og:description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
-<meta property="og:image" content="https://ma-riviere.me/content/projects/ACCESSPACE/logo.png">
+<meta property="og:description" content="Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP">
+<meta property="og:image" content="https://ma-riviere.me/content/projects/ACCESSPACE/feature.png">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
-<meta property="og:image:height" content="352">
 <meta property="og:image:width" content="336">
 <meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="352">
 <meta property="og:image:alt" content="Logo of the ACCESSPACE project">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - ACCESSPACE">
-<meta name="twitter:description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
-<meta name="twitter:image" content="https://ma-riviere.me/content/projects/ACCESSPACE/logo.png">
+<meta name="twitter:description" content="Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP">
+<meta name="twitter:image" content="https://ma-riviere.me/content/projects/ACCESSPACE/feature.png">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image-height" content="352">
@@ -652,7 +652,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -682,7 +682,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","descPosition":"bottom","loop":true});</script>
+<script>var lightboxQuarto = GLightbox({"loop":true,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});</script>
 
 
 

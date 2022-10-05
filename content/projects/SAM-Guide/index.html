@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.157">
+<meta name="generator" content="quarto-1.2.186">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -109,16 +109,20 @@ cookieconsent.run({
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
 <meta property="og:title" content="Marc-Aurèle Rivière - SAM-Guide">
-<meta property="og:description" content="Designing an efficient multi-modal interface to help VIP during spatial interactions and sports.">
-<meta property="og:image" content="https://ma-riviere.me/content/projects/SAM-Guide/header.jpg">
+<meta property="og:description" content="An efficient multi-modal interface to help VIP during spatial interactions and sports">
+<meta property="og:image" content="https://ma-riviere.me/content/projects/SAM-Guide/feature.png">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:image:width" content="5000">
 <meta property="og:locale" content="en_US">
+<meta property="og:image:height" content="3334">
 <meta property="og:image:alt" content="Image illustrating the SAM-Guide project">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - SAM-Guide">
-<meta name="twitter:description" content="Designing an efficient multi-modal interface to help VIP during spatial interactions and sports.">
-<meta name="twitter:image" content="https://ma-riviere.me/content/projects/SAM-Guide/header.jpg">
+<meta name="twitter:description" content="An efficient multi-modal interface to help VIP during spatial interactions and sports">
+<meta name="twitter:image" content="https://ma-riviere.me/content/projects/SAM-Guide/feature.png">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image-height" content="3334">
+<meta name="twitter:image-width" content="5000">
 <meta name="twitter:image:alt" content="Image illustrating the SAM-Guide project">
 </head>
 
@@ -279,7 +283,7 @@ cookieconsent.run({
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="header.jpg" class="img-fluid figure-img" alt="Banner illustrating the SAM-Guide project"></a></p>
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Banner illustrating the SAM-Guide project"></a></p>
 </figure>
 </div>
 <section id="introduction" class="level1" data-number="1">
@@ -608,7 +612,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external)');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -638,7 +642,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true,"openEffect":"zoom"});</script>
 
 
 
