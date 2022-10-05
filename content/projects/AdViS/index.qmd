@@ -8,13 +8,21 @@ author:
   - "[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)"
   - "[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)"
 
-image: advis-mocap-diagram.png
+image: feature.png
 image-alt: "Schema illustrating the AdViS project"
 
 description: "Developing a wearable visuo-auditive substitution system to assist Visually Impaired People in navigation and object-reaching tasks."
 
 abstract: |
   The AdViS project aims to develop a wearable device that will assist Visually Impaired People during **spatial interaction tasks** (such as **indoor navigation** and **object-reaching**), using an audio-based Human-Machine Interface which converts relevant spatial metrics into ergonomic auditory cues.
+
+website:
+  open-graph:
+    image: feature.png
+    description: "Wearable visuo-auditive substitution system for blind navigation and object-reaching"
+  twitter-card:
+    image: feature.png
+    description: "Wearable visuo-auditive substitution system for blind navigation and object-reaching"
 
 categories:
   - "Assistive Devices"
@@ -62,7 +70,7 @@ AdViS aims to explore various ways to provide visuo-spatial information through 
 
 ![AdViS - Depth Map navigation](advis-diagram.png){alt="AdViS system's operating diagram"}
 
-![AdViS - Motion Capture](advis-mocap-diagram.png){.preview-image alt="AdViS system's operating diagram with motion capture"}
+![AdViS - Motion Capture](feature.png){.preview-image alt="AdViS system's operating diagram with motion capture"}
 
 :::
 

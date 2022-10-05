@@ -13,6 +13,12 @@ abstract: |
   
   To answer the question in a nutshell: the proposed matching by position won't yield anything with this dataset since the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to another station by proximity alone.
 
+website:
+  open-graph:
+    description: "Exploring various solutions to quickly match locations by their geographical proximity in R"
+  twitter-card:
+    description: "Exploring various solutions to quickly match locations by their geographical proximity in R"
+
 categories:
   - "Big Data"
   - "Data Manipulation"

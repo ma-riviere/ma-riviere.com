@@ -7,13 +7,21 @@ date: 2019-08
 author:
   - "[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)"
 
-image: circlize.png
+image: feature.png
 image-alt: "Circular plot illustrating the impact of the multiple genes tested on several key biological pathways"
 
 description: "This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model."
 
 abstract: |
   This work aims at shedding light on the mechanisms underlying cerebellar hypoxic injury. To this end, a transcriptomic study (by RT-qPCR) of genes involved in oxydative stress, cell differentiation, and migration was performed. We analyzed the expression of these genes in different developmental stages (P4, P8, P12, P21 and adults), and in different cell types, using laser capture microdissection to separate cerebellar layers. This project provides cues to better understand the cellular and molecular aspects of AoP-induced cerebellar injury.
+
+website:
+  open-graph:
+    image: feature.png
+    description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
+  twitter-card:
+    image: feature.png
+    description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
 
 categories:
   - "Biostatistics"

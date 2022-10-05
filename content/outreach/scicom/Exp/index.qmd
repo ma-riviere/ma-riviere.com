@@ -8,7 +8,13 @@ author:
 
 doi: "France"
 
-description: "Presenting my doctoral research project to a wide-ranging public of all backgrounds (from middle-school students to adults), during a yearly 3-days long science fair organized in multiple French cities by the [Experimentarium](https://www.experimentarium.fr/) project ({{< iconify twemoji flag-france >}})"
+description: "Presenting my doctoral research projects to a wide-ranging public of all backgrounds (from middle-school students to adults), during a yearly 3-days long science fair organized in multiple French cities by the [Experimentarium](https://www.experimentarium.fr/) project ({{< iconify twemoji flag-france >}})"
+
+website:
+  open-graph:
+    description: "Presenting my doctoral research projects to the public during the Experimentarium's yearly science fairs"
+  twitter-card:
+    description: "Presenting my doctoral research projects to the public during the Experimentarium's yearly science fairs"
 
 categories:
   - "Assistive Devices"

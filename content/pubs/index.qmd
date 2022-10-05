@@ -16,9 +16,7 @@ listing:
 website:
   open-graph:
     description: "A list of my scientific publications"
-    image: ../../res/avatar.jpg
   twitter-card:
     description: "A list of my scientific publications"
-    image: ../../res/avatar.jpg
 ---
 

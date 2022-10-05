@@ -8,13 +8,21 @@ author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[Institute of Electronics (Lodz, Poland)](http://www.eletel.p.lodz.pl/eng/)"
 
-image: F2T-v2-render.png
+image: feature.png
 image-alt: "3D rendering of the F2T, the main device used during the NAV-VIR project"
 
 description: "Developing a multi-modal interface for Visually Impaired People to virtually explore a map in order to prepare for a journey."
 
 abstract: |
   The goal of the NAV-VIR project was to develop a multimodal interface to allow Visually Impaired People in virtually discovering and exploring unknown areas from the safety of their home. It relies on an interactive Force-Feedback Tablet, the F2T, and an immersive HRTF-based 3D audio simulation relying on binaural recordings of real environments.
+
+website:
+  open-graph:
+    image: feature.png
+    description: "An audio-tactile interface for virtually exploring maps and preparing journeys"
+  twitter-card:
+    image: feature.png
+    description: "An audio-tactile interface for virtually exploring maps and preparing journeys"
 
 categories:
   - "Assistive Devices"

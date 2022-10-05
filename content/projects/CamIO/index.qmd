@@ -7,12 +7,20 @@ doi: "NIH/NEI & NIDILRR RERC" # TODO: make specific param
 author: 
   - name: "[SKERI (San Francisco, USA)](https://www.ski.org/center/rehabilitation-engineering-research-center)"
 
-image: logo.jpg
+image: feature.png
 
-description: "Smart pen providing real-time audio-feedback on objects using a smartphone built-in camera."
+description: "Smart pen providing real-time audio-feedback on objects using the smartphone's sensors."
 
 abstract: |
   CamIO is a system to make physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons, by providing real-time audio feedback in response to the location on an object that the user is touching. CamIO currently works on iOS using the built-in camera and an inexpensive hand-held stylus made out of paper and cardboard or wood.
+  
+website:
+  open-graph:
+    image: feature.png
+    description: "Smart pen providing real-time audio-feedback on objects using smartphone's sensors"
+  twitter-card:
+    image: feature.png
+    description: "Smart pen providing real-time audio-feedback on objects using smartphone's sensors"
 
 categories:
   - "Assistive Devices"

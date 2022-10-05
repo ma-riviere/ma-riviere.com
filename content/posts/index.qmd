@@ -18,10 +18,8 @@ listing:
 website:
   open-graph:
     description: "A list of blog posts I have written (mostly pertaining to R and Stats)"
-    image: ../../res/avatar.jpg
   twitter-card:
     description: "A list of blog posts I have written (mostly pertaining to R and Stats)"
-    image: ../../res/avatar.jpg
 
 citation: false
 comments: false

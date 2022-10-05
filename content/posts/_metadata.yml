@@ -9,7 +9,13 @@ page-layout: article
 format:
   html:
     number-sections: true
-    
+
+website:
+  open-graph:
+    image: ../../res/avatar.jpg
+  twitter-card:
+    image: ../../res/avatar.jpg
+
 comments:
   giscus:
     repo: ma-riviere/ma-riviere.me

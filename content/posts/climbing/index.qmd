@@ -11,6 +11,12 @@ date: 2022-04-19
 abstract: |
   This is simply a transposition of Ethan Rosenthal's [article on Bayesian Rock Climbing](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
 
+website:
+  open-graph:
+    description: "A translation in R of Ethan Rosenthal's article on Bayesian Rock Climbing: Stan code was edited to use within-chain parallelization and compiler optimizations for faster sampling"
+  twitter-card:
+    description: "A translation in R of Ethan Rosenthal's article on Bayesian Rock Climbing: Stan code was edited to use within-chain parallelization and compiler optimizations for faster sampling"
+
 categories:
   - "Statistics"
   - "ML"

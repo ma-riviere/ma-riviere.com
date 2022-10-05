@@ -28,14 +28,16 @@ about:
       icon: envelope
       url: "mailto:marc.aurele.riviere+site@gmail.com"
       aria-label: "Email"
-    - text: "{{< fa user-tie >}} CV"
+    - text: "{{< fa user-tie >}} Resume"
       url: res/cv.pdf
-      aria-label: "My CV (PDF)"
+      aria-label: "My resume (PDF)"
 
 website:
   open-graph:
+    image: res/avatar.jpg
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   twitter-card:
+    image: res/avatar.jpg
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
 
 filters:

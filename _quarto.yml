@@ -19,7 +19,6 @@ website:
   image: res/avatar.jpg
   favicon: res/favicon.png
   site-url: 'https://ma-riviere.me'
-  # site-path: '/'
   repo-url: https://github.com/ma-riviere/ma-riviere.me
   repo-branch: main
   repo-actions: [source, issue]
@@ -33,11 +32,11 @@ website:
   ### Sharing ###
   open-graph:
     image-width: 300
-    image-height: 300
     locale: en_US
   twitter-card:
     creator: "@mariviere1"
     card-style: summary
+    image-width: 300
   
   ### Search ###
   search:

@@ -9,13 +9,21 @@ author:
   - "[LIR3S (Bourgogne, France)](http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm)"
   - "[IHRIM (Lyon, France)](https://ihrim.ens-lyon.fr/)"
 
-image: logo.png
+image: feature.png
 image-alt: "Logo illustrating the TETMOST project"
 
 description: "Developping a haptic interface and studying ways to intuitively represent images and Art pieces haptically for Visually Impaired People."
 
 abstract: |
   The goal of the TETMOST project was to make Art more accessible to Visually Impaired People. The project had two main axes: (1) researching and experimenting to find the most intuitive way to transcode an image into haptic sensations whilst retaining its original meaning and peculiarities, and (2) developping a novel haptic interface allowing VIP to explore images with their fingers.
+
+website:
+  open-graph:
+    image: feature.png
+    description: "Developping a haptic interface to intuitively represent images and Art to VIP"
+  twitter-card:
+    image: feature.png
+    description: "Developping a haptic interface to intuitively represent images and Art to VIP"
 
 categories:
   - "Assistive Devices"

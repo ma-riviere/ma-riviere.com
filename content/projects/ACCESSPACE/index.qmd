@@ -8,10 +8,18 @@ author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
 
-image: logo.png
+image: feature.png
 image-alt: "Logo of the ACCESSPACE project"
 
 description: "Developing a wearable vibro-tactile electronic Orientation & Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models."
+
+website:
+  open-graph:
+    image: feature.png
+    description: "Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP"
+  twitter-card:
+    image: feature.png
+    description: "Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP"
 
 abstract: |
   The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user's location & surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.

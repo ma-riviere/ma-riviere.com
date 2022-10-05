@@ -8,9 +8,15 @@ author:
 
 doi: "Caen, France"
 
-description: "An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors  ({{< iconify twemoji flag-france >}})"
+description: "An overview of the [ACCESSPACE](/content/projects/ACCESSPACE) project's progress and future endeavors ({{< iconify twemoji flag-france >}})"
 
 abstract: "In this short talk, I present the various models and tools we have developed or adapted during the [ACCESSPACE](/content/projects/ACCESSPACE) project."
+
+website:
+  open-graph:
+    description: "Presenting an overview of the ACCESSPACE project's progress and future endeavors"
+  twitter-card:
+    description: "Presenting an overview of the ACCESSPACE project's progress and future endeavors"
 
 categories:
   - "Assistive Devices"

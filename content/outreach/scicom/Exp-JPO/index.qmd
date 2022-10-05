@@ -8,7 +8,13 @@ author:
 
 doi: "Rouen, France"
 
-description: "Presenting my doctoral research project to highschool students during the College Fair of Fall 2017 ({{< iconify twemoji flag-france >}})"
+description: "Presenting my doctoral research project to highschool students during the College Fair of 2017 ({{< iconify twemoji flag-france >}})"
+
+website:
+  open-graph:
+    description: "Presenting my doctoral research project to highschool students during the College Fair of 2017"
+  twitter-card:
+    description: "Presenting my doctoral research project to highschool students during the College Fair of 2017"
 
 categories:
   - "Assistive Devices"

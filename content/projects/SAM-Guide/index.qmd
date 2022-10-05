@@ -11,10 +11,18 @@ author:
   - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
   - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
 
-image: header.jpg
+image: feature.png
 image-alt: "Image illustrating the SAM-Guide project"
 
 description: "Designing an efficient multi-modal interface to help VIP during spatial interactions and sports."
+
+website:
+  open-graph:
+    image: feature.png
+    description: "An efficient multi-modal interface to help VIP during spatial interactions and sports"
+  twitter-card:
+    image: feature.png
+    description: "An efficient multi-modal interface to help VIP during spatial interactions and sports"
 
 abstract: |
   SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g. laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements.
@@ -34,7 +42,7 @@ categories:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-![](header.jpg){.preview-image fig-alt="Banner illustrating the SAM-Guide project"}
+![](feature.png){.preview-image fig-alt="Banner illustrating the SAM-Guide project"}
 
 # Introduction
 ***
