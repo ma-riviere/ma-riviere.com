@@ -19,18 +19,21 @@ project_pkgs <- c(
   "stringr",
   "purrr",
   "tidyr",
-  "dplyr",
+  "Tidyverse/dplyr",
   "lubridate",
   "Rdatatable/data.table",
   "dtplyr",
-  "dbplyr",
+  "Tidyverse/dbplyr",
   "DBI",
   "RSQLite",
   "duckdb",
   "fuzzyjoin",
+  "broom",
+  "datawizard",
+  "nplyr",
   
   ### Model fitting
-  "ma-riviere/cmdstanr",
+  "stan-dev/cmdstanr",
   "brms",
   
   ### Model analysis

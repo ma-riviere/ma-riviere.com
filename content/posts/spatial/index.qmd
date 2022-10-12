@@ -170,9 +170,8 @@ rides <- (purrr::map_dfr(
     fs::dir_ls(data_path, glob = "*.csv"),
     \(file) fread(file, na.strings = "")
   )
+  |> setkey(ride_id)
 )
-
-setkey(rides, ride_id)
 ```
 
 ```{r}
@@ -201,7 +200,7 @@ knitr::opts_chunk$set(connection = "rides_con")
 duckdb::duckdb_read_csv(
   rides_con, 
   "rides", 
-  fs::dir_ls(here::here("res", "data", "stations"), glob = "*.csv")
+  fs::dir_ls(data_path, glob = "*.csv")
 )
 ```
 
@@ -239,12 +238,12 @@ DBI::dbGetQuery(rides_con, "SELECT * FROM rides ORDER BY ride_id", n = getOption
 #| label: long_dt
 #| time_it: true
 
-rides_l <- melt(
-  rides,
-  measure = measure(way, value.name, pattern = "(end|start).*(name|id|lat|lng)")
+rides_l <- (melt(
+    rides,
+    measure = measure(way, value.name, pattern = "(end|start).*(name|id|lat|lng)")
+  )
+  |> setkey(ride_id, id)
 )
-
-setkey(rides_l, ride_id, id)
 ```
 
 ```{r}
@@ -259,23 +258,21 @@ if (!interactive()) TIMES$long_dt
 ```{r}
 #| label: long_dtp
 #| time_it: true
+#| output: false
 
-rides_l.dtp <- (pivot_longer(
+(pivot_longer(
     rides,
     matches("^end_|^start_"),
     names_pattern = "(end|start).*(name|id|lat|lng)",
     names_to = c("way", ".value")
   ) 
   |> as.data.table()
+  |> setkey(ride_id, id)
 )
-
-setkey(rides_l.dtp, ride_id, id)
 ```
 
 ```{r}
 #| echo: false
-
-rm(rides_l.dtp)
 
 if (!interactive()) TIMES$long_dtp
 ```
@@ -341,19 +338,13 @@ duckdb::duckdb_register(rides_con, "rides_l", rides_l) # As a VIEW
 #| time_it: true
 #| output: false
 
-(dplyr::tbl(rides_con, "rides") 
+(tbl(rides_con, "rides") 
   |> pivot_longer(
     matches("^end_|^start_"),
     names_pattern = "(end|start).*(name|id|lat|lng)", 
     names_to = c("way", ".value")
   )
-  |> dplyr::copy_to(
-    rides_con, 
-    df = _, 
-    "rides_l_dbp",
-    temporary = FALSE,
-    indexes = list("ride_id", "id")
-  )
+  |> compute("rides_l.dbp")
 )
 ```
 
@@ -371,18 +362,18 @@ if (!interactive()) TIMES$long_dbp
 #| echo: false
 #| column: page
 #| output: asis
-#| total_rows: !expr dplyr::tbl(rides_con, "rides_l_dbp") |> summarize(N = n()) |> collect() |> pull(N)
+#| total_rows: !expr tbl(rides_con, "rides_l.dbp") |> summarize(N = n()) |> collect() |> pull(N)
 
-dplyr::tbl(rides_con, "rides_l") |> head(10) |> collect()
+tbl(rides_con, "rides_l") |> head(10) |> collect()
 ```
 
 <!-- Cleaning --->
 
-```{sql echo = FALSE}
+```{sql connection = "rides_con", echo = FALSE}
 -- We'll use rides_l for the rest of the document
 
-DROP TABLE IF EXISTS rides;
-DROP TABLE IF EXISTS rides_l_dbp;
+DROP TABLE IF EXISTS "rides";
+-- DROP TABLE IF EXISTS "rides_l.dbp";
 ```
 
 ```{r}
@@ -437,9 +428,7 @@ CREATE FUNCTION dec5(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(
 #| label: clean_dt
 #| time_it: true
 
-rides_l_clean <- rides_l[decp(lat) & decp(lng), ]
-
-setkey(rides_l_clean, ride_id)
+rides_l_clean <- rides_l[decp(lat) & decp(lng), ] |> setkey(ride_id)
 ```
 
 ```{r}
@@ -453,20 +442,18 @@ if (!interactive()) TIMES$clean_dt
 
 ```{r}
 #| label: clean_dtp
+#| output: false
 #| time_it: true
 
-rides_l_clean.dtp <- (rides_l
+(rides_l
   |> filter(decp(lat) & decp(lng))
   |> as.data.table()
+  |> setkey(ride_id)
 )
-
-setkey(rides_l_clean.dtp, ride_id)
 ```
 
 ```{r}
 #| echo: false
-
-rm(rides_l_clean.dtp)
 
 if (!interactive()) TIMES$clean_dtp
 ```
@@ -495,18 +482,12 @@ Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but sinc
 
 ```{r}
 #| label: clean_dbp
-#| time_it: true
 #| output: false
+#| time_it: true
 
-(dplyr::tbl(rides_con, "rides_l") 
+(tbl(rides_con, "rides_l.dbp") 
   |> filter(if_all(c(lat, lng), \(x) decp(x)))
-  |> dplyr::copy_to(
-    rides_con, 
-    df = _, 
-    "rides_l_clean_dbp",
-    temporary = FALSE,
-    indexes = list("ride_id", "id")
-  )
+  |> compute("rides_l_clean.dbp")
 )
 ```
 
@@ -515,11 +496,6 @@ Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but sinc
 
 if (!interactive()) TIMES$clean_dbp
 ```
-
-```{sql connection = "rides_con", echo = FALSE}
-DROP TABLE IF EXISTS rides_l_clean_dbp
-```
-
 
 :::
 
@@ -552,7 +528,7 @@ rides_l_clean[(is.na(lat) | is.na(lng)) & (!is.na(id) | !is.na(name)), ]
 
 #### SQL (DuckDB)
 
-```{sql output.var = "rides_l_clean_lost.sql"}
+```{sql connection = "rides_con", output.var = "rides_l_clean_lost.sql"}
 SELECT * FROM rides_l_clean 
 WHERE ((lat IS NULL) OR (lng IS NULL) 
   AND (NOT((id IS NULL)) OR NOT((name IS NULL))))
@@ -564,11 +540,8 @@ WHERE ((lat IS NULL) OR (lng IS NULL)
 ```{r}
 #| eval: false
 
-(dplyr::tbl(rides_con, "rides_l_clean")
-  |> filter(
-    if_any(matches("lat$|lng$"), \(v) is.na(v)) & 
-    (!is.na(id) | !is.na(name))
-  )
+(tbl(rides_con, "rides_l_clean.dbp")
+  |> filter(if_any(c(lat, lng), \(v) is.na(v)) & (!is.na(id) | !is.na(name)))
   |> collect()
 )
 ```
@@ -596,20 +569,17 @@ rm(rides_l_clean_lost.sql)
 #### data.table
 
 ```{r}
-#| eval: false
-
-rides_l_clean[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name)), ]
+rides_l_clean[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name))] -> rides_l_clean_unk
 ```
 
 
 #### dtplyr
 
 ```{r}
-rides_l_clean_unk <- (rides_l_clean 
-  |> filter(
-    if_all(matches("lat$|lng$"), \(v) !is.na(v)) & 
-    (is.na(id) | is.na(name))
-  )
+#| eval: false
+
+(rides_l_clean 
+  |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
   |> as.data.table()
 )
 ```
@@ -634,12 +604,9 @@ SELECT COUNT(*) AS N FROM rides_l_clean_unk
 ```{r}
 #| eval: false
 
-(dplyr::tbl(rides_con, "rides_l_clean") 
-  |> filter(
-    if_all(matches("lat$|lng$"), \(v) !is.na(v)) & 
-    (is.na(id) | is.na(name))
-  )
-  |> collect()
+(tbl(rides_con, "rides_l_clean.dbp") 
+  |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
+  |> compute("rides_l_clean.dbp")
 )
 ```
 
@@ -669,19 +636,16 @@ Although, if we look at the original dataset (before filtering the inaccurate co
 #### data.table
 
 ```{r}
-#| eval: false
-
-rides_l[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name)), ]
+rides_l[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name))] -> rides_l_unk
 ```
 
 #### dtplyr
 
 ```{r}
-rides_l_unk <- (rides_l
-  |> filter(
-    if_all(matches("lat$|lng$"), \(v) !is.na(v)) & 
-    (is.na(id) | is.na(name))
-  )
+#| eval: false
+
+(rides_l
+  |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
   |> as.data.table()
 )
 ```
@@ -706,12 +670,9 @@ SELECT COUNT(*) AS N FROM rides_l_unk
 ```{r}
 #| eval: false
 
-(dplyr::tbl(rides_con, "rides_l") 
-  |> filter(
-    if_all(matches("lat$|lng$"), \(v) !is.na(v)) & 
-    (is.na(id) | is.na(name))
-  )
-  |> collect()
+(tbl(rides_con, "rides_l.dbp") 
+  |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
+  |> compute("rides_l_unk.dbp")
 )
 ```
 
@@ -741,6 +702,7 @@ There were `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id`
 # Stations data
 ***
 
+<!-------------------------------------------------------->
 ## Creating `stations` data
 
 First, we need to assemble a dataset linking each unique station `id` (and `name`) with a set of coordinates (here, we use the average `lat` & `lng`)
@@ -750,17 +712,14 @@ First, we need to assemble a dataset linking each unique station `id` (and `name
 #### data.table
 
 ```{r}
-stations_clean <- ((rides_l_clean
+stations_clean <- (rides_l_clean
   |> na.omit(cols = c("id", "name"))
-  |> dcast(id + name ~ ., fun.aggregate = list(min, max, mean), value.var = c("lat", "lng"))
-  |> bind(x, setcolorder(x, c("id", "name", str_subset(names(x), "lat_|_lng"))))
+  |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
+  |> bind(x, setcolorder(x, c("id", "name", str_subset(colnames(x), "lat_|_lng"))))
   |> unique(by = "id")
-  )
+  |> setkey(id)
 )
-
-setkey(stations_clean, id)
 ```
-
 
 #### SQL (DuckDB)
 
@@ -785,14 +744,15 @@ GROUP BY id, name;
 ```{r}
 #| output: false
 
-(dplyr::tbl(rides_con, "rides_l_clean")
+(tbl(rides_con, "rides_l_clean.dbp")
   |> filter(!is.na(id), !is.na(name))
-  |> group_by(id, name)
-  |> summarize(across(c(lat, lng), list(min, max, mean), .names = "{.col}_{.fn}"))
-  |> ungroup()
-  |> distinct(id, .keep_all = TRUE)
+  |> group_by(id)
+  |> summarize(
+    name = first(name),
+    across(c(lat, lng), list(min, max, mean), .names = "{.col}_{.fn}")
+  )
   |> arrange(id)
-  |> collect()
+  |> compute("stations_clean.dbp")
 )
 ```
 
@@ -850,13 +810,12 @@ matched_clean <- (fuzzyjoin::geo_inner_join(
     distance_col = "dist"
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(names(rides_l_clean), dist)
+  |> select(colnames(rides_l_clean), dist)
   |> arrange(ride_id)
   |> drop_na(ride_id, id, name)
-  |> setDT()
+  |> as.data.table()
+  |> setkey(ride_id, id)
 )
-
-setkey(matched_clean, ride_id, id)
 ```
 
 ```{r}
@@ -873,17 +832,6 @@ There are `r rides_l_unk_clean_count$N` entries from `rides_l_clean` that could 
 **Creating the `haversine` distance function:**
 
 <!-- The difference in output between SQL & R might be from the fact that rides_l_clean.sql has ~40 more rows --->
-
-```{sql connection = "rides_con", echo = FALSE, eval = FALSE}
--- Based on [this SO answer](https://stackoverflow.com/a/72730460/14637239)
-
-CREATE FUNCTION haversine(lat1, lng1, lat2, lng2) 
-    AS 2 * 6335 * sqrt(
-       pow(sin((radians(lat2) - radians(lat1)) / 2), 2)
-       + cos(radians(lat1)) * cos(radians(lat2))
-       * pow(sin((radians(lng2) - radians(lng1)) / 2), 2)
-    );
-```
 
 ```{sql connection = "rides_con"}
 CREATE FUNCTION haversine(lat1, lng1, lat2, lng2) 
@@ -955,15 +903,13 @@ First, we need to recompute the `stations` data from `rides_l` (i.e. rides data 
 #### data.table
 
 ```{r}
-stations <- ((rides_l
+stations <- (rides_l
   |> na.omit(cols = c("id", "name"))
-  |> dcast(id + name ~ ., fun.aggregate = list(min, max, mean), value.var = c("lat", "lng"))
-  |> bind(x, setcolorder(x, c("id", "name", str_subset(names(x), "lat_|_lng"))))
+  |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
+  |> bind(x, setcolorder(x, c("id", "name", str_subset(colnames(x), "lat_|_lng"))))
   |> unique(by = "id")
-  )
+  |> setkey(id, name)
 )
-
-setkey(stations, id, name)
 ```
 
 
@@ -984,6 +930,23 @@ WHERE (NOT((id IS NULL))) AND (NOT((name IS NULL)))
 GROUP BY id, name;
 ```
 
+
+#### dbplyr
+
+```{r}
+#| output: false
+
+(tbl(rides_con, "rides_l.dbp")
+  |> filter(!is.na(id), !is.na(name))
+  |> group_by(id)
+  |> summarize(
+    name = first(name),
+    across(c(lat, lng), list(min, max, mean), .names = "{.col}_{.fn}")
+  )
+  |> arrange(id)
+  |> compute("stations.dbp")
+)
+```
 
 :::
 
@@ -1046,13 +1009,12 @@ matched <- (fuzzyjoin::geo_inner_join(
     distance_col = "dist"
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(names(rides_l), dist)
+  |> select(colnames(rides_l), dist)
   |> arrange(ride_id)
   |> drop_na(ride_id, id, name)
-  |> setDT()
+  |> as.data.table()
+  |> setkey(ride_id, id)
 )
-
-setkey(matched, ride_id, id)
 ```
 
 ```{r}
@@ -1145,7 +1107,6 @@ rm(stations)
 rm(stations_diff)
 rm(matched)
 rm(matched.sql)
-gc()
 ```
 
 
@@ -1160,6 +1121,14 @@ Finally, we need to update the original dataset (`rides_l_clean`) with the entri
 <!-------------------------------------------------------->
 ## Merging the two datasets
 
+:::{.callout-note}
+We can update the initial (cleaned) data with the position-matched in two ways:  
+- A `join` + `coalesce`: join the two tables and merge the two `name` & `id` columns (new and old) together.  
+- A `rows_patch`: only replace the missing values (`name` & `id`) by matching new and old rows together.
+:::
+
+### join + coalesce
+
 :::{.panel-tabset}
 
 #### data.table
@@ -1168,9 +1137,9 @@ Finally, we need to update the original dataset (`rides_l_clean`) with the entri
 #| label: merge_dt
 #| time_it: true
 
-matched_clean[rides_l_clean, on = setdiff(names(rides_l_clean), c("id", "name"))
-            ][, `:=`(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
-            ][, nms, env = list(nms = as.list(names(rides_l_clean)))] -> rides_l_merged
+matched_clean[rides_l_clean, on = setdiff(colnames(rides_l_clean), c("id", "name"))
+            ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
+            ][, nms, env = list(nms = I(colnames(rides_l_clean)))] -> rides_l_merged
 
 # setkey(rides_l_merged, ride_id, id)
 ```
@@ -1186,56 +1155,25 @@ if (!interactive()) TIMES$merge_dt
 
 ```{r}
 #| label: merge_dtp
+#| output: false
 #| time_it: true
 
-rides_l_merged.dtp <- (dplyr::right_join(
+(right_join(
     matched_clean,
     rides_l_clean,
-    by = setdiff(names(rides_l_clean), c("id", "name"))
+    by = setdiff(colnames(rides_l_clean), c("id", "name"))
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
   |> select(-matches("\\.x|\\.y"), -dist)
-  |> collect()
+  |> as.data.table()
+  # |> setkey(ride_id, id)
 )
-
-# setkey(rides_l_merged.dtp, ride_id, id)
 ```
 
 ```{r}
 #| echo: false
-
-rm(rides_l_merged.dtp)
 
 if (!interactive()) TIMES$merge_dtp
-```
-
-
-#### dplyr
-
-:::{.callout-tip}
-`dplyr` has the neat `rows_*` series of functions that can easily replace or patch (i.e. only replace missing values) the content of one dataset by another, when the rows match, which is quite fast !
-:::
-
-```{r}
-#| label: merge_dp
-#| time_it: true
-
-rides_l_merged.dp <- (dplyr::rows_patch(
-    rides_l_clean,
-    matched_clean[, -"dist"],
-    by = setdiff(names(rides_l_clean), c("name", "id")),
-    unmatched = "ignore"
-  )
-)
-```
-
-```{r}
-#| echo: false
-
-rm(rides_l_merged.dp)
-rm(matched_clean)
-
-if (!interactive()) TIMES$merge_dp
 ```
 
 
@@ -1273,14 +1211,88 @@ FROM (
 );
 ```
 
-```{sql connection = "rides_con", echo = FALSE}
-DROP TABLE IF EXISTS matched_clean;
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$merge_sql
+```
+
+
+#### dbplyr
+
+```{r}
+#| label: merge_dbp
+#| output: false
+#| time_it: true
+
+(right_join(
+    tbl(rides_con, "matched_clean"),
+    tbl(rides_con, "rides_l_clean.dbp"),
+    by = tbl(rides_con, "rides_l_clean.dbp") |> select(-name, -id) |> colnames()
+  ) 
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
+  |> select(-matches("\\.x|\\.y"), -dist)
+  |> compute("rides_l_merged.dbp")
+)
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$merge_sql
+if (!interactive()) TIMES$merge_dbp
+```
+
+:::
+
+### rows_patch
+
+:::{.panel-tabset}
+
+#### dplyr
+
+```{r}
+#| label: merge_dp_row
+#| output: false
+#| time_it: true
+
+rows_patch(
+  as.data.frame(rides_l_clean),
+  as.data.frame(matched_clean) |> select(-dist),
+  by = setdiff(colnames(rides_l_clean), c("name", "id")),
+  unmatched = "ignore"
+)
+```
+
+```{r}
+#| echo: false
+
+rm(matched_clean)
+rm(rides_l_clean)
+
+if (!interactive()) TIMES$merge_dp_row
+```
+
+#### dbplyr
+
+```{r}
+#| label: merge_dbp_row
+#| eval: false
+#| output: false
+#| time_it: true
+
+rows_patch(
+  tbl(rides_con, "rides_l_clean.dbp"),
+  tbl(rides_con, "matched_clean") |> select(-dist),
+  by = tbl(rides_con, "rides_l_clean.dbp") |> select(-name, -id) |> colnames(),
+  unmatched = "ignore"
+) |> compute("rides_l_merged.rows_dbp")
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+if (!interactive()) TIMES$merge_dbp_row
 ```
 
 :::
@@ -1322,9 +1334,8 @@ To finish, let's pivot the resulting data back into the wider format it was orig
 #| time_it: true
 
 rides_merged <- dcast(
-  rides_l_merged, 
-  ... ~ way, 
-  value.var = c("name", "id", "lat", "lng"), sep = "_station_"
+  rides_l_merged, ... ~ way, sep = "_station_",
+  value.var = c("name", "id", "lat", "lng")
 )
 ```
 
@@ -1339,22 +1350,18 @@ if (!interactive()) TIMES$wide_dt
 
 ```{r}
 #| label: wide_dtp
+#| output: false
 #| time_it: true
 
-rides_merged.dtp <- (rides_l_merged 
-  |> pivot_wider(
-    names_from = "way", 
-    values_from = c("name", "id", "lat", "lng"), 
-    names_glue = "{way}_station_{.value}"
-  )
-  |> collect()
-)
+pivot_wider(
+  rides_l_merged, names_from = "way", names_glue = "{way}_station_{.value}",
+  values_from = c("name", "id", "lat", "lng")
+) |> as.data.table()
 ```
 
 ```{r}
 #| echo: false
 
-rm(rides_merged.dtp)
 rm(rides_l_merged)
 
 if (!interactive()) TIMES$wide_dtp
@@ -1379,15 +1386,30 @@ FROM rides_l_merged
 GROUP BY ride_id, rideable_type, started_at, ended_at, member_casual
 ```
 
-```{sql connection = "rides_con", echo = FALSE}
-DROP TABLE IF EXISTS rides_merged;
-DROP TABLE IF EXISTS rides_l_merged;
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$wide_sql
+```
+
+
+#### dbplyr
+
+```{r}
+#| label: wide_dbp
+#| output: false
+#| time_it: true
+
+pivot_wider(
+  tbl(rides_con, "rides_l_merged"), names_from = "way", 
+  names_glue = "{way}_station_{.value}", values_from = c("name", "id", "lat", "lng")
+) |> compute("rides_merged.dbp")
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$wide_sql
+if (!interactive()) TIMES$wide_dbp
 ```
 
 :::
@@ -1404,7 +1426,7 @@ rides_merged
 
 
 :::{.callout-note}
-We get less than the original (wide format) ~6 millions entries due to having removed (filtered) the entries with bad coordinates.
+We get less entries than in the original (wide format) dataset due to having removed (filtered) the entries with bad coordinates.
 :::
 
 ```{r}
