@@ -63,6 +63,27 @@ config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
+#| echo: false
+#| eval: false
+
+renv::install(c(
+  "here",
+  "fs",
+  "pipebind",
+  "Rdatatable/data.table", # >= 1.14.5
+  "Tidyverse/dplyr",
+  "tidyr",
+  "dtplyr",
+  "DBI",
+  "Tidyverse/dbplyr",
+  "duckdb",
+  "stringr",
+  "Tidyverse/purrr", # >= 1.0.0 or dev version (0.9000)
+  "fuzzyjoin"
+))
+```
+
+```{r}
 #| output: false
 
 library(here)        # File path management
@@ -166,10 +187,9 @@ data_path <- here::here("res", "data", "stations")
 #| label: loading_dtp
 #| time_it: true
 
-rides <- (purrr::map_dfr(
-    fs::dir_ls(data_path, glob = "*.csv"),
-    \(file) fread(file, na.strings = "")
-  )
+rides <- (
+  map(dir_ls(data_path, glob = "*.csv"), \(f) fread(f, na.strings = ""))
+  |> list_rbind()
   |> setkey(ride_id)
 )
 ```
@@ -184,7 +204,7 @@ if (!interactive()) TIMES$loading_dtp
 #### SQL (DuckDB)
 
 ```{r}
-rides_con <- DBI::dbConnect(duckdb::duckdb())
+rides_con <- dbConnect(duckdb(), ":memory:")
 ```
 
 ```{r}
@@ -194,24 +214,19 @@ knitr::opts_chunk$set(connection = "rides_con")
 ```
 
 ```{r}
-#| label: loading_sql1
+#| label: loading_sql
+#| output: false
 #| time_it: true
 
-duckdb::duckdb_read_csv(
-  rides_con, 
-  "rides", 
-  fs::dir_ls(data_path, glob = "*.csv")
-)
-```
+duckdb_read_csv(rides_con, "rides", dir_ls(data_path, glob = "*.csv"))
 
-```{sql connection = "rides_con", label = "loading_sql2", time_it = TRUE}
-CREATE INDEX ride_idx ON rides (ride_id)
+db_create_index(rides_con, "rides", "ride_id")
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$loading_sql1 + TIMES$loading_sql2
+if (!interactive()) TIMES$loading_sql
 ```
 
 :::
@@ -224,7 +239,7 @@ if (!interactive()) TIMES$loading_sql1 + TIMES$loading_sql2
 #| column: screen-inset
 #| total_rows: !expr DBI::dbGetQuery(rides_con, "SELECT COUNT(*) AS N FROM rides")$N
 
-DBI::dbGetQuery(rides_con, "SELECT * FROM rides ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
+dbGetQuery(rides_con, "SELECT * FROM rides ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
 <!-------------------------------------------------------->
@@ -323,9 +338,9 @@ We can reuse an existinf `df` and directly add it (or bind it as a view) to the 
 ```{r}
 #| eval: false
 
-DBI::dbWriteTable(rides_con, "rides_l", rides_l) # As a TABLE
+dbWriteTable(rides_con, "rides_l", rides_l) # As a TABLE
 
-duckdb::duckdb_register(rides_con, "rides_l", rides_l) # As a VIEW
+duckdb_register(rides_con, "rides_l", rides_l) # As a VIEW
 ```
 
 :::
@@ -346,6 +361,8 @@ duckdb::duckdb_register(rides_con, "rides_l", rides_l) # As a VIEW
   )
   |> compute("rides_l.dbp")
 )
+
+db_create_index(rides_con, "rides_l.dbp", "id")
 ```
 
 ```{r}
@@ -369,16 +386,12 @@ tbl(rides_con, "rides_l") |> head(10) |> collect()
 
 <!-- Cleaning --->
 
-```{sql connection = "rides_con", echo = FALSE}
--- We'll use rides_l for the rest of the document
-
-DROP TABLE IF EXISTS "rides";
--- DROP TABLE IF EXISTS "rides_l.dbp";
-```
-
 ```{r}
 #| echo: false
 
+## We'll use rides_l for the rest of the document
+
+dbRemoveTable(rides_con, "rides")
 rm(rides)
 ```
 
@@ -445,11 +458,7 @@ if (!interactive()) TIMES$clean_dt
 #| output: false
 #| time_it: true
 
-(rides_l
-  |> filter(decp(lat) & decp(lng))
-  |> as.data.table()
-  |> setkey(ride_id)
-)
+rides_l |> filter(decp(lat) & decp(lng)) |> as.data.table() |> setkey(ride_id)
 ```
 
 ```{r}
@@ -489,6 +498,8 @@ Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but sinc
   |> filter(if_all(c(lat, lng), \(x) decp(x)))
   |> compute("rides_l_clean.dbp")
 )
+
+db_create_index(rides_con, "rides_l_clean.dbp", "ride_id")
 ```
 
 ```{r}
@@ -712,6 +723,9 @@ First, we need to assemble a dataset linking each unique station `id` (and `name
 #### data.table
 
 ```{r}
+#| label: stations_clean_dt
+#| time_it: true
+
 stations_clean <- (rides_l_clean
   |> na.omit(cols = c("id", "name"))
   |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
@@ -721,9 +735,15 @@ stations_clean <- (rides_l_clean
 )
 ```
 
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$stations_clean_dt
+```
+
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con"}
+```{sql connection = "rides_con", label = "stations_clean_sql", time_it = TRUE}
 CREATE TABLE stations_clean AS 
 SELECT DISTINCT on(id)
   id, name
@@ -738,11 +758,18 @@ WHERE (NOT((id IS NULL))) AND (NOT((name IS NULL)))
 GROUP BY id, name;
 ```
 
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$stations_clean_sql
+```
 
 #### dbplyr
 
 ```{r}
 #| output: false
+#| label: stations_clean_dbp
+#| time_it: true
 
 (tbl(rides_con, "rides_l_clean.dbp")
   |> filter(!is.na(id), !is.na(name))
@@ -754,6 +781,14 @@ GROUP BY id, name;
   |> arrange(id)
   |> compute("stations_clean.dbp")
 )
+
+db_create_index(rides_con, "stations_clean.dbp", "id")
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$stations_clean_dbp
 ```
 
 :::
@@ -765,7 +800,7 @@ GROUP BY id, name;
 #| output: asis
 #| total_rows: !expr DBI::dbGetQuery(rides_con, "SELECT COUNT(*) AS N FROM stations_clean")$N
 
-DBI::dbGetQuery(rides_con, "SELECT * FROM stations_clean ORDER BY id", n = getOption("knitr.max_rows_print"))
+dbGetQuery(rides_con, "SELECT * FROM stations_clean ORDER BY id", n = getOption("knitr.max_rows_print"))
 ```
 
 <!-------------------------------------------------------->
@@ -903,6 +938,9 @@ First, we need to recompute the `stations` data from `rides_l` (i.e. rides data 
 #### data.table
 
 ```{r}
+#| label: stations_dt
+#| time_it: true
+
 stations <- (rides_l
   |> na.omit(cols = c("id", "name"))
   |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
@@ -912,10 +950,16 @@ stations <- (rides_l
 )
 ```
 
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$stations_dt
+```
+
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con"}
+```{sql connection = "rides_con", label = "stations_sql", time_it = TRUE}
 CREATE TABLE stations AS 
 SELECT DISTINCT on(id)
   id, name
@@ -930,11 +974,19 @@ WHERE (NOT((id IS NULL))) AND (NOT((name IS NULL)))
 GROUP BY id, name;
 ```
 
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$stations_sql
+```
+
 
 #### dbplyr
 
 ```{r}
 #| output: false
+#| label: stations_dbp
+#| time_it: true
 
 (tbl(rides_con, "rides_l.dbp")
   |> filter(!is.na(id), !is.na(name))
@@ -946,6 +998,14 @@ GROUP BY id, name;
   |> arrange(id)
   |> compute("stations.dbp")
 )
+
+db_create_index(rides_con, "stations.dbp", "id")
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$stations_dbp
 ```
 
 :::
@@ -1059,7 +1119,7 @@ matched
 
 
 :::{.callout-note}
-Notice how fast the procedure is, with close to 1 million matches (even if the results are mostly garbage).
+Notice how fast the procedure is, even if the results are mostly "garbage".
 :::
 
 **What's inside those matches ?**
@@ -1089,16 +1149,13 @@ In the end, those three are the only three position-based matches we should reas
 
 <!-- Cleaning to free up memory --->
 
-```{sql connection = "rides_con", echo = FALSE}
-DROP TABLE IF EXISTS rides_l;
-DROP TABLE IF EXISTS stations;
-DROP TABLE IF EXISTS rides_l_unk;
-DROP TABLE IF EXISTS rides_l_clean_unk;
-```
-
 ```{r}
 #| echo: false
 #| output: false
+
+tables_to_remove <- c("rides_l", "stations", "rides_l_unk", "rides_l_clean_unk")
+
+walk(tables_to_remove, \(x) dbRemoveTable(rides_con, x, fail_if_missing = FALSE))
 
 rm(rides_l)
 rm(rides_l_unk)
@@ -1141,7 +1198,7 @@ matched_clean[rides_l_clean, on = setdiff(colnames(rides_l_clean), c("id", "name
             ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
             ][, nms, env = list(nms = I(colnames(rides_l_clean)))] -> rides_l_merged
 
-# setkey(rides_l_merged, ride_id, id)
+setkey(rides_l_merged, ride_id)
 ```
 
 ```{r}
@@ -1166,7 +1223,7 @@ if (!interactive()) TIMES$merge_dt
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
   |> select(-matches("\\.x|\\.y"), -dist)
   |> as.data.table()
-  # |> setkey(ride_id, id)
+  |> setkey(ride_id)
 )
 ```
 
@@ -1234,6 +1291,8 @@ if (!interactive()) TIMES$merge_sql
   |> select(-matches("\\.x|\\.y"), -dist)
   |> compute("rides_l_merged.dbp")
 )
+
+db_create_index(rides_con, "rides_l_merged.dbp", "ride_id")
 ```
 
 ```{r}
@@ -1280,12 +1339,14 @@ if (!interactive()) TIMES$merge_dp_row
 #| output: false
 #| time_it: true
 
-rows_patch(
-  tbl(rides_con, "rides_l_clean.dbp"),
-  tbl(rides_con, "matched_clean") |> select(-dist),
-  by = tbl(rides_con, "rides_l_clean.dbp") |> select(-name, -id) |> colnames(),
-  unmatched = "ignore"
-) |> compute("rides_l_merged.rows_dbp")
+(tbl(rides_con, "rides_l_clean.dbp")
+ |> rows_patch(
+    tbl(rides_con, "matched_clean") |> select(-dist),
+    by = tbl(rides_con, "rides_l_clean.dbp") |> select(-name, -id) |> colnames(),
+    unmatched = "ignore"
+  )
+  |> compute("rides_l_merged.rows_dbp")
+)
 ```
 
 ```{r}
@@ -1333,9 +1394,9 @@ To finish, let's pivot the resulting data back into the wider format it was orig
 #| label: wide_dt
 #| time_it: true
 
-rides_merged <- dcast(
-  rides_l_merged, ... ~ way, sep = "_station_",
-  value.var = c("name", "id", "lat", "lng")
+rides_merged <- (rides_l_merged
+  |> dcast(... ~ way, sep = "_station_", value.var = c("name", "id", "lat", "lng"))
+  |> setkey(ride_id)
 )
 ```
 
@@ -1353,10 +1414,14 @@ if (!interactive()) TIMES$wide_dt
 #| output: false
 #| time_it: true
 
-pivot_wider(
-  rides_l_merged, names_from = "way", names_glue = "{way}_station_{.value}",
-  values_from = c("name", "id", "lat", "lng")
-) |> as.data.table()
+(rides_l_merged
+ |> pivot_wider(
+    names_from = "way", names_glue = "{way}_station_{.value}",
+    values_from = c("name", "id", "lat", "lng")
+  )
+  |> as.data.table()
+  |> setkey(ride_id)
+)
 ```
 
 ```{r}
@@ -1400,10 +1465,15 @@ if (!interactive()) TIMES$wide_sql
 #| output: false
 #| time_it: true
 
-pivot_wider(
-  tbl(rides_con, "rides_l_merged"), names_from = "way", 
-  names_glue = "{way}_station_{.value}", values_from = c("name", "id", "lat", "lng")
-) |> compute("rides_merged.dbp")
+(tbl(rides_con, "rides_l_merged")
+ |> pivot_wider(
+    names_from = "way", names_glue = "{way}_station_{.value}", 
+    values_from = c("name", "id", "lat", "lng")
+  )
+  |> compute("rides_merged.dbp")
+)
+
+db_create_index(rides_con, "rides_merged.dbp", "ride_id")
 ```
 
 ```{r}
@@ -1432,7 +1502,7 @@ We get less entries than in the original (wide format) dataset due to having rem
 ```{r}
 #| echo: false
 
-DBI::dbDisconnect(rides_con)
+DBI::dbDisconnect(rides_con, shutdown = TRUE)
 ```
 
 ***
