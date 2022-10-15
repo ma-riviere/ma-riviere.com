@@ -1,16 +1,5 @@
 [
   {
-    "listing": "/content/outreach/index.html",
-    "items": [
-      "/content/outreach/scicom/Exp-JPO/index.html",
-      "/content/outreach/scicom/Exp/index.html",
-      "/content/outreach/talks/RUNN19/index.html",
-      "/content/outreach/talks/FR-NO/index.html",
-      "/content/outreach/talks/SKERI/index.html",
-      "/content/outreach/talks/ICCHP18/index.html"
-    ]
-  },
-  {
     "listing": "/content/posts/index.html",
     "items": [
       "/content/posts/spatial/index.html",
