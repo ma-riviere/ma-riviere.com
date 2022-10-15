@@ -53,8 +53,34 @@ config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
+#| echo: false
+#| eval: false
+
+renv::install(c(
+  "here",
+  "pipebind",
+  "fs",
+  "readr",
+  "Rdatatable/data.table",
+  "Tidyverse/dplyr",
+  "tidyr",
+  "Tidyverse/purrr",
+  "stringr",
+  "lubridate",
+  "cmdstanr",
+  "posterior",
+  "ggplot2",
+  "patchwork",
+  "ggridges",
+  "bayesplot"
+))
+```
+
+```{r}
 library(here)        # File path management
 library(pipebind)    # Piping goodies
+library(fs)          # File & path manipulation
+library(readr)       # Reading files
 
 library(data.table)  # Data wrangling (fast)
 library(dplyr)       # Data wrangling
@@ -197,11 +223,18 @@ matches_data_path <- here::here("res", "data", "tennis")
 
 
 ```{r}
-matches_data_raw <- purrr::map_dfr(
-  fs::dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv"),
-  \(f) readr::read_csv(f, num_threads = 32, show_col_types = FALSE) |> 
-    select(tourney_date, tourney_level, round, winner_id, winner_name, loser_id, loser_name, score)
-) |> mutate(tourney_date = lubridate::ymd(tourney_date))
+#| output: false
+
+matches_data_raw <- (dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv")
+  |> map(\(f) read_csv(f, num_threads = 32, show_col_types = FALSE) |> 
+      select(
+        tourney_date, tourney_level, round, 
+        winner_id, winner_name, loser_id, loser_name, score
+      )
+  )
+  |> list_rbind()
+  |> mutate(tourney_date = lubridate::ymd(tourney_date))
+)
 ```
 
 Filtering matches based on the [original posts' data processing](https://github.com/martiningram/mcmc_runtime_comparison/blob/main/sackmann.py):
@@ -253,7 +286,7 @@ player_data_path <- here::here("res", "data", "tennis", "atp_players.csv")
 ```{r}
 #| output: asis
 
-(player_data_raw <- readr::read_csv(player_data_path) 
+(player_data_raw <- read_csv(player_data_path) 
  |> mutate(player_name = str_c(name_first, name_last, sep = " "))
  |> select(player_id, player_name)
 )
@@ -418,7 +451,7 @@ tennis_mod_fit <- tennis_mod_exe$sample(
 
 fts <- setDT(tennis_mod_fit$time()$chains)[, .(Chain = chain_id, Time = total)]
 
-mean_ft <- fts[, lubridate::dseconds(mean(Time))] |> stringr::str_extract("~.* minutes")
+mean_ft <- fts[, lubridate::dseconds(mean(Time))] |> str_extract("~.* minutes")
 ```
 
 
@@ -503,8 +536,8 @@ Getting our Posterior Predictions into long format and joining the result with `
 (player_skills <- as.data.table(tennis_mod_fit$draws(variables = "player_skills") |> 
     bind(x, subset_draws(x, "player_skills", regex = T, draw = sample.int(ndraws(x), size = 500))))
    [, .(player_skills = list(value)), by = variable
-  ][, `:=`(player_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL)
-  ][, `:=`(skill_mean = sapply(player_skills, mean), skill_sd = sapply(player_skills, sd))
+  ][, let(player_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL)
+  ][, let(skill_mean = sapply(player_skills, mean), skill_sd = sapply(player_skills, sd))
   ][as.data.table(player_data), on = "player_idx", nomatch = NULL
   ][order(-skill_mean), .(player_name, player_id, player_idx, skill_mean, skill_sd, player_skills)]
 )
@@ -543,7 +576,6 @@ Plotting the `player_skills` posteriors of the _top 10_ players:
 #| fig.height: 14
 #| fig.width: 8
 #| output: asis
-#| classes: preview-image
 
 ridgeline_plot(head(player_skills, 10), "player_name")
 ```
