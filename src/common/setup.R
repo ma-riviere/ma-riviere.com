@@ -76,6 +76,5 @@ setup_project <- function(...) {
   ## Stan section ##
   log.main("[SETUP] Loading Stan-related scripts ...")
   
-  stan_scripts <- fs::dir_ls(path = here::here(com_path, "stan"), type = "file", glob = "*.R")
-  purrr::walk(stan_scripts, \(f) source(f, verbose = FALSE, echo = FALSE))
+  source(here::here(com_path, "stan.R"), verbose = FALSE, echo = FALSE)
 }

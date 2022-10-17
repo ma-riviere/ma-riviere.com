@@ -9,7 +9,9 @@ author:
 date: 2022-04-19
 
 abstract: |
-  This is simply a transposition of Ethan Rosenthal's [article on Bayesian Rock Climbing](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
+  This is a transposition of Ethan Rosenthal's [article on Bayesian Rock Climbing](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
+  
+  I included several *translation* options for the data processing, such as `data.table`, `dtplyr`, or `dbplyr` with a `DuckDB` backend, with timings.
 
 website:
   open-graph:
@@ -55,15 +57,19 @@ config <- config::get(file = here("_config.yml"))
 library(here)        # File path management
 library(pipebind)    # Piping goodies
 
-library(data.table)  # Data wrangling (fast)
 library(dplyr)       # Data wrangling
-library(dtplyr)      # data.table backend for dplyr
-library(dbplyr)      # SQL backend for dplyr
-library(DBI)         # Database connection
-library(RSQLite)     # SQLite interface
+library(tidyr)       # Data wrangling (extras)
 library(purrr)       # Manipulating lists
 library(stringr)     # Manipulating strings
 library(lubridate)   # Manipulating dates
+
+library(data.table)  # Data wrangling (fast)
+library(dtplyr)      # data.table backend for dplyr
+
+library(DBI)         # Database management
+library(RSQLite)     # SQLite R interface
+library(duckdb)      # DuckDB R interface
+library(dbplyr)      # SQL backend for dplyr
 
 library(cmdstanr)    # R interface with Stan
 library(posterior)   # Wrangling Stan model ouputs
@@ -125,7 +131,7 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 ```{r}
 #| code-fold: true
 #| code-summary: Setting up knitr's engine for CmdStan
-#| file: !expr here("src", "common", "stan", "cmdstan_engine.R")
+#| file: !expr here("src", "common", "knitr", "knitr_cmdstan_engine.R")
 ```
 
 ***
@@ -187,23 +193,36 @@ knitr::knit_hooks$set(time_it = local({
 # Data
 ***
 
-<!------------------------------------------------------------------------------>
-## Loading from SQL
-
 ```{r}
 #| echo: false
 
-climb_path <- here::here("res", "data", "climbers.sqlite")
+sqlite_path <- here("res", "data", "climbers.sqlite")
+duckdb_path <- here("res", "data", "climbers.db")
 ```
+
+
+<!------------------------------------------------------------------------------>
+## Extracting the data from SQL
+
+Connecting to the .sqlite DB:
 
 ```{r}
-con <- DBI::dbConnect(RSQLite::SQLite(), dbname = climb_path)
+sqlite_con <- dbConnect(SQLite(), dbname = sqlite_path)
 ```
 
+Moving the `sqlite` content to a new instance of `DuckDB` (which I prefer working with):
 
-:::{.callout-note}
-Comparing raw SQL and `dbplyr`:
-:::
+```{r}
+duck_con <- dbConnect(duckdb(), dbdir = duckdb_path)
+
+walk(
+  c("ascent", "grade", "method"), # Tables I need
+  \(x) dbWriteTable(duck_con, x, dbReadTable(sqlite_con, x), overwrite = TRUE)
+)
+
+dbDisconnect(sqlite_con, shutdown = TRUE)
+```
+
 
 ::: {.panel-tabset}
 
@@ -214,20 +233,29 @@ Comparing raw SQL and `dbplyr`:
 :::
 
 ```{r}
-#| label: dbplyr
+#| label: load_dbp
+#| output: false
 #| time_it: true
 
-climb_dbp <- (reduce(
+(reduce(
     list(
-      tbl(con, "ascent") |> filter(country %like% "USA") |> 
-        select(user_id, grade_id, method_id, crag, climb_type, route_name = name, ascent_date = date),
-      tbl(con, "grade") |> select(grade_id = id, usa_routes, usa_boulders), 
-      tbl(con, "method") |> select(method_id = id, method_name = name)
+      (tbl(duck_con, "ascent") # 1
+        |> filter(country %like% "USA") 
+        |> mutate(route_id = str_c(
+            str_replace_all(crag, ' ', '_'), "__", 
+            str_replace_all(name, ' ', '_'), "__", 
+            if_else(climb_type == 1, 'boulder', 'rope')
+          )
+        ) 
+        |> select(user_id, route_id, climb_type, grade_id, method_id, ascent_date = date)
+      ),
+      tbl(duck_con, "grade") |> select(grade_id = id, usa_routes, usa_boulders), # 2
+      tbl(duck_con, "method") |> select(method_id = id, method_name = name) # 3
     ),
-    .f = \(acc, i) left_join(acc, i)
-  ) 
+    \(acc, i) left_join(acc, i)
+  )
   |> select(-grade_id, -method_id)
-  |> collect()
+  |> compute("climb_dbp")
 )
 ```
 
@@ -235,19 +263,19 @@ climb_dbp <- (reduce(
 #| echo: false
 #| output: asis
 
-climb_dbp
-
-TIMES$dbplyr
+TIMES$load_dbp
 ```
 
 ### SQL
 
-```{sql connection = "con", time_it = TRUE, label = "SQL", output.var = "climb_sql"}
+```{sql connection = "duck_con", time_it = TRUE, label = "load_sql", output.var = "climb_df"}
 SELECT
   ascent.user_id
-  , ascent.crag
-  , ascent.climb_type
-  , ascent.name AS route_name
+  , REPLACE(ascent.crag, ' ', '_')
+      || '__' || REPLACE(ascent.name, ' ', '_')
+      || '__' || CASE WHEN ascent.climb_type = 1 THEN 'boulder' ELSE 'rope' END
+      AS route_id
+  , ascent.climb_type as climb_type
   , ascent.date AS ascent_date
   , grade.usa_routes
   , grade.usa_boulders
@@ -262,19 +290,17 @@ WHERE ascent.country = 'USA'
 #| echo: false
 #| output: asis
 
-climb_sql
-
-TIMES$SQL
+TIMES$load_sql
 ```
 
 :::
 
 ```{r}
 #| echo: false
+#| output: asis
 
-DBI::dbDisconnect(con)
+climb_df
 ```
-
 
 <!------------------------------------------------------------------------------>
 ## Processing
@@ -285,7 +311,7 @@ route_ratings <- c(
   map(str_c("5.", 10:15), \(x) str_c(x, letters[1:4])) |> unlist()
 )
 
-bouldering_grades <- c(paste0("V", 0:20))
+bouldering_grades <- c(str_c("V", 0:20))
 
 ## Mode for non-numerical data
 mode <- \(x) levels(x)[which.max(tabulate(match(x, levels(x))))]
@@ -300,102 +326,48 @@ Comparing `data.table`, `dplyr`, and `dtplyr`:
 ### data.table
 
 ```{r}
-climb_dt <- as.data.table(climb_dbp)
+#| code-fold: true
+#| code-summary: threshold_ascents_dt
 
-threshold_ascents_dt <- function(old_dt, limit = 20) {
-  new_dt <- old_dt[, if(.N >= limit) .SD, by = user_id
-                 ][, if(.N >= limit) .SD, by = route_id]
+climb_dt <- setDT(climb_df) |> setkey(route_id, user_id)
+
+threshold_ascents_dt <- function(old, lim = 20) {
+  new <- old[, if(.N >= lim) .SD, by = user_id][, if(.N >= lim) .SD, by = route_id]
   
-  if (!identical(dim(old_dt), dim(new_dt))) 
-    threshold_ascents_dt(new_dt, limit)
-  else return(new_dt)
+  if (nrow(old) != nrow(new)) threshold_ascents_dt(new, lim)
+  else return(new)
 }
 ```
 
 ```{r}
-#| label: dt
+#| label: processing_dt
 #| time_it: true
 #| output: asis
 
-climb_dt <- climb_dt[,
-    `:=`(
-      route_id = str_c(
-        str_replace_all(crag, ' ', '_'), "__", 
-        str_replace_all(route_name, ' ', '_'), "__", 
-        fifelse(climb_type == 1, 'boulder', 'rope')
-      ),
-      ascent_date = lubridate::as_datetime(ascent_date),
+climb_dt2 <- climb_dt[
+    climb_dt[, .I[which.min(ascent_date)], by = .(user_id, route_id)]$V1
+  ][, let(
+      ascent_date = as_datetime(ascent_date),
       usa_boulders = factor(usa_boulders, levels = bouldering_grades),
       usa_routes = factor(usa_routes, levels = route_ratings),
       label = as.integer(method_name %chin% c("Onsight", "Flash"))
     )
-  ][climb_dt[, .I[which.min(ascent_date)], by = .(user_id, route_id)]$V1
-  ][, `:=`(route_rating = mode(usa_routes), bouldering_grade = mode(usa_boulders)),
+  ][, let(route_rating = mode(usa_routes), bouldering_grade = mode(usa_boulders)),
       by = route_id
   ]
 
-(dt_clean <- threshold_ascents_dt(climb_dt)
-   [, route_idx := .GRP, keyby = route_id
-  ][, user_idx := .GRP, keyby = user_id
-  ][, -c("usa_routes", "usa_boulders")]
-)
+dt_clean <- threshold_ascents_dt(climb_dt2)[
+    , route_idx := frank(route_id, ties.method = "dense")
+  ][, user_idx := frank(user_id, ties.method = "dense")
+  ][order(user_idx), -c("usa_routes", "usa_boulders", "method_name")]
 ```
 
 ```{r}
 #| echo: false
 
-TIMES$dt
+TIMES$processing_dt
 ```
 
-
-### dplyr
-
-```{r}
-threshold_ascents_df <- function(old_df, limit = 20) {
-  new_df <- old_df |> 
-    group_by(user_id) |> filter(n() >= limit) |> 
-    group_by(route_id) |> filter(n() >= limit) |> 
-    ungroup()
-  
-  if (!identical(dim(old_df), dim(new_df))) 
-    threshold_ascents_df(new_df, limit)
-  else return(new_df)
-}
-```
-
-```{r}
-#| label: dplyr
-#| time_it: true
-#| output: asis
-
-(df_clean <- climb_dbp
-  |> mutate(
-    route_id = str_c(
-      str_replace_all(crag, ' ', '_'), "__", 
-      str_replace_all(route_name, ' ', '_'), "__", 
-      if_else(climb_type == 1, 'boulder', 'rope')
-    ),
-    ascent_date = lubridate::as_datetime(ascent_date),
-    usa_boulders = factor(usa_boulders, levels = bouldering_grades),
-    usa_routes = factor(usa_routes, levels = route_ratings)
-  )
-  |> group_by(route_id) 
-  |> mutate(route_rating = mode(usa_routes), bouldering_grade = mode(usa_boulders)) 
-  |> ungroup()
-  |> select(-c(usa_routes, usa_boulders))
-  |> mutate(label = as.integer(method_name %in% c("Onsight", "Flash")))
-  |> group_by(user_id, route_id) |> slice(which.min(ascent_date)) |> ungroup()
-  |> threshold_ascents_df(limit = 20) |> ungroup()
-  |> group_by(route_id) |> mutate(route_idx = cur_group_id()) |> ungroup()
-  |> group_by(user_id) |> mutate(user_idx = cur_group_id()) |> ungroup()
-)
-```
-
-```{r}
-#| echo: false
-
-TIMES$dplyr
-```
 
 ### dtplyr
 
@@ -404,55 +376,159 @@ TIMES$dplyr
 :::
 
 ```{r}
-threshold_ascents_dtp <- function(old_df, limit = 20) {
-  new_df <- lazy_dt(old_df) |> 
-    group_by(user_id) |> filter(n() >= limit) |> 
-    group_by(route_id) |> filter(n() >= limit) |> 
-    ungroup() |> collect()
+#| code-fold: true
+#| code-summary: threshold_ascents_dtp
+
+threshold_ascents_dtp <- function(old, lim = 20, collect = TRUE) {
+  if (collect) old <- collect(old)
+  new <- old |> lazy_dt() |> 
+    group_by(user_id) |> filter(n() >= lim) |> ungroup() |> 
+    group_by(route_id) |> filter(n() >= lim) |> ungroup()
   
-  if (!identical(dim(old_df), dim(new_df)))
-    threshold_ascents_dtp(new_df, limit)
-  else return(new_df)
+  if (collect) new <- collect(new)
+  
+  if (nrow(collect(old)) != nrow(collect(new))) threshold_ascents_dtp(new, lim)
+  else return(lazy_dt(new))
 }
 ```
 
 ```{r}
-#| label: dtplyr
+#| label: processing_dtp
 #| time_it: true
-#| output: asis
+#| output: false
 
-(dtp_clean <- climb_dbp
-  |> lazy_dt()
+(lazy_dt(climb_df)
+  |> group_by(user_id, route_id)
+  |> slice(which.min(ascent_date))
+  |> ungroup()
   |> mutate(
-    route_id = str_c(
-      str_replace_all(crag, ' ', '_'), "__", 
-      str_replace_all(route_name, ' ', '_'), "__", 
-      if_else(climb_type == 1, 'boulder', 'rope')
-    ),
-    ascent_date = lubridate::as_datetime(ascent_date),
+    ascent_date = as_datetime(ascent_date),
     usa_boulders = factor(usa_boulders, levels = bouldering_grades),
     usa_routes = factor(usa_routes, levels = route_ratings)
   )
   |> group_by(route_id) 
-  |> mutate(route_rating = mode(usa_routes), bouldering_grade = mode(usa_boulders)) 
+  |> mutate(
+    route_rating = mode(usa_routes), 
+    bouldering_grade = mode(usa_boulders)
+  ) 
   |> ungroup()
-  |> select(-c(usa_routes, usa_boulders))
   |> mutate(label = as.integer(method_name %in% c("Onsight", "Flash")))
-  |> group_by(user_id, route_id) |> slice(which.min(ascent_date)) |> ungroup()
-  |> threshold_ascents_dtp(limit = 20) |> ungroup()
-  |> group_by(route_id) |> mutate(route_idx = cur_group_id()) |> ungroup()
-  |> group_by(user_id) |> mutate(user_idx = cur_group_id()) |> ungroup()
-  |> collect()
+  |> select(-c(usa_routes, usa_boulders, method_name))
+  |> threshold_ascents_dtp()
+  |> mutate(route_idx = dense_rank(route_id))
+  |> mutate(user_idx = dense_rank(user_id))
+  |> as.data.table()
 )
 ```
 
 ```{r}
 #| echo: false
 
-TIMES$dtplyr
+TIMES$processing_dtp
+```
+
+
+### dbplyr
+
+:::{.callout-note}
+`dbplyr` automatically translates `dplyr` code into `SQL`
+:::
+
+```{r}
+#| code-fold: true
+#| code-summary: threshold_ascents_dbp
+#| output: false
+
+db_create_index(duck_con, "climb_dbp", "route_id")
+db_create_index(duck_con, "climb_dbp", "user_id")
+
+threshold_ascents_dbp <- function(old, lim = 20, collect = TRUE) {
+  if(collect) old <- collect(old)
+  new <- old |> 
+    group_by(user_id) |> filter(n() >= lim) |> ungroup() |> 
+    group_by(route_id) |> filter(n() >= lim) |> ungroup()
+  
+  if (nrow(collect(old)) != nrow(collect(new))) threshold_ascents_dbp(new, lim)
+  else if (collect) {
+    copy_to(duck_con, new, name = "dbp_temp")
+    return(tbl(duck_con, "dbp_temp"))
+  }
+  else return(new)
+}
+```
+
+Since DuckDB doesn't have a `mode` function, we need to find another way to obtain the most common `route_rating` and `bouldering_grade` for each `route_id`. I do this by creating a reference table for each unique `route_id` for each of the two ratings, and then update the original data's rows based on them.
+
+```{r}
+#| output: false
+#| label: processing_dbp1
+#| time_it: true
+
+(tbl(duck_con, "climb_dbp")
+  |> select(route_id, route_rating = usa_routes)
+  |> filter(route_rating %in% route_ratings)
+  |> group_by(route_id)
+  |> count(route_rating)
+  |> slice_max(n, with_ties = FALSE, na_rm = TRUE)
+  |> ungroup()
+  |> select(-n)
+  |> compute("dbp_rr")
+)
+
+(tbl(duck_con, "climb_dbp")
+  |> select(route_id, bouldering_grade = usa_boulders)
+  |> filter(bouldering_grade %in% bouldering_grades)
+  |> group_by(route_id)
+  |> count(bouldering_grade)
+  |> slice_max(n, with_ties = FALSE, na_rm = TRUE)
+  |> ungroup()
+  |> select(-n)
+  |> compute("dbp_bg")
+)
+```
+
+```{r}
+#| output: false
+#| label: processing_dbp2
+#| time_it: true
+
+(tbl(duck_con, "climb_dbp")
+  |> rename(route_rating = usa_routes, bouldering_grade = usa_boulders)
+  |> mutate(label = as.integer(method_name %in% c("Onsight", "Flash")))
+  |> select(-method_name)
+  |> group_by(user_id, route_id)
+  |> slice_min(ascent_date, with_ties = FALSE)
+  |> ungroup()
+  |> mutate(route_rating = NA, bouldering_grade = NA)
+  |> rows_patch(tbl(duck_con, "dbp_rr"), by = "route_id", unmatched = "ignore")
+  |> rows_patch(tbl(duck_con, "dbp_bg"), by = "route_id", unmatched = "ignore")
+  |> threshold_ascents_dbp()
+  |> mutate(
+    route_idx = dense_rank(route_id),
+    user_idx = dense_rank(user_id),
+    ascent_date = to_timestamp(ascent_date)
+  )
+  |> compute("dbp_clean")
+)
+```
+
+```{r}
+#| echo: false
+
+TIMES$processing_dbp1 + TIMES$processing_dbp2
 ```
 
 :::
+
+<!-------- RESULTS -------->
+
+```{r}
+#| echo: false
+#| output: asis
+
+dt_clean
+```
+
 
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>
@@ -767,28 +843,159 @@ Comparing `data.table` and `dplyr` (using the *rvar* format from `posterior`):
 ### data.table
 
 ```{r}
-#| label: pp_dt
+#| label: time_pp_dt
 #| time_it: true
 
+draws_df <- mod_stan$draws(variables = "route_difficulty")
+
 unique(dt_clean[, .(route_idx, bouldering_grade, route_rating, climb_type)], by = "route_idx")[
-  as.data.table(mod_stan$draws(variables = "route_difficulty") |> 
-   bind(x, subset_draws(x, "route_difficulty", regex = T, draw = sample.int(ndraws(x), size = 500))))
-   [, .(route_difficulty = list(value)), by = variable
-  ][, `:=`(route_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL)],
+  as.data.table(subset_draws(
+    draws_df, "route_difficulty", regex = TRUE, 
+    draw = sample.int(ndraws(draws_df), size = 500)
+  ))[, .(route_difficulty = list(value)), by = variable
+  ][, let(route_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL)],
   on = "route_idx", nomatch = NULL
-][, `:=`(
+][, let(
   bouldering_grade = factor(bouldering_grade, levels = bouldering_grades), 
   route_rating = factor(route_rating, levels = route_ratings)
-)][order(route_idx)] -> pp
+)][order(route_idx)] -> pp_dt
+```
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: Alternative syntax
+
+draws_dt <- (mod_stan$draws(variables = "route_difficulty")
+  |> bind(x, subset_draws(
+      draws_df, "route_difficulty", regex = TRUE, 
+      draw = sample.int(ndraws(draws_df), size = 500)
+    )
+  )
+  |> as.data.table()
+  |> DT(, .(route_difficulty = list(value)), by = variable)
+  |> DT(, let(route_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL))
+)
+
+(dt_clean[, .(route_idx, bouldering_grade, route_rating, climb_type)] 
+  |> unique(by = "route_idx")
+  |> DT(draws_dt, on = "route_idx", nomatch = NULL)
+  |> DT(, let(
+      bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
+      route_rating = factor(route_rating, levels = route_ratings)
+    )
+  )
+  |> DT(order(route_idx))
+)
 ```
 
 ```{r}
 #| echo: false
 #| output: asis
 
-pp
+pp_dt
 
-TIMES$pp_dt
+TIMES$time_pp_dt
+```
+
+
+### dtplyr
+
+```{r}
+#| label: time_pp_dtp
+#| time_it: true
+
+draws_df <- mod_stan$draws(variables = "route_difficulty")
+
+pp_dtp <- (lazy_dt(dt_clean)
+  |> select(route_idx, bouldering_grade, route_rating, climb_type)
+  |> distinct(route_idx, .keep_all = TRUE)
+  |> inner_join(
+      subset_draws(
+        draws_df, "route_difficulty", regex = TRUE, 
+        draw = sample.int(ndraws(draws_df), size = 500)
+      ) 
+      |> lazy_dt()
+      |> group_by(variable)
+      |> summarize(route_difficulty = list(value))
+      |> ungroup()
+      |> mutate(route_idx = as.integer(str_extract(variable, "\\d{1,4}")))
+      |> select(-variable),
+    by = "route_idx"
+  )
+  |> mutate(
+      bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
+      route_rating = factor(route_rating, levels = route_ratings)
+  )
+  |> arrange(route_idx)
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+pp_dtp
+
+TIMES$time_pp_dtp
+```
+
+
+### dbplyr
+
+```{r}
+#| label: time_pp_dbp1
+#| output: false
+#| time_it: true
+
+db_create_index(duck_con, "dbp_clean", "route_idx")
+
+(mod_stan$draws(variables = "route_difficulty") 
+  |> bind(x, subset_draws(
+    x, "route_difficulty", regex = TRUE, 
+    draw = sample.int(ndraws(x), size = 500)) 
+  ) 
+  |> as_draws_df()
+  |> as.data.frame()
+  |> pivot_longer(everything(), names_to = "route_idx", names_pattern = ".*\\[(\\d{1,4})\\]")
+  |> copy_to(duck_con, df = _, "draws", overwrite = TRUE)
+)
+
+(tbl(duck_con, "dbp_clean")
+  |> select(route_idx, bouldering_grade, route_rating, climb_type)
+  |> distinct(route_idx, .keep_all = TRUE)
+  |> inner_join(tbl(duck_con, "draws"), by = "route_idx")
+  |> arrange(route_idx)
+  |> compute("pp_dbp")
+)
+```
+
+```{r}
+#| label: time_pp_dbp2
+#| time_it: true
+#| echo: false
+#| output: asis
+
+(tbl(duck_con, "pp_dbp")
+  |> group_by(route_idx)
+  |> summarize(
+    across(c(bouldering_grade, route_rating, climb_type), first),
+    route_difficulty = list(value)
+  )
+  |> ungroup()
+  |> collect()
+  |> mutate(
+      bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
+      route_rating = factor(route_rating, levels = route_ratings)
+  )
+)
+```
+
+```{r}
+#| echo: false
+
+TIMES$time_pp_dbp1 + TIMES$time_pp_dbp2
 ```
 
 
@@ -797,11 +1004,12 @@ TIMES$pp_dt
 With `dplyr`, we can use the [rvar format](https://mc-stan.org/posterior/articles/rvar.html) to encapsulate the samples from the model, which drastically reduces the size of the samples' data.frame
 
 ```{r}
-#| label: pp_df
+#| label: time_pp_df
 #| time_it: true
 
 pp_df <- (inner_join(
-    select(df_clean, route_idx, bouldering_grade, route_rating, climb_type) |> 
+    as.data.frame(dt_clean) |> 
+      select(route_idx, bouldering_grade, route_rating, climb_type) |> 
       distinct(route_idx, .keep_all = TRUE),
     tidybayes::spread_rvars(mod_stan, route_difficulty[route_idx], ndraws = 500),
     by = "route_idx"
@@ -820,7 +1028,7 @@ pp_df <- (inner_join(
 
 pp_df
 
-TIMES$pp_df
+TIMES$time_pp_df
 ```
 
 :::
@@ -856,7 +1064,7 @@ ridgeline_plot <- function(dat, var) {
 #| fig.width: 8
 #| output: asis
 
-ridgeline_plot(pp[climb_type == 0], "route_rating")
+ridgeline_plot(pp_dt[climb_type == 0], "route_rating")
 ```
 
 **Bouldering Grade:**
@@ -865,8 +1073,15 @@ ridgeline_plot(pp[climb_type == 0], "route_rating")
 #| fig.height: 14
 #| fig.width: 8
 #| output: asis
-#| classes: preview-image
 
-ridgeline_plot(pp[climb_type == 1 & bouldering_grade != "V0"], "bouldering_grade")
+ridgeline_plot(pp_dt[climb_type == 1 & bouldering_grade != "V0"], "bouldering_grade")
 ```
 
+<!--------------------------------->
+
+```{r}
+#| echo: false
+
+DBI::dbDisconnect(duck_con, shutdown = TRUE)
+fs::file_delete(duckdb_path)
+```

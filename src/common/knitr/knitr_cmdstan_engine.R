@@ -15,16 +15,17 @@ knitr::knit_engines$set(
     if (options$eval) {
       if (options$cache) {
         cache_path <- options$cache.path
-        if (length(cache_path) == 0L || is.na(cache_path) || cache_path == "NA") 
+        if (length(cache_path) == 0L || is.na(cache_path) || cache_path == "NA") {
           cache_path <- ""
+        }
         dir <- paste0(cache_path, options$label)
       } else {
         dir <- tempdir()
       }
-      file <- write_stan_file(options$code, dir = dir, force_overwrite = TRUE)
-      mod <- cmdstan_model(
-        file, 
-        cpp_opts <- list(
+      file <- cmdstanr::write_stan_file(options$code, dir = dir, force_overwrite = TRUE)
+      mod <- cmdstanr::cmdstan_model(
+        stan_file = file, 
+        cpp_options = list(
           stan_threads = TRUE
           , STAN_CPP_OPTIMS = TRUE
           , STAN_NO_RANGE_CHECKS = TRUE # The model was already tested
@@ -33,7 +34,8 @@ knitr::knit_engines$set(
           , CXXFLAGS_OPTIM_TBB = "-mtune=native -march=native"
           , CXXFLAGS_OPTIM_SUNDIALS = "-mtune=native -march=native"
         ),
-        stanc_options = list("Oexperimental")
+        stanc_options = list("Oexperimental"),
+        force_recompile = TRUE
       )
       assign(output_var, mod, envir = knitr::knit_global())
     }

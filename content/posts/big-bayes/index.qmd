@@ -149,7 +149,7 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 ```{r}
 #| code-fold: true
 #| code-summary: Setting up knitr's engine for CmdStan
-#| file: !expr here("src", "common", "stan", "cmdstan_engine.R")
+#| file: !expr here("src", "common", "knitr", "knitr_cmdstan_engine.R")
 ```
 
 ***

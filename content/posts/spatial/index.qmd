@@ -9,9 +9,11 @@ author:
 date: 2022-06-18
 
 abstract: |
-  This document was prompted by [this reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is linked to a case study of **Google's Data Analytics certificate**.  
+  This document was prompted by [a reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is apparently linked to a case study of **Google's Data Analytics certificate**.  
   
-  To answer the question in a nutshell: the proposed matching by position won't yield anything with this dataset since the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to another station by proximity alone.
+  To answer the question in a nutshell: the proposed matching by position won't yield anything with this particular dataset. It appears that the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to a known station by proximity alone.
+  
+  This post showcases different solutions/packages to achieve the distance-based matching, with timings to compare their speed.
 
 website:
   open-graph:
@@ -22,7 +24,7 @@ website:
 categories:
   - "Big Data"
   - "Data Manipulation"
-  - "Spatial Data"
+  - "Spatial"
   - "R"
   - "SQL"
 
@@ -37,6 +39,8 @@ format:
 
 :::{.callout-tip}
 You can check the source code by clicking on the **</> Code** button at the top-right.
+
+Data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
 :::
 
 ```{r}
@@ -700,9 +704,7 @@ SELECT COUNT(*) AS N FROM rides_l_unk
 DBI::dbGetQuery(rides_con, "SELECT * FROM rides_l_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-There were `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id` or `name` that could have been filled in the original data, but it seems that all of them disappeared when we filtered the coordinates with less than 4 decimals of precision. It would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place.
-
-
+There are `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id` or `name` that could be filled in the original data. However, it would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place. Attempting to match them by position could lead to wrong matches, or matching one ride to multiple stations.
 
 ::: {.callout-caution appearance="simple" icon=false}
 #### If one were to do the macthing anyway, here's how:

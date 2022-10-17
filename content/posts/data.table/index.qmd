@@ -802,7 +802,7 @@ MT[, !"cyl"] # MT[, -"cyl"]
 In-place:
 
 ```{r}
-copy(MT)[, c("cyl") := NULL][]
+copy(MT)[, cyl := NULL][]
 ```
 
 :::
