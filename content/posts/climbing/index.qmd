@@ -11,7 +11,7 @@ date: 2022-04-19
 abstract: |
   This is a transposition of Ethan Rosenthal's [article on Bayesian Rock Climbing](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R. The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
   
-  I included several *translation* options for the data processing, such as `data.table`, `dtplyr`, or `dbplyr` with a `DuckDB` backend, with timings.
+  Several *translation* options for the data processing were included, such as `data.table`, `dtplyr`, or `dbplyr` with a `DuckDB` backend, with timings to compare their speed.
 
 website:
   open-graph:

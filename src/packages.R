@@ -28,6 +28,7 @@ project_pkgs <- c(
   "RSQLite",
   "duckdb",
   "fuzzyjoin",
+  "sf",
   "broom",
   "datawizard",
   "nplyr",

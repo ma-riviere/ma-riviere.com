@@ -11,9 +11,9 @@ date: 2022-06-18
 abstract: |
   This document was prompted by [a reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is apparently linked to a case study of **Google's Data Analytics certificate**.  
   
-  To answer the question in a nutshell: the proposed matching by position won't yield anything with this particular dataset. It appears that the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to a known station by proximity alone.
+  The gist of it is that the proposed matching won't yield anything with this particular dataset. It appears that the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to a known station by proximity alone.
   
-  This post showcases different solutions/packages to achieve the distance-based matching, with timings to compare their speed.
+  This post showcases different solutions/packages to achieve the distance-based matching, with timings to compare their speed. The SQL (DuckDB) & `dbplyr` solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets.
 
 website:
   open-graph:
@@ -48,7 +48,8 @@ Data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (Ju
 #| eval: false
 #| output: false
 
-## TODO: sf::st_join
+## TODO:
+# - st_centroid() to compute lat/lng_mean
 ```
 
 
@@ -83,7 +84,8 @@ renv::install(c(
   "duckdb",
   "stringr",
   "Tidyverse/purrr", # >= 1.0.0 or dev version (0.9000)
-  "fuzzyjoin"
+  "fuzzyjoin",
+  "sf"
 ))
 ```
 
@@ -94,17 +96,19 @@ library(here)        # File path management
 library(fs)          # File & folder manipulation
 library(pipebind)    # Piping goodies
 
+library(dplyr)       # Manipulating data.frames - core (Tidyverse)
+library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
+library(stringr)     # Manipulating strings (Tidyverse)
+library(purrr)       # Manipulating lists (Tidyverse)
+
 library(data.table)  # Fast data manipulation
-library(dplyr)       # Slower (but more readable) data manipulation
-library(dtplyr)      # data.table backend for dplyr
-library(tidyr)       # Extra convenience functions for data manipulation
+library(dtplyr)      # data.table backend for dplyr (Tidyverse)
 
 library(DBI)         # Database connection
-library(dbplyr)      # SQL back-end for dplyr
+library(dbplyr)      # SQL back-end for dplyr (Tidyverse)
 library(duckdb)      # Quack Stack
 
-library(stringr)     # Manipulating strings
-library(purrr)       # Manipulating lists
+library(sf)          # Spatial data manipulation
 
 library(fuzzyjoin)   # Non-equi joins & coordinates-based joins
 
@@ -177,6 +181,7 @@ knitr::knit_hooks$set(time_it = local({
 #| echo: false
 
 data_path <- here::here("res", "data", "stations")
+duckdb_path <- here::here("res", "data", "stations", "stations.db")
 ```
 
 
@@ -208,7 +213,7 @@ if (!interactive()) TIMES$loading_dtp
 #### SQL (DuckDB)
 
 ```{r}
-rides_con <- dbConnect(duckdb(), ":memory:")
+rides_con <- dbConnect(duckdb(), dbdir = duckdb_path)
 ```
 
 ```{r}
@@ -232,6 +237,22 @@ db_create_index(rides_con, "rides", "ride_id")
 
 if (!interactive()) TIMES$loading_sql
 ```
+
+:::{.callout-note collapse="true"}
+
+##### Alternatively
+
+We can reuse an existing `df` and directly add it (or bind it as a view) to the database:
+
+```{r}
+#| eval: false
+
+dbWriteTable(rides_con, "rides", rides) # As a TABLE
+
+duckdb_register(rides_con, "rides", rides) # As a VIEW
+```
+
+:::
 
 :::
 
@@ -333,23 +354,6 @@ if (!interactive()) TIMES$long_sql
 ```
 
 
-:::{.callout-note collapse="true"}
-
-##### Alternatively
-
-We can reuse an existinf `df` and directly add it (or bind it as a view) to the database:
-
-```{r}
-#| eval: false
-
-dbWriteTable(rides_con, "rides_l", rides_l) # As a TABLE
-
-duckdb_register(rides_con, "rides_l", rides_l) # As a VIEW
-```
-
-:::
-
-
 #### dbplyr
 
 ```{r}
@@ -433,7 +437,7 @@ CREATE FUNCTION decp(x) AS length(str_split(CAST(abs(x) AS VARCHAR(10)), '.')[2]
 ```
 
 ```{sql connection = "rides_con", eval = FALSE, echo = FALSE}
-CREATE FUNCTION dec5(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(.*)[.]', '')) >= 4
+CREATE FUNCTION decp(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(.*)[.]', '')) >= 4 -- Slower
 ```
 
 
@@ -704,7 +708,9 @@ SELECT COUNT(*) AS N FROM rides_l_unk
 DBI::dbGetQuery(rides_con, "SELECT * FROM rides_l_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-There are `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id` or `name` that could be filled in the original data. However, it would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place. Attempting to match them by position could lead to wrong matches, or matching one ride to multiple stations.
+There were `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id` or `name` that could have been filled in the original data, but it seems that all of them disappeared when we filtered the coordinates with less than 4 decimals of precision. It would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place.
+
+
 
 ::: {.callout-caution appearance="simple" icon=false}
 #### If one were to do the macthing anyway, here's how:
@@ -837,11 +843,12 @@ There are `r nrow(rides_l_clean_unk)` entries from `rides_l_clean` that could be
 #| label: match_clean_fuzzy
 #| time_it: true
 
-matched_clean <- (fuzzyjoin::geo_inner_join(
+matched_clean <- (fuzzyjoin::geo_join(
     as.data.frame(rides_l_clean_unk),
     as.data.frame(stations_clean),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
     method = "haversine",
+    mode = "inner",
     unit = "km",
     max_dist = 0.011, # 11 meters
     distance_col = "dist"
@@ -897,6 +904,33 @@ WHERE dist <= 0.011
 #| echo: false
 
 if (!interactive()) TIMES$match_clean_sql
+```
+
+
+#### sf
+
+```{r}
+#| label: match_clean_sf
+#| time_it: true
+
+matched_clean_sf <- (st_join(
+    st_as_sf(rides_l_clean_unk, coords = c("lat", "lng"), remove = FALSE, crs = 4326),
+    st_as_sf(stations_clean, coords = c("lat_mean", "lng_mean"), remove = FALSE, crs = 4326),
+    join = st_is_within_distance,
+    dist = 11, # In meters
+    left = FALSE # Does an inner_join
+  )
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
+  |> select(colnames(rides_l_clean_unk))
+  |> arrange(ride_id)
+  |> st_drop_geometry()
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$match_clean_sf
 ```
 
 :::
@@ -1073,7 +1107,6 @@ matched <- (fuzzyjoin::geo_inner_join(
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
   |> select(colnames(rides_l), dist)
   |> arrange(ride_id)
-  |> drop_na(ride_id, id, name)
   |> as.data.table()
   |> setkey(ride_id, id)
 )
@@ -1105,6 +1138,33 @@ WHERE dist <= 0.011
 #| echo: false
 
 if (!interactive()) TIMES$match_sql
+```
+
+
+#### sf
+
+```{r}
+#| label: match_sf
+#| time_it: true
+
+matched_sf <- (st_join(
+    st_as_sf(rides_l_unk, coords = c("lat", "lng"), remove = FALSE, crs = 4326),
+    st_as_sf(stations, coords = c("lat_mean", "lng_mean"), remove = FALSE, crs = 4326),
+    join = st_is_within_distance,
+    dist = 11, # In meters
+    left = FALSE # Does an inner_join
+  )
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
+  |> select(colnames(rides_l_unk))
+  |> arrange(ride_id)
+  |> st_drop_geometry()
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$match_sf
 ```
 
 :::
@@ -1505,6 +1565,7 @@ We get less entries than in the original (wide format) dataset due to having rem
 #| echo: false
 
 DBI::dbDisconnect(rides_con, shutdown = TRUE)
+fs::file_delete(duckdb_path)
 ```
 
 ***
