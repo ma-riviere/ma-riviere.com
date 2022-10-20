@@ -292,7 +292,7 @@ cookieconsent.run({
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Big Data,Data Manipulation,Spatial,R,SQL" data-listing-date-sort="1655503200000" data-listing-file-modified-sort="1665918061416" data-listing-reading-time-sort="18.81">
+<div class="quarto-post image-right" data-index="0" data-categories="Big Data,Data Manipulation,Spatial,R,SQL" data-listing-date-sort="1655503200000" data-listing-file-modified-sort="1666267331224" data-listing-reading-time-sort="19.835">
 <div class="body">
 <a href="../../content/posts/spatial/index.html">
 <h3 class="no-anchor listing-title">
@@ -321,7 +321,7 @@ SQL
 </div>
 <a href="../../content/posts/spatial/index.html">
 <div class="listing-description">
-<p>This document was prompted by <span>a reddit question</span> on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is apparently linked to a case study of <strong>Google’s Data Analytics certificate</strong>. To answer the question in a nutshell: the proposed matching by position won’t yield anything with this particular dataset. It appears that the locations missing a name or id are missing one <em>because</em> their coordinates lack the precision necessary to be reliably matched to a known station by proximity alone. This post showcases different solutions/packages to achieve the distance-based matching, with timings to compare their speed.</p>
+<p>This document was prompted by <span>a reddit question</span> on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is apparently linked to a case study of <strong>Google’s Data Analytics certificate</strong>. The gist of it is that the proposed matching won’t yield anything with this particular dataset. It appears that the locations missing a name or id are missing one <em>because</em> their coordinates lack the precision necessary to be reliably matched to a known station by proximity alone. This post showcases different solutions/packages to achieve the distance-based matching, with timings to compare their speed. The SQL (DuckDB) &amp; <code>dbplyr</code> solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets.</p>
 </div>
 </a>
 </div>
@@ -331,7 +331,7 @@ SQL
 Jun 18, 2022
 </div>
 <div class="listing-reading-time">
-18 min
+19 min
 </div>
 </a>
 </div>
@@ -424,7 +424,7 @@ May 19, 2022
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Statistics,ML,Bayesian Modeling,Stan,R" data-listing-date-sort="1650319200000" data-listing-file-modified-sort="1666005226078" data-listing-reading-time-sort="16.43">
+<div class="quarto-post image-right" data-index="3" data-categories="Statistics,ML,Bayesian Modeling,Stan,R" data-listing-date-sort="1650319200000" data-listing-file-modified-sort="1666024184973" data-listing-reading-time-sort="16.43">
 <div class="body">
 <a href="../../content/posts/climbing/index.html">
 <h3 class="no-anchor listing-title">
@@ -453,7 +453,7 @@ R
 </div>
 <a href="../../content/posts/climbing/index.html">
 <div class="listing-description">
-<p>This is a transposition of Ethan Rosenthal’s <span>article on Bayesian Rock Climbing</span> to R. The Stan code was updated to use <span>within-chain parallelization</span> and <span>compiler optimization</span> for faster CPU sampling. I included several <em>translation</em> options for the data processing, such as <code>data.table</code>, <code>dtplyr</code>, or <code>dbplyr</code> with a <code>DuckDB</code> backend, with timings.</p>
+<p>This is a transposition of Ethan Rosenthal’s <span>article on Bayesian Rock Climbing</span> to R. The Stan code was updated to use <span>within-chain parallelization</span> and <span>compiler optimization</span> for faster CPU sampling. Several <em>translation</em> options for the data processing were included, such as <code>data.table</code>, <code>dtplyr</code>, or <code>dbplyr</code> with a <code>DuckDB</code> backend, with timings to compare their speed.</p>
 </div>
 </a>
 </div>
