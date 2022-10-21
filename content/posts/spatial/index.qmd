@@ -326,7 +326,7 @@ CREATE TABLE rides_l AS
   SELECT
     ride_id, rideable_type, started_at, ended_at,member_casual
     , 'start' AS way
-    , start_station_name AS name
+    , start_station_name AS "name"
     , start_station_id AS id
     , start_lat AS lat
     , start_lng AS lng
@@ -337,7 +337,7 @@ UNION ALL
   SELECT
     ride_id, rideable_type, started_at, ended_at, member_casual
     , 'end' AS way
-    , end_station_name AS name
+    , end_station_name AS "name"
     , end_station_id AS id
     , end_lat AS lat
     , end_lng AS lng
@@ -625,7 +625,7 @@ SELECT COUNT(*) AS N FROM rides_l_clean_unk
 
 (tbl(rides_con, "rides_l_clean.dbp") 
   |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> compute("rides_l_clean.dbp")
+  |> compute("rides_l_clean_unk.dbp")
 )
 ```
 
@@ -753,8 +753,9 @@ if (!interactive()) TIMES$stations_clean_dt
 
 ```{sql connection = "rides_con", label = "stations_clean_sql", time_it = TRUE}
 CREATE TABLE stations_clean AS 
-SELECT DISTINCT on(id)
-  id, name
+SELECT
+  id
+  , FIRST("name") AS "name"
   , MIN(lat) AS lat_min
   , MAX(lat) AS lat_max
   , AVG(lat) AS lat_mean
@@ -762,8 +763,9 @@ SELECT DISTINCT on(id)
   , MAX(lng) AS lng_max
   , AVG(lng) AS lng_mean
 FROM rides_l_clean
-WHERE (NOT((id IS NULL))) AND (NOT((name IS NULL)))
-GROUP BY id, name;
+WHERE (NOT((id IS NULL))) AND (NOT(("name" IS NULL)))
+GROUP BY id
+ORDER BY id;
 ```
 
 ```{r}
@@ -997,8 +999,9 @@ if (!interactive()) TIMES$stations_dt
 
 ```{sql connection = "rides_con", label = "stations_sql", time_it = TRUE}
 CREATE TABLE stations AS 
-SELECT DISTINCT on(id)
-  id, name
+SELECT
+  id
+  , FIRST("name") AS "name"
   , MIN(lat) AS lat_min
   , MAX(lat) AS lat_max
   , AVG(lat) AS lat_mean
@@ -1006,8 +1009,9 @@ SELECT DISTINCT on(id)
   , MAX(lng) AS lng_max
   , AVG(lng) AS lng_mean
 FROM rides_l
-WHERE (NOT((id IS NULL))) AND (NOT((name IS NULL)))
-GROUP BY id, name;
+WHERE (NOT((id IS NULL))) AND (NOT(("name" IS NULL)))
+GROUP BY id
+ORDER BY id;
 ```
 
 ```{r}
@@ -1501,8 +1505,8 @@ if (!interactive()) TIMES$wide_dtp
 CREATE TABLE rides_merged AS
 SELECT
   ride_id, rideable_type, started_at, ended_at, member_casual,
-  MAX(CASE WHEN (way = 'start') THEN name END) AS start_station_name,
-  MAX(CASE WHEN (way = 'end') THEN name END) AS end_station_name,
+  MAX(CASE WHEN (way = 'start') THEN "name" END) AS start_station_name,
+  MAX(CASE WHEN (way = 'end') THEN "name" END) AS end_station_name,
   MAX(CASE WHEN (way = 'start') THEN id END) AS start_station_id,
   MAX(CASE WHEN (way = 'end') THEN id END) AS end_station_id,
   MAX(CASE WHEN (way = 'start') THEN lat END) AS start_lat,
@@ -1527,7 +1531,7 @@ if (!interactive()) TIMES$wide_sql
 #| output: false
 #| time_it: true
 
-(tbl(rides_con, "rides_l_merged")
+(tbl(rides_con, "rides_l_merged.dbp")
  |> pivot_wider(
     names_from = "way", names_glue = "{way}_station_{.value}", 
     values_from = c("name", "id", "lat", "lng")
