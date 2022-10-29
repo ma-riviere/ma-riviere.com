@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.207">
+<meta name="generator" content="quarto-1.2.247">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -226,7 +226,7 @@ cookieconsent.run({
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         
-    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Bayesian Modeling">Bayesian Modeling <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Big Data">Big Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Data Manipulation">Data Manipulation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="ML">ML <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SQL">SQL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Spatial">Spatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Stan">Stan <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Tidyverse">Tidyverse <span class="quarto-category-count">(1)</span></div><div class="category" data-category="data.table">data.table <span class="quarto-category-count">(1)</span></div></div></div>
+    <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(4)</span></div><div class="category" data-category="Bayesian Modeling">Bayesian Modeling <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Big Data">Big Data <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Data Manipulation">Data Manipulation <span class="quarto-category-count">(2)</span></div><div class="category" data-category="DuckDB">DuckDB <span class="quarto-category-count">(1)</span></div><div class="category" data-category="ML">ML <span class="quarto-category-count">(2)</span></div><div class="category" data-category="R">R <span class="quarto-category-count">(4)</span></div><div class="category" data-category="SQL">SQL <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Spatial">Spatial <span class="quarto-category-count">(1)</span></div><div class="category" data-category="Stan">Stan <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Statistics">Statistics <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Tidyverse">Tidyverse <span class="quarto-category-count">(1)</span></div><div class="category" data-category="data.table">data.table <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <main class="content quarto-banner-title-block" id="quarto-document-content">
 <script>
@@ -292,7 +292,7 @@ cookieconsent.run({
     </div>
 </div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Big Data,Data Manipulation,Spatial,R,SQL" data-listing-date-sort="1655503200000" data-listing-file-modified-sort="1666341938058" data-listing-reading-time-sort="19.865">
+<div class="quarto-post image-right" data-index="0" data-categories="Big Data,Data Manipulation,Spatial,R,SQL,DuckDB" data-listing-date-sort="1655503200000" data-listing-file-modified-sort="1667054669495" data-listing-reading-time-sort="25.02">
 <div class="body">
 <a href="../../content/posts/spatial/index.html">
 <h3 class="no-anchor listing-title">
@@ -318,6 +318,9 @@ R
 <div class="listing-category" onclick="window.quartoListingCategory('SQL'); return false;">
 SQL
 </div>
+<div class="listing-category" onclick="window.quartoListingCategory('DuckDB'); return false;">
+DuckDB
+</div>
 </div>
 <a href="../../content/posts/spatial/index.html">
 <div class="listing-description">
@@ -331,7 +334,7 @@ SQL
 Jun 18, 2022
 </div>
 <div class="listing-reading-time">
-19 min
+25 min
 </div>
 </a>
 </div>
@@ -725,7 +728,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
