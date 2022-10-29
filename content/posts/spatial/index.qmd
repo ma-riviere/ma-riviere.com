@@ -27,6 +27,7 @@ categories:
   - "Spatial"
   - "R"
   - "SQL"
+  - "DuckDB"
 
 format:
   html:
@@ -43,14 +44,16 @@ You can check the source code by clicking on the **</> Code** button at the top-
 Data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
 :::
 
-```{r}
-#| echo: false
-#| eval: false
-#| output: false
+:::{.callout-tip collapse="true"}
 
-## TODO:
-# - st_centroid() to compute lat/lng_mean
-```
+# Expand for Version History
+
+- **V1:** 2022-06-18  
+- **V2:** 2022-10-29   
+  - Added a `DuckDB` + `arrow` example for the data loading.  
+  - Added data cleaning section (removing implausible rides).  
+  - Added `sf`, `dbplyr` and `data.table` (manual) examples for the spatial join.
+:::
 
 
 <!------------------------------------------------------------------------------>
@@ -81,11 +84,12 @@ renv::install(c(
   "dtplyr",
   "DBI",
   "Tidyverse/dbplyr",
+  "arrow",
   "duckdb",
   "stringr",
   "Tidyverse/purrr", # >= 1.0.0 or dev version (0.9000)
   "fuzzyjoin",
-  "sf"
+  "r-spatial/sf"
 ))
 ```
 
@@ -96,17 +100,22 @@ library(here)        # File path management
 library(fs)          # File & folder manipulation
 library(pipebind)    # Piping goodies
 
-library(dplyr)       # Manipulating data.frames - core (Tidyverse)
+library(readr)       # Reading data from files           (Tidyverse)
+library(dplyr)       # Manipulating data.frames - core   (Tidyverse)
 library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
-library(stringr)     # Manipulating strings (Tidyverse)
-library(purrr)       # Manipulating lists (Tidyverse)
+library(stringr)     # Manipulating strings              (Tidyverse)
+library(purrr)       # Manipulating lists                (Tidyverse)
+library(lubridate)   # Manipulating date/time            (Tidyverse)
+
+library(furrr)       # Manipulating lists in parallel
 
 library(data.table)  # Fast data manipulation
-library(dtplyr)      # data.table backend for dplyr (Tidyverse)
+library(dtplyr)      # data.table backend for dplyr      (Tidyverse)
 
 library(DBI)         # Database connection
-library(dbplyr)      # SQL back-end for dplyr (Tidyverse)
+library(dbplyr)      # SQL back-end for dplyr            (Tidyverse)
 library(duckdb)      # Quack Stack
+library(arrow)       # Fast an efficient data reading
 
 library(sf)          # Spatial data manipulation
 
@@ -119,7 +128,7 @@ options(
   knitr.max_rows_print = 10
 )
 
-data.table::setDTthreads(parallel::detectCores(logical = TRUE))
+data.table::setDTthreads(parallel::detectCores())
 ```
 
 :::{.callout-tip collapse="true"}
@@ -180,46 +189,63 @@ knitr::knit_hooks$set(time_it = local({
 ```{r}
 #| echo: false
 
-data_path <- here::here("res", "data", "stations")
-duckdb_path <- here::here("res", "data", "stations", "stations.db")
+data_path <- here("res", "data", "stations")
+files <- dir_ls(data_path, glob = "*.csv")
+duckdb_path <- here(data_path, "stations.db")
 ```
 
 
-<!-------------------------------------------------------->
-## Wide format (original)
+::: {.callout-caution appearance="simple" collapse="true"}
+
+#### Note on the choice of Database: 
+
+A more logical choice would have been `PostGIS`, an extension of `Postgres` for spatial data, which includes native support for geometry/geography data types, as well as methods for distance calculations. However, setting up and interfacing `PostGIS` with R is significantly more convoluted than `DuckDB`, and analytical queries on `PostGIS` are much slower than on `DuckDB`. The only downside to using `DuckDB` for this example is that we will need to define our haversine (i.e. distance-on-a-sphere) function ourselves.
+
+:::
+
 
 :::{.panel-tabset}
+
+#### Tidyverse
+
+```{r}
+#| label: loading_tidy
+#| time_it: true
+#| output: false
+
+map(files, \(f) read_csv(f, show_col_types = FALSE)) |> list_rbind()
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$loading_tidy
+```
+
 
 #### data.table
 
 ```{r}
-#| label: loading_dtp
+#| label: loading_dt
 #| time_it: true
+#| output: false
 
-rides <- (
-  map(dir_ls(data_path, glob = "*.csv"), \(f) fread(f, na.strings = ""))
-  |> list_rbind()
-  |> setkey(ride_id)
-)
+rides <- lapply(files, \(f) fread(f, na.strings = "")) |> rbindlist()
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$loading_dtp
+if (!interactive()) TIMES$loading_dt
 ```
 
 
-#### SQL (DuckDB)
+#### DuckDB + arrow
 
 ```{r}
-rides_con <- dbConnect(duckdb(), dbdir = duckdb_path)
-```
+con_duck <- dbConnect(duckdb(), dbdir = duckdb_path)
 
-```{r}
-#| echo: false
-
-knitr::opts_chunk$set(connection = "rides_con")
+knitr::opts_chunk$set(connection = "con_duck")
 ```
 
 ```{r}
@@ -227,9 +253,10 @@ knitr::opts_chunk$set(connection = "rides_con")
 #| output: false
 #| time_it: true
 
-duckdb_read_csv(rides_con, "rides", dir_ls(data_path, glob = "*.csv"))
-
-db_create_index(rides_con, "rides", "ride_id")
+open_dataset(data_path, format = "csv", factory_options = list(exclude_invalid_files = TRUE)) |> 
+  to_duckdb(con_duck) |> 
+  mutate(across(everything(), \(x) if_else(length(x) == 0, NA, x))) |> 
+  compute("rides")
 ```
 
 ```{r}
@@ -238,37 +265,210 @@ db_create_index(rides_con, "rides", "ride_id")
 if (!interactive()) TIMES$loading_sql
 ```
 
-:::{.callout-note collapse="true"}
-
-##### Alternatively
-
-We can reuse an existing `df` and directly add it (or bind it as a view) to the database:
+<!-- ALTERNATIVES --->
 
 ```{r}
 #| eval: false
+#| code-fold: true
+#| code-summary: Importing using the `duckdb` package directly (slower)
 
-dbWriteTable(rides_con, "rides", rides) # As a TABLE
-
-duckdb_register(rides_con, "rides", rides) # As a VIEW
+duckdb_read_csv(con_duck, "rides", files)
 ```
 
-:::
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: Importing while including the file names in the data
+
+## Courtesy of Tristan Mahr (@tjmahr)
+
+withr::with_dir(
+  dir_path, 
+  dbSendQuery(con,"CREATE TABLE rides AS SELECT * FROM read_csv_auto('*.csv', FILENAME = TRUE)")
+)
+```
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: Saving tables in a custom schema (i.e. not `main`)
+
+dbExecute(con_duck, "CREATE SCHEMA IF NOT EXISTS rds")
+
+duckdb_read_csv(con_duck, "rds.rides", files)
+```
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: Importing an existing `df` from the R env
+
+dbWriteTable(con_duck, "rides", rides_df) # As a TABLE
+
+copy_to(con_duck, rides_df, "rides", indexes = "ride_id")
+
+duckdb_register(con_duck, "rides", rides_df) # As a VIEW
+```
+
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
 #| column: screen-inset
-#| total_rows: !expr DBI::dbGetQuery(rides_con, "SELECT COUNT(*) AS N FROM rides")$N
 
-dbGetQuery(rides_con, "SELECT * FROM rides ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
+rides
 ```
 
+
 <!-------------------------------------------------------->
-## Long format
+<!-------------------------------------------------------->
+# Cleaning implausible rides
+***
+
+We are going to filter out rides that are implausible (too short, too long, made too quickly, ...). Some of the thresholds used here are a bit arbitrary.
+
+::: {.callout-tip appearance="simple" collapse="true"}
+
+#### Defining our distance function (haversine)
+
+```{r}
+haversine <- function(lng1, lat1, lng2, lat2) {
+  as.numeric(
+    6371 * acos(
+      cos(lat1 * pi / 180) * cos(lat2 * pi / 180) * cos((lng1 - lng2) * pi / 180) + 
+      sin(lat1 * pi / 180) * sin(lat2 * pi / 180)
+    ) * 1000
+  )
+}
+```
+
+```{sql connection = "con_duck"}
+CREATE FUNCTION haversine(lng1, lat1, lng2, lat2) 
+  AS 6371 * acos( 
+    cos(radians(lat1)) * cos(radians(lat2)) * cos(radians(lng2) - radians(lng1)) +
+    sin(radians(lat1)) * sin(radians(lat2))
+  ) * 1000;
+```
+
+:::
+
+:::{.panel-tabset}
+
+#### data.table
+
+```{r}
+#| label: rides_clean_dt
+#| time_it: true
+#| output: false
+
+rides_clean <- rides[, let(
+    is_looped = start_station_id == end_station_id | (start_lat == end_lat & start_lng == end_lng), # Does a ride loop on itself
+    ride_dur_min = abs(difftime(ended_at, started_at, units = "mins")) # Ride duration (min)
+  )
+  ][, ride_dist_m := fifelse(
+    is_looped & !is.na(is_looped), 0, 
+    haversine(start_lng, start_lat, end_lng, end_lat) # Ride distance in meters 
+  )
+  ][, ride_speed_km_h := fifelse(
+      ride_dist_m == 0 | ride_dur_min == 0, NA_real_, 
+      (ride_dist_m/1000) / (as.double(ride_dur_min)/60)
+    )
+  ][, .SD, .SDcols = !patterns("_at$")
+  # Rides too fast or too long
+  ][ride_dur_min %between% c(5, 1440)
+  # Loops that are too fast (<= 10 min)
+  ][!(!is.na(is_looped) & is_looped & ride_dur_min <= 10)
+  # Rides too short (<= 100m) or too long (>= 30km)
+  ][is.na(is_looped) | is_looped | is.na(ride_dist_m) | between(ride_dist_m, 100, 30000)
+  # Rides with implausible speeds
+  ][(rideable_type == "classic_bike" & ride_speed_km_h <= 40)
+    | (rideable_type == "electric_bike" & ride_speed_km_h <= 60)
+  ]
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$rides_clean_dt
+```
+
+#### dbplyr
+
+```{r}
+#| label: rides_clean_dbp
+#| time_it: true
+#| output: false
+
+(tbl(con_duck, "rides")
+  |> mutate(is_looped = start_station_id == end_station_id | (start_lat == end_lat & start_lng == end_lng))
+  |> mutate(across(ends_with("_at"), \(x) strptime(x, "%Y-%m-%d %H:%M:%S")))
+  |> mutate(ride_dur_min = abs(date_sub("second", started_at, ended_at) / 60))
+  |> mutate(ride_dist_m = case_when(
+    is_looped ~ 0, 
+    is.na(start_lng) | is.na(start_lat) | is.na(end_lng) | is.na(end_lat) ~ NA_real_,
+    .default = haversine(start_lng, start_lat, end_lng, end_lat)) # This will call the SQL haversine function
+  )
+  |> mutate(ride_speed_km_h = case_when(
+    ride_dist_m == 0 | ride_dur_min == 0 ~ NA_real_, 
+    .default = (ride_dist_m / 1000) / (ride_dur_min/60))
+  )
+  |> select(-ends_with("_at"))
+  # Rides too fast or too long
+  |> filter(between(ride_dur_min, 5, 1440))
+  # Loops that are too fast (<= 10 min)
+  |> filter(!(!is.na(is_looped) & is_looped & ride_dur_min <= 10))
+  # Rides too short (<= 100m) or too long (>= 30km)
+  |> filter(is.na(is_looped) | is_looped | is.na(ride_dist_m) | between(ride_dist_m, 100, 30000))
+  # Rides with implausible speeds
+  |> filter(
+    (rideable_type == "classic_bike" & ride_speed_km_h <= 40)
+    | (rideable_type == "electric_bike" & ride_speed_km_h <= 60)
+  )
+  |> compute("rides_clean")
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$rides_clean_dbp
+```
+
+:::
+
+<!-- RESULTS --->
+
+```{r}
+#| echo: false
+#| output: asis
+#| column: screen-inset
+
+rides_clean
+```
+
+
+<!-- CLEANING --->
+
+```{r}
+#| echo: false
+
+## We'll use the cleaned data for the rest of the document
+
+dbRemoveTable(con_duck, "rides")
+rm(rides)
+```
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# Pivoting the data
+***
+
+We need to pivot each station (start and end) into its own row in order to facilitate subsequent operations based on their coordinates.
 
 :::{.panel-tabset}
 
@@ -278,11 +478,9 @@ dbGetQuery(rides_con, "SELECT * FROM rides ORDER BY ride_id", n = getOption("kni
 #| label: long_dt
 #| time_it: true
 
-rides_l <- (melt(
-    rides,
-    measure = measure(way, value.name, pattern = "(end|start).*(name|id|lat|lng)")
-  )
-  |> setkey(ride_id, id)
+rides_clean_l <- melt(
+  rides_clean,
+  measure = measure(way, value.name, pattern = "(end|start).*_(name|id|lat|lng)")
 )
 ```
 
@@ -300,15 +498,10 @@ if (!interactive()) TIMES$long_dt
 #| time_it: true
 #| output: false
 
-(pivot_longer(
-    rides,
-    matches("^end_|^start_"),
-    names_pattern = "(end|start).*(name|id|lat|lng)",
-    names_to = c("way", ".value")
-  ) 
-  |> as.data.table()
-  |> setkey(ride_id, id)
-)
+pivot_longer(
+  rides_clean, matches("^end_|^start_"),
+  names_pattern = "(end|start).*_(name|id|lat|lng)", names_to = c("way", ".value")
+) |> as.data.table()
 ```
 
 ```{r}
@@ -320,31 +513,29 @@ if (!interactive()) TIMES$long_dtp
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", label = "long_sql", time_it = TRUE}
-CREATE TABLE rides_l AS 
+```{sql connection = "con_duck", label = "long_sql", time_it = TRUE}
+CREATE TABLE rides_clean_l AS 
 (
   SELECT
-    ride_id, rideable_type, started_at, ended_at,member_casual
+    ride_id, rideable_type, member_casual, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h
     , 'start' AS way
     , start_station_name AS "name"
     , start_station_id AS id
     , start_lat AS lat
     , start_lng AS lng
-  FROM rides
+  FROM rides_clean
 )
 UNION ALL
 (
   SELECT
-    ride_id, rideable_type, started_at, ended_at, member_casual
+    ride_id, rideable_type, member_casual, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h
     , 'end' AS way
     , end_station_name AS "name"
     , end_station_id AS id
     , end_lat AS lat
     , end_lng AS lng
-  FROM rides
+  FROM rides_clean
 );
-
-CREATE INDEX station_idx ON rides_l (id);
 ```
 
 ```{r}
@@ -361,16 +552,14 @@ if (!interactive()) TIMES$long_sql
 #| time_it: true
 #| output: false
 
-(tbl(rides_con, "rides") 
-  |> pivot_longer(
+(pivot_longer(
+    tbl(con_duck, "rides_clean"),
     matches("^end_|^start_"),
-    names_pattern = "(end|start).*(name|id|lat|lng)", 
+    names_pattern = "(end|start).*_(name|id|lat|lng)", 
     names_to = c("way", ".value")
   )
-  |> compute("rides_l.dbp")
+  |> compute("rides_clean_l.dbp")
 )
-
-db_create_index(rides_con, "rides_l.dbp", "id")
 ```
 
 ```{r}
@@ -381,35 +570,35 @@ if (!interactive()) TIMES$long_dbp
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| column: page
 #| output: asis
-#| total_rows: !expr tbl(rides_con, "rides_l.dbp") |> summarize(N = n()) |> collect() |> pull(N)
+#| total_rows: !expr tbl(con_duck, "rides_clean_l") |> count() |> pull(n)
 
-tbl(rides_con, "rides_l") |> head(10) |> collect()
+tbl(con_duck, "rides_clean_l") |> head(10) |> collect()
 ```
 
-<!-- Cleaning --->
+
+<!-- CLEANING --->
 
 ```{r}
 #| echo: false
+#| output: false
 
-## We'll use rides_l for the rest of the document
+## We'll use the long format data for the rest of the document
 
-dbRemoveTable(rides_con, "rides")
-rm(rides)
+rm(rides_clean)
+dbRemoveTable(con_duck, "rides_clean")
 ```
 
 
 <!-------------------------------------------------------->
 <!-------------------------------------------------------->
-# Exploring the data
+# Cleaning imprecise coordinates
 ***
-
-## Cleaning useless coordinates
 
 Removing entries were `lat`/`lng` do not have sufficient precision to be reliably matched to a station (i.e. entries having less than 4 decimals, which corresponds to a 11 meters "radius" at the equator).
 
@@ -429,14 +618,14 @@ Removing entries were `lat`/`lng` do not have sufficient precision to be reliabl
 :::
 
 ```{r}
-decp <- \(x) str_length(str_remove(as.character(abs(x)), ".*\\.")) >= 4
+decp <- function(x) str_length(str_remove(as.character(abs(x)), ".*\\.")) >= 4
 ```
 
-```{sql connection = "rides_con"}
+```{sql connection = "con_duck"}
 CREATE FUNCTION decp(x) AS length(str_split(CAST(abs(x) AS VARCHAR(10)), '.')[2]) >= 4
 ```
 
-```{sql connection = "rides_con", eval = FALSE, echo = FALSE}
+```{sql connection = "con_duck", eval = FALSE, echo = FALSE}
 CREATE FUNCTION decp(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(.*)[.]', '')) >= 4 -- Slower
 ```
 
@@ -446,48 +635,48 @@ CREATE FUNCTION decp(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(
 #### data.table
 
 ```{r}
-#| label: clean_dt
+#| label: acc_dt
 #| time_it: true
 
-rides_l_clean <- rides_l[decp(lat) & decp(lng), ] |> setkey(ride_id)
+rides_clean_l_acc <- rides_clean_l[decp(lat) & decp(lng), ]
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$clean_dt
+if (!interactive()) TIMES$acc_dt
 ```
 
 
 #### dtplyr
 
 ```{r}
-#| label: clean_dtp
+#| label: acc_dtp
 #| output: false
 #| time_it: true
 
-rides_l |> filter(decp(lat) & decp(lng)) |> as.data.table() |> setkey(ride_id)
+rides_clean_l |> filter(decp(lat) & decp(lng)) |> as.data.table()
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$clean_dtp
+if (!interactive()) TIMES$acc_dtp
 ```
 
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", label = "clean_duck", time_it = TRUE}
-CREATE TABLE rides_l_clean AS 
-SELECT * FROM rides_l 
+```{sql connection = "con_duck", label = "acc_duck", time_it = TRUE}
+CREATE TABLE rides_clean_l_acc AS
+SELECT * FROM rides_clean_l 
 WHERE decp(lat) AND decp(lng)
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$clean_duck
+if (!interactive()) TIMES$acc_duck
 ```
 
 
@@ -498,41 +687,44 @@ Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but sinc
 :::
 
 ```{r}
-#| label: clean_dbp
+#| label: acc_dbp
 #| output: false
 #| time_it: true
 
-(tbl(rides_con, "rides_l.dbp") 
+(tbl(con_duck, "rides_clean_l.dbp") 
   |> filter(if_all(c(lat, lng), \(x) decp(x)))
-  |> compute("rides_l_clean.dbp")
+  |> compute("rides_clean_l_acc.dbp")
 )
-
-db_create_index(rides_con, "rides_l_clean.dbp", "ride_id")
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$clean_dbp
+if (!interactive()) TIMES$acc_dbp
 ```
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| column: page
 #| output: asis
 
-rides_l_clean
+rides_clean_l_acc
 ```
 
 
 <!-------------------------------------------------------->
-## What's missing ?
+<!-------------------------------------------------------->
+# Exploring the data
+***
 
-**Entries missing one or both coordinates but having an `id` or `name`:**
+<!-------------------------------------------------------->
+## Known stations missing coordinates
+
+**Stations missing either `lat` or `lng`, but having an `id` or `name`:**
 
 :::{.panel-tabset}
 
@@ -541,14 +733,14 @@ rides_l_clean
 ```{r}
 #| eval: false
 
-rides_l_clean[(is.na(lat) | is.na(lng)) & (!is.na(id) | !is.na(name)), ]
+rides_clean_l_acc[(is.na(lat) | is.na(lng)) & (!is.na(id) | !is.na(name)), ]
 ```
 
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", output.var = "rides_l_clean_lost.sql"}
-SELECT * FROM rides_l_clean 
+```{sql connection = "con_duck", eval = FALSE}
+SELECT * FROM rides_clean_l_acc 
 WHERE ((lat IS NULL) OR (lng IS NULL) 
   AND (NOT((id IS NULL)) OR NOT((name IS NULL))))
 ```
@@ -557,9 +749,7 @@ WHERE ((lat IS NULL) OR (lng IS NULL)
 #### dbplyr
 
 ```{r}
-#| eval: false
-
-(tbl(rides_con, "rides_l_clean.dbp")
+rides_clean_l_no_coords <- (tbl(con_duck, "rides_clean_l_acc.dbp")
   |> filter(if_any(c(lat, lng), \(v) is.na(v)) & (!is.na(id) | !is.na(name)))
   |> collect()
 )
@@ -567,54 +757,44 @@ WHERE ((lat IS NULL) OR (lng IS NULL)
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
 #| column: page
 
-rides_l_clean_lost.sql
+rides_clean_l_no_coords
 
-rm(rides_l_clean_lost.sql)
+rm(rides_clean_l_no_coords)
 ```
 
 
+<!-------------------------------------------------------->
+## Unknown stations (filtered)
 
-**Entries missing either `name` or `id`, but having coordinates:**
+**Stations missing either `name` or `id`, but having coordinates with sufficient accuracy:**
 
 :::{.panel-tabset}
 
 #### data.table
 
 ```{r}
-rides_l_clean[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name))] -> rides_l_clean_unk
-```
-
-
-#### dtplyr
-
-```{r}
-#| eval: false
-
-(rides_l_clean 
-  |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> as.data.table()
-)
+rides_clean_l_acc[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name))] -> rides_clean_l_acc_unk
 ```
 
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con"}
-CREATE TABLE rides_l_clean_unk AS
-SELECT * FROM rides_l_clean
+```{sql connection = "con_duck"}
+CREATE TABLE rides_clean_l_acc_unk AS
+SELECT * FROM rides_clean_l_acc
 WHERE ((id IS NULL) OR (name IS NULL)) 
   AND (NOT((lat IS NULL)) AND NOT((lng IS NULL)))
 ```
 
-```{sql connection = "rides_con", echo = FALSE, output.var = "rides_l_unk_clean_count"}
-SELECT COUNT(*) AS N FROM rides_l_clean_unk
+```{sql connection = "con_duck", echo = FALSE, output.var = "rides_clean_l_acc_unk_count"}
+SELECT COUNT(*) AS N FROM rides_clean_l_acc_unk
 ```
 
 
@@ -623,64 +803,57 @@ SELECT COUNT(*) AS N FROM rides_l_clean_unk
 ```{r}
 #| eval: false
 
-(tbl(rides_con, "rides_l_clean.dbp") 
+(tbl(con_duck, "rides_clean_l_acc.dbp") 
   |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> compute("rides_l_clean_unk.dbp")
+  |> compute("rides_clean_l_acc_unk.dbp")
 )
 ```
 
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
 #| column: page
-#| total_rows: !expr rides_l_unk_clean_count$N
+#| total_rows: !expr rides_clean_l_acc_unk_count$N
 
-DBI::dbGetQuery(rides_con, "SELECT * FROM rides_l_clean_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
+DBI::dbGetQuery(con_duck, "SELECT * FROM rides_clean_l_acc_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-It seems there are only `r rides_l_unk_clean_count$N` entries missing identification that could be matched based on their coordinates at the level of precision we use (11m / 4 decimals).
+It seems there are only `r rides_clean_l_acc_unk_count$N` entries missing identification that could be matched based on their coordinates at the level of precision we use (11m / 4 decimals).
 
 :::{.callout-warning}
 Although, if we look at the original dataset (before filtering the inaccurate coordinates):
 :::
 
+<!-------------------------------------------------------->
+## Unknown stations (unfiltered)
+
+**Stations missing either `name` or `id`, but having coordinates:**
 
 :::{.panel-tabset}
 
 #### data.table
 
 ```{r}
-rides_l[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name))] -> rides_l_unk
-```
-
-#### dtplyr
-
-```{r}
-#| eval: false
-
-(rides_l
-  |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> as.data.table()
-)
+rides_clean_l[(!is.na(lat) & !is.na(lng)) & (is.na(id) | is.na(name))] -> rides_clean_l_unk
 ```
 
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con"}
-CREATE TABLE rides_l_unk AS
-SELECT * FROM rides_l
+```{sql connection = "con_duck"}
+CREATE TABLE rides_clean_l_unk AS
+SELECT * FROM rides_clean_l
 WHERE ((id IS NULL) OR (name IS NULL)) 
   AND (NOT((lat IS NULL)) AND NOT((lng IS NULL)))
 ```
 
-```{sql connection = "rides_con", echo = FALSE, output.var = "rides_l_unk_count"}
-SELECT COUNT(*) AS N FROM rides_l_unk
+```{sql connection = "con_duck", echo = FALSE, output.var = "rides_clean_l_unk_count"}
+SELECT COUNT(*) AS N FROM rides_clean_l_unk
 ```
 
 
@@ -689,31 +862,31 @@ SELECT COUNT(*) AS N FROM rides_l_unk
 ```{r}
 #| eval: false
 
-(tbl(rides_con, "rides_l.dbp") 
+(tbl(con_duck, "rides_clean_l.dbp") 
   |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> compute("rides_l_unk.dbp")
+  |> compute("rides_clean_l_unk.dbp")
 )
 ```
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
 #| column: page
-#| total_rows: !expr rides_l_unk_count$N
+#| total_rows: !expr rides_clean_l_unk_count$N
 
-DBI::dbGetQuery(rides_con, "SELECT * FROM rides_l_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
+DBI::dbGetQuery(con_duck, "SELECT * FROM rides_clean_l_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-There were `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id` or `name` that could have been filled in the original data, but it seems that all of them disappeared when we filtered the coordinates with less than 4 decimals of precision. It would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place.
+There were `r scales::label_comma()(rides_clean_l_unk_count$N)` missing stations' `id` or `name` that could have been filled in the original data, but it seems that all of them disappeared when we filtered the coordinates with less than 4 decimals of precision. It would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place.
 
 
 
 ::: {.callout-caution appearance="simple" icon=false}
-#### If one were to do the macthing anyway, here's how:
+## If one were to do the macthing anyway, here's how:
 :::
 
 <!-------------------------------------------------------->
@@ -724,7 +897,7 @@ There were `r scales::label_comma()(rides_l_unk_count$N)` missing stations' `id`
 <!-------------------------------------------------------->
 ## Creating `stations` data
 
-First, we need to assemble a dataset linking each unique station `id` (and `name`) with a set of coordinates (here, we use the average `lat` & `lng`)
+First, we need to assemble a reference/look-up table, i.e. a dataset linking each unique station `id` (and `name`) with a set of coordinates (here, we use the average `lat` & `lng`.
 
 :::{.panel-tabset}
 
@@ -734,12 +907,11 @@ First, we need to assemble a dataset linking each unique station `id` (and `name
 #| label: stations_clean_dt
 #| time_it: true
 
-stations_clean <- (rides_l_clean
+stations_clean <- (rides_clean_l_acc
   |> na.omit(cols = c("id", "name"))
   |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
   |> bind(x, setcolorder(x, c("id", "name", str_subset(colnames(x), "lat_|_lng"))))
   |> unique(by = "id")
-  |> setkey(id)
 )
 ```
 
@@ -751,7 +923,7 @@ if (!interactive()) TIMES$stations_clean_dt
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", label = "stations_clean_sql", time_it = TRUE}
+```{sql connection = "con_duck", label = "stations_clean_sql", time_it = TRUE}
 CREATE TABLE stations_clean AS 
 SELECT
   id
@@ -762,7 +934,7 @@ SELECT
   , MIN(lng) AS lng_min
   , MAX(lng) AS lng_max
   , AVG(lng) AS lng_mean
-FROM rides_l_clean
+FROM rides_clean_l_acc
 WHERE (NOT((id IS NULL))) AND (NOT(("name" IS NULL)))
 GROUP BY id
 ORDER BY id;
@@ -781,7 +953,7 @@ if (!interactive()) TIMES$stations_clean_sql
 #| label: stations_clean_dbp
 #| time_it: true
 
-(tbl(rides_con, "rides_l_clean.dbp")
+(tbl(con_duck, "rides_clean_l_acc.dbp")
   |> filter(!is.na(id), !is.na(name))
   |> group_by(id)
   |> summarize(
@@ -791,8 +963,6 @@ if (!interactive()) TIMES$stations_clean_sql
   |> arrange(id)
   |> compute("stations_clean.dbp")
 )
-
-db_create_index(rides_con, "stations_clean.dbp", "id")
 ```
 
 ```{r}
@@ -803,50 +973,63 @@ if (!interactive()) TIMES$stations_clean_dbp
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
-#| total_rows: !expr DBI::dbGetQuery(rides_con, "SELECT COUNT(*) AS N FROM stations_clean")$N
+#| total_rows: !expr DBI::dbGetQuery(con_duck, "SELECT COUNT(*) AS N FROM stations_clean")$N
 
-dbGetQuery(rides_con, "SELECT * FROM stations_clean ORDER BY id", n = getOption("knitr.max_rows_print"))
+dbGetQuery(con_duck, "SELECT * FROM stations_clean ORDER BY id", n = getOption("knitr.max_rows_print"))
 ```
 
+
+
 <!-------------------------------------------------------->
 <!-------------------------------------------------------->
-# Matching missing `id` by position
+# Spatial join
 ***
 
-Let's match the entries of `rides_l_clean` with `stations_clean` by proximity:
-
-```{r}
-#| echo: false
-#| eval: false
-
-haversine <- \(ref_lat, ref_lng, lat, lng) {
-  111.045 * (acos(sin(ref_lat * pi / 180) * sin(lat * pi / 180) + cos(ref_lat * pi / 180) * cos(lat * pi / 180) * cos((ref_lng - lng) * pi / 180))) * 180 / pi
-}
-```
+Let's match the entries of `rides_clean_l_acc` with `stations_clean` by proximity:
 
 <!-------------------------------------------------------->
 ## Matching on the cleaned data
 
-To save time, let's only apply the procedure to the entries that actually need to be matched (i.e. the ones having coordinates but missing either `name` or `id`).
+To save time, let's only apply the procedure to the entries that actually need to be matched (i.e. `rides_clean_l_acc_unk`, the ones having coordinates but missing either `name` or `id`). There are `r scales::label_comma()(nrow(rides_clean_l_acc_unk))` entries from `rides_clean_l_acc` that could be position-matched to a known station.
 
 
 :::{.panel-tabset}
 
-#### fuzzyjoin
+#### data.table
 
-There are `r nrow(rides_l_clean_unk)` entries from `rides_l_clean` that could be position-matched to a known station.
+```{r}
+#| label: match_clean_manual
+#| time_it: true
+#| output: false
+
+stations_clean[, c(k = 1, .SD)
+             ][rides_clean_l_acc_unk[, c(k = 1, .SD)], on = "k", allow.cartesian = TRUE
+             ][, dist := haversine(lng, lat, lng_mean, lat_mean)
+             ][dist <= 11][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
+             ][, .SD, .SDcols = colnames(rides_clean_l_acc_unk)] -> matched_clean
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$match_clean_manual
+```
+
+
+#### fuzzyjoin
 
 ```{r}
 #| label: match_clean_fuzzy
 #| time_it: true
+#| output: false
 
-matched_clean <- (fuzzyjoin::geo_join(
-    as.data.frame(rides_l_clean_unk),
+(fuzzyjoin::geo_join(
+    as.data.frame(rides_clean_l_acc_unk),
     as.data.frame(stations_clean),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
     method = "haversine",
@@ -856,11 +1039,10 @@ matched_clean <- (fuzzyjoin::geo_join(
     distance_col = "dist"
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(colnames(rides_l_clean), dist)
+  |> select(colnames(rides_clean_l_acc_unk), dist)
   |> arrange(ride_id)
-  |> drop_na(ride_id, id, name)
+  |> distinct(ride_id, way, .keep_all = TRUE)
   |> as.data.table()
-  |> setkey(ride_id, id)
 )
 ```
 
@@ -873,33 +1055,16 @@ if (!interactive()) TIMES$match_clean_fuzzy
 
 #### SQL (DuckDB)
 
-There are `r rides_l_unk_clean_count$N` entries from `rides_l_clean` that could be position-matched to a known station.
-
-**Creating the `haversine` distance function:**
-
-<!-- The difference in output between SQL & R might be from the fact that rides_l_clean.sql has ~40 more rows --->
-
-```{sql connection = "rides_con"}
-CREATE FUNCTION haversine(lat1, lng1, lat2, lng2) 
-    AS ( 6371 * acos( cos( radians(lat1) ) *
-       cos( radians(lat2) ) * cos( radians(lng2) - radians(lng1) ) +
-       sin( radians(lat1) ) * sin( radians(lat2) ) ) 
-    );
-```
-
-
-**Doing the matching:**
-
-```{sql connection = "rides_con", label = "match_clean_sql", time_it = TRUE}
+```{sql connection = "con_duck", label = "match_clean_sql", time_it = TRUE}
 CREATE TABLE matched_clean AS
 SELECT
-  ride_id, rideable_type, started_at, ended_at, member_casual, way  
+  ride_id, rideable_type, member_casual, way, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h  
   , COALESCE(r.name, s.name) AS name
   , COALESCE(r.id, s.id) AS id
   , r.lat, r.lng
-  , haversine(s.lat_mean, s.lng_mean, r.lat, r.lng) AS dist
-FROM rides_l_clean_unk r, stations_clean s
-WHERE dist <= 0.011
+  , haversine(s.lng_mean, s.lat_mean, r.lng, r.lat) AS dist
+FROM rides_clean_l_acc_unk r, stations_clean s
+WHERE dist <= 11
 ```
 
 ```{r}
@@ -909,21 +1074,46 @@ if (!interactive()) TIMES$match_clean_sql
 ```
 
 
+#### dbplyr
+
+```{r}
+#| label: match_clean_dbp
+#| time_it: true
+#| output: false
+
+(inner_join(
+    tbl(con_duck, "rides_clean_l_acc_unk"),
+    tbl(con_duck, "stations_clean"),
+    sql_on = "haversine(LHS.lng, LHS.lat, RHS.lng_mean, RHS.lat_mean) <= 11"
+  )
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
+  |> select(colnames(tbl(con_duck, "rides_clean_l_acc_unk")))
+  |> compute("matched_clean.dbp")
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$match_clean_dbp
+```
+
 #### sf
 
 ```{r}
 #| label: match_clean_sf
 #| time_it: true
+#| output: false
 
-matched_clean_sf <- (st_join(
-    st_as_sf(rides_l_clean_unk, coords = c("lat", "lng"), remove = FALSE, crs = 4326),
+(st_join(
+    st_as_sf(rides_clean_l_acc_unk, coords = c("lat", "lng"), remove = FALSE, crs = 4326),
     st_as_sf(stations_clean, coords = c("lat_mean", "lng_mean"), remove = FALSE, crs = 4326),
     join = st_is_within_distance,
     dist = 11, # In meters
     left = FALSE # Does an inner_join
   )
-  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(colnames(rides_l_clean_unk))
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
+  |> select(colnames(rides_clean_l_acc_unk))
   |> arrange(ride_id)
   |> st_drop_geometry()
 )
@@ -945,11 +1135,11 @@ if (!interactive()) TIMES$match_clean_sf
 matched_clean
 ```
 
-And we indeed get three matches !
+And our `r nrow(matched_clean)` rows with missing ids get matched !
 
 
 :::{.callout-note}
-But those three already had an `id`, so we could probably have filled their missing `name` using `stations_clean` directly, instead of a convoluted proximity-based matching (which is more ressource intensive and less precise).
+But those `r nrow(matched_clean)` already had an `id`, so we could probably have filled their missing `name` using `stations_clean` directly, instead of a convoluted proximity-based matching (which is more ressource intensive and less precise).
 :::
 
 ```{r}
@@ -969,7 +1159,7 @@ What if we did the same procedure on the non-cleaned data (the one with coordina
 
 ### Unfiltered `stations` data
 
-First, we need to recompute the `stations` data from `rides_l` (i.e. rides data before cleaning):
+First, we need to recompute the `stations` data from `rides_clean_l` (i.e. rides data before removing inaccurate coordinates):
 
 :::{.panel-tabset}
 
@@ -979,12 +1169,11 @@ First, we need to recompute the `stations` data from `rides_l` (i.e. rides data 
 #| label: stations_dt
 #| time_it: true
 
-stations <- (rides_l
+stations <- (rides_clean_l
   |> na.omit(cols = c("id", "name"))
   |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
   |> bind(x, setcolorder(x, c("id", "name", str_subset(colnames(x), "lat_|_lng"))))
   |> unique(by = "id")
-  |> setkey(id, name)
 )
 ```
 
@@ -997,7 +1186,7 @@ if (!interactive()) TIMES$stations_dt
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", label = "stations_sql", time_it = TRUE}
+```{sql connection = "con_duck", label = "stations_sql", time_it = TRUE}
 CREATE TABLE stations AS 
 SELECT
   id
@@ -1008,7 +1197,7 @@ SELECT
   , MIN(lng) AS lng_min
   , MAX(lng) AS lng_max
   , AVG(lng) AS lng_mean
-FROM rides_l
+FROM rides_clean_l
 WHERE (NOT((id IS NULL))) AND (NOT(("name" IS NULL)))
 GROUP BY id
 ORDER BY id;
@@ -1028,7 +1217,7 @@ if (!interactive()) TIMES$stations_sql
 #| label: stations_dbp
 #| time_it: true
 
-(tbl(rides_con, "rides_l.dbp")
+(tbl(con_duck, "rides_clean_l.dbp")
   |> filter(!is.na(id), !is.na(name))
   |> group_by(id)
   |> summarize(
@@ -1038,8 +1227,6 @@ if (!interactive()) TIMES$stations_sql
   |> arrange(id)
   |> compute("stations.dbp")
 )
-
-db_create_index(rides_con, "stations.dbp", "id")
 ```
 
 ```{r}
@@ -1050,14 +1237,14 @@ if (!interactive()) TIMES$stations_dbp
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
-#| total_rows: !expr DBI::dbGetQuery(rides_con, "SELECT COUNT(*) AS N FROM stations")$N
+#| total_rows: !expr dbGetQuery(con_duck, "SELECT COUNT(*) AS N FROM stations")$N
 
-DBI::dbGetQuery(rides_con, "SELECT * FROM stations ORDER BY id", n = getOption("knitr.max_rows_print"))
+dbGetQuery(con_duck, "SELECT * FROM stations ORDER BY id", n = getOption("knitr.max_rows_print"))
 ```
 
 
@@ -1086,21 +1273,50 @@ As expected, none. But we're still going to do the matching, for posterity !
 
 ### Position-matching on `stations`
 
-To save time, let's only apply the procedure to the entries that actually need to be matched (i.e. the ones having coordinates but missing either `name` or `id`):
-
+To save time, let's only apply the procedure to the entries that actually need to be matched (i.e. the ones having coordinates but missing either `name` or `id`). There are `r scales::label_comma()(nrow(rides_clean_l_unk))` entries from `rides_clean_l` that could be position-matched to a known station.
 
 :::{.panel-tabset}
 
-#### fuzzyjoin
+#### data.table
 
-There are `r scales::label_comma()(nrow(rides_l_unk))` entries from `rides_l` that could be position-matched to a known station.
+We have to split the `rides_clean_l_unk` dataset in chunks of 10k rows, because its full cross-join with `stations` would be 1.3 billion rows (with 12 columns), which would definitely not fit in my RAM. The chunks are processed in parallel to speed it up (4 at a time, to avoid saturating my RAM). You might need to adjust those values on your machine.
+
+```{r}
+#| label: match_manual
+#| time_it: true
+#| output: false
+
+future::plan(future::multisession, workers = 4)
+
+matched <- (furrr::future_map_dfr(
+    rides_clean_l_unk[, let(ID = ceiling(.I/10000), k = 1)] |> split(by = "ID"),
+    \(dat) 
+      stations[, c(k = 1, .SD)][dat, on = "k", allow.cartesian = TRUE][
+              , dist := haversine(lng, lat, lng_mean, lat_mean)
+              ][dist <= 11
+              ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
+              ][, .SD, .SDcols = setdiff(colnames(rides_clean_l_unk), c("ID", "k"))]
+  )
+  |> unique(by = c("ride_id", "way"))
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$match_manual
+```
+
+
+#### fuzzyjoin
 
 ```{r}
 #| label: match_fuzzy
 #| time_it: true
+#| output: false
 
-matched <- (fuzzyjoin::geo_inner_join(
-    as.data.frame(rides_l_unk),
+(fuzzyjoin::geo_inner_join(
+    as.data.frame(rides_clean_l_unk),
     as.data.frame(stations),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
     method = "haversine",
@@ -1109,10 +1325,10 @@ matched <- (fuzzyjoin::geo_inner_join(
     distance_col = "dist"
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(colnames(rides_l), dist)
+  |> select(colnames(rides_clean_l_unk), dist)
   |> arrange(ride_id)
+  |> distinct(ride_id, way, .keep_all = TRUE)
   |> as.data.table()
-  |> setkey(ride_id, id)
 )
 ```
 
@@ -1125,17 +1341,16 @@ if (!interactive()) TIMES$match_fuzzy
 
 #### SQL (DuckDB)
 
-There are `r scales::label_comma()(rides_l_unk_count$N)` entries from `rides_l` that could be position-matched to a known station.
-
-```{sql connection = "rides_con", label = "match_sql", time_it = TRUE, output.var = "matched.sql"}
+```{sql connection = "con_duck", label = "match_sql", time_it = TRUE}
+CREATE TABLE matched AS
 SELECT
-  ride_id, rideable_type, started_at, ended_at, member_casual, way  
+  ride_id, rideable_type, member_casual, way, ride_dur_min, ride_dist_m, ride_speed_km_h  
   , COALESCE(r.name, s.name) AS name
   , COALESCE(r.id, s.id) AS id
   , r.lat, r.lng
-  , haversine(s.lat_mean, s.lng_mean, r.lat, r.lng) AS dist
-FROM rides_l_unk r, stations s
-WHERE dist <= 0.011
+  , haversine(s.lng_mean, s.lat_mean, r.lng, r.lat) AS dist
+FROM rides_clean_l_unk r, stations s
+WHERE dist <= 11
 ```
 
 ```{r}
@@ -1144,22 +1359,46 @@ WHERE dist <= 0.011
 if (!interactive()) TIMES$match_sql
 ```
 
+#### dbplyr
+
+```{r}
+#| label: match_dbp
+#| time_it: true
+#| output: false
+
+(inner_join(
+    tbl(con_duck, "rides_clean_l_unk"),
+    tbl(con_duck, "stations"),
+    sql_on = "haversine(LHS.lng, LHS.lat, RHS.lng_mean, RHS.lat_mean) <= 11"
+  )
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
+  |> select(colnames(tbl(con_duck, "rides_clean_l_unk")))
+  |> compute("matched.dbp")
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$match_dbp
+```
 
 #### sf
 
 ```{r}
 #| label: match_sf
 #| time_it: true
+#| output: false
 
-matched_sf <- (st_join(
-    st_as_sf(rides_l_unk, coords = c("lat", "lng"), remove = FALSE, crs = 4326),
+(st_join(
+    st_as_sf(rides_clean_l_unk, coords = c("lat", "lng"), remove = FALSE, crs = 4326),
     st_as_sf(stations, coords = c("lat_mean", "lng_mean"), remove = FALSE, crs = 4326),
     join = st_is_within_distance,
     dist = 11, # In meters
     left = FALSE # Does an inner_join
   )
-  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(colnames(rides_l_unk))
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
+  |> select(colnames(rides_clean_l_unk))
   |> arrange(ride_id)
   |> st_drop_geometry()
 )
@@ -1203,14 +1442,20 @@ We can see that more than half of the matches are coordinates that matched 2 or 
 But, among the ones with only one match, how many have coordinates precise enough to make that match in the first place (i.e. have 4 or more decimals or precision) ?
 
 ```{r}
-#| output: asis
-
-matched[, if(.N == 1) .SD, by = .(ride_id, way)][decp(lat) & decp(lng)]
+matched[, if(.N == 1) .SD, by = .(ride_id, way)][decp(lat) & decp(lng)] -> matched_valid
 ```
 
-As it turns out ? Only 3. And those are the same three matches we got from the filtered data.  
+```{r}
+#| echo: false
+#| output: asis
 
-In the end, those three are the only three position-based matches we should reasonably keep !
+matched_valid
+```
+
+
+As it turns out ? Only `r nrow(matched_valid)`. And those are the same `r nrow(matched_clean)` matches we got from the filtered data.  
+
+In the end, those `r nrow(matched_clean)` are the only position-based matches we should reasonably keep !
 
 
 <!-- Cleaning to free up memory --->
@@ -1219,14 +1464,14 @@ In the end, those three are the only three position-based matches we should reas
 #| echo: false
 #| output: false
 
-tables_to_remove <- c("rides_l", "stations", "rides_l_unk", "rides_l_clean_unk")
+tables_to_remove <- c("stations", "stations_clean", "rides_clean_l_unk", "rides_clean_l_acc_unk")
 
-walk(tables_to_remove, \(x) dbRemoveTable(rides_con, x, fail_if_missing = FALSE))
+walk(tables_to_remove, \(x) dbRemoveTable(con_duck, x, fail_if_missing = FALSE))
 
-rm(rides_l)
-rm(rides_l_unk)
-rm(rides_l_clean_unk)
+rm(rides_clean_l_unk)
+rm(rides_clean_l_acc_unk)
 rm(stations)
+rm(stations_clean)
 rm(stations_diff)
 rm(matched)
 rm(matched.sql)
@@ -1238,7 +1483,7 @@ rm(matched.sql)
 # Updating the original dataset
 ***
 
-Finally, we need to update the original dataset (`rides_l_clean`) with the entries that were position-matched (`matched_clean`):
+Finally, we need to update the original dataset (`rides_clean_l`) with the entries that were position-matched (`matched_clean`):
 
 
 <!-------------------------------------------------------->
@@ -1259,12 +1504,11 @@ We can update the initial (cleaned) data with the position-matched in two ways:
 ```{r}
 #| label: merge_dt
 #| time_it: true
+#| output: false
 
-matched_clean[rides_l_clean, on = setdiff(colnames(rides_l_clean), c("id", "name"))
+matched_clean[rides_clean_l_acc, on = setdiff(colnames(rides_clean_l_acc), c("id", "name"))
             ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
-            ][, nms, env = list(nms = I(colnames(rides_l_clean)))] -> rides_l_merged
-
-setkey(rides_l_merged, ride_id)
+            ][, nms, env = list(nms = I(colnames(rides_clean_l_acc)))]
 ```
 
 ```{r}
@@ -1281,15 +1525,14 @@ if (!interactive()) TIMES$merge_dt
 #| output: false
 #| time_it: true
 
-(right_join(
+rides_clean_l_merged <- (right_join(
     matched_clean,
-    rides_l_clean,
-    by = setdiff(colnames(rides_l_clean), c("id", "name"))
+    rides_clean_l_acc,
+    by = setdiff(colnames(rides_clean_l_acc), c("id", "name"))
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
-  |> select(-matches("\\.x|\\.y"), -dist)
+  |> select(-matches("\\.x|\\.y"))
   |> as.data.table()
-  |> setkey(ride_id)
 )
 ```
 
@@ -1302,33 +1545,33 @@ if (!interactive()) TIMES$merge_dtp
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", label = "merge_sql", time_it = TRUE}
-CREATE TABLE rides_l_merged AS
+```{sql connection = "con_duck", label = "merge_sql", time_it = TRUE}
+CREATE TABLE rides_clean_l_merged AS
 SELECT 
-  ride_id, rideable_type, started_at, ended_at, member_casual, way,
-  COALESCE(id_x, id_y) AS id,
-  COALESCE(name_x, name_y) AS name,
-  lat, lng
+  ride_id, rideable_type, member_casual, way, ride_dur_min, ride_dist_m, ride_speed_km_h, is_looped  
+  , COALESCE(id_x, id_y) AS id
+  , COALESCE(name_x, name_y) AS name
+  , lat, lng
 FROM (
   SELECT
-    r.ride_id AS ride_id,
-    r.rideable_type AS rideable_type,
-    r.started_at AS started_at,
-    r.ended_at AS ended_at,
-    r.member_casual AS member_casual,
-    r.way AS way,
-    m.name AS name_x,
-    m.id AS id_x,
-    r.lat AS lat,
-    r.lng AS lng,
-    r.name AS name_y,
-    r.id AS id_y
+    r.ride_id AS ride_id
+    , r.rideable_type AS rideable_type
+    , r.member_casual AS member_casual
+    , r.way AS way
+    , r.ride_dur_min AS ride_dur_min
+    , r.ride_dist_m AS ride_dist_m
+    , r.ride_speed_km_h AS ride_speed_km_h
+    , r.is_looped AS is_looped
+    , m.name AS name_x
+    , m.id AS id_x
+    , r.lat AS lat
+    , r.lng AS lng
+    , r.name AS name_y
+    , r.id AS id_y
   FROM matched_clean AS m
-  RIGHT JOIN rides_l_clean AS r
+  RIGHT JOIN rides_clean_l AS r
   ON m.ride_id = r.ride_id 
      AND m.rideable_type = r.rideable_type 
-     AND m.started_at = r.started_at
-     AND m.ended_at = r.ended_at
      AND m.member_casual = r.member_casual
      AND m.way = r.way
 );
@@ -1349,16 +1592,14 @@ if (!interactive()) TIMES$merge_sql
 #| time_it: true
 
 (right_join(
-    tbl(rides_con, "matched_clean"),
-    tbl(rides_con, "rides_l_clean.dbp"),
-    by = tbl(rides_con, "rides_l_clean.dbp") |> select(-name, -id) |> colnames()
+    tbl(con_duck, "matched_clean.dbp"),
+    tbl(con_duck, "rides_clean_l.dbp"),
+    by = tbl(con_duck, "rides_clean_l.dbp") |> select(-name, -id) |> colnames()
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
-  |> select(-matches("\\.x|\\.y"), -dist)
-  |> compute("rides_l_merged.dbp")
+  |> select(-matches("\\.x|\\.y"))
+  |> compute("rides_clean_l_merged.dbp")
 )
-
-db_create_index(rides_con, "rides_l_merged.dbp", "ride_id")
 ```
 
 ```{r}
@@ -1371,19 +1612,15 @@ if (!interactive()) TIMES$merge_dbp
 
 ### rows_patch
 
-:::{.panel-tabset}
-
-#### dplyr
-
 ```{r}
 #| label: merge_dp_row
 #| output: false
 #| time_it: true
 
 rows_patch(
-  as.data.frame(rides_l_clean),
-  as.data.frame(matched_clean) |> select(-dist),
-  by = setdiff(colnames(rides_l_clean), c("name", "id")),
+  rides_clean_l,
+  matched_clean,
+  by = setdiff(colnames(rides_clean_l), c("name", "id")),
   unmatched = "ignore"
 )
 ```
@@ -1391,47 +1628,20 @@ rows_patch(
 ```{r}
 #| echo: false
 
-rm(matched_clean)
-rm(rides_l_clean)
+rm(rides_clean_l)
 
 if (!interactive()) TIMES$merge_dp_row
 ```
 
-#### dbplyr
 
-```{r}
-#| label: merge_dbp_row
-#| eval: false
-#| output: false
-#| time_it: true
-
-(tbl(rides_con, "rides_l_clean.dbp")
- |> rows_patch(
-    tbl(rides_con, "matched_clean") |> select(-dist),
-    by = tbl(rides_con, "rides_l_clean.dbp") |> select(-name, -id) |> colnames(),
-    unmatched = "ignore"
-  )
-  |> compute("rides_l_merged.rows_dbp")
-)
-```
-
-```{r}
-#| echo: false
-#| eval: false
-
-if (!interactive()) TIMES$merge_dbp_row
-```
-
-:::
-
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
 #| output: asis
 #| column: page
 
-rides_l_merged
+rides_clean_l_merged
 ```
 
 
@@ -1441,10 +1651,10 @@ rides_l_merged
 ```{r}
 #| output: asis
 
-rides_l_merged[(is.na(id) | is.na(name)) & (!is.na(lat) & !is.na(lng))]
+rides_clean_l_merged[(is.na(id) | is.na(name)) & (!is.na(lat) & !is.na(lng))]
 ```
 
-We can see that the resulting dataset no longer has any entries that have coordinates but miss a `name` or an `id`, whereas there were three before. We have successfully updated them !
+We can see that the resulting dataset no longer has any entries that have coordinates but miss a `name` or an `id`, whereas there were `r nrow(matched_clean)` before. We have successfully updated them !
 
 
 <!-------------------------------------------------------->
@@ -1460,9 +1670,9 @@ To finish, let's pivot the resulting data back into the wider format it was orig
 #| label: wide_dt
 #| time_it: true
 
-rides_merged <- (rides_l_merged
-  |> dcast(... ~ way, sep = "_station_", value.var = c("name", "id", "lat", "lng"))
-  |> setkey(ride_id)
+rides_merged <- dcast(
+  rides_clean_l_merged, 
+  ... ~ way, sep = "_station_", value.var = c("name", "id", "lat", "lng")
 )
 ```
 
@@ -1480,20 +1690,16 @@ if (!interactive()) TIMES$wide_dt
 #| output: false
 #| time_it: true
 
-(rides_l_merged
- |> pivot_wider(
-    names_from = "way", names_glue = "{way}_station_{.value}",
-    values_from = c("name", "id", "lat", "lng")
-  )
-  |> as.data.table()
-  |> setkey(ride_id)
-)
+pivot_wider(
+  rides_clean_l_merged, names_from = "way", names_glue = "{way}_station_{.value}",
+  values_from = c("name", "id", "lat", "lng")
+) |> as.data.table()
 ```
 
 ```{r}
 #| echo: false
 
-rm(rides_l_merged)
+rm(rides_clean_l_merged)
 
 if (!interactive()) TIMES$wide_dtp
 ```
@@ -1501,20 +1707,20 @@ if (!interactive()) TIMES$wide_dtp
 
 #### SQL (DuckDB)
 
-```{sql connection = "rides_con", label = "wide_sql", time_it = TRUE}
+```{sql connection = "con_duck", label = "wide_sql", time_it = TRUE}
 CREATE TABLE rides_merged AS
 SELECT
-  ride_id, rideable_type, started_at, ended_at, member_casual,
-  MAX(CASE WHEN (way = 'start') THEN "name" END) AS start_station_name,
-  MAX(CASE WHEN (way = 'end') THEN "name" END) AS end_station_name,
-  MAX(CASE WHEN (way = 'start') THEN id END) AS start_station_id,
-  MAX(CASE WHEN (way = 'end') THEN id END) AS end_station_id,
-  MAX(CASE WHEN (way = 'start') THEN lat END) AS start_lat,
-  MAX(CASE WHEN (way = 'end') THEN lat END) AS end_lat,
-  MAX(CASE WHEN (way = 'start') THEN lng END) AS start_lng,
-  MAX(CASE WHEN (way = 'end') THEN lng END) AS end_lng
-FROM rides_l_merged
-GROUP BY ride_id, rideable_type, started_at, ended_at, member_casual
+  ride_id, rideable_type, member_casual, ride_dur_min, ride_dist_m, ride_speed_km_h
+  , MAX(CASE WHEN (way = 'start') THEN "name" END) AS start_station_name
+  , MAX(CASE WHEN (way = 'end') THEN "name" END) AS end_station_name
+  , MAX(CASE WHEN (way = 'start') THEN id END) AS start_station_id
+  , MAX(CASE WHEN (way = 'end') THEN id END) AS end_station_id
+  , MAX(CASE WHEN (way = 'start') THEN lat END) AS start_lat
+  , MAX(CASE WHEN (way = 'end') THEN lat END) AS end_lat
+  , MAX(CASE WHEN (way = 'start') THEN lng END) AS start_lng
+  , MAX(CASE WHEN (way = 'end') THEN lng END) AS end_lng
+FROM rides_clean_l_merged
+GROUP BY ride_id, rideable_type, member_casual, ride_dur_min, ride_dist_m, ride_speed_km_h;
 ```
 
 ```{r}
@@ -1531,15 +1737,10 @@ if (!interactive()) TIMES$wide_sql
 #| output: false
 #| time_it: true
 
-(tbl(rides_con, "rides_l_merged.dbp")
- |> pivot_wider(
-    names_from = "way", names_glue = "{way}_station_{.value}", 
-    values_from = c("name", "id", "lat", "lng")
-  )
-  |> compute("rides_merged.dbp")
-)
-
-db_create_index(rides_con, "rides_merged.dbp", "ride_id")
+pivot_wider(
+  tbl(con_duck, "rides_clean_l_merged.dbp"), names_from = "way", 
+  names_glue = "{way}_station_{.value}", values_from = c("name", "id", "lat", "lng")
+) |> compute("rides_merged.dbp")
 ```
 
 ```{r}
@@ -1550,7 +1751,7 @@ if (!interactive()) TIMES$wide_dbp
 
 :::
 
-<!-- RESULT --->
+<!-- RESULTS --->
 
 ```{r}
 #| echo: false
@@ -1561,14 +1762,10 @@ rides_merged
 ```
 
 
-:::{.callout-note}
-We get less entries than in the original (wide format) dataset due to having removed (filtered) the entries with bad coordinates.
-:::
-
 ```{r}
 #| echo: false
 
-DBI::dbDisconnect(rides_con, shutdown = TRUE)
+dbDisconnect(con_duck, shutdown = TRUE)
 fs::file_delete(duckdb_path)
 ```
 

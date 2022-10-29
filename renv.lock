@@ -51,10 +51,10 @@
     },
     "Matrix": {
       "Package": "Matrix",
-      "Version": "1.4-1",
+      "Version": "1.5-1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "699c47c606293bdfbc9fd78a93c9c8fe",
+      "Hash": "539dc0c0c05636812f1080f473d2c177",
       "Requirements": [
         "lattice"
       ]
@@ -145,6 +145,24 @@
       "Hash": "3d4e52d458784c335af3846f2de64f75",
       "Requirements": [
         "svUnit"
+      ]
+    },
+    "arrow": {
+      "Package": "arrow",
+      "Version": "10.0.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "05f9b803e1f6a5d47ff0a885ed04ebd2",
+      "Requirements": [
+        "R6",
+        "assertthat",
+        "bit64",
+        "cpp11",
+        "glue",
+        "purrr",
+        "rlang",
+        "tidyselect",
+        "vctrs"
       ]
     },
     "askpass": {
@@ -691,6 +709,21 @@
       "Hash": "7c89603d81793f0d5486d91ab1fc6f1d",
       "Requirements": []
     },
+    "furrr": {
+      "Package": "furrr",
+      "Version": "0.3.1",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Hash": "da7a4c32196cb2262a41dd5a25d486ff",
+      "Requirements": [
+        "future",
+        "globals",
+        "lifecycle",
+        "purrr",
+        "rlang",
+        "vctrs"
+      ]
+    },
     "future": {
       "Package": "future",
       "Version": "1.28.0",
@@ -1236,10 +1269,10 @@
     },
     "nlme": {
       "Package": "nlme",
-      "Version": "3.1-159",
+      "Version": "3.1-160",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "4a0b3a68f846cb999ff0e8e519524fbb",
+      "Hash": "02e3c6e7df163aafa8477225e6827bc5",
       "Requirements": [
         "lattice"
       ]
@@ -1692,10 +1725,15 @@
     },
     "sf": {
       "Package": "sf",
-      "Version": "1.0-8",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "153da622b27630793858f24436bc0871",
+      "Version": "1.0-9",
+      "Source": "GitHub",
+      "RemoteType": "github",
+      "RemoteHost": "api.github.com",
+      "RemoteUsername": "r-spatial",
+      "RemoteRepo": "sf",
+      "RemoteRef": "main",
+      "RemoteSha": "8f8935bc84ff637e8dddf3c042128fbb31d96874",
+      "Hash": "7be71388d76c0b4ab02dfaf24656f988",
       "Requirements": [
         "DBI",
         "Rcpp",
@@ -1908,15 +1946,15 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.4.2.9000",
+      "Version": "0.5.0.9000",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "r-lib",
       "RemoteRepo": "vctrs",
       "RemoteRef": "main",
-      "RemoteSha": "e04fef0f68e25eb4c653750a0e778d954624c83b",
-      "Hash": "98c88cd23f64c8c3a45fa063c7953d73",
+      "RemoteSha": "fb238a14a7c7e602fc81365ea29b459f128b17c1",
+      "Hash": "d2b02bca670166384835496edc191354",
       "Requirements": [
         "cli",
         "glue",
