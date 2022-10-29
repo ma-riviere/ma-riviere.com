@@ -558,7 +558,7 @@ if (!interactive()) TIMES$long_sql
     names_pattern = "(end|start).*_(name|id|lat|lng)", 
     names_to = c("way", ".value")
   )
-  |> compute("rides_clean_l.dbp")
+  |> compute("rides_clean_l_dbp")
 )
 ```
 
@@ -691,9 +691,9 @@ Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but sinc
 #| output: false
 #| time_it: true
 
-(tbl(con_duck, "rides_clean_l.dbp") 
+(tbl(con_duck, "rides_clean_l_dbp") 
   |> filter(if_all(c(lat, lng), \(x) decp(x)))
-  |> compute("rides_clean_l_acc.dbp")
+  |> compute("rides_clean_l_acc_dbp")
 )
 ```
 
@@ -749,7 +749,7 @@ WHERE ((lat IS NULL) OR (lng IS NULL)
 #### dbplyr
 
 ```{r}
-rides_clean_l_no_coords <- (tbl(con_duck, "rides_clean_l_acc.dbp")
+rides_clean_l_no_coords <- (tbl(con_duck, "rides_clean_l_acc_dbp")
   |> filter(if_any(c(lat, lng), \(v) is.na(v)) & (!is.na(id) | !is.na(name)))
   |> collect()
 )
@@ -801,11 +801,11 @@ SELECT COUNT(*) AS N FROM rides_clean_l_acc_unk
 #### dbplyr
 
 ```{r}
-#| eval: false
+#| output: false
 
-(tbl(con_duck, "rides_clean_l_acc.dbp") 
+(tbl(con_duck, "rides_clean_l_acc_dbp") 
   |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> compute("rides_clean_l_acc_unk.dbp")
+  |> compute("rides_clean_l_acc_unk_dbp")
 )
 ```
 
@@ -860,11 +860,11 @@ SELECT COUNT(*) AS N FROM rides_clean_l_unk
 #### dbplyr
 
 ```{r}
-#| eval: false
+#| output: false
 
-(tbl(con_duck, "rides_clean_l.dbp") 
+(tbl(con_duck, "rides_clean_l_dbp") 
   |> filter(if_all(c(lat, lng), \(v) !is.na(v)) & (is.na(id) | is.na(name)))
-  |> compute("rides_clean_l_unk.dbp")
+  |> compute("rides_clean_l_unk_dbp")
 )
 ```
 
@@ -912,6 +912,7 @@ stations_clean <- (rides_clean_l_acc
   |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
   |> bind(x, setcolorder(x, c("id", "name", str_subset(colnames(x), "lat_|_lng"))))
   |> unique(by = "id")
+  |> setorder(id)
 )
 ```
 
@@ -953,15 +954,15 @@ if (!interactive()) TIMES$stations_clean_sql
 #| label: stations_clean_dbp
 #| time_it: true
 
-(tbl(con_duck, "rides_clean_l_acc.dbp")
+(tbl(con_duck, "rides_clean_l_acc_dbp")
   |> filter(!is.na(id), !is.na(name))
   |> group_by(id)
   |> summarize(
     name = first(name),
-    across(c(lat, lng), list(min, max, mean), .names = "{.col}_{.fn}")
+    across(c(lat, lng), list("min" = min, "max" = max, "mean" = mean), .names = "{.col}_{.fn}")
   )
   |> arrange(id)
-  |> compute("stations_clean.dbp")
+  |> compute("stations_clean_dbp")
 )
 ```
 
@@ -1010,8 +1011,9 @@ To save time, let's only apply the procedure to the entries that actually need t
 stations_clean[, c(k = 1, .SD)
              ][rides_clean_l_acc_unk[, c(k = 1, .SD)], on = "k", allow.cartesian = TRUE
              ][, dist := haversine(lng, lat, lng_mean, lat_mean)
-             ][dist <= 11][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
-             ][, .SD, .SDcols = colnames(rides_clean_l_acc_unk)] -> matched_clean
+             ][dist <= 11, .SD[which.min(dist)], by = c("ride_id", "way")
+             ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
+             ][, .SD, .SDcols = c(colnames(rides_clean_l_acc_unk), "dist")] -> matched_clean
 ```
 
 ```{r}
@@ -1028,20 +1030,21 @@ if (!interactive()) TIMES$match_clean_manual
 #| time_it: true
 #| output: false
 
-(fuzzyjoin::geo_join(
+(geo_inner_join(
     as.data.frame(rides_clean_l_acc_unk),
     as.data.frame(stations_clean),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
     method = "haversine",
-    mode = "inner",
     unit = "km",
     max_dist = 0.011, # 11 meters
     distance_col = "dist"
   ) 
+  |> lazy_dt()
+  |> group_by(ride_id, way)
+  |> filter(which.min(dist))
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
   |> select(colnames(rides_clean_l_acc_unk), dist)
   |> arrange(ride_id)
-  |> distinct(ride_id, way, .keep_all = TRUE)
   |> as.data.table()
 )
 ```
@@ -1057,14 +1060,23 @@ if (!interactive()) TIMES$match_clean_fuzzy
 
 ```{sql connection = "con_duck", label = "match_clean_sql", time_it = TRUE}
 CREATE TABLE matched_clean AS
-SELECT
-  ride_id, rideable_type, member_casual, way, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h  
-  , COALESCE(r.name, s.name) AS name
-  , COALESCE(r.id, s.id) AS id
-  , r.lat, r.lng
-  , haversine(s.lng_mean, s.lat_mean, r.lng, r.lat) AS dist
-FROM rides_clean_l_acc_unk r, stations_clean s
-WHERE dist <= 11
+SELECT ride_id, rideable_type, member_casual, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h, way, name, id, lat, lng, dist
+FROM (
+  SELECT *, RANK() OVER (PARTITION BY ride_id, way ORDER BY dist) AS dist_rank
+  FROM (
+    SELECT
+      ride_id, rideable_type, member_casual, way, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h  
+      , COALESCE(r.name, s.name) AS name
+      , COALESCE(r.id, s.id) AS id
+      , r.lat AS lat
+      , r.lng AS lng
+      , haversine(s.lng_mean, s.lat_mean, r.lng, r.lat) AS dist
+    FROM rides_clean_l_acc_unk r, stations_clean s
+    WHERE dist <= 11
+  )
+)
+WHERE dist_rank <= 1
+ORDER BY ride_id;
 ```
 
 ```{r}
@@ -1082,13 +1094,21 @@ if (!interactive()) TIMES$match_clean_sql
 #| output: false
 
 (inner_join(
-    tbl(con_duck, "rides_clean_l_acc_unk"),
-    tbl(con_duck, "stations_clean"),
+    tbl(con_duck, "rides_clean_l_acc_unk_dbp"),
+    tbl(con_duck, "stations_clean_dbp"),
     sql_on = "haversine(LHS.lng, LHS.lat, RHS.lng_mean, RHS.lat_mean) <= 11"
   )
-  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(colnames(tbl(con_duck, "rides_clean_l_acc_unk")))
-  |> compute("matched_clean.dbp")
+  |> mutate(
+    dist = haversine(lng, lat, lng_mean, lat_mean),
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y)
+  )
+  |> group_by(ride_id, way)
+  |> slice_min(dist)
+  |> ungroup()
+  |> select(colnames(tbl(con_duck, "rides_clean_l_acc_unk_dbp")), dist)
+  |> arrange(ride_id)
+  |> compute("matched_clean_dbp")
 )
 ```
 
@@ -1112,10 +1132,19 @@ if (!interactive()) TIMES$match_clean_dbp
     dist = 11, # In meters
     left = FALSE # Does an inner_join
   )
-  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
-  |> select(colnames(rides_clean_l_acc_unk))
-  |> arrange(ride_id)
   |> st_drop_geometry()
+  |> lazy_dt()
+  |> mutate(
+    dist = haversine(lng, lat, lng_mean, lat_mean),
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y)
+  )
+  |> group_by(ride_id, way)
+  |> filter(which.min(dist))
+  |> ungroup()
+  |> select(colnames(rides_clean_l_acc_unk), dist)
+  |> arrange(ride_id)
+  |> as.data.table()
 )
 ```
 
@@ -1174,6 +1203,7 @@ stations <- (rides_clean_l
   |> dcast(id+name ~ ., fun.agg = list(min, max, mean), value.var = c("lat", "lng"))
   |> bind(x, setcolorder(x, c("id", "name", str_subset(colnames(x), "lat_|_lng"))))
   |> unique(by = "id")
+  |> setorder(id)
 )
 ```
 
@@ -1217,15 +1247,15 @@ if (!interactive()) TIMES$stations_sql
 #| label: stations_dbp
 #| time_it: true
 
-(tbl(con_duck, "rides_clean_l.dbp")
+(tbl(con_duck, "rides_clean_l_dbp")
   |> filter(!is.na(id), !is.na(name))
   |> group_by(id)
   |> summarize(
     name = first(name),
-    across(c(lat, lng), list(min, max, mean), .names = "{.col}_{.fn}")
+    across(c(lat, lng), list("min" = min, "max" = max, "mean" = mean), .names = "{.col}_{.fn}")
   )
   |> arrange(id)
-  |> compute("stations.dbp")
+  |> compute("stations_dbp")
 )
 ```
 
@@ -1288,16 +1318,14 @@ We have to split the `rides_clean_l_unk` dataset in chunks of 10k rows, because 
 
 future::plan(future::multisession, workers = 4)
 
-matched <- (furrr::future_map_dfr(
-    rides_clean_l_unk[, let(ID = ceiling(.I/10000), k = 1)] |> split(by = "ID"),
-    \(dat) 
-      stations[, c(k = 1, .SD)][dat, on = "k", allow.cartesian = TRUE][
-              , dist := haversine(lng, lat, lng_mean, lat_mean)
-              ][dist <= 11
-              ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
-              ][, .SD, .SDcols = setdiff(colnames(rides_clean_l_unk), c("ID", "k"))]
-  )
-  |> unique(by = c("ride_id", "way"))
+matched <- future_map_dfr(
+  copy(rides_clean_l_unk)[, let(ID = ceiling(.I/10000), k = 1)] |> split(by = "ID"),
+  \(dat) 
+    stations[, c(k = 1, .SD)][dat, on = "k", allow.cartesian = TRUE][
+            , dist := haversine(lng, lat, lng_mean, lat_mean)
+            ][dist <= 11, .SD[which.min(dist)], by = c("ride_id", "way")
+            ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
+            ][, .SD, .SDcols = c(colnames(rides_clean_l_unk), "dist")]
 )
 ```
 
@@ -1315,7 +1343,7 @@ if (!interactive()) TIMES$match_manual
 #| time_it: true
 #| output: false
 
-(fuzzyjoin::geo_inner_join(
+(geo_inner_join(
     as.data.frame(rides_clean_l_unk),
     as.data.frame(stations),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
@@ -1324,10 +1352,13 @@ if (!interactive()) TIMES$match_manual
     max_dist = 0.011, # 11 meters
     distance_col = "dist"
   ) 
+  |> lazy_dt()
+  |> group_by(ride_id, way)
+  |> filter(which.min(dist))
+  |> ungroup()
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
   |> select(colnames(rides_clean_l_unk), dist)
   |> arrange(ride_id)
-  |> distinct(ride_id, way, .keep_all = TRUE)
   |> as.data.table()
 )
 ```
@@ -1343,14 +1374,23 @@ if (!interactive()) TIMES$match_fuzzy
 
 ```{sql connection = "con_duck", label = "match_sql", time_it = TRUE}
 CREATE TABLE matched AS
-SELECT
-  ride_id, rideable_type, member_casual, way, ride_dur_min, ride_dist_m, ride_speed_km_h  
-  , COALESCE(r.name, s.name) AS name
-  , COALESCE(r.id, s.id) AS id
-  , r.lat, r.lng
-  , haversine(s.lng_mean, s.lat_mean, r.lng, r.lat) AS dist
-FROM rides_clean_l_unk r, stations s
-WHERE dist <= 11
+SELECT ride_id, rideable_type, member_casual, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h, way, name, id, lat, lng, dist
+FROM (
+  SELECT *, RANK() OVER (PARTITION BY ride_id, way ORDER BY dist) AS dist_rank
+  FROM (
+    SELECT
+      ride_id, rideable_type, member_casual, way, is_looped, ride_dur_min, ride_dist_m, ride_speed_km_h  
+      , COALESCE(r.name, s.name) AS name
+      , COALESCE(r.id, s.id) AS id
+      , r.lat AS lat
+      , r.lng AS lng
+      , haversine(s.lng_mean, s.lat_mean, r.lng, r.lat) AS dist
+    FROM rides_clean_l_unk r, stations s
+    WHERE dist <= 11
+  )
+)
+WHERE dist_rank <= 1
+ORDER BY ride_id;
 ```
 
 ```{r}
@@ -1367,13 +1407,21 @@ if (!interactive()) TIMES$match_sql
 #| output: false
 
 (inner_join(
-    tbl(con_duck, "rides_clean_l_unk"),
-    tbl(con_duck, "stations"),
+    tbl(con_duck, "rides_clean_l_unk_dbp"),
+    tbl(con_duck, "stations_dbp"),
     sql_on = "haversine(LHS.lng, LHS.lat, RHS.lng_mean, RHS.lat_mean) <= 11"
   )
-  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y)) 
-  |> select(colnames(tbl(con_duck, "rides_clean_l_unk")))
-  |> compute("matched.dbp")
+  |> mutate(
+    dist = haversine(lng, lat, lng_mean, lat_mean),
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y)
+  )
+  |> group_by(ride_id, way)
+  |> slice_min(dist)
+  |> ungroup()
+  |> select(colnames(tbl(con_duck, "rides_clean_l_unk_dbp")), dist)
+  |> arrange(ride_id)
+  |> compute("matched_dbp")
 )
 ```
 
@@ -1397,10 +1445,19 @@ if (!interactive()) TIMES$match_dbp
     dist = 11, # In meters
     left = FALSE # Does an inner_join
   )
-  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
-  |> select(colnames(rides_clean_l_unk))
-  |> arrange(ride_id)
   |> st_drop_geometry()
+  |> lazy_dt()
+  |> mutate(
+    dist = haversine(lng, lat, lng_mean, lat_mean),
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y)
+  )
+  |> group_by(ride_id, way)
+  |> filter(which.min(dist))
+  |> ungroup()
+  |> select(colnames(rides_clean_l_unk), dist)
+  |> arrange(ride_id)
+  |> as.data.table()
 )
 ```
 
@@ -1592,13 +1649,13 @@ if (!interactive()) TIMES$merge_sql
 #| time_it: true
 
 (right_join(
-    tbl(con_duck, "matched_clean.dbp"),
-    tbl(con_duck, "rides_clean_l.dbp"),
-    by = tbl(con_duck, "rides_clean_l.dbp") |> select(-name, -id) |> colnames()
+    tbl(con_duck, "matched_clean_dbp"),
+    tbl(con_duck, "rides_clean_l_dbp"),
+    by = tbl(con_duck, "rides_clean_l_dbp") |> select(-name, -id) |> colnames()
   ) 
   |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
   |> select(-matches("\\.x|\\.y"))
-  |> compute("rides_clean_l_merged.dbp")
+  |> compute("rides_clean_l_merged_dbp")
 )
 ```
 
@@ -1619,7 +1676,7 @@ if (!interactive()) TIMES$merge_dbp
 
 rows_patch(
   rides_clean_l,
-  matched_clean,
+  matched_clean[, !"dist"],
   by = setdiff(colnames(rides_clean_l), c("name", "id")),
   unmatched = "ignore"
 )
@@ -1738,9 +1795,9 @@ if (!interactive()) TIMES$wide_sql
 #| time_it: true
 
 pivot_wider(
-  tbl(con_duck, "rides_clean_l_merged.dbp"), names_from = "way", 
+  tbl(con_duck, "rides_clean_l_merged_dbp"), names_from = "way", 
   names_glue = "{way}_station_{.value}", values_from = c("name", "id", "lat", "lng")
-) |> compute("rides_merged.dbp")
+) |> compute("rides_merged_dbp")
 ```
 
 ```{r}
@@ -1766,7 +1823,7 @@ rides_merged
 #| echo: false
 
 dbDisconnect(con_duck, shutdown = TRUE)
-fs::file_delete(duckdb_path)
+file_delete(duckdb_path)
 ```
 
 ***
