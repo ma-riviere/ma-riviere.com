@@ -115,7 +115,7 @@ library(dtplyr)      # data.table backend for dplyr      (Tidyverse)
 library(DBI)         # Database connection
 library(dbplyr)      # SQL back-end for dplyr            (Tidyverse)
 library(duckdb)      # Quack Stack
-library(arrow)       # Fast an efficient data reading
+library(arrow)       # Fast and efficient data reading
 
 library(sf)          # Spatial data manipulation
 
