@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.207">
+<meta name="generator" content="quarto-1.2.247">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -296,21 +296,19 @@ cookieconsent.run({
 <p>Five labs (three campuses) comprising ergonomists, neuroscientists, engineers, and mathematicians, united by their interest and experience with designing assistive devices for VIP, will duplicate, combine and share their pre-existing SSDs prototypes: a vibrotactile navigation belt, an audio-spatialized virtual guide for jogging, and an object-reaching sonic pointer. Using those prototypes, they will iteratively evaluate and improve their transcoding schemes in a 3-phase approach: First, in controlled experimental settings through augmented-reality serious games in motion capture (virtual prototyping indeed facilitates the creation of ad-hoc environments, and gaming eases the participants’ engagement). Next, spatial interaction subtasks will be progressively combined and tested in wider and more ecological indoor and outdoor environments. Finally, SAM-Guide’s system will be fully transitioned to real-world conditions through a friendly sporting event of laser-run, a novel handi-sport, which will involve each subtask.</p>
 <p>SAM-Guide will develop action-perception and spatial cognition theories relevant to nonvisual interfaces. It will provide guidelines for the efficient representation of spatial interactions to facilitate the emergence of spatial awareness in a task-oriented perspective. Our portable modular transcoding libraries are independent of hardware consideration. The principled experimental platform offered by AR games will be a tool for evaluating VIP spatial cognition, and novel strategies for mobility training.</p>
 <!-- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes. -->
-<!--# TODO: Outcomes > Belt & Unity -->
 </section>
 <section id="my-role-in-this-project" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
 <hr>
 <p><strong>1)</strong> I was the driving force behind the genesis of this project. I connected the consortium members together and wrote most of the grant proposal (ANR AAPG 2021, funding of 609k€). This project will last 4 years and allow the recruitment of 2 PhD students, one post-doc, and one Research Engineer.</p>
-<p><strong>2)</strong> Participated in the Data Management plan creation (compliance to the GPDR).</p>
-<p><strong>3)</strong> Designed and participated in the development of the second prototype of the TactiBelt, which features wireless communication and amovible vibrators:</p>
+<p><strong>2)</strong> Designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication and amovible vibrators:</p>
 <div id="fig-tactibelt-v2" class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="TactiBelt-v2.jpg" class="lightbox" title="Second prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-2"><img src="TactiBelt-v2.jpg" title="fig:Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
 <p></p><figcaption class="figure-caption">Figure&nbsp;1: Second prototype of the TactiBelt</figcaption><p></p>
 </figure>
 </div>
-<p><strong>4)</strong> Lead the design and development of the project’s experimental platform (choice of tools, lead developer). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses <a href="https://puredata.info/">PureData</a> for sound-wave generation, uses <a href="https://valvesoftware.github.io/steam-audio/">Steam Audio</a> for 3D audio modeling, and communicates to the TactiBelt wirelessly using the <a href="https://en.wikipedia.org/wiki/Open_Sound_Control">OSC protocol</a>.</p>
+<p><strong>3)</strong> Lead the design and development of the project’s experimental platform (choice of tools, lead developer). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses <a href="https://puredata.info/">PureData</a> for sound-wave generation, uses <a href="https://valvesoftware.github.io/steam-audio/">Steam Audio</a> for 3D audio modeling, and communicates to the TactiBelt wirelessly using the <a href="https://en.wikipedia.org/wiki/Open_Sound_Control">OSC protocol</a>.</p>
 <div id="fig-unity" class="quarto-layout-panel">
 <figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -356,7 +354,7 @@ cookieconsent.run({
 <p></p><figcaption class="figure-caption">Figure&nbsp;3: Examples of settings used to generate experimental trials on the fly.</figcaption><p></p>
 </figure>
 </div>
-<p><strong>5)</strong> Handling the experimental design of the first wave of experiments <em>(ongoing)</em>.</p>
+<p><strong>4)</strong> Handling the experimental design of the first wave of experiments <em>(ongoing)</em>.</p>
 
 
 </section>
@@ -612,7 +610,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -642,7 +640,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"descPosition":"bottom","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","openEffect":"zoom","loop":true,"closeEffect":"zoom","descPosition":"bottom"});</script>
 
 
 
