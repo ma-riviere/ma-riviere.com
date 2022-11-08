@@ -48,6 +48,8 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
+![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+
 # Introduction
 ***
 
@@ -83,9 +85,9 @@ During this project, we improved upon the first iteration of the **Force Feedbac
 # My role in this project
 ***
 
-**1)** Participate in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
+**1)** Participated in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
 
-**2)** Help design the first round of experimental evaluations, where participants where tasked with recognizing simple geometrical shapes, as well as the layout of a simple mock apartment.
+**2)** Helped design the first round of experimental evaluations, where participants where tasked with recognizing simple geometrical shapes as well as the layout of a simple mock apartment.
 
 :::{layout='[40,60]' layout-valign="center"}
 
@@ -95,4 +97,4 @@ During this project, we improved upon the first iteration of the **Force Feedbac
 
 :::
 
-**3)** Write a first-author [conference article](/content/pubs/NER19/) and a [poster](poster.pdf).
+**3)** Wrote a first-author [conference article](/content/pubs/NER19/) and a [poster](poster.pdf).

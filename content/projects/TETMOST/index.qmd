@@ -52,6 +52,8 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
+![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+
 # Introduction
 ***
 
@@ -114,10 +116,10 @@ The first prototype of the F2T was assembled with legos and a camera to better a
 # My role in this project
 ***
 
-**1)** Participate in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
+**1)** Participated in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
 
-**2)** Reviewing the literature and finding existing haptic interfaces, classifying them based on our needs, and buying/lending a prorotype from each category.
+**2)** Investigated existing haptic interfaces, classifying them based on our needs, and buying/lending a prototype from each category.
 
-**3)** Organizing experimental evaluations with VIP to see the strengths and weaknesses of each type.
+**3)** Organized experimental evaluations with VIP to assess the strengths and weaknesses of each category of interfaces.
 
-**4)** Participate in writing a [poster](poster.pdf) and two conference articles: one on the [F2T](/content/pubs/ICCHP18-F2T/), and one on the [image segmentation](/content/pubs/ICISP20/).
+**4)** Participated in writing a [poster](poster.pdf) and two conference articles: one on the [F2T](/content/pubs/ICCHP18-F2T/), and one on the [image segmentation](/content/pubs/ICISP20/).

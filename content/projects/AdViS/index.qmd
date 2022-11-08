@@ -56,6 +56,8 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
+![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+
 # Introduction
 ***
 
@@ -74,20 +76,20 @@ AdViS aims to explore various ways to provide visuo-spatial information through 
 
 :::
 
-The AdViS platform is coded in C++ (and Qt for the GUI).
-It currently uses [PureData](https://puredata.info/) for complex sound generation, and the [VICON](https://www.vicon.com/) system to track participant's movements in an augmented reality environment.
+The AdViS system is coded in C++, uses [PureData](https://puredata.info/) for complex sound generation, and relies on the [VICON](https://www.vicon.com/) system to track participant's movements in an augmented reality environment.
+
 
 # My role in this project
 ***
 
-**1)**  Propose a new model for image exploration using a touch-to-audio-feedback loop, where a VIP explores an image by moving its finger across it and gets auditive feedback from the explored regions and its surroundings.
+**1)**  Proposed a new model for image exploration relying on a touch-mediated visuo-auditive feedback loop, where a VIP explores an image by moving its finger across a screen and gets audio feedback based on the contents of the explored region.
 
-**2)**  Modify the existing AdViS code to include the ability to transcode grey-scale images into soundscapes, and to capture finger movements information on a touchscreen.
+**2)**  Modified the existing AdViS system to include the ability to transcode grey-scale images into soundscapes, based on captured finger-motion information on a touchscreen.
 
-**3)**  Organize experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyse the results.
+**3)**  Organized experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyzed the results.
 
 ![](geom-finger.jpg){alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"}
 
-**4)**  Participate in implementing an eye-tracking-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).
+**4)**  Participated in implementing an occular-motion-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).
 
 ![](geom-eye.jpg){alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"}

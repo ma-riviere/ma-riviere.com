@@ -8,7 +8,7 @@ author:
 
 date: 2022-05-19
 
-abstract: "This document is a collection of notes I took while learning to use `data.table`, summarizing the equivalences between most `dplyr`/`tidyr` verbs and `data.table`."
+abstract: "This post showcases many data wrangling operations with both `dplyr`/`tidyr` and `data.table` functions."
 
 website:
   open-graph:

@@ -59,7 +59,7 @@ about:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
-![](header.jpg){.preview-image fig-alt="Banner illustrating the ACCESSPACE project"}
+![](header.jpg){.preview-image fig-alt="Banner illustrating the project"}
 
 # Introduction
 ***

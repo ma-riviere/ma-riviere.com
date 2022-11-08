@@ -34,12 +34,14 @@ categories:
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
 
+![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+
 # My role in this project
 ***
 
-**1)** Develop tools to assist the project's researchers exploration of the collected data. To this end, I developed a modular [
+**1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [
 Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process.
 
-**2)** Handle the RT-qPCR data processing and analysis.
+**2)** Handle the RT-qPCR data processing and analysis *(ongoing)*.
 
 **3)** Participate in writing the final scientific paper resulting from this project *(ongoing)*.

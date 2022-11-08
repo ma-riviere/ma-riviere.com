@@ -9,11 +9,9 @@ author:
 date: 2022-06-18
 
 abstract: |
-  This document was prompted by [a reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/) on how to fill missing location names by matching them to other known locations by their geographical proximity (using lat/long coordinates). The question is apparently linked to a case study of **Google's Data Analytics certificate**.  
+  This post showcases various solutions to efficiently match unknown locations to known ones by their geographical proximity (using lat/long coordinates), on a dataset with dozens of millions of entries. 
   
-  The gist of it is that the proposed matching won't yield anything with this particular dataset. It appears that the locations missing a name or id are missing one *because* their coordinates lack the precision necessary to be reliably matched to a known station by proximity alone.
-  
-  This post showcases different solutions/packages to achieve the distance-based matching, with timings to compare their speed. The SQL (DuckDB) & `dbplyr` solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets.
+  This post is linked to a case study of **Google's Data Analytics certificate**.
 
 website:
   open-graph:
@@ -42,6 +40,8 @@ format:
 You can check the source code by clicking on the **</> Code** button at the top-right.
 
 Data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
+
+This post was prompted by [this reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/).
 :::
 
 :::{.callout-tip collapse="true"}
@@ -200,6 +200,8 @@ duckdb_path <- here(data_path, "stations.db")
 #### Note on the choice of Database: 
 
 A more logical choice would have been `PostGIS`, an extension of `Postgres` for spatial data, which includes native support for geometry/geography data types, as well as methods for distance calculations. However, setting up and interfacing `PostGIS` with R is significantly more convoluted than `DuckDB`, and analytical queries on `PostGIS` are much slower than on `DuckDB`. The only downside to using `DuckDB` for this example is that we will need to define our haversine (i.e. distance-on-a-sphere) function ourselves.
+
+**NB:** The SQL (DuckDB) & `dbplyr` solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets.
 
 :::
 
