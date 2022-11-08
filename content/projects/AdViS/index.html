@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.207">
+<meta name="generator" content="quarto-1.2.247">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -290,6 +290,11 @@ cookieconsent.run({
 }
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
+</figure>
+</div>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <hr>
@@ -307,35 +312,35 @@ cookieconsent.run({
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 47.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="AdViS - Depth Map navigation"><img src="advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
+<p><a href="advis-diagram.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Depth Map navigation"><img src="advis-diagram.png" class="img-fluid figure-img" alt="AdViS system's operating diagram"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Depth Map navigation</figcaption><p></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 53.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="AdViS - Motion Capture"><img src="feature.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="AdViS - Motion Capture"><img src="feature.png" class="img-fluid figure-img" alt="AdViS system's operating diagram with motion capture"></a></p>
 <p></p><figcaption class="figure-caption">AdViS - Motion Capture</figcaption><p></p>
 </figure>
 </div>
 </div>
 </div>
-<p>The AdViS platform is coded in C++ (and Qt for the GUI). It currently uses <a href="https://puredata.info/">PureData</a> for complex sound generation, and the <a href="https://www.vicon.com/">VICON</a> system to track participant’s movements in an augmented reality environment.</p>
+<p>The AdViS system is coded in C++, uses <a href="https://puredata.info/">PureData</a> for complex sound generation, and relies on the <a href="https://www.vicon.com/">VICON</a> system to track participant’s movements in an augmented reality environment.</p>
 </section>
 <section id="my-role-in-this-project" class="level1" data-number="2">
 <h1 data-number="2"><span class="header-section-number">2</span> My role in this project</h1>
 <hr>
-<p><strong>1)</strong> Propose a new model for image exploration using a touch-to-audio-feedback loop, where a VIP explores an image by moving its finger across it and gets auditive feedback from the explored regions and its surroundings.</p>
-<p><strong>2)</strong> Modify the existing AdViS code to include the ability to transcode grey-scale images into soundscapes, and to capture finger movements information on a touchscreen.</p>
-<p><strong>3)</strong> Organize experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyse the results.</p>
+<p><strong>1)</strong> Proposed a new model for image exploration relying on a touch-mediated visuo-auditive feedback loop, where a VIP explores an image by moving its finger across a screen and gets audio feedback based on the contents of the explored region.</p>
+<p><strong>2)</strong> Modified the existing AdViS system to include the ability to transcode grey-scale images into soundscapes, based on captured finger-motion information on a touchscreen.</p>
+<p><strong>3)</strong> Organized experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyzed the results.</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="geom-finger.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="geom-finger.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"></a></p>
+<p><a href="geom-finger.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="geom-finger.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"></a></p>
 </figure>
 </div>
-<p><strong>4)</strong> Participate in implementing an eye-tracking-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).</p>
+<p><strong>4)</strong> Participated in implementing an occular-motion-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="geom-eye.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="geom-eye.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"></a></p>
+<p><a href="geom-eye.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="geom-eye.jpg" class="img-fluid figure-img" alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"></a></p>
 </figure>
 </div>
 
@@ -593,7 +598,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -623,7 +628,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","loop":true,"closeEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","loop":true,"selector":".lightbox","closeEffect":"zoom"});</script>
 
 
 

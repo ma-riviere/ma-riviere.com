@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.207">
+<meta name="generator" content="quarto-1.2.247">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -45,6 +45,9 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-contrib/nutshell-1.0.0/nutshell.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
@@ -272,16 +275,21 @@ cookieconsent.run({
 }
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
+</figure>
+</div>
 <section id="my-role-in-this-project" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> My role in this project</h1>
 <hr>
-<p><strong>1)</strong> Handle the data processing and analysis, for both immunohistochemistry and RT-qPCR data. The code for those analyses was made open-source and registered on <a href="https://doi.org/10.5281/zenodo.6480947">Zenodo</a>, while the results of the analyses were published in <a href="https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-022-00869-5">Cell &amp; Bioscience</a>.</p>
-<p><strong>2)</strong> Make <a href="https://ma-riviere.github.io/LT-AoP-22/">a website</a> documenting and showcasing the project’s data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.</p>
+<p><strong>1)</strong> Handled the data processing and analysis, for both immunohistochemistry and RT-qPCR data. The code for those analyses was made open-source and registered on <a href="https://doi.org/10.5281/zenodo.6480947">Zenodo</a>, while the results of the project were published in <a href="https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-022-00869-5">Cell &amp; Bioscience</a>.</p>
+<p><strong>2)</strong> Made <a href="https://ma-riviere.github.io/LT-AoP-22/">a website</a> documenting and showcasing the project’s data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.</p>
 <details>
 <summary>
 Click to see a preview of a page of the documentation
 </summary>
-<iframe src="https://ma-riviere.github.io/LT-AoP-22/quarto/content/Weight_adults.html" width="100%" height="800">
+<iframe src="https://ma-riviere.github.io/LT-AoP-22/" width="100%" height="800">
 </iframe>
 </details>
 
@@ -539,7 +547,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         return filterRegex.test(href) || localhostRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
-    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not(["aria-hidden"]');
+    var links = window.document.querySelectorAll('a:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -569,6 +577,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+<script>var lightboxQuarto = GLightbox({"loop":true,"descPosition":"bottom","closeEffect":"zoom","openEffect":"zoom","selector":".lightbox"});</script>
 
 
 
