@@ -1,45 +1,37 @@
 ---
 title: "{{< iconify file-icons keynote >}} Outreach Activities"
-# image: splash.avif
-
-license: "CC BY"
+subtitle: "The talks and outreach activities I've partaken in"
 
 listing:
   - id: outreach-scicom
     type: grid
-    contents: "scicom/*/*.qmd"
+    contents: "scicom/*/*.{md,qmd,Rmd}"
     fields: [title, subtitle, description]
     categories: numbered
     date-format: medium
     sort: [date desc, title desc]
-    page-size: 5
+    max-items: 5
     field-display-names:
       doi: "Location"
       subtitle: "Event"
       description: "Summary"
   - id: outreach-talks
-    contents: "talks/*/*.qmd"
+    contents: "talks/*/*.{md,qmd,Rmd}"
     fields: [doi, date, title, subtitle, description, categories]
     categories: numbered
     date-format: medium
     sort: [date desc, title desc]
-    page-size: 5
+    max-items: 5
     filter-ui: true
     sort-ui: [date, title]
-
-website:
-  open-graph:
-    description: "A list of my scientific outreach activities"
-  twitter-card:
-    description: "A list of my scientific outreach activities"
 ---
 
-## {{< fa chalkboard-user >}} Scientific Dissemination
+# {{< fa chalkboard-user >}} Scientific Dissemination
 
 :::{#outreach-scicom}
 :::
 
-## {{< iconify carbon group-presentation >}} Conferences & Seminars
+# {{< iconify carbon group-presentation >}} Conferences & Seminars
 
 :::{#outreach-talks}
 :::

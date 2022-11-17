@@ -1,25 +1,20 @@
 ---
 title: "{{< fa business-time >}} Past & Current Projects"
+subtitle: "The projects I am or was involved in"
+
+toc: false
+number-sections: false
 
 listing:
-  contents: "*.qmd"
-  type: default
+  contents: "*.{md,qmd,Rmd}"
   fields: [doi, image, title, subtitle, description, categories] # author
   categories: numbered
   date-format: medium
   sort: [date desc, title desc]
-  page-size: 10
+  max-items: 10
   filter-ui: true
   sort-ui: [date, title]
   field-display-names:
     doi: "Funding" #TODO: change the template instead
-
-website:
-  open-graph:
-    description: "A list of the various projects I am or was involved in"
-    image: ../../res/avatar.jpg
-  twitter-card:
-    description: "A list of the various projects I am or was involved in"
-    image: ../../res/avatar.jpg
 ---
 

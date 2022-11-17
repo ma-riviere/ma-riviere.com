@@ -1,13 +1,7 @@
 # Content
 
+## A default value is required to properly display banners
+## It will be overridden in the SCSS
 title-block-banner: "#4B5B68"
 
-website:
-  open-graph:
-    image-width: 300
-  twitter-card:
-    image-width: 300
-
-format:
-  html:
-    include-before-body: ../libs/html/progress-bar.html
+include-before-body: ../libs/html/progress-bar.html

@@ -1,5 +1,8 @@
 # Outreach
 
+image: ../../res/avatar.jpg
+image-alt: "Profile picture of Marc-Aurèle Rivière"
+
 resources: "*/*.pdf"
 
 published-title: "Date"
@@ -9,15 +12,8 @@ doi-title: "Location" #TODO: change the link with JS, or better, change the temp
 about:
   id: additional-links
   template: solana
-  image: ../placeholder.avif
   image-width: "0%"
 
-website:
-  open-graph:
-    image: ../../res/avatar.jpg
-  twitter-card:
-    image: ../../res/avatar.jpg
-  
 filters:
   - lightbox
 

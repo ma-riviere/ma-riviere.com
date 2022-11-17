@@ -22,13 +22,6 @@ categories:
   - "data.table"
   - "R"
 
-format:
-  html:
-    code-summary: "Alternatives"
-    code-tools:
-      source: true
-      toggle: false
-
 execute: 
   output: asis
 ---

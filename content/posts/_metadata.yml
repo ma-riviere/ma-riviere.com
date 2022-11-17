@@ -1,20 +1,17 @@
 # Blog posts
 
-citation: true
+image: ../../res/avatar.jpg
+image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 published-title: "First Published"
 
-page-layout: article
-
-format:
-  html:
-    number-sections: true
-
-website:
-  open-graph:
-    image: ../../res/avatar.jpg
-  twitter-card:
-    image: ../../res/avatar.jpg
+citation: true
+toc: true
+number-sections: true
+code-tools:
+  source: true
+  toggle: false
+code-summary: "Alternatives"
 
 comments:
   giscus:

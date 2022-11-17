@@ -1,26 +1,23 @@
 ---
 title: "{{< fa blog >}} Blog Posts"
-# image: 
+subtitle: "**R**, **Stats** and **Data Science** blog posts !"
 
 license: "CC BY"
 
 listing:
-  contents: "*.qmd"
-  # type: default
+  contents: "*.{md,qmd,Rmd}"
   fields: [date, title, subtitle, description, reading-time, categories] # file-modified 
   categories: numbered
   date-format: medium
   sort: [date desc, title desc]
-  page-size: 10
+  max-items: 10
   filter-ui: true
   sort-ui: [date, title]
-
-website:
-  open-graph:
-    description: "A list of blog posts I have written (mostly pertaining to R and Stats)"
-  twitter-card:
-    description: "A list of blog posts I have written (mostly pertaining to R and Stats)"
+  feed:
+    type: partial
 
 citation: false
 comments: false
+code-tools: false
+toc: false
 ---

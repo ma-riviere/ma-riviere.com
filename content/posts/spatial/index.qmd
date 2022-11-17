@@ -26,12 +26,6 @@ categories:
   - "R"
   - "SQL"
   - "DuckDB"
-
-format:
-  html:
-    code-tools:
-      source: true
-      toggle: false
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px">
@@ -78,7 +72,7 @@ renv::install(c(
   "here",
   "fs",
   "pipebind",
-  "Rdatatable/data.table", # >= 1.14.5
+  "Rdatatable/data.table", # >= 1.14.7
   "Tidyverse/dplyr",
   "tidyr",
   "dtplyr",
@@ -201,7 +195,7 @@ duckdb_path <- here(data_path, "stations.db")
 
 A more logical choice would have been `PostGIS`, an extension of `Postgres` for spatial data, which includes native support for geometry/geography data types, as well as methods for distance calculations. However, setting up and interfacing `PostGIS` with R is significantly more convoluted than `DuckDB`, and analytical queries on `PostGIS` are much slower than on `DuckDB`. The only downside to using `DuckDB` for this example is that we will need to define our haversine (i.e. distance-on-a-sphere) function ourselves.
 
-**NB:** The SQL (DuckDB) & `dbplyr` solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets.
+<!-- **NB:** The SQL (DuckDB) & `dbplyr` solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets. -->
 
 :::
 
@@ -242,40 +236,36 @@ if (!interactive()) TIMES$loading_dt
 ```
 
 
-#### DuckDB + arrow
+#### DuckDB
 
 ```{r}
-con_duck <- dbConnect(duckdb(), dbdir = duckdb_path)
-
-knitr::opts_chunk$set(connection = "con_duck")
+con_duck <- dbConnect(duckdb(), dbdir = ":memory:") # duckdb_path
 ```
 
 ```{r}
-#| label: loading_sql
+#| echo: false
+#| output: false
+
+knitr::opts_chunk$set(connection = "con_duck")
+
+dbExecute(con_duck, "SET experimental_parallel_csv=true")
+```
+
+```{r}
+#| label: loading_duck
 #| output: false
 #| time_it: true
 
-open_dataset(data_path, format = "csv", factory_options = list(exclude_invalid_files = TRUE)) |> 
-  to_duckdb(con_duck) |> 
-  mutate(across(everything(), \(x) if_else(length(x) == 0, NA, x))) |> 
-  compute("rides")
+duckdb_read_csv(con_duck, "rides", files)
 ```
 
 ```{r}
 #| echo: false
 
-if (!interactive()) TIMES$loading_sql
+if (!interactive()) TIMES$loading_duck
 ```
 
-<!-- ALTERNATIVES --->
-
-```{r}
-#| eval: false
-#| code-fold: true
-#| code-summary: Importing using the `duckdb` package directly (slower)
-
-duckdb_read_csv(con_duck, "rides", files)
-```
+<!-- ALTERNATIVES -->
 
 ```{r}
 #| eval: false
@@ -310,6 +300,30 @@ dbWriteTable(con_duck, "rides", rides_df) # As a TABLE
 copy_to(con_duck, rides_df, "rides", indexes = "ride_id")
 
 duckdb_register(con_duck, "rides", rides_df) # As a VIEW
+```
+
+
+#### arrow + DuckDB
+
+This solution can be faster than the pure `DuckDB` when the DB is on disk (i.e. not in `:memory:`).
+
+```{r}
+#| label: loading_arrow_duck
+#| output: false
+#| time_it: true
+
+open_dataset(data_path, format = "csv", factory_options = list(exclude_invalid_files = TRUE)) |> 
+  to_duckdb(con_duck) |> 
+  mutate(across(everything(), \(x) if_else(length(x) == 0, NA, x))) |> 
+  compute("rides_arr")
+```
+
+```{r}
+#| echo: false
+
+dbRemoveTable(con_duck, "rides_arr")
+
+if (!interactive()) TIMES$loading_arrow_duck
 ```
 
 
@@ -1825,7 +1839,7 @@ rides_merged
 #| echo: false
 
 dbDisconnect(con_duck, shutdown = TRUE)
-file_delete(duckdb_path)
+if (file_exists(duckdb_path)) file_delete(duckdb_path)
 ```
 
 ***

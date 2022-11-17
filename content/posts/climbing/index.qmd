@@ -27,12 +27,6 @@ categories:
   - "Bayesian Modeling"
   - "Stan"
   - "R"
-
-format:
-  html:
-    code-tools:
-      source: true
-      toggle: false
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px">

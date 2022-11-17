@@ -473,15 +473,15 @@
     },
     "data.table": {
       "Package": "data.table",
-      "Version": "1.14.5",
+      "Version": "1.14.7",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "Rdatatable",
+      "RemoteUsername": "rdatatable",
       "RemoteRepo": "data.table",
       "RemoteRef": "master",
-      "RemoteSha": "052f8da64c16a099b2889ac8906a2f24ce6f3a9e",
-      "Hash": "3d3b215c656ab84759c7e5da07d81479",
+      "RemoteSha": "1b324637045c97b40960fa64a4dc4dc27b00596a",
+      "Hash": "ed26d6274785caa6d605d8137cb596f1",
       "Requirements": []
     },
     "datawizard": {
@@ -629,10 +629,13 @@
     },
     "duckdb": {
       "Package": "duckdb",
-      "Version": "0.5.1",
+      "Version": "0.6.0",
       "Source": "Repository",
-      "Repository": "CRAN",
-      "Hash": "ed86d0ef128329ddd146663edf61d039",
+      "Repository": "https://duckdb.r-universe.dev",
+      "RemoteUrl": "https://github.com/duckdb/duckdb",
+      "RemoteRef": "HEAD",
+      "RemoteSha": "0f0461113f3341135471805c9928c4d71d1f5874",
+      "Hash": "473f345eb68620cba1619966083a4bce",
       "Requirements": [
         "DBI"
       ]
@@ -1946,15 +1949,15 @@
     },
     "vctrs": {
       "Package": "vctrs",
-      "Version": "0.5.0.9000",
+      "Version": "0.5.1.9000",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "r-lib",
       "RemoteRepo": "vctrs",
       "RemoteRef": "main",
-      "RemoteSha": "fb238a14a7c7e602fc81365ea29b459f128b17c1",
-      "Hash": "d2b02bca670166384835496edc191354",
+      "RemoteSha": "48794fd3e486ed3bca7fc3842f625d01eb02ed6b",
+      "Hash": "1e222bed894cdb1f26814fa1b188380c",
       "Requirements": [
         "cli",
         "glue",

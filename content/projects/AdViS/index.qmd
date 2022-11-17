@@ -50,7 +50,7 @@ about:
       aria-label: "See the PDF of a journal article illustrating the project (2018)"
     - text: "Poster"
       icon: file-image
-      url: /content/projects/ADVIS/ADVIS.pdf
+      url: /content/projects/AdViS/ADVIS.pdf
       aria-label: "See the PDF of a poster illustrating the project"
 ---
 

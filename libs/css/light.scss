@@ -1,9 +1,51 @@
 /*-- scss:defaults --*/
-$main: #2d2d77;
-$hover: #0d6efd;
 
-$navbar-bg: #447099;
+// Custom
+$gold:         #d8ba55 !default; // #f2a11e
+$blue:         #0d6efd !default;
+$dark-blue:    #2a3063 !default; // #2d2d77
+$light-blue:   #5b80d0 !default;
+$blue-gray:    #447099 !default;
+$gray-blue:    #4B5B68 !default;
+$hail-satan:   #666bad !default;
+$mauve:        #8e64ca !default;
+
+$col1:          $blue-gray !default;
+$col2:          $gray-blue !default;
+$col3:          $light-blue !default;
+
+$primary:       $col1 !default;
+$success:       $col3 !default;
+$link-color:    $col3 !default;
+
+// Code
+
+$code-block-border-left:          #31BAE9 !default;
 
 /*-- scss:rules --*/
+
 .light-mode { display: block; }
 .dark-mode { display: none; }
+
+h1:not(.title) { color: $col1;}
+h2:not(.title) { color: $col2;}
+h5.quarto-listing-category-title { color: $col2; }
+
+.quarto-listing-category .category.active { color: $col3; }
+
+#progress-bar { background: lighten($col2, 20%); }
+
+.quarto-title:not(.column-body) h1.title { color: $col1; }
+
+.quarto-title-block .quarto-title-banner {
+    background-color: $col2  !important;
+    color: white;
+}
+
+.quarto-title:not(.column-body) .subtitle { color: $col2; }
+  
+.column-page h2 { color: $col2; }
+
+.card-body > .card-title { color: $col3; }
+
+.navbar .nav-item > a.nav-link.active { border-top: 2px solid; } // #b4c5e9

@@ -11,7 +11,7 @@ date: 2022-06-05
 abstract: |
   This post is an extension (and a translation to R) of [PyMC-Labs' benchmarking](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) of MCMC for "Big Data". 
   
-  The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.  Stan was able to achieve similar sampling speeds as PyMC's JAX + GPU solution, without GPU acceleration.
+  The Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling. Stan was able to achieve similar sampling speeds as PyMC's JAX + GPU solution, purely on CPU.
 
 website:
   open-graph:
@@ -26,12 +26,6 @@ categories:
   - "Big Data"
   - "Stan"
   - "R"
-
-format:
-  html:
-    code-tools:
-      source: true
-      toggle: false
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px">

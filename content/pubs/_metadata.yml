@@ -1,19 +1,14 @@
 # Pubs
 
+image: ../../res/avatar.jpg
+image-alt: "Profile picture of Marc-Aurèle Rivière"
+
 resources: "*/*.pdf"
 
 about:
   id: additional-links
   template: solana
-  image: ../placeholder.avif
   image-width: "0%"
-
-# Using Avatar as default image for pubs
-website:
-  open-graph:
-    image: ../../res/avatar.jpg
-  twitter-card:
-    image: ../../res/avatar.jpg
 
 filters:
   - lightbox

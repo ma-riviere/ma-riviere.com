@@ -1,18 +1,14 @@
 ---
 title: "{{< fa user-tie >}} About Me"
+
 image: ../res/avatar.jpg
-title-block-banner: "#4B5B68"
+image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 website:
   open-graph:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
-    image: ../res/avatar.jpg
   twitter-card:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
-    image: ../res/avatar.jpg
-
-sidebar: false
-toc: false
 ---
 
 ## {{< fa graduation-cap >}} Education
@@ -27,9 +23,11 @@ toc: false
 - MSc in Organisational Psychology (2013-2015)  
   [University of Strasbourg]{.small style="color: #888888"}
 
+<a href="../res/cv.pdf" class="btn btn-primary rounded-pill">Check my CV</a>
+
 ## {{< fa address-book >}} Contact Me
 
-You can send me an [email](mailto:marc.aurele.riviere+site@gmail.com) or directly message me on twitter at [@mariviere1](https://twitter.com/mariviere1)
+You can send me an [email](mailto:marc.aurele.riviere@gmail.com) or directly message me on [twitter](https://twitter.com/mariviere1) or [Mastodon](https://fediscience.org/web/@mariviere).
 
 ## {{< fa location-dot >}} Location
 
