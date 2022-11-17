@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.247">
+<meta name="generator" content="quarto-1.3.8">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -127,9 +127,10 @@ cookieconsent.run({
 <meta property="og:description" content="Smart pen providing real-time audio-feedback on objects using smartphone's sensors">
 <meta property="og:image" content="https://ma-riviere.me/content/projects/CamIO/feature.png">
 <meta property="og:site-name" content="Marc-Aurèle Rivière">
-<meta property="og:image:width" content="357">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="296">
+<meta property="og:image:width" content="357">
+<meta property="og:image:alt" content="Profile picture of Marc-Aurèle Rivière">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - CamIO">
 <meta name="twitter:description" content="Smart pen providing real-time audio-feedback on objects using smartphone's sensors">
 <meta name="twitter:image" content="https://ma-riviere.me/content/projects/CamIO/feature.png">
@@ -137,6 +138,7 @@ cookieconsent.run({
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image-height" content="296">
 <meta name="twitter:image-width" content="357">
+<meta name="twitter:image:alt" content="Profile picture of Marc-Aurèle Rivière">
 </head>
 
 <body class="nav-fixed fullcontent">
@@ -175,7 +177,7 @@ cookieconsent.run({
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../content/about.html">
- <span class="menu-text">About</span></a>
+ <span class="menu-text"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> About Me</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ma-riviere/ma-riviere.me/"><i class="bi bi-code-slash" role="img" aria-label="Website's source code">
@@ -189,6 +191,11 @@ cookieconsent.run({
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ma-riviere/"><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="../../../content/posts/index.xml"><i class="bi bi-rss" role="img" aria-label="My blog's RSS feed">
 </i> 
  <span class="menu-text"></span></a>
   </li>  
@@ -291,14 +298,12 @@ cookieconsent.run({
 </script>
 <style>
   #progress-bar {
-  --scrollAmount: 0%;
-  /* background-image: linear-gradient(to right, #0e11b9 0%, #6c08bd 100%); */
-  background: #0e0e80;
-  width: var(--scrollAmount);
-  height: 5px;
-  position: fixed;
-  bottom: 0;
-}
+    --scrollAmount: 0%;
+    width: var(--scrollAmount);
+    height: 5px;
+    position: fixed;
+    bottom: 0;
+  }
 </style>
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
@@ -328,13 +333,13 @@ cookieconsent.run({
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div id="fig-IA-loc" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-loc.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Indoor Atlas’ localization"><img src="IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
+<p><a href="IA-loc.png" class="lightbox" title="Indoor Atlas’ localization" data-gallery="quarto-lightbox-gallery-3"><img src="IA-loc.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas service at work"></a></p>
 <p></p><figcaption class="figure-caption">(a) Indoor Atlas’ localization</figcaption><p></p>
 </figure>
 </div>
 <div id="fig-IA-graph" class="quarto-figure quarto-figure-center" style="flex-basis: 50.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="IA-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Indoor Atlas’ navigation graph"><img src="IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
+<p><a href="IA-graph.png" class="lightbox" title="Indoor Atlas’ navigation graph" data-gallery="quarto-lightbox-gallery-4"><img src="IA-graph.png" class="img-fluid figure-img" alt="Illustration of the Indoor Atlas navigation graph"></a></p>
 <p></p><figcaption class="figure-caption">(b) Indoor Atlas’ navigation graph</figcaption><p></p>
 </figure>
 </div>
@@ -353,7 +358,7 @@ Fusco, G., &amp; Coughlan, J. M. (2018). <em>Indoor localization using computer 
 </div>
 </div></section></div></main></div>
     </div>
-    <img src="../../placeholder.avif" class="about-image
+    <img src="feature.png" alt="Profile picture of Marc-Aurèle Rivière" class="about-image
   rounded " style="width: 0%;">
   </div>
 </div>
@@ -633,7 +638,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom","closeEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","loop":true,"selector":".lightbox","descPosition":"bottom","openEffect":"zoom"});</script>
 
 
 
