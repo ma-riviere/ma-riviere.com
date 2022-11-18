@@ -15,17 +15,26 @@ about:
     - text: "GitHub"
       icon: github
       url: https://github.com/ma-riviere/
+      rel: "me"
       aria-label: "GitHub"
     - text: "Twitter"
       icon: twitter
       url: https://twitter.com/mariviere1
+      rel: "me"
       aria-label: "Twitter"
+    - text: "Mastodon"
+      icon: mastodon
+      href: https://fediscience.org/@mariviere
+      rel: "me"
+      aria-label: "Mastodon"
     - text: LinkedIn
       icon: linkedin
       url: https://linkedin.com/in/ma-riviere
+      rel: "me"
       aria-label: "LinkedIn"
     - text: "{{< ai orcid >}} ORCID"
       url: https://orcid.org/0000-0002-5108-3382
+      rel: "me"
       aria-label: "ORCID"
     - text: "Email"
       icon: envelope
