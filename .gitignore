@@ -48,12 +48,12 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
-secret.yml
 _secret.yml
 
 # Quarto
 /.quarto/
 _freeze/
+_site/
 
 # Data
 res/data/

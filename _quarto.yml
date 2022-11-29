@@ -1,6 +1,6 @@
 project:
   type: website
-  output-dir: "docs"
+  output-dir: "_site"
   resources:
     - .nojekyll
     - CNAME
@@ -51,7 +51,7 @@ website:
   # page-navigation: true
   navbar:
     # logo: TODO
-    # logo-alt: 
+    # logo-alt: ""
     pinned: true
     collapse: true
     collapse-below: md
@@ -75,9 +75,9 @@ website:
       - icon: code-slash
         href: https://github.com/ma-riviere/ma-riviere.me/
         aria-label: "Website's source code"
-      - icon: twitter
-        href: https://twitter.com/mariviere1
-        aria-label: "Twitter"
+      # - icon: twitter
+      #   href: https://twitter.com/mariviere1
+      #   aria-label: "Twitter"
       - icon: github
         href: https://github.com/ma-riviere/
         aria-label: "GitHub"

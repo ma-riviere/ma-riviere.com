@@ -1,5 +1,6 @@
 ---
 title: "{{< fa user-tie >}} About Me"
+subtitle: '<a href="../res/cv.pdf" class="btn btn-outline-info btn-sm">Check my CV</a>'
 
 image: ../res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"
@@ -11,19 +12,25 @@ website:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
 ---
 
+## {{< fa briefcase >}} Employment
+
+- **Research Engineer** (2021-Present)  
+  [LITIS Lab]{.about-details}
+
+- **Graduate Teaching Fellow** (2017-2020)  
+  [University of Rouen-Normandy]{.about-details}
+
 ## {{< fa graduation-cap >}} Education
 
-- PhD in Cognitive Neurosciences (2017-2020)  
+- **PhD in Cognitive Neurosciences** (2017-2020)  
   [*Unfinished - COVID*]{.small style="color: #eac019"}  
-  [University of Rouen-Normandy]{.small style="color: #888888"}
+  [University of Rouen-Normandy]{.about-details}
 
-- MSc in Cognitive Neurosciences (2015-2016)  
-  [Grenoble INP - Phelma]{.small style="color: #888888"}
+- **MSc in Cognitive Neurosciences** (2015-2016)  
+  [Grenoble INP - Phelma]{.about-details}
 
-- MSc in Organisational Psychology (2013-2015)  
-  [University of Strasbourg]{.small style="color: #888888"}
-
-<a href="../res/cv.pdf" class="btn btn-primary rounded-pill">Check my CV</a>
+- **MSc in Organisational Psychology** (2013-2015)  
+  [University of Strasbourg]{.about-details}
 
 ## {{< fa address-book >}} Contact Me
 
