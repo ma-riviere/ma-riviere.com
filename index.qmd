@@ -2,7 +2,7 @@
 title: "Marc-Aurèle Rivière"
 subtitle: "Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
 
-description: "Research Engineer - [LITIS Lab](https://litislab.fr/en/litis)"
+description: "Research Engineer - [LITIS Lab](https://litislab.fr/en/)"
 
 image: res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"

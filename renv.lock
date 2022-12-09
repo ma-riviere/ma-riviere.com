@@ -149,10 +149,10 @@
     },
     "arrow": {
       "Package": "arrow",
-      "Version": "10.0.0",
+      "Version": "10.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "05f9b803e1f6a5d47ff0a885ed04ebd2",
+      "Hash": "74b551e105beb7ee0fae1f7861668bac",
       "Requirements": [
         "R6",
         "assertthat",
@@ -477,11 +477,11 @@
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
-      "RemoteUsername": "rdatatable",
+      "RemoteUsername": "Rdatatable",
       "RemoteRepo": "data.table",
       "RemoteRef": "master",
-      "RemoteSha": "1b324637045c97b40960fa64a4dc4dc27b00596a",
-      "Hash": "ed26d6274785caa6d605d8137cb596f1",
+      "RemoteSha": "cb8aeff9453acec878e5ab8515cda0d302c943eb",
+      "Hash": "e28f9bf8057550c163759b71e0740e88",
       "Requirements": []
     },
     "datawizard": {
@@ -503,9 +503,8 @@
       "RemoteUsername": "Tidyverse",
       "RemoteRepo": "dbplyr",
       "RemoteRef": "main",
-      "RemoteSha": "5ce71b701df9f22a3369b644c281e405bbff1562",
-      "Remotes": "r-lib/tidyselect, r-lib/vctrs, tidyverse/dplyr",
-      "Hash": "7d4d682f82a707a7d2bd3fee59da36cc",
+      "RemoteSha": "f92645028c8a6784ee536ebce29754e44a778cca",
+      "Hash": "e8fd282d072ca36b4e770f2f9999ffde",
       "Requirements": [
         "DBI",
         "R6",
@@ -591,9 +590,8 @@
       "RemoteUsername": "Tidyverse",
       "RemoteRepo": "dplyr",
       "RemoteRef": "main",
-      "RemoteSha": "34981f963f8536a35d58534ce0657e638c6259d3",
-      "Remotes": "r-lib/vctrs",
-      "Hash": "60dad478f39b865e8030555a636b7201",
+      "RemoteSha": "367a1fa4835f53dff8991e634551ebfe646dcdb4",
+      "Hash": "3991375456c8915bef691a8f52f9e7dd",
       "Requirements": [
         "R6",
         "cli",
@@ -629,13 +627,10 @@
     },
     "duckdb": {
       "Package": "duckdb",
-      "Version": "0.6.0",
+      "Version": "0.6.1",
       "Source": "Repository",
-      "Repository": "https://duckdb.r-universe.dev",
-      "RemoteUrl": "https://github.com/duckdb/duckdb",
-      "RemoteRef": "HEAD",
-      "RemoteSha": "0f0461113f3341135471805c9928c4d71d1f5874",
-      "Hash": "473f345eb68620cba1619966083a4bce",
+      "Repository": "CRAN",
+      "Hash": "9960ee9e20437c48a1160d3fdc176aff",
       "Requirements": [
         "DBI"
       ]
@@ -1511,9 +1506,8 @@
       "RemoteUsername": "Tidyverse",
       "RemoteRepo": "purrr",
       "RemoteRef": "main",
-      "RemoteSha": "af857c2d7455fb74ed31c58daad88099e496696c",
-      "Remotes": "r-lib/vctrs",
-      "Hash": "34d76bec4bbf08d75271e7e013078672",
+      "RemoteSha": "55c9a8ab8788d878ce9e8e80b867139e46d15395",
+      "Hash": "cf14fa9886d9da44f57f61e37e2a1724",
       "Requirements": [
         "cli",
         "lifecycle",
@@ -1774,14 +1768,18 @@
     },
     "stringr": {
       "Package": "stringr",
-      "Version": "1.4.1",
+      "Version": "1.5.0",
       "Source": "Repository",
       "Repository": "CRAN",
-      "Hash": "a66ad12140cd34d4f9dfcc19e84fc2a5",
+      "Hash": "671a4d384ae9d32fc47a14e98bfa3dc8",
       "Requirements": [
+        "cli",
         "glue",
+        "lifecycle",
         "magrittr",
-        "stringi"
+        "rlang",
+        "stringi",
+        "vctrs"
       ]
     },
     "svUnit": {

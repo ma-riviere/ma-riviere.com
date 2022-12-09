@@ -3,7 +3,7 @@
 image: ../../res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"
 
-resources: "*/*.pdf"
+resources: "*/*/*.pdf"
 
 published-title: "Date"
 author-title: "Presented By"

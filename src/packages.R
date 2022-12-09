@@ -17,7 +17,7 @@ project_pkgs <- c(
   "readr",
   "tibble",
   "stringr",
-  "purrr",
+  "Tidyverse/purrr",
   "tidyr",
   "Tidyverse/dplyr",
   "lubridate",

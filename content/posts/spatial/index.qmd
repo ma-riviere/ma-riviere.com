@@ -9,9 +9,7 @@ author:
 date: 2022-06-18
 
 abstract: |
-  This post showcases various solutions to efficiently match unknown locations to known ones by their geographical proximity (using lat/long coordinates), on a dataset with dozens of millions of entries. 
-  
-  This post is linked to a case study of **Google's Data Analytics certificate**.
+  This post showcases various solutions to efficiently match unknown locations to known ones by their geographical proximity (using lat/long coordinates), on a dataset with dozens of millions of entries.
 
 website:
   open-graph:
@@ -36,6 +34,8 @@ You can check the source code by clicking on the **</> Code** button at the top-
 Data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
 
 This post was prompted by [this reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/).
+
+It is linked to a case study of **Google's Data Analytics certificate**.
 :::
 
 :::{.callout-tip collapse="true"}
@@ -47,6 +47,7 @@ This post was prompted by [this reddit question](https://www.reddit.com/r/rstats
   - Added a `DuckDB` + `arrow` example for the data loading.  
   - Added data cleaning section (removing implausible rides).  
   - Added `sf`, `dbplyr` and `data.table` (manual) examples for the spatial join.
+
 :::
 
 
@@ -194,8 +195,6 @@ duckdb_path <- here(data_path, "stations.db")
 #### Note on the choice of Database: 
 
 A more logical choice would have been `PostGIS`, an extension of `Postgres` for spatial data, which includes native support for geometry/geography data types, as well as methods for distance calculations. However, setting up and interfacing `PostGIS` with R is significantly more convoluted than `DuckDB`, and analytical queries on `PostGIS` are much slower than on `DuckDB`. The only downside to using `DuckDB` for this example is that we will need to define our haversine (i.e. distance-on-a-sphere) function ourselves.
-
-<!-- **NB:** The SQL (DuckDB) & `dbplyr` solutions are on-disk (instead of in-memory), meaning they sacrifice some speed but could handle bigger-than-RAM datasets. -->
 
 :::
 
@@ -345,7 +344,7 @@ rides
 # Cleaning implausible rides
 ***
 
-We are going to filter out rides that are implausible (too short, too long, made too quickly, ...). Some of the thresholds used here are a bit arbitrary.
+We are going to filter out rides that are implausible (too short, too long, made too quickly, etc). Some of the thresholds used here are slightly arbitrary.
 
 ::: {.callout-tip appearance="simple" collapse="true"}
 
@@ -787,7 +786,7 @@ rm(rides_clean_l_no_coords)
 
 
 <!-------------------------------------------------------->
-## Unknown stations (filtered)
+## Unknown stations (accuracy-filtered)
 
 **Stations missing either `name` or `id`, but having coordinates with sufficient accuracy:**
 
@@ -839,11 +838,9 @@ SELECT COUNT(*) AS N FROM rides_clean_l_acc_unk
 DBI::dbGetQuery(con_duck, "SELECT * FROM rides_clean_l_acc_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-It seems there are only `r rides_clean_l_acc_unk_count$N` entries missing identification that could be matched based on their coordinates at the level of precision we use (11m / 4 decimals).
+It seems there are only `r rides_clean_l_acc_unk_count$N` entries missing identification that could be matched based on their coordinates, at least at the level of precision we require (11m / 4 decimals).
 
-:::{.callout-warning}
-Although, if we look at the original dataset (before filtering the inaccurate coordinates):
-:::
+If we look at the unfiltered data (i.e. disregarding the accuracy of the coordinates), there will most likely be many more:
 
 <!-------------------------------------------------------->
 ## Unknown stations (unfiltered)
@@ -897,13 +894,12 @@ SELECT COUNT(*) AS N FROM rides_clean_l_unk
 DBI::dbGetQuery(con_duck, "SELECT * FROM rides_clean_l_unk ORDER BY ride_id", n = getOption("knitr.max_rows_print"))
 ```
 
-There were `r scales::label_comma()(rides_clean_l_unk_count$N)` missing stations' `id` or `name` that could have been filled in the original data, but it seems that all of them disappeared when we filtered the coordinates with less than 4 decimals of precision. It would seem that those entries were missing their `id`/`name` in the source data **because** their coordinates were too imprecise to be matched to any station in the first place.
+There are `r scales::label_comma()(rides_clean_l_unk_count$N)` stations missing an `id` or `name` in the original data. 
+
+The fact that we only have `r rides_clean_l_acc_unk_count$N` unknown entries left after filtering insufficiently accurate coordinates (i.e. less than 4 decimals of precision) probably means that most of those `r scales::label_comma()(rides_clean_l_unk_count$N)` entries were missing their `id`/`name` *because* their coordinates were too imprecise to be matched to any station in the first place.
 
 
-
-::: {.callout-caution appearance="simple" icon=false}
-## If one were to do the macthing anyway, here's how:
-:::
+We will attempt to position-match those unknown stations (both filtered and not) in the following section.
 
 <!-------------------------------------------------------->
 <!-------------------------------------------------------->
@@ -1029,7 +1025,7 @@ stations_clean[, c(k = 1, .SD)
              ][, dist := haversine(lng, lat, lng_mean, lat_mean)
              ][dist <= 11, .SD[which.min(dist)], by = c("ride_id", "way")
              ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
-             ][, .SD, .SDcols = c(colnames(rides_clean_l_acc_unk), "dist")] -> matched_clean
+             ][, .SD, .SDcols = c(colnames(rides_clean_l_acc_unk), "dist")]
 ```
 
 ```{r}
@@ -1046,7 +1042,7 @@ if (!interactive()) TIMES$match_clean_manual
 #| time_it: true
 #| output: false
 
-(geo_inner_join(
+matched_clean <- (geo_inner_join(
     as.data.frame(rides_clean_l_acc_unk),
     as.data.frame(stations_clean),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
@@ -1180,12 +1176,13 @@ if (!interactive()) TIMES$match_clean_sf
 matched_clean
 ```
 
-And our `r nrow(matched_clean)` rows with missing ids get matched !
+And our `r nrow(matched_clean)` rows missing an id or name get matched !
 
 
 :::{.callout-note}
-But those `r nrow(matched_clean)` already had an `id`, so we could probably have filled their missing `name` using `stations_clean` directly, instead of a convoluted proximity-based matching (which is more ressource intensive and less precise).
-:::
+However, those `r nrow(matched_clean)` already had an `id` (they were only missing a `name`). We could have filled their missing `name` with a join to `stations_clean`, instead of a convoluted proximity-based matching (which is more resource intensive and less accurate).
+
+Let's check that both methods yield the same results:
 
 ```{r}
 #| output: asis
@@ -1194,7 +1191,9 @@ stations_clean[matched_clean, on = .(id)
              ][, .(id, name.stations = name, name.proximity = i.name, lat, lng)]
 ```
 
-At least, we can see that the proximity-based matched name and the one associated to that station in `stations_clean` are the same, so the proximity-matching method works reasonably well.
+At least, we can see that the proximity-based matched name and the one associated to that station in `stations_clean` are the same, meaning our proximity-matching method works reasonably well.
+
+:::
 
 
 <!-------------------------------------------------------->
@@ -1334,7 +1333,7 @@ We have to split the `rides_clean_l_unk` dataset in chunks of 10k rows, because 
 
 future::plan(future::multisession, workers = 4)
 
-matched <- future_map_dfr(
+future_map_dfr(
   copy(rides_clean_l_unk)[, let(ID = ceiling(.I/10000), k = 1)] |> split(by = "ID"),
   \(dat) 
     stations[, c(k = 1, .SD)][dat, on = "k", allow.cartesian = TRUE][
@@ -1359,7 +1358,7 @@ if (!interactive()) TIMES$match_manual
 #| time_it: true
 #| output: false
 
-(geo_inner_join(
+matched <- (geo_inner_join(
     as.data.frame(rides_clean_l_unk),
     as.data.frame(stations),
     by = c("lng" = "lng_mean", "lat" = "lat_mean"),
@@ -1496,23 +1495,21 @@ matched
 ```
 
 
-:::{.callout-note}
-Notice how fast the procedure is, even if the results are mostly "garbage".
-:::
-
 **What's inside those matches ?**
 
 ```{r}
 #| output: asis
+#| echo: false
+#| eval: false
 
 matched[, .(`Number of matches for an entry` = .N), by = .(ride_id, way)
       ][, .(`Number of times it happens` = .N), by = `Number of matches for an entry`]
+
+
+# We can see that ... of the matches are unknown stations which matched 2 or more known ones, which we should definitely discard.
 ```
 
-We can see that more than half of the matches are coordinates that matched 2 or more stations, which we should definitely not keep.
-
-
-But, among the ones with only one match, how many have coordinates precise enough to make that match in the first place (i.e. have 4 or more decimals or precision) ?
+Among the unknown stations that got a single match, how many have coordinates precise enough to ensure they have not been potentially matched to a neighboring station ? (i.e. have 4 or more decimals or precision)
 
 ```{r}
 matched[, if(.N == 1) .SD, by = .(ride_id, way)][decp(lat) & decp(lng)] -> matched_valid
@@ -1521,6 +1518,7 @@ matched[, if(.N == 1) .SD, by = .(ride_id, way)][decp(lat) & decp(lng)] -> match
 ```{r}
 #| echo: false
 #| output: asis
+#| column: page
 
 matched_valid
 ```
