@@ -159,11 +159,11 @@ cookieconsent.run({
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../content/projects/index.html" rel="">
- <span class="menu-text"><i class="fa-solid fa-business-time" aria-hidden="true"></i> Projects</span></a>
+ <span class="menu-text"><i class="fa-solid fa-business-time" aria-label="business-time"></i> Projects</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../content/pubs/index.html" rel="">
- <span class="menu-text"><i class="fa-solid fa-book" aria-hidden="true"></i> Publications</span></a>
+ <span class="menu-text"><i class="fa-solid fa-book" aria-label="book"></i> Publications</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../content/outreach/index.html" rel="">
@@ -171,13 +171,13 @@ cookieconsent.run({
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="../../../content/posts/index.html" rel="">
- <span class="menu-text"><i class="fa-solid fa-blog" aria-hidden="true"></i> Blog</span></a>
+ <span class="menu-text"><i class="fa-solid fa-blog" aria-label="blog"></i> Blog</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
     <a class="nav-link" href="../../../content/about.html" rel="">
- <span class="menu-text"><i class="fa-solid fa-user-tie" aria-hidden="true"></i> About Me</span></a>
+ <span class="menu-text"><i class="fa-solid fa-user-tie" aria-label="user-tie"></i> About Me</span></a>
   </li>  
   <li class="nav-item compact">
     <a class="nav-link" href="https://github.com/ma-riviere/ma-riviere.me/" rel=""><i class="bi bi-code-slash" role="img" aria-label="Website's source code">
@@ -303,7 +303,7 @@ cookieconsent.run({
 <hr style="margin-bottom: 30px; margin-top: -12px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Image illustrating the project"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
 </figure>
 </div>
 <section id="introduction" class="level1" data-number="1">
@@ -318,7 +318,7 @@ cookieconsent.run({
 <p>Their existing solution, iLocalize <span class="citation" data-cites="fusco2018">(<a href="#ref-fusco2018" role="doc-biblioref">Fusco &amp; Coughlan, 2018</a>)</span> (Swift / iOS), used a combination of Visuo-Inertial Odometry (VIO) through Apple’s ARKit, particle filtering based on a simplified map of the environment, and drift-correction through visual identification of known landmarks (using a gradient boosting algorithm).</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="iLocalize.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="iLocalize.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot showcasing the iLocalize app"></a></p>
+<p><a href="iLocalize.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Screenshot showcasing the iLocalize app"><img src="iLocalize.jpg" class="img-fluid figure-img" style="width:50.0%" alt="Screenshot showcasing the iLocalize app"></a></p>
 </figure>
 </div>
 <p>I developed a <a href="https://github.com/ma-riviere/redast">web app</a> to send the live camera stream from a mobile phone (JavaScript / socket.io) to a backend server (Python / Flask). The goal of the application was to facilitate the exploration of new Computer Vision algorithms to process the captured video and IMU data, which would send back location or navigational information.</p>
@@ -633,7 +633,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"descPosition":"bottom","selector":".lightbox","closeEffect":"zoom","loop":true,"openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":true,"openEffect":"zoom"});</script>
 
 
 
