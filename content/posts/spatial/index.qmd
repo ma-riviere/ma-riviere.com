@@ -42,12 +42,13 @@ It is linked to a case study of **Google's Data Analytics certificate**.
 
 # Expand for Version History
 
-- **V1:** 2022-06-18  
-- **V2:** 2022-10-29   
+**V1:** 2022-06-18  
+**V2:** 2022-10-29   
   - Added a `DuckDB` + `arrow` example for the data loading.  
   - Added data cleaning section (removing implausible rides).  
-  - Added `sf`, `dbplyr` and `data.table` (manual) examples for the spatial join.
-
+  - Added `sf`, `dbplyr` and `data.table` (manual) examples for the spatial join.  
+**V3:** 2023-02-02  
+  - Updated code to newest tidyverse version (.by, `reframe`, `list_rbind`, `join_by`, ...)  
 :::
 
 
@@ -247,7 +248,7 @@ con_duck <- dbConnect(duckdb(), dbdir = ":memory:") # duckdb_path
 
 knitr::opts_chunk$set(connection = "con_duck")
 
-dbExecute(con_duck, "SET experimental_parallel_csv=true")
+# dbExecute(con_duck, "SET experimental_parallel_csv=true")
 ```
 
 ```{r}
@@ -274,8 +275,8 @@ if (!interactive()) TIMES$loading_duck
 ## Courtesy of Tristan Mahr (@tjmahr)
 
 withr::with_dir(
-  dir_path, 
-  dbSendQuery(con,"CREATE TABLE rides AS SELECT * FROM read_csv_auto('*.csv', FILENAME = TRUE)")
+  data_path, 
+  dbSendQuery(con_duck,"CREATE TABLE rides AS SELECT * FROM read_csv_auto('*.csv', FILENAME = TRUE)")
 )
 ```
 
@@ -303,8 +304,6 @@ duckdb_register(con_duck, "rides", rides_df) # As a VIEW
 
 
 #### arrow + DuckDB
-
-This solution can be faster than the pure `DuckDB` when the DB is on disk (i.e. not in `:memory:`).
 
 ```{r}
 #| label: loading_arrow_duck
@@ -617,7 +616,7 @@ dbRemoveTable(con_duck, "rides_clean")
 
 Removing entries were `lat`/`lng` do not have sufficient precision to be reliably matched to a station (i.e. entries having less than 4 decimals, which corresponds to a 11 meters "radius" at the equator).
 
-:::{.callout-tip collapse="true"}
+::: {.callout-tip collapse="true"}
 
 #### Degrees to distance equivalence
 
@@ -632,6 +631,10 @@ Removing entries were `lat`/`lng` do not have sufficient precision to be reliabl
 
 :::
 
+::: {.callout-tip appearance="simple" collapse="true"}
+
+#### Defining our "decimal precision" function
+
 ```{r}
 decp <- function(x) str_length(str_remove(as.character(abs(x)), ".*\\.")) >= 4
 ```
@@ -644,8 +647,10 @@ CREATE FUNCTION decp(x) AS length(str_split(CAST(abs(x) AS VARCHAR(10)), '.')[2]
 CREATE FUNCTION decp(x) AS length(regexp_replace(CAST(abs(x) AS VARCHAR(50)), '(.*)[.]', '')) >= 4 -- Slower
 ```
 
+:::
 
-:::{.panel-tabset}
+
+::: {.panel-tabset}
 
 #### data.table
 
@@ -697,9 +702,9 @@ if (!interactive()) TIMES$acc_duck
 
 #### dbplyr
 
-:::{.callout-note}
+:::: {.callout-note}
 Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but since we have previously defined a `decp` SQL function, this function will get called when the SQL query is executed.
-:::
+::::
 
 ```{r}
 #| label: acc_dbp
@@ -906,9 +911,6 @@ We will attempt to position-match those unknown stations (both filtered and not)
 # Stations data
 ***
 
-<!-------------------------------------------------------->
-## Creating `stations` data
-
 First, we need to assemble a reference/look-up table, i.e. a dataset linking each unique station `id` (and `name`) with a set of coordinates (here, we use the average `lat` & `lng`.
 
 :::{.panel-tabset}
@@ -968,10 +970,10 @@ if (!interactive()) TIMES$stations_clean_sql
 
 (tbl(con_duck, "rides_clean_l_acc_dbp")
   |> filter(!is.na(id), !is.na(name))
-  |> group_by(id)
   |> summarize(
     name = first(name),
-    across(c(lat, lng), list("min" = min, "max" = max, "mean" = mean), .names = "{.col}_{.fn}")
+    across(c(lat, lng), list("min" = min, "max" = max, "mean" = mean), .names = "{.col}_{.fn}"),
+    .by = id
   )
   |> arrange(id)
   |> compute("stations_clean_dbp")
@@ -1115,9 +1117,7 @@ if (!interactive()) TIMES$match_clean_sql
     name = coalesce(name.x, name.y), 
     id = coalesce(id.x, id.y)
   )
-  |> group_by(ride_id, way)
-  |> slice_min(dist)
-  |> ungroup()
+  |> slice_min(dist, by = c(ride_id, way))
   |> select(colnames(tbl(con_duck, "rides_clean_l_acc_unk_dbp")), dist)
   |> arrange(ride_id)
   |> compute("matched_clean_dbp")
@@ -1264,10 +1264,10 @@ if (!interactive()) TIMES$stations_sql
 
 (tbl(con_duck, "rides_clean_l_dbp")
   |> filter(!is.na(id), !is.na(name))
-  |> group_by(id)
   |> summarize(
     name = first(name),
-    across(c(lat, lng), list("min" = min, "max" = max, "mean" = mean), .names = "{.col}_{.fn}")
+    across(c(lat, lng), list("min" = min, "max" = max, "mean" = mean), .names = "{.col}_{.fn}"),
+    .by = id
   )
   |> arrange(id)
   |> compute("stations_dbp")
@@ -1431,9 +1431,7 @@ if (!interactive()) TIMES$match_sql
     name = coalesce(name.x, name.y), 
     id = coalesce(id.x, id.y)
   )
-  |> group_by(ride_id, way)
-  |> slice_min(dist)
-  |> ungroup()
+  |> slice_min(dist, by = c(ride_id, way))
   |> select(colnames(tbl(con_duck, "rides_clean_l_unk_dbp")), dist)
   |> arrange(ride_id)
   |> compute("matched_dbp")

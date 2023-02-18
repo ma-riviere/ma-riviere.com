@@ -50,8 +50,36 @@ config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
+#| echo: false
+#| eval: false
+
+renv::install(c(
+  "here",
+  "pipebind",
+  "fs",
+  "dplyr",
+  "tidyr",
+  "purrr",
+  "stringr",
+  "lubridate",
+  "Rdatatable/data.table",
+  "Tidyverse/dtplyr",
+  "duckdb",
+  "DBI",
+  "Tidyverse/dbplyr",
+  "cmdstanr",
+  "posterior",
+  "ggplot2",
+  "ggridges",
+  "bayesplot",
+  "patchwork"
+))
+```
+
+```{r}
 library(here)        # File path management
 library(pipebind)    # Piping goodies
+library(fs)          # File & path manipulation
 
 library(dplyr)       # Data wrangling
 library(tidyr)       # Data wrangling (extras)
@@ -63,7 +91,6 @@ library(data.table)  # Data wrangling (fast)
 library(dtplyr)      # data.table backend for dplyr
 
 library(DBI)         # Database management
-library(RSQLite)     # SQLite R interface
 library(duckdb)      # DuckDB R interface
 library(dbplyr)      # SQL backend for dplyr
 
@@ -191,42 +218,29 @@ knitr::knit_hooks$set(time_it = local({
 
 ```{r}
 #| echo: false
-
-sqlite_path <- here("res", "data", "climbers.sqlite")
-duckdb_path <- here("res", "data", "climbers.db")
+db_path <- here("res", "data", "climbers.sqlite")
 ```
-
 
 <!------------------------------------------------------------------------------>
 ## Extracting the data from SQL
 
-Connecting to the .sqlite DB:
+Connecting to the .sqlite DB (using `DuckDB` instead of SQLite):
 
 ```{r}
-sqlite_con <- dbConnect(SQLite(), dbname = sqlite_path)
+con_duck <- dbConnect(duckdb(), dbdir = ":memory:")
 ```
 
-Moving the `sqlite` content to a new instance of `DuckDB` (which I prefer working with):
-
-```{r}
-duck_con <- dbConnect(duckdb(), dbdir = duckdb_path)
-
-walk(
-  c("ascent", "grade", "method"), # Tables I need
-  \(x) dbWriteTable(duck_con, x, dbReadTable(sqlite_con, x), overwrite = TRUE)
-)
-
-dbDisconnect(sqlite_con, shutdown = TRUE)
+```{sql connection = "con_duck", output = FALSE, output.var = "void"}
+INSTALL sqlite;
+LOAD sqlite;
+CALL sqlite_attach(?db_path);
 ```
-
 
 ::: {.panel-tabset}
 
 ### dbplyr
 
-:::{.callout-note}
 `dbplyr` automatically translates `dplyr` code into SQL
-:::
 
 ```{r}
 #| label: load_dbp
@@ -235,18 +249,20 @@ dbDisconnect(sqlite_con, shutdown = TRUE)
 
 (reduce(
     list(
-      (tbl(duck_con, "ascent") # 1
+      (tbl(con_duck, "ascent") # 1
         |> filter(country %like% "USA") 
-        |> mutate(route_id = str_c(
+        |> mutate(
+          route_id = str_c(
             str_replace_all(crag, ' ', '_'), "__", 
             str_replace_all(name, ' ', '_'), "__", 
             if_else(climb_type == 1, 'boulder', 'rope')
-          )
-        ) 
-        |> select(user_id, route_id, climb_type, grade_id, method_id, ascent_date = date)
+          ),
+          ascent_date = as.integer(date)
+        )
+        |> select(user_id, route_id, climb_type, grade_id, method_id, ascent_date)
       ),
-      tbl(duck_con, "grade") |> select(grade_id = id, usa_routes, usa_boulders), # 2
-      tbl(duck_con, "method") |> select(method_id = id, method_name = name) # 3
+      tbl(con_duck, "grade") |> select(grade_id = id, usa_routes, usa_boulders), # 2
+      tbl(con_duck, "method") |> select(method_id = id, method_name = name) # 3
     ),
     \(acc, i) left_join(acc, i)
   )
@@ -264,7 +280,7 @@ TIMES$load_dbp
 
 ### SQL
 
-```{sql connection = "duck_con", time_it = TRUE, label = "load_sql", output.var = "climb_df"}
+```{sql connection = "con_duck", time_it = TRUE, label = "load_sql", output.var = "climb_df"}
 SELECT
   ascent.user_id
   , REPLACE(ascent.crag, ' ', '_')
@@ -314,7 +330,7 @@ mode <- \(x) levels(x)[which.max(tabulate(match(x, levels(x))))]
 ```
 
 :::{.callout-note}
-Comparing `data.table`, `dplyr`, and `dtplyr`:
+Comparing `data.table`, `dtplyr`, and `dbplyr`:
 :::
 
 ::: {.panel-tabset}
@@ -367,9 +383,7 @@ TIMES$processing_dt
 
 ### dtplyr
 
-:::{.callout-note}
-`dtplyr` automatically translates `dplyr` code into `data.table`
-:::
+`dtplyr` automatically translates `dplyr` to `data.table`.
 
 ```{r}
 #| code-fold: true
@@ -377,7 +391,7 @@ TIMES$processing_dt
 
 threshold_ascents_dtp <- function(old, lim = 20, collect = TRUE) {
   if (collect) old <- collect(old)
-  new <- old |> lazy_dt() |> 
+  new <- lazy_dt(old) |> 
     group_by(user_id) |> filter(n() >= lim) |> ungroup() |> 
     group_by(route_id) |> filter(n() >= lim) |> ungroup()
   
@@ -394,20 +408,17 @@ threshold_ascents_dtp <- function(old, lim = 20, collect = TRUE) {
 #| output: false
 
 (lazy_dt(climb_df)
-  |> group_by(user_id, route_id)
-  |> slice(which.min(ascent_date))
-  |> ungroup()
+  |> slice(which.min(ascent_date), .by = c(user_id, route_id))
   |> mutate(
     ascent_date = as_datetime(ascent_date),
     usa_boulders = factor(usa_boulders, levels = bouldering_grades),
     usa_routes = factor(usa_routes, levels = route_ratings)
   )
-  |> group_by(route_id) 
   |> mutate(
     route_rating = mode(usa_routes), 
-    bouldering_grade = mode(usa_boulders)
-  ) 
-  |> ungroup()
+    bouldering_grade = mode(usa_boulders),
+    .by = route_id
+  )
   |> mutate(label = as.integer(method_name %in% c("Onsight", "Flash")))
   |> select(-c(usa_routes, usa_boulders, method_name))
   |> threshold_ascents_dtp()
@@ -426,28 +437,25 @@ TIMES$processing_dtp
 
 ### dbplyr
 
-:::{.callout-note}
-`dbplyr` automatically translates `dplyr` code into `SQL`
-:::
+`dbplyr` automatically translates `dplyr` to `SQL` (on DuckDB, here).
 
 ```{r}
 #| code-fold: true
 #| code-summary: threshold_ascents_dbp
 #| output: false
 
-db_create_index(duck_con, "climb_dbp", "route_id")
-db_create_index(duck_con, "climb_dbp", "user_id")
+db_create_index(con_duck, "climb_dbp", "route_id")
+db_create_index(con_duck, "climb_dbp", "user_id")
 
 threshold_ascents_dbp <- function(old, lim = 20, collect = TRUE) {
   if(collect) old <- collect(old)
-  new <- old |> 
-    group_by(user_id) |> filter(n() >= lim) |> ungroup() |> 
-    group_by(route_id) |> filter(n() >= lim) |> ungroup()
+  new <- old |> filter(n() >= lim, .by = user_id) |> 
+    filter(n() >= lim, .by = route_id)
   
   if (nrow(collect(old)) != nrow(collect(new))) threshold_ascents_dbp(new, lim)
   else if (collect) {
-    copy_to(duck_con, new, name = "dbp_temp")
-    return(tbl(duck_con, "dbp_temp"))
+    copy_to(con_duck, new, name = "dbp_temp")
+    return(tbl(con_duck, "dbp_temp"))
   }
   else return(new)
 }
@@ -460,24 +468,20 @@ Since DuckDB doesn't have a `mode` function, we need to find another way to obta
 #| label: processing_dbp1
 #| time_it: true
 
-(tbl(duck_con, "climb_dbp")
+(tbl(con_duck, "climb_dbp")
   |> select(route_id, route_rating = usa_routes)
   |> filter(route_rating %in% route_ratings)
-  |> group_by(route_id)
-  |> count(route_rating)
-  |> slice_max(n, with_ties = FALSE, na_rm = TRUE)
-  |> ungroup()
+  |> count(route_id, route_rating)
+  |> slice_max(n, with_ties = FALSE, na_rm = TRUE, by = route_id)
   |> select(-n)
   |> compute("dbp_rr")
 )
 
-(tbl(duck_con, "climb_dbp")
+(tbl(con_duck, "climb_dbp")
   |> select(route_id, bouldering_grade = usa_boulders)
   |> filter(bouldering_grade %in% bouldering_grades)
-  |> group_by(route_id)
-  |> count(bouldering_grade)
-  |> slice_max(n, with_ties = FALSE, na_rm = TRUE)
-  |> ungroup()
+  |> count(route_id, bouldering_grade)
+  |> slice_max(n, with_ties = FALSE, na_rm = TRUE, by = route_id)
   |> select(-n)
   |> compute("dbp_bg")
 )
@@ -488,16 +492,14 @@ Since DuckDB doesn't have a `mode` function, we need to find another way to obta
 #| label: processing_dbp2
 #| time_it: true
 
-(tbl(duck_con, "climb_dbp")
+(tbl(con_duck, "climb_dbp")
   |> rename(route_rating = usa_routes, bouldering_grade = usa_boulders)
   |> mutate(label = as.integer(method_name %in% c("Onsight", "Flash")))
   |> select(-method_name)
-  |> group_by(user_id, route_id)
-  |> slice_min(ascent_date, with_ties = FALSE)
-  |> ungroup()
+  |> slice_min(ascent_date, with_ties = FALSE, by = c(user_id, route_id))
   |> mutate(route_rating = NA, bouldering_grade = NA)
-  |> rows_patch(tbl(duck_con, "dbp_rr"), by = "route_id", unmatched = "ignore")
-  |> rows_patch(tbl(duck_con, "dbp_bg"), by = "route_id", unmatched = "ignore")
+  |> rows_patch(tbl(con_duck, "dbp_rr"), by = "route_id", unmatched = "ignore")
+  |> rows_patch(tbl(con_duck, "dbp_bg"), by = "route_id", unmatched = "ignore")
   |> threshold_ascents_dbp()
   |> mutate(
     route_idx = dense_rank(route_id),
@@ -831,7 +833,7 @@ hist_trace_plot(
 Getting our Posterior Predictions (subset of 500 draws per route) into long format:
 
 :::{.callout-note}
-Comparing `data.table` and `dplyr` (using the *rvar* format from `posterior`):
+Comparing `data.table`, `dtplyr`, `dbplyr`, and `dplyr` (which uses the *rvar* format from `posterior`):
 :::
 
 ::: {.panel-tabset}
@@ -945,7 +947,7 @@ TIMES$time_pp_dtp
 #| output: false
 #| time_it: true
 
-db_create_index(duck_con, "dbp_clean", "route_idx")
+db_create_index(con_duck, "dbp_clean", "route_idx")
 
 (mod_stan$draws(variables = "route_difficulty") 
   |> bind(x, subset_draws(
@@ -955,13 +957,13 @@ db_create_index(duck_con, "dbp_clean", "route_idx")
   |> as_draws_df()
   |> as.data.frame()
   |> pivot_longer(everything(), names_to = "route_idx", names_pattern = ".*\\[(\\d{1,4})\\]")
-  |> copy_to(duck_con, df = _, "draws", overwrite = TRUE)
+  |> copy_to(con_duck, df = _, "draws", overwrite = TRUE)
 )
 
-(tbl(duck_con, "dbp_clean")
+(tbl(con_duck, "dbp_clean")
   |> select(route_idx, bouldering_grade, route_rating, climb_type)
   |> distinct(route_idx, .keep_all = TRUE)
-  |> inner_join(tbl(duck_con, "draws"), by = "route_idx")
+  |> inner_join(tbl(con_duck, "draws"), by = "route_idx")
   |> arrange(route_idx)
   |> compute("pp_dbp")
 )
@@ -973,13 +975,12 @@ db_create_index(duck_con, "dbp_clean", "route_idx")
 #| echo: false
 #| output: asis
 
-(tbl(duck_con, "pp_dbp")
-  |> group_by(route_idx)
+(tbl(con_duck, "pp_dbp")
   |> summarize(
     across(c(bouldering_grade, route_rating, climb_type), first),
-    route_difficulty = list(value)
+    route_difficulty = list(value),
+    .by = route_idx
   )
-  |> ungroup()
   |> collect()
   |> mutate(
       bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
@@ -1078,6 +1079,6 @@ ridgeline_plot(pp_dt[climb_type == 1 & bouldering_grade != "V0"], "bouldering_gr
 ```{r}
 #| echo: false
 
-DBI::dbDisconnect(duck_con, shutdown = TRUE)
-fs::file_delete(duckdb_path)
+DBI::dbDisconnect(con_duck, shutdown = TRUE)
+# fs::file_delete(duckdb_path)
 ```

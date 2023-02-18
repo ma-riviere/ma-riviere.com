@@ -9,7 +9,6 @@ image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 about:
   template: trestles
-  image: res/avatar.jpg
   image-shape: round
   links:
     - text: "GitHub"

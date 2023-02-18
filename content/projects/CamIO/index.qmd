@@ -46,7 +46,6 @@ about:
       icon: file-pdf
       url: https://pubmed.ncbi.nlm.nih.gov/32802916/
       aria-label: "See an article illustrating the project"
-bibliography: references.bib
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px">

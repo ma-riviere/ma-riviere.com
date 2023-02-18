@@ -58,17 +58,17 @@ renv::install(c(
   "fs",
   "readr",
   "Rdatatable/data.table",
-  "Tidyverse/dplyr",
+  "dplyr",
   "tidyr",
-  "Tidyverse/purrr",
+  "purrr",
   "stringr",
   "lubridate",
   "cmdstanr",
   "posterior",
   "ggplot2",
-  "patchwork",
   "ggridges",
-  "bayesplot"
+  "bayesplot",
+  "patchwork"
 ))
 ```
 
@@ -89,9 +89,9 @@ library(cmdstanr)    # R interface with Stan
 library(posterior)   # Wrangling Stan model ouputs
 
 library(ggplot2)     # Plots
-library(patchwork)   # Combining plots
 library(ggridges)    # Ridgeline plots
 library(bayesplot)   # Plots for Stan models
+library(patchwork)   # Combining plots
 
 options(
   mc.cores = max(1L, parallel::detectCores(logical = TRUE)),
@@ -294,8 +294,7 @@ Filtering `player_data` to only keep the players actually present in our data, a
 #| output: asis
 
 (player_data <- with(matches_data_clean, tibble(player_id = union(winner_id, loser_id)))
- |> group_by(player_id) 
- |> summarize(player_idx = cur_group_id()) 
+ |> summarize(player_idx = cur_group_id(), .by = player_id) 
  |> left_join(player_data_raw)
 )
 ```

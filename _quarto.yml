@@ -116,8 +116,8 @@ website:
 
 
 from: markdown+emoji
-# bibliography: refs.bib
-csl: apa.csl
+bibliography: res/refs.bib
+csl: res/apa.csl
 link-citations: true
 
 citation: false
@@ -128,7 +128,7 @@ format:
   html:
     theme:
       light: [default, libs/css/light.scss]
-      dark: [libs/css/dark.scss] # default + custom dark ?
+      dark: [libs/css/dark.scss]
     css: libs/css/style.css
     grid:
       sidebar-width: 250px
