@@ -1,17 +1,4 @@
 # Pubs
 
-image: ../../res/avatar.jpg
-image-alt: "Profile picture of Marc-Aurèle Rivière"
-
-resources: "*/*.pdf"
-
-about:
-  id: additional-links
-  template: solana
-  image-width: "0%"
-
-filters:
-  - lightbox
-
-lightbox:
-  match: auto
+metadata-files:
+  - ../_links.yml

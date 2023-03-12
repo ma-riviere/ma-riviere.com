@@ -2,11 +2,14 @@
 title: "ACCESSPACE"
 subtitle: "Helping Visually Impaired People travel autonomously"
 date: 2017-01
+
 doi: "CCAH & FIRAH" # TODO: make specific param
 
 author:
-  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
-  - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
+  - name: "LITIS"
+    url: "https://www.litislab.fr/"
+  - name: "CERREV"
+    url: "https://cerrev.unicaen.fr/"
 
 image: feature.png
 image-alt: "Logo of the ACCESSPACE project"
@@ -36,28 +39,24 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Project's homepage ({{< iconify twemoji flag-france >}})"
+    - text: "Official homepage [{{< iconify twemoji flag-france >}}]"
       icon: globe
       url: http://accesspace.univ-rouen.fr/index.php
       aria-label: "See the project's official website (in French)"
-    - text: "Conference Article"
-      url: content/pubs/ICCHP18-TactiBelt/
+    - text: "Article"
+      file: content/pubs/ICCHP18-TactiBelt/
       icon: file-pdf
       aria-label: "See a conference article about the TactiBelt"
-    - text: "Journal Article"
-      url: content/pubs/JEP22/
-      icon: file-pdf
-      aria-label: "See a journal article about the TactiBelt"
-    - text: "{{< iconify file-icons keynote >}} Presentation ({{< iconify twemoji flag-france >}})"
-      url: content/outreach/talks/RUNN19/
+    - text: "{{< iconify file-icons keynote >}} Talk [{{< iconify twemoji flag-france >}}]"
+      file: content/sci-com/talks/RUNN19/
       aria-label: "See a presentation illustrating the project (in French)"
-    - text: "Poster ({{< iconify twemoji flag-france >}})"
+    - text: "Poster [{{< iconify twemoji flag-france >}}]"
       icon: file-image
-      url: content/projects/ACCESSPACE/poster.pdf
+      file: content/projects/ACCESSPACE/poster.pdf
       aria-label: "See a poster illustrating the project (in French)"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](header.jpg){.preview-image fig-alt="Banner illustrating the project"}
 
@@ -146,4 +145,4 @@ This project has been warmly welcomed by the VIP community and was awarded the *
 
 **4)** Handled the preliminary experimental evaluations of the TactiBelt.
 
-**5)** Presenting the project a a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an [international conference](/content/outreach/talks/ICCHP18/), and various outreach events (see the *dissemination section* above for more details).
+**5)** Presenting the project a a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an [international conference](/content/sci-com/talks/ICCHP18/), and various outreach events (see the *dissemination section* above for more details).

@@ -5,11 +5,16 @@ date: 2021-11
 doi: "ANR PRC (AAPG 2021)" #TODO: make specific param
 
 author:
-  - "[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)"
-  - "[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)"
-  - "[CMAP (Paris-Saclay, France)](https://portail.polytechnique.edu/cmap/en)"
-  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
-  - "[CERREV (Caen, France)](http://ufrhss.unicaen.fr/recherche/cerrev/)"
+  - name: "LPNC"
+    url: "https://lpnc.univ-grenoble-alpes.fr/"
+  - name: "GIPSA-Lab"
+    url: "https://gipsa-lab.grenoble-inp.fr/"
+  - name: CMAP
+    url: "https://portail.polytechnique.edu/cmap/en"
+  - name: "LITIS"
+    url: "https://www.litislab.fr/"
+  - name: "CERREV"
+    url: "https://cerrev.unicaen.fr/"
 
 image: feature.png
 image-alt: "Image illustrating the SAM-Guide project"
@@ -38,9 +43,17 @@ categories:
   - "Auditory Interface"
   - "Haptic Interface"
   - "Computer Vision"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Official homepage"
+      icon: globe
+      url: https://sam-guide.github.io/
+      aria-label: "See the project's official website"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](feature.png){.preview-image fig-alt="Banner illustrating the project"}
 
@@ -95,3 +108,5 @@ Examples of settings used to generate experimental trials on the fly.
 :::
 
 **4)** Handled the experimental design of the first wave of experiments using the TactiBelt for "blind" navigation.
+
+**5)** Designed the project's [website](https://sam-guide.github.io/) using Quarto.

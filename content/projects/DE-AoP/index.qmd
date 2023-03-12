@@ -2,10 +2,10 @@
 title: "DE-AoP"
 subtitle: "Developmental effects of Apnea of Prematurity"
 date: 2019-08
-# doi: 
 
 author:
-  - "[DC2N (Rouen, France)](http://dc2n.labos.univ-rouen.fr/)"
+  - name: "DC2N"
+    url: "http://dc2n.labos.univ-rouen.fr/"
 
 image: feature.png
 image-alt: "Circular plot illustrating the impact of the multiple genes tested on several key biological pathways"
@@ -17,10 +17,8 @@ abstract: |
 
 website:
   open-graph:
-    image: feature.png
     description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
   twitter-card:
-    image: feature.png
     description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
 
 categories:
@@ -30,9 +28,17 @@ categories:
   - "Cerebellum"
   - "Hypoxia"
   - "RT-qPCR"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "Article (in preparation)"
+      icon: file-pdf
+      file: content/pubs/IP23/
+      aria-label: "See a conference article illustrating the project"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](feature.png){.preview-image fig-alt="Image illustrating the project"}
 
@@ -44,4 +50,4 @@ Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the d
 
 **2)** Handle the RT-qPCR data processing and analysis *(ongoing)*.
 
-**3)** Participate in writing the final scientific paper resulting from this project *(ongoing)*.
+**3)** Participate in writing the [journal article](/content/pubs/IP23/) summarizing the results of this project *(ongoing)*.

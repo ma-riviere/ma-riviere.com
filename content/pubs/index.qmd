@@ -8,8 +8,8 @@ listing:
   fields: [date, title, author, subtitle, description, categories]
   categories: numbered
   date-format: medium
-  sort: [date desc, title desc]
-  max-items: 7
+  sort: [date desc, title]
+  page-size: 10
   filter-ui: true
   sort-ui: [date, title, author]
 ---

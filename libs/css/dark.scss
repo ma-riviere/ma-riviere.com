@@ -172,7 +172,7 @@ $btn-close-hover-opacity:    1 !default;
 $pre-color:                         inherit !default;
 $progress-bg:                       lighten($body-bg, 7%);
 // $code-block-bg: // Automatically set to a lighter/more transparent version of $progress-bg
-$code-block-border-left:          #31BAE9 !default;
+$code-block-border-left:          $gray-500 !default;
 
 /*-- scss:rules --*/
 
@@ -192,6 +192,8 @@ h5.quarto-listing-category-title { color: $col2; }
 
 .dark-mode { display: block; }
 .light-mode { display: none; }
+
+.quarto-title h1.title { background-color: transparent !important; }
 
 // div.panel-tabset li.nav-item > a.nav-link:not(.active) {color: $main;}
 // div.panel-tabset li.nav-item > a.nav-link:not(.active):hover {color: $hover;}

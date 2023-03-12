@@ -2,11 +2,14 @@
 title: "AdViS"
 subtitle: "Adaptative Visual Substitution"
 date: 2014-07
+
 doi: "AUTON (CNRS) & LabEx PERSYVAL (PIA)" # TODO: make specific param
 
 author:
-  - "[LPNC (Grenoble, France)](https://lpnc.univ-grenoble-alpes.fr/)"
-  - "[GIPSA (Grenoble, France)](http://www.gipsa-lab.fr/en/about-gipsa-lab.php)"
+  - name: "LPNC"
+    url: "https://lpnc.univ-grenoble-alpes.fr/"
+  - name: "GIPSA-Lab"
+    url: "https://gipsa-lab.grenoble-inp.fr/"
 
 image: feature.png
 image-alt: "Schema illustrating the AdViS project"
@@ -36,25 +39,23 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Project's homepage ({{< iconify twemoji flag-france >}})"
+    - text: "Official homepage [{{< iconify twemoji flag-france >}}]"
       icon: globe
       url: https://persyval-lab.org/fr/exploratory-project/myssiv-mouvements-des-yeux-substitution-sensorielle-immersion-virtuelle
       aria-label: "See the project's official website (in French)"
-    - text: "Article (2015)"
-      icon: file-pdf
+    - text: "{{< ai hal >}} Article (2015)"
       url: https://hal.archives-ouvertes.fr/hal-01128384/document
       aria-label: "See the PDF of a journal article illustrating the project (2015)"
-    - text: "Article (2018)"
-      icon: file-pdf
+    - text: "{{< ai hal >}} Article (2018)"
       url: https://hal.archives-ouvertes.fr/hal-01663686/document
       aria-label: "See the PDF of a journal article illustrating the project (2018)"
     - text: "Poster"
       icon: file-image
-      url: /content/projects/AdViS/ADVIS.pdf
+      file: /content/projects/AdViS/ADVIS.pdf
       aria-label: "See the PDF of a poster illustrating the project"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](feature.png){.preview-image fig-alt="Image illustrating the project"}
 

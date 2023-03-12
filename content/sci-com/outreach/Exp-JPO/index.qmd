@@ -1,0 +1,34 @@
+---
+title: "Percieving our world without vision"
+subtitle: "College Fair of the University of Rouen"
+date: 2017-11-23
+
+# Location
+author: "Rouen, France"
+
+description: "Presenting my doctoral research project to highschool students during the College Fair of 2017 ({{< iconify twemoji flag-france >}})"
+
+website:
+  open-graph:
+    description: "Presenting my doctoral research project to highschool students during the College Fair of 2017"
+  twitter-card:
+    description: "Presenting my doctoral research project to highschool students during the College Fair of 2017"
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Sensory Substitution"
+  - "Spatial Cognition"
+
+about:
+  links:
+    - text: "{{< fa business-time >}} Project (ACCESSPACE)"
+      file: /content/projects/ACCESSPACE/
+      aria-label: "Link to the project"
+---
+
+{{< include /content/_hr.qmd >}}
+
+Here is a video recording of a talk I gave to high-school students during my University's College Fair, in collaboration with the [Expérimentarium](https://www.experimentarium.fr/) program, filmed by the University:
+
+<iframe width="100%" height="600" src="https://webtv.univ-rouen.fr/permalink/v125874a12b846wu0get/iframe/" allow="autoplay fullscreen"></iframe>

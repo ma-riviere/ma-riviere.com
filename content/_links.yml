@@ -1,0 +1,8 @@
+# Default image
+image: /res/avatar.jpg
+image-alt: "Profile picture of Marc-Aurèle Rivière"
+
+# Dirty trick to get some links/buttons
+about:
+  template: solana
+  image-width: "0%"

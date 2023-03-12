@@ -64,3 +64,4 @@ res/models/
 site_libs/
 /*.html
 content/**/*.html
+/.luarc.json

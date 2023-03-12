@@ -1,0 +1,1066 @@
+---
+title: "Bayesian Rock Climbing Rankings"
+subtitle: "With R and Stan"
+
+date: 2022-04-19
+
+abstract: |
+  This post is a transposition to R of Ethan Rosenthal's [article](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) on modeling Rock Climbing using a Bayesian IRT model. 
+  
+  The original Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
+  
+  Several solutions are showcased for the data processing, such as `data.table`, `dtplyr`, or `dbplyr` with a `DuckDB` backend, with timings to compare their speed.
+
+website:
+  open-graph:
+    description: "A translation in R of Ethan Rosenthal's article on Bayesian Rock Climbing: Stan code was edited to use within-chain parallelization and compiler optimizations for faster sampling"
+  twitter-card:
+    description: "A translation in R of Ethan Rosenthal's article on Bayesian Rock Climbing: Stan code was edited to use within-chain parallelization and compiler optimizations for faster sampling"
+
+aliases:
+  - /content/posts/climbing/
+
+categories:
+  - "Statistics"
+  - "ML"
+  - "Bayesian Modeling"
+  - "Stan"
+  - "R"
+---
+
+{{< include /content/_hr.qmd >}}
+
+:::{.callout-tip}
+You can check the page's source code by clicking on the **</> Code** button at the top-right.
+:::
+
+<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------>
+# Setup {.unnumbered}
+***
+
+```{r}
+#| echo: false
+#| output: false
+
+source(here::here("src", "init_min.R"), echo = FALSE)
+
+config <- config::get(file = here("_config.yml"))
+```
+
+```{r}
+#| echo: false
+#| eval: false
+
+renv::install(c(
+  "here",
+  "pipebind",
+  "fs",
+  "dplyr", # >= 1.1.0
+  "tidyr",
+  "purrr", # >= 1.0.0
+  "stringr",
+  "lubridate",
+  "Rdatatable/data.table",
+  "dtplyr", # >= 1.3.0
+  "duckdb", # >= 0.7.0
+  "DBI",
+  "dbplyr", # >= 2.3.0
+  "cmdstanr",
+  "posterior",
+  "ggplot2",
+  "ggridges",
+  "bayesplot",
+  "patchwork"
+))
+```
+
+```{r}
+library(here)        # File path management
+library(pipebind)    # Piping goodies
+library(fs)          # File & path manipulation
+
+library(dplyr)       # Data wrangling
+library(tidyr)       # Data wrangling (extras)
+library(purrr)       # Manipulating lists
+library(stringr)     # Manipulating strings
+library(lubridate)   # Manipulating dates
+
+library(data.table)  # Data wrangling (fast)
+library(dtplyr)      # data.table backend for dplyr
+
+library(DBI)         # Database management
+library(duckdb)      # DuckDB R interface
+library(dbplyr)      # SQL backend for dplyr
+
+library(cmdstanr)    # R interface with Stan
+library(posterior)   # Wrangling Stan model ouputs
+
+library(ggplot2)     # Plots
+library(ggridges)    # Ridgeline plots
+library(bayesplot)   # Plots for Stan models
+library(patchwork)   # Combining plots
+
+options(
+  mc.cores = max(1L, parallel::detectCores(logical = TRUE)),
+  scipen = 999L, 
+  digits = 4L,
+  ggplot2.discrete.colour = \() scale_color_viridis_d(),
+  ggplot2.discrete.fill = \() scale_fill_viridis_d()
+)
+
+nrows_print <- 10
+
+data.table::setDTthreads(getOption("mc.cores"))
+```
+
+
+<!------------------------------------------------------------------------------>
+## Stan setup {.unnumbered}
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: Installing CmdStan
+
+cmdstanr::check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
+
+cpp_opts <- list(
+  stan_threads = TRUE
+  , STAN_CPP_OPTIMS = TRUE
+  , STAN_NO_RANGE_CHECKS = TRUE # WARN: remove this if you haven't tested the model
+  , PRECOMPILED_HEADERS = TRUE
+  , CXXFLAGS_OPTIM = "-march=native -mtune=native"
+  , CXXFLAGS_OPTIM_TBB = "-mtune=native -march=native"
+  , CXXFLAGS_OPTIM_SUNDIALS = "-mtune=native -march=native"
+)
+
+cmdstanr::install_cmdstan(cpp_options = cpp_opts, quiet = TRUE)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: Loading CmdStan (if already installed)
+
+highest_cmdstan_version <- fs::dir_ls(config$cmdstan_path) |> fs::path_file() |> 
+  keep(\(e) str_detect(e, "cmdstan-")) |> 
+  bind(x, str_split(x, '-', simplify = TRUE)[,2]) |> 
+  reduce(\(x, y) ifelse(utils::compareVersion(x, y) == 1, x, y))
+
+set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_version}"))
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: Setting up knitr's engine for CmdStan
+#| file: !expr here("src", "common", "knitr", "knitr_cmdstan_engine.R")
+```
+
+***
+
+:::{.callout-tip collapse="true"}
+
+## Expand for Session Info
+
+```{r}
+#| echo: false
+
+si <- sessioninfo::session_info(pkgs = "attached")
+
+si$platform$Quarto <- system("quarto --version", intern = TRUE)
+
+si$platform$pandoc <- strsplit(si$platform$pandoc, "@")[[1]][1]
+
+si$platform$`Stan (CmdStan)` <- cmdstanr::cmdstan_version()
+
+si
+```
+
+:::
+
+```{r}
+#| echo: false
+
+## This section is for the html output (code-linking, ...)
+
+library(knitr)       # Rmd -> md
+library(quarto)      # md -> Everything
+library(downlit)     # For code linking
+library(xml2)        # For code linking
+library(withr)       # For code linking
+
+
+#-------------------------#
+#### Custom knit_hooks ####
+#-------------------------#
+
+TIMES <- list()
+knitr::knit_hooks$set(time_it = local({
+  start <- NULL
+  function(before, options) {
+    if (before) start <<- Sys.time()
+    else TIMES[[options$label]] <<- difftime(Sys.time(), start)
+  }
+}))
+```
+
+```{r}
+#| echo: false
+#| output: false
+#| file: !expr c(here("src", "common", "knitr", "knit_print_ggplot_bi.R"), here("src", "common", "knitr", "knit_print_gt_mono.R"))
+```
+
+<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------>
+# Data
+***
+
+```{r}
+#| echo: false
+
+db_path <- here("res", "data", "climbers.sqlite")
+```
+
+<!------------------------------------------------------------------------------>
+## Extracting the data from SQL
+
+Connecting to the .sqlite DB (using `DuckDB` instead of SQLite):
+
+```{r}
+con_duck <- dbConnect(duckdb(), dbdir = ":memory:")
+```
+
+```{sql connection = "con_duck", output = FALSE, output.var = "void"}
+INSTALL sqlite;
+LOAD sqlite;
+CALL sqlite_attach(?db_path);
+```
+
+::: {.panel-tabset}
+
+### dbplyr
+
+`dbplyr` automatically translates `dplyr` code into SQL
+
+```{r}
+#| label: load_dbp
+#| output: false
+#| time_it: true
+
+(reduce(
+    list(
+      (tbl(con_duck, "ascent") # 1
+        |> filter(country %like% "USA") 
+        |> mutate(
+          route_id = str_c(
+            str_replace_all(crag, ' ', '_'), "__", 
+            str_replace_all(name, ' ', '_'), "__", 
+            if_else(climb_type == 1, 'boulder', 'rope')
+          ),
+          ascent_date = as.integer(date)
+        )
+        |> select(user_id, route_id, climb_type, grade_id, method_id, ascent_date)
+      ),
+      tbl(con_duck, "grade") |> select(grade_id = id, usa_routes, usa_boulders), # 2
+      tbl(con_duck, "method") |> select(method_id = id, method_name = name) # 3
+    ),
+    \(acc, i) left_join(acc, i)
+  )
+  |> select(-grade_id, -method_id)
+  |> compute("climb_dbp")
+)
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+TIMES$load_dbp
+```
+
+### SQL
+
+```{sql connection = "con_duck", time_it = TRUE, label = "load_sql", output.var = "climb_df"}
+SELECT
+  ascent.user_id
+  , REPLACE(ascent.crag, ' ', '_')
+      || '__' || REPLACE(ascent.name, ' ', '_')
+      || '__' || CASE WHEN ascent.climb_type = 1 THEN 'boulder' ELSE 'rope' END
+      AS route_id
+  , ascent.climb_type as climb_type
+  , ascent.date AS ascent_date
+  , grade.usa_routes
+  , grade.usa_boulders
+  , method.name AS method_name
+FROM ascent
+JOIN grade ON grade.id = ascent.grade_id
+JOIN method ON method.id = ascent.method_id
+WHERE ascent.country = 'USA'
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+TIMES$load_sql
+```
+
+:::
+
+```{r}
+#| echo: false
+#| output: asis
+
+climb_df
+```
+
+<!------------------------------------------------------------------------------>
+## Processing
+
+```{r}
+route_ratings <- c(
+  str_c("5.", 1:9), 
+  map(str_c("5.", 10:15), \(x) str_c(x, letters[1:4])) |> unlist()
+)
+
+bouldering_grades <- c(str_c("V", 0:20))
+
+## Mode for non-numerical data
+mode <- \(x) levels(x)[which.max(tabulate(match(x, levels(x))))]
+```
+
+:::{.callout-note appearance="simple"}
+Comparing `data.table`, `dtplyr`, and `dbplyr`:
+:::
+
+::: {.panel-tabset}
+
+### data.table
+
+```{r}
+#| code-fold: true
+#| code-summary: threshold_ascents_dt
+
+climb_dt <- setDT(climb_df) |> setkey(route_id, user_id)
+
+threshold_ascents_dt <- function(old, lim = 20) {
+  new <- old[, if(.N >= lim) .SD, by = user_id][, if(.N >= lim) .SD, by = route_id]
+  
+  if (nrow(old) != nrow(new)) threshold_ascents_dt(new, lim)
+  else return(new)
+}
+```
+
+```{r}
+#| label: processing_dt
+#| time_it: true
+#| output: asis
+
+climb_dt2 <- climb_dt[
+    climb_dt[, .I[which.min(ascent_date)], by = .(user_id, route_id)]$V1
+  ][, let(
+      ascent_date = as_datetime(ascent_date),
+      usa_boulders = factor(usa_boulders, levels = bouldering_grades),
+      usa_routes = factor(usa_routes, levels = route_ratings),
+      label = as.integer(method_name %chin% c("Onsight", "Flash"))
+    )
+  ][, let(route_rating = mode(usa_routes), bouldering_grade = mode(usa_boulders)),
+      by = route_id
+  ]
+
+dt_clean <- threshold_ascents_dt(climb_dt2)[
+    , route_idx := frank(route_id, ties.method = "dense")
+  ][, user_idx := frank(user_id, ties.method = "dense")
+  ][order(user_idx), -c("usa_routes", "usa_boulders", "method_name")]
+```
+
+```{r}
+#| echo: false
+
+TIMES$processing_dt
+```
+
+
+### dtplyr
+
+```{r}
+#| code-fold: true
+#| code-summary: threshold_ascents_dtp
+
+threshold_ascents_dtp <- function(old, lim = 20, collect = TRUE) {
+  # if (collect) old <- collect(old)
+  new <- lazy_dt(old) |> 
+    filter(n() >= lim, .by = user_id) |> 
+    filter(n() >= lim, .by = route_id)
+  
+  if (nrow(collect(old)) != nrow(collect(new))) threshold_ascents_dtp(new, lim)
+  else return(lazy_dt(new))
+}
+```
+
+```{r}
+#| label: processing_dtp
+#| time_it: true
+#| output: false
+
+(lazy_dt(climb_df)
+  |> slice(which.min(ascent_date), .by = c(user_id, route_id))
+  |> mutate(
+    ascent_date = as_datetime(ascent_date),
+    usa_boulders = factor(usa_boulders, levels = bouldering_grades),
+    usa_routes = factor(usa_routes, levels = route_ratings),
+    label = as.integer(method_name %in% c("Onsight", "Flash"))
+  )
+  |> group_by(route_id)
+  |> mutate(
+    route_rating = mode(usa_routes),
+    bouldering_grade = mode(usa_boulders),
+    # .by = route_id
+  )
+  |> ungroup()
+  |> select(-c(usa_routes, usa_boulders, method_name))
+  |> threshold_ascents_dtp()
+  |> mutate(
+    route_idx = dense_rank(route_id),
+    user_idx = dense_rank(user_id)
+  )
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+
+TIMES$processing_dtp
+```
+
+
+### dbplyr
+
+```{r}
+#| code-fold: true
+#| code-summary: threshold_ascents_dbp
+#| output: false
+
+db_create_index(con_duck, "climb_dbp", "route_id")
+db_create_index(con_duck, "climb_dbp", "user_id")
+
+threshold_ascents_dbp <- function(old, lim = 20, collect = TRUE) {
+  if(collect) old <- collect(old)
+  new <- old |> filter(n() >= lim, .by = user_id) |> 
+    filter(n() >= lim, .by = route_id)
+  
+  if (nrow(collect(old)) != nrow(collect(new))) threshold_ascents_dbp(new, lim)
+  else if (collect) {
+    copy_to(con_duck, new, name = "dbp_temp")
+    return(tbl(con_duck, "dbp_temp"))
+  }
+  else return(new)
+}
+```
+
+Since DuckDB doesn't have a `mode` function, we need to find another way to obtain the most common `route_rating` and `bouldering_grade` for each `route_id`. I do this by creating a reference table for each unique `route_id` for each of the two ratings, and then update the original data's rows based on them.
+
+```{r}
+#| output: false
+#| label: processing_dbp1
+#| time_it: true
+
+(tbl(con_duck, "climb_dbp")
+  |> select(route_id, route_rating = usa_routes)
+  |> filter(route_rating %in% route_ratings)
+  |> count(route_id, route_rating)
+  |> slice_max(n, with_ties = FALSE, na_rm = TRUE, by = route_id)
+  |> select(-n)
+  |> compute("dbp_rr")
+)
+
+(tbl(con_duck, "climb_dbp")
+  |> select(route_id, bouldering_grade = usa_boulders)
+  |> filter(bouldering_grade %in% bouldering_grades)
+  |> count(route_id, bouldering_grade)
+  |> slice_max(n, with_ties = FALSE, na_rm = TRUE, by = route_id)
+  |> select(-n)
+  |> compute("dbp_bg")
+)
+```
+
+```{r}
+#| output: false
+#| label: processing_dbp2
+#| time_it: true
+
+(tbl(con_duck, "climb_dbp")
+  |> rename(route_rating = usa_routes, bouldering_grade = usa_boulders)
+  |> mutate(label = as.integer(method_name %in% c("Onsight", "Flash")))
+  |> select(-method_name)
+  |> slice_min(ascent_date, with_ties = FALSE, by = c(user_id, route_id))
+  |> mutate(route_rating = NA, bouldering_grade = NA)
+  |> rows_patch(tbl(con_duck, "dbp_rr"), by = "route_id", unmatched = "ignore")
+  |> rows_patch(tbl(con_duck, "dbp_bg"), by = "route_id", unmatched = "ignore")
+  |> threshold_ascents_dbp()
+  |> mutate(
+    route_idx = dense_rank(route_id),
+    user_idx = dense_rank(user_id),
+    ascent_date = to_timestamp(ascent_date)
+  )
+  |> compute("dbp_clean")
+)
+```
+
+```{r}
+#| echo: false
+
+TIMES$processing_dbp1 + TIMES$processing_dbp2
+```
+
+:::
+
+<!-------- RESULTS -------->
+
+```{r}
+#| echo: false
+#| output: asis
+
+dt_clean
+```
+
+
+<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------>
+# Model
+***
+
+```{r}
+#| echo: false
+
+USE_CACHE <- TRUE
+
+mod_stan_path <- here::here("res", "models", "climbing_mod_stan.rds")
+```
+
+
+<!------------------------------------------------------------------------------>
+## Stan code
+
+:::{.callout-note appearance="simple"}
+Updated Stan code using **within-chain parallelization**
+:::
+
+```{cmdstan, output.var = "mod_stan_exe", eval = !USE_CACHE}
+functions {
+  array[] int sequence(int start, int end) {
+    array[end - start + 1] int seq;
+    for (n in 1 : num_elements(seq)) {
+      seq[n] = n + start - 1;
+    }
+    return seq;
+  }
+
+  // Compute partial sums of the log-likelihood
+  real partial_log_lik_lpmf(array[] int seq, int start, int end,
+                            data array[] int labels, real mean_ability,
+                            data array[] int users, vector user_ability,
+                            data array[] int routes, vector route_difficulty) {
+    real ptarget = 0;
+    int N = end - start + 1;
+
+    vector[N] mu = mean_ability + rep_vector(0.0, N);
+    for (n in 1 : N) {
+      int nn = n + start - 1;
+      mu[n] += user_ability[users[nn]] - route_difficulty[routes[nn]];
+    }
+    ptarget += bernoulli_logit_lpmf(labels[start : end] | mu);
+    return ptarget;
+  }
+}
+data {
+  int<lower=1> num_ascents;
+  int<lower=1> num_users;
+  int<lower=1> num_routes;
+  array[num_ascents] int<lower=1, upper=num_users> users;
+  array[num_ascents] int<lower=1, upper=num_routes> routes;
+  array[num_ascents] int<lower=0, upper=1> labels;
+
+  int grainsize;
+}
+transformed data {
+  array[num_ascents] int seq = sequence(1, num_ascents);
+}
+parameters {
+  real mean_ability;
+  vector[num_users] user_ability;
+  vector[num_routes] route_difficulty;
+}
+model {
+  user_ability ~ std_normal();
+  route_difficulty ~ std_normal();
+  mean_ability ~ std_normal();
+
+  target += reduce_sum(
+    partial_log_lik_lpmf, seq, grainsize, 
+    labels, mean_ability, users, user_ability, routes, route_difficulty
+  );
+}
+```
+
+```{r}
+#| eval: false
+#| echo: false
+
+## If you want to re-run the model manually
+
+stan_code <- "
+functions {
+  array[] int sequence(int start, int end) {
+    array[end - start + 1] int seq;
+    for (n in 1 : num_elements(seq)) {
+      seq[n] = n + start - 1;
+    }
+    return seq;
+  }
+
+  // Compute partial sums of the log-likelihood
+  real partial_log_lik_lpmf(array[] int seq, int start, int end,
+                            data array[] int labels, real mean_ability,
+                            data array[] int users, vector user_ability,
+                            data array[] int routes, vector route_difficulty) {
+    real ptarget = 0;
+    int N = end - start + 1;
+
+    vector[N] mu = mean_ability + rep_vector(0.0, N);
+    for (n in 1 : N) {
+      int nn = n + start - 1;
+      mu[n] += user_ability[users[nn]] - route_difficulty[routes[nn]];
+    }
+    ptarget += bernoulli_logit_lpmf(labels[start : end] | mu);
+    return ptarget;
+  }
+}
+data {
+  int<lower=1> num_ascents;
+  int<lower=1> num_users;
+  int<lower=1> num_routes;
+  array[num_ascents] int<lower=1, upper=num_users> users;
+  array[num_ascents] int<lower=1, upper=num_routes> routes;
+  array[num_ascents] int<lower=0, upper=1> labels;
+
+  int grainsize;
+}
+transformed data {
+  array[num_ascents] int seq = sequence(1, num_ascents);
+}
+parameters {
+  real mean_ability;
+  vector[num_users] user_ability;
+  vector[num_routes] route_difficulty;
+}
+model {
+  user_ability ~ std_normal();
+  route_difficulty ~ std_normal();
+  mean_ability ~ std_normal();
+
+  target += reduce_sum(
+    partial_log_lik_lpmf, seq, grainsize, 
+    labels, mean_ability, users, user_ability, routes, route_difficulty
+  );
+}"
+
+mod_stan_exe <- cmdstanr::cmdstan_model(
+  cmdstanr::write_stan_file(stan_code, force_overwrite = TRUE),
+  cpp_options = list(stan_threads = TRUE, STAN_NO_RANGE_CHECKS = TRUE, STAN_CPP_OPTIMS = TRUE),
+  stanc_options = list("Oexperimental")
+)
+```
+
+
+<!------------------------------------------------------------------------------>
+## Stan data
+
+```{r}
+stan_data <- list(
+  num_ascents = nrow(dt_clean),
+  num_users = n_distinct(dt_clean$user_id),
+  num_routes = n_distinct(dt_clean$route_id),
+  routes = pull(dt_clean, route_idx),
+  users = pull(dt_clean, user_idx),
+  labels = pull(dt_clean, label) |> as.integer(),
+  grainsize = max(100, nrow(dt_clean) / 50)
+)
+```
+
+```{r}
+#| echo: false
+
+str(stan_data)
+```
+
+
+<!------------------------------------------------------------------------------>
+## Model fit
+
+```{r}
+#| eval: !expr USE_CACHE
+#| echo: false
+
+mod_stan <- readRDS(mod_stan_path)
+```
+
+```{r}
+#| eval: !expr (!USE_CACHE)
+#| output: false
+
+mod_stan <- mod_stan_exe$sample(
+  data = stan_data, seed = 666,
+  iter_warmup = 500, iter_sampling = 1000, refresh = 0,
+  chains = 6, parallel_chains = 6, threads_per_chain = 5
+)
+```
+
+:::{.callout-note}
+
+```{r}
+#| echo: false
+
+fts <- setDT(mod_stan$time()$chains)[, .(Chain = chain_id, Time = total)]
+
+mean_ft <- fts[, lubridate::dseconds(mean(Time))] |> stringr::str_extract("~.* minutes")
+```
+
+
+Sampling takes `r mean_ft` on my CPU (Ryzen 5950X, 16 Cores/32 Threads), on WSL2 (Ubuntu 22)
+
+```{r}
+#| echo: false
+#| output: asis
+
+fts[, Time := as.character(lubridate::dseconds(Time))][]
+```
+
+:::
+
+```{r}
+#| eval: !expr (!USE_CACHE)
+#| echo: false
+
+## Saving the model:
+
+mod_stan$save_object(file = mod_stan_path)
+```
+
+
+<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------>
+# Model diagnostics
+***
+
+```{r}
+#| fig.width: 10
+#| output: asis
+
+bayesplot::mcmc_neff_hist(bayesplot::neff_ratio(mod_stan))
+```
+
+```{r}
+#| fig.width: 10
+#| output: asis
+
+bayesplot::mcmc_rhat_hist(bayesplot::rhat(mod_stan))
+```
+
+**Plotting random subsets of the traces**
+
+```{r}
+hist_trace_plot <- function(mod, vars) {
+  draws <- mod$draws(variables = vars, format = "draws_list")
+  patchwork::wrap_plots(
+    bayesplot::mcmc_hist(draws, facet_args = list(nrow = length(vars))),
+    bayesplot::mcmc_trace(draws, facet_args = list(nrow = length(vars))),
+    widths = c(1, 1.5)
+  )
+}
+```
+
+```{r}
+#| fig.width: 10
+#| fig.height: 10
+#| output: asis
+
+hist_trace_plot(
+  mod_stan, 
+  paste0("route_difficulty[", unique(dt_clean, by = "route_idx")[, route_idx] |> sample(5), "]")
+)
+```
+
+```{r}
+#| fig.width: 10
+#| fig.height: 10
+#| output: asis
+
+hist_trace_plot(
+  mod_stan, 
+  paste0("user_ability[", unique(dt_clean, by = "user_idx")[, user_idx] |> sample(5), "]")
+)
+```
+
+
+<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------>
+# Posterior Predictions
+***
+
+<!------------------------------------------------------------------------------>
+## Posterior data
+
+Getting our Posterior Predictions (subset of 500 draws per route) into long format:
+
+:::{.callout-note appearance="simple"}
+Comparing `data.table`, `dtplyr`, `dbplyr`, and `dplyr` (which uses the *rvar* format from `posterior`):
+:::
+
+::: {.panel-tabset}
+
+### data.table
+
+```{r}
+#| label: time_pp_dt
+#| time_it: true
+
+draws_df <- mod_stan$draws(variables = "route_difficulty")
+
+unique(dt_clean[, .(route_idx, bouldering_grade, route_rating, climb_type)], by = "route_idx")[
+  as.data.table(subset_draws(
+    draws_df, "route_difficulty", regex = TRUE, 
+    draw = sample.int(ndraws(draws_df), size = 500)
+  ))[, .(route_difficulty = list(value)), by = variable
+  ][, let(route_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL)],
+  on = "route_idx", nomatch = NULL
+][, let(
+  bouldering_grade = factor(bouldering_grade, levels = bouldering_grades), 
+  route_rating = factor(route_rating, levels = route_ratings)
+)][order(route_idx)] -> pp_dt
+```
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: Alternative syntax
+
+draws_dt <- (mod_stan$draws(variables = "route_difficulty")
+  |> bind(x, subset_draws(
+      draws_df, "route_difficulty", regex = TRUE, 
+      draw = sample.int(ndraws(draws_df), size = 500)
+    )
+  )
+  |> as.data.table()
+  |> DT(, .(route_difficulty = list(value)), by = variable)
+  |> DT(, let(route_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL))
+)
+
+(dt_clean[, .(route_idx, bouldering_grade, route_rating, climb_type)] 
+  |> unique(by = "route_idx")
+  |> DT(draws_dt, on = "route_idx", nomatch = NULL)
+  |> DT(, let(
+      bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
+      route_rating = factor(route_rating, levels = route_ratings)
+    )
+  )
+  |> DT(order(route_idx))
+)
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+pp_dt
+
+TIMES$time_pp_dt
+```
+
+
+### dtplyr
+
+```{r}
+#| label: time_pp_dtp
+#| time_it: true
+
+draws_df <- mod_stan$draws(variables = "route_difficulty")
+
+pp_dtp <- (lazy_dt(dt_clean)
+  |> select(route_idx, bouldering_grade, route_rating, climb_type)
+  |> distinct(route_idx, .keep_all = TRUE)
+  |> inner_join(
+      subset_draws(
+        draws_df, "route_difficulty", regex = TRUE, 
+        draw = sample.int(ndraws(draws_df), size = 500)
+      ) 
+      |> lazy_dt()
+      |> group_by(variable)
+      |> summarize(route_difficulty = list(value))
+      |> ungroup()
+      |> mutate(route_idx = as.integer(str_extract(variable, "\\d{1,4}")))
+      |> select(-variable),
+    by = "route_idx"
+  )
+  |> mutate(
+      bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
+      route_rating = factor(route_rating, levels = route_ratings)
+  )
+  |> arrange(route_idx)
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+pp_dtp
+
+TIMES$time_pp_dtp
+```
+
+
+### dbplyr
+
+```{r}
+#| label: time_pp_dbp1
+#| output: false
+#| time_it: true
+
+db_create_index(con_duck, "dbp_clean", "route_idx")
+
+(mod_stan$draws(variables = "route_difficulty") 
+  |> bind(x, subset_draws(
+    x, "route_difficulty", regex = TRUE, 
+    draw = sample.int(ndraws(x), size = 500)) 
+  ) 
+  |> as_draws_df()
+  |> as.data.frame()
+  |> pivot_longer(everything(), names_to = "route_idx", names_pattern = ".*\\[(\\d{1,4})\\]")
+  |> copy_to(con_duck, df = _, "draws", overwrite = TRUE)
+)
+
+(tbl(con_duck, "dbp_clean")
+  |> select(route_idx, bouldering_grade, route_rating, climb_type)
+  |> distinct(route_idx, .keep_all = TRUE)
+  |> inner_join(tbl(con_duck, "draws"), by = "route_idx")
+  |> arrange(route_idx)
+  |> compute("pp_dbp")
+)
+```
+
+```{r}
+#| label: time_pp_dbp2
+#| time_it: true
+#| echo: false
+#| output: asis
+
+(tbl(con_duck, "pp_dbp")
+  |> summarize(
+    across(c(bouldering_grade, route_rating, climb_type), first),
+    route_difficulty = list(value),
+    .by = route_idx
+  )
+  |> collect()
+  |> mutate(
+      bouldering_grade = factor(bouldering_grade, levels = bouldering_grades),
+      route_rating = factor(route_rating, levels = route_ratings)
+  )
+)
+```
+
+```{r}
+#| echo: false
+
+TIMES$time_pp_dbp1 + TIMES$time_pp_dbp2
+```
+
+
+### dplyr
+
+With `dplyr`, we can use the [rvar format](https://mc-stan.org/posterior/articles/rvar.html) to encapsulate the samples from the model, which drastically reduces the size of the samples' data.frame
+
+```{r}
+#| label: time_pp_df
+#| time_it: true
+
+pp_df <- (inner_join(
+    as.data.frame(dt_clean) |> 
+      select(route_idx, bouldering_grade, route_rating, climb_type) |> 
+      distinct(route_idx, .keep_all = TRUE),
+    tidybayes::spread_rvars(mod_stan, route_difficulty[route_idx], ndraws = 500),
+    by = "route_idx"
+  )
+  |> mutate(
+    bouldering_grade = factor(bouldering_grade, levels = bouldering_grades), 
+    route_rating = factor(route_rating, levels = route_ratings)
+  )
+  |> arrange(route_idx)
+)
+```
+
+```{r}
+#| echo: false
+#| output: asis
+
+pp_df
+
+TIMES$time_pp_df
+```
+
+:::
+
+
+<!------------------------------------------------------------------------------>
+## Posterior plots:
+
+```{r}
+#| code-fold: true
+#| code-summary: Plot code
+
+ridgeline_plot <- function(dat, var) {
+  if (class(dat[, route_difficulty]) == "list")
+    dat <- dat[, .(route_difficulty = unlist(route_difficulty)), by = setdiff(names(dat), 'route_difficulty')]
+  
+  ggplot(dat, aes_string(y = var)) +
+  ggridges::geom_density_ridges(
+    aes_string(x = "route_difficulty", fill = var), 
+    alpha = 0.5, scale = 2.5, color = "grey30"
+  ) +
+  geom_vline(xintercept = 0, linetype = "dashed", color = "grey50") +
+  labs(x = str_to_title(str_replace_all(var, "_", " ")), y = "") +
+  scale_y_discrete(position = "right") +
+  theme(legend.position = "none", axis.line.y = element_blank())
+}
+```
+
+**Route Rating:**
+
+```{r}
+#| fig.height: 14
+#| fig.width: 8
+#| output: asis
+
+ridgeline_plot(pp_dt[climb_type == 0], "route_rating")
+```
+
+**Bouldering Grade:**
+
+```{r}
+#| fig.height: 14
+#| fig.width: 8
+#| output: asis
+
+ridgeline_plot(pp_dt[climb_type == 1 & bouldering_grade != "V0"], "bouldering_grade")
+```
+
+<!--------------------------------->
+
+```{r}
+#| echo: false
+
+DBI::dbDisconnect(con_duck, shutdown = TRUE)
+# fs::file_delete(duckdb_path)
+```

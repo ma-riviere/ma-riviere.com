@@ -1,0 +1,42 @@
+---
+title: "{{< fa code >}} Code"
+subtitle: "**R**, **Stats** and **Data Science** code projects"
+
+license: "CC BY"
+
+listing:
+  - id: code-projects
+    contents: "projects/*/*.{md,qmd,Rmd}"
+    fields: [date, author, image, title, subtitle, description, categories]
+    categories: numbered
+    date-format: medium
+    sort: [date desc, title]
+    page-size: 5
+  - id: code-posts
+    contents: "posts/*/*.{md,qmd,Rmd}"
+    fields: [date, title, subtitle, description, reading-time, categories] # file-modified 
+    categories: numbered
+    date-format: medium
+    sort: [date desc, title]
+    page-size: 5
+    filter-ui: true
+    sort-ui: [date, title]
+    feed:
+      type: partial
+
+# toc: false
+---
+
+# {{< iconify mdi git >}} Code projects
+
+Code projects linked published articles.
+
+:::{#code-projects}
+:::
+
+# {{< iconify mdi message-cog >}} Blog posts
+
+Miscellaneous blog posts about **R**, **Stats** and **Data Science**.
+
+:::{#code-posts}
+:::

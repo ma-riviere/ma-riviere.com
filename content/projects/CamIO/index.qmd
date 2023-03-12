@@ -2,10 +2,12 @@
 title: "CamIO"
 subtitle: "Camera Input-Output"
 date: 2018-03-01
+
 doi: "NIH/NEI & NIDILRR RERC" # TODO: make specific param
 
-author: 
-  - name: "[SKERI (San Francisco, USA)](https://www.ski.org/center/rehabilitation-engineering-research-center)"
+author:
+  - name: "SKERI"
+    url: "https://www.skeri.org/"
 
 image: feature.png
 
@@ -34,21 +36,20 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Project's homepage"
+    - text: "Official homepage"
       icon: globe
       url: https://www.ski.org/project/camio
       aria-label: "See the project's official website"
-    - text: "Conference Article"
+    - text: "Article (conference)"
       icon: file-pdf
-      url: content/pubs/ICCHP20/
-      aria-label: "See an article illustrating the project"
-    - text: "Journal Article"
-      icon: file-pdf
+      file: content/pubs/ICCHP20/
+      aria-label: "See a conference article illustrating the project"
+    - text: "{{< fa arrow-up-right-from-square >}} Article (journal)"
       url: https://pubmed.ncbi.nlm.nih.gov/32802916/
-      aria-label: "See an article illustrating the project"
+      aria-label: "See a journal article illustrating the project"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](feature.png){.preview-image fig-alt="Image illustrating the project"}
 

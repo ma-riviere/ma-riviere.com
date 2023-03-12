@@ -2,11 +2,19 @@
 title: "Towards Haptic Surface Devices with Force Feedback for Visually Impaired People"
 subtitle: "Lecture Notes in Computer Science"
 date: 2018-07-12
+
 author:
   - name: "Simon Gay"
+    affiliations:
+      - ref: litis
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
+    affiliations:
+      - ref: litis
   - name: "Edwige Pissaloux"
+    affiliations:
+      - ref: litis
+
 doi: 10.1007/978-3-319-94274-2_36
 
 description: "We introduce the principles of a haptic interface for finger-movement based exploration of image content through force-feedback"
@@ -33,17 +41,24 @@ citation:
   page: "258-266"
   isbn: "978-3-319-94273-5 978-3-319-94274-2"
 
+metadata-files: [../../_affiliations.yml]
+
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "PDF"
+    - text: "Article (PDF)"
       icon: file-pdf
       url: content/pubs/ICCHP18-F2T/F2T.pdf
       aria-label: "See the article's PDF"
+    - text: "{{< fa business-time >}} Project (TETMOST)"
+      file: /content/projects/TETMOST/
+      aria-label: "Link to the project"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
-<object data="F2T.pdf" type="application/pdf" width="100%" height="900">
-  <p><a href="F2T.pdf">Link to the PDF</a></p>
+<object data="F2T.pdf" type="application/pdf" width="100%" height="1200">
+  <iframe width="100%" height="1200"
+    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.me/raw/main/content/pubs/IP23/F2T.pdf&embedded=true">
+  </iframe>
 </object>

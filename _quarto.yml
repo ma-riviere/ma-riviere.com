@@ -6,17 +6,14 @@ project:
     - CNAME
     - "/res/*"
     - "/libs/*"
+    - "/content/**/*.pdf"
   render:
     - "*.qmd"
-    - "*.md"
-    - "*.ipynb"
-    - "*.Rmd"
     - "!TODO.md"
     - "!LICENSE.md"
     - "!test/"
     - "!src/"
-  # pre-render: 
-  # post-render: 
+    - "!libs/"
 
 website:
   title: "Marc-Aurèle Rivière"
@@ -25,8 +22,8 @@ website:
   favicon: res/favicon.png
   site-url: 'https://ma-riviere.me'
   repo-url: https://github.com/ma-riviere/ma-riviere.me
-  repo-branch: main
-  repo-actions: [source, issue]
+  # repo-branch: main
+  # repo-actions: [source, issue]
   
   ### Analytics ###
   google-analytics:
@@ -58,34 +55,34 @@ website:
     left:
       - text: "{{< fa business-time >}} Projects"
         file: content/projects/index.qmd
-        aria-label: "Projects"
+        aria-label: "A list of the projects I was or am involved in"
       - text: "{{< fa book >}} Publications"
         file: content/pubs/index.qmd
-        aria-label: "Publications"
-      - text: "{{< iconify file-icons keynote height=20px >}} Outreach"
-        file: content/outreach/index.qmd
-        aria-label: "Outreach"
-      - text: "{{< fa blog >}} Blog"
-        file: content/posts/index.qmd
-        aria-label: "Blog"
+        aria-label: "A list of my scientific writings"
+      - text: "{{< iconify file-icons keynote height=20px >}} Communications"
+        file: content/sci-com/index.qmd
+        aria-label: "A list of my talks and outreach activities"
+      - text: "Code"
+        icon: code-slash
+        file: content/code/index.qmd
+        aria-label: "A list of my R and stats projects"
     right:
       - text: "{{< fa user-tie >}} About Me"
         file: content/about.qmd
         aria-label: "About Me"
-      - icon: code-slash
-        href: https://github.com/ma-riviere/ma-riviere.me/
-        aria-label: "Website's source code"
-      # - icon: twitter
-      #   href: https://twitter.com/mariviere1
-      #   aria-label: "Twitter"
-      - icon: github
-        href: https://github.com/ma-riviere/
-        aria-label: "GitHub"
       - icon: rss
-        href: content/posts/index.xml
+        file: content/code/index.xml
         aria-label: "My blog's RSS feed"
+    tools:
+      - icon: github
+        menu:
+          - text: Source Code
+            url:  https://github.com/ma-riviere/ma-riviere.me/
+            aria-label: "Website's source code"
+          - text: GitHub Profile
+            url: https://github.com/ma-riviere/
+            aria-label: "My GitHub profile"
   
-  ## See https://quarto.org/docs/reference/projects/websites.html#sidebar
   ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
   sidebar: false
   # sidebar:
@@ -106,7 +103,7 @@ website:
   page-footer:
     border: true
     left: 
-      - text: "© 2021-2022, Marc-Aurèle Rivière"
+      - text: "© 2021-2023, Marc-Aurèle Rivière"
         href: LICENSE.md
         aria-label: "Website's license"
     right:
@@ -132,11 +129,9 @@ format:
     css: libs/css/style.css
     grid:
       sidebar-width: 250px
-      body-width: 900px
-      margin-width: 300px
+      body-width: 1000px
+      margin-width: 250px
     df-print: paged
-    # mainfont: "Lato"
-    # monofont: "Fira Mono"
     fig-align: center
     fig-dpi: 500
     fig-format: svg
@@ -151,6 +146,12 @@ format:
       light: libs/highlight-styles/light.theme
       dark: libs/highlight-styles/dark.theme
     link-external-newwindow: true
+
+filters:
+  - lightbox
+
+lightbox:
+  match: auto
 
 engine: knitr
 

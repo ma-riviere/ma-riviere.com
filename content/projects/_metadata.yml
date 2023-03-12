@@ -1,24 +1,11 @@
 # Projects
 
-image: ../../res/avatar.jpg
-image-alt: "Profile picture of Marc-Aurèle Rivière"
-
-resources: "*/*.pdf"
-
 published-title: "Began Around"
-author-title: "Partners Involved"
+author-title: "Consortium"
 doi-title: "Funding Instrument" #TODO: change the link with JS, or better, change the template
 
 toc: true
 number-sections: true
 
-about:
-  template: solana
-  image-width: "0%"
-
-filters:
-  - lightbox
-  # - nutshell
-
-lightbox:
-  match: auto
+metadata-files:
+  - ../_links.yml

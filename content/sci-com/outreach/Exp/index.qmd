@@ -1,0 +1,35 @@
+---
+title: "Developing assistive decives for VIP: an overview"
+subtitle: "Expérimentarium Science Fair"
+date: 2017-05-01
+
+# Location
+author: "France"
+
+description: "Presenting my doctoral research projects to a wide-ranging public of all backgrounds (from middle-school students to adults), during a yearly 3-days long science fair organized in multiple French cities by the [Experimentarium](https://www.experimentarium.fr/) project ({{< iconify twemoji flag-france >}})"
+
+website:
+  open-graph:
+    description: "Presenting my doctoral research projects to the public during the Experimentarium's yearly science fairs"
+  twitter-card:
+    description: "Presenting my doctoral research projects to the public during the Experimentarium's yearly science fairs"
+
+categories:
+  - "Assistive Devices"
+  - "Accessibility"
+  - "Sensory Substitution"
+  - "Spatial Cognition"
+
+about:
+  links:
+    - text: "My Expérimentarium record ({{< iconify twemoji flag-france >}})"
+      icon: user
+      url: https://www.experimentarium.fr/les-chercheurs/percevoir-ce-qui-vous-entoure-sans-les-yeux
+      aria-label: "See my Expérimentarium record (in French)"
+---
+
+{{< include /content/_hr.qmd >}}
+
+For 3 years (2017 to 2020), I participated in the [Experimentarium](https://www.experimentarium.fr/) program: a French initiative to popularize research to the wider public. During the year, they would organize single-day interventions of multiple PhD students into local middle & high-schools, where we would each present our research in an accessible manner to multiple groups of students, and answer their questions about the academic world. 
+
+In addition to that, once a year, they would organize a [3-days long science fair](https://www.experimentarium.fr/festival-des-jeunes-chercheurs-2022) in one French city, where all the PhD students involved in the program (from all around France) would gather and present their research in different settings and in different formats (from interactive presentations in schools to "speed searching" in cafés, or linking our research to relevant Art pieces in Museums, ...).

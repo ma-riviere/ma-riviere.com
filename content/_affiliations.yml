@@ -1,0 +1,66 @@
+affiliations:
+  - id: univ-rouen
+    name: "University of Rouen-Normandy"
+    url: https://www.univ-rouen.fr/
+    city: Rouen
+    country: France
+  - id: litis
+    # name: "Laboratoire d'Informatique, du Traitement de l'Information et des Systèmes"
+    name: "LITIS"
+    url: https://www.litislab.fr/
+    city: Saint-Etienne-du-Rouvray
+    country: France
+  - id: dc2n
+    name: "Differenciation, Neural and Neuroencodrine Communication"
+    url: http://dc2n.labos.univ-rouen.fr/
+    city: Rouen
+    country: France
+  - id: cbg
+    name: Cancer and Brain Genomics
+    url: https://irib.univ-rouen.fr/index.php?info=entites&id=69
+    city: Rouen
+    country: France
+  - id: univ-caen
+    name: "University of Caen-Normandy"
+    url: https://www.unicaen.fr/
+    city: Caen
+    country: France
+  - id: cerrev
+    # name: "Centre de Recherche Risques & Vulnérabilités"
+    name: "CERREV"
+    url: https://cerrev.unicaen.fr/
+    city: Caen
+    country: France
+  - id: greyc
+    name: "GREYC"
+    url: https://www.greyc.fr/en/home/
+    city: Caen
+    country: France
+  - id: lpnc
+    # name: "Laboratoire de Psychologie et Neurocognitions"
+    name: "LPNC"
+    url: https://lpnc.univ-grenoble-alpes.fr/
+    city: Grenoble
+    country: France
+  - id: gipsa
+    # name: "Grenoble Images Parole Signal Automatique"
+    name: "GIPSA-Lab"
+    url: https://gipsa-lab.grenoble-inp.fr/
+    city: Grenoble
+    country: France
+  - id: cmap
+    # name: "Centre de Mathématiques Appliquées"
+    name: "CMAP"
+    url: https://cmap.polytechnique.fr/
+    city: Palaiseau
+    country: France
+  - id: skeri
+    name: "Smith-Kettlewell Eye Research Institute"
+    url: https://www.skeri.org/
+    city: San Francisco
+    country: USA
+  - id: ioe
+    name: "Institute of Electronics"
+    url: http://www.eletel.p.lodz.pl/eng/
+    city: Lodz
+    country: Poland

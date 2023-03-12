@@ -1,0 +1,83 @@
+---
+title: "Apnea of prematurity induces oxidative stress-mediated transcriptional changes in the murine cerebellum"
+subtitle: "*In Preparation*"
+
+date: 2023-08-01
+published-title: "To be published by" # TODO: remove after the fact
+
+author:
+  - name: "Agalic Rodriguez-Duboc"
+    orcid: 0000-0002-2084-3780
+    url: https://agalic-rd.com
+    affiliations:
+    - ref: cbg
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+    affiliations:
+      - ref: litis
+  - name: "Magali Basille-Duguay"
+    affiliations:
+      - ref: dc2n
+  - name: "Aurélien Debonne"
+    affiliations:
+      - ref: univ-rouen
+  - name: "Delphine Burel"
+    email: "delphine.burel@univ-rouen.fr"
+    affiliations:
+      - ref: cbg
+    attributes:
+      corresponding: true
+
+# doi: TODO
+
+description: "This paper aims to present transcriptomic data that participates in understanding the molecular basis for the histological and behavioral abnormalities caused by intermittent hypoxia."
+
+abstract: |
+  Perinatal hypoxia is a leading cause of morbimortality worldwide. Up to 40% of newborns who experience oxygen deprivation suffer long term neurological impairment. The impact of a hypoxic brain injury has been well investigated; however, despite its functional importance and immaturity at birth, the involvement of the cerebellum remains poorly understood and has been grossly underestimated.
+
+  This work aims at shedding light on the mechanisms underlying cerebellar hypoxic injury. To this end, we developed an intermittent hypoxia (IH) protocol, consisting of repeated 2-minute cycles of hypoxia-reoxygenation (including 20 seconds at 5% O2) between P2 and P12 during 6 hours per day, which constitutes a valid model of Apnea of Prematurity (AoP). Histological studies following this protocol revealed a delay in cerebellar maturation post-IH. Moreover, compared to the controls, these mice presented long-term alterations in functions linked to the cerebellum such as learning and motor skills. Preliminary findings have shown that, after IH, genes involved in reactive oxygen species production are overexpressed while genes encoding antioxidant enzymes are underexpressed. These alterations suggest a failure of the defense system against ROS and could be responsible for neuronal death in the cerebellum. 
+
+  Based on these first results, we performed a transcriptomic study (by RT-qPCR) of genes involved in cell differentiation and migration. We analyzed the expression of these genes in different developmental stages (P4, P8, P12, P21 and P70) and in different cell types by using laser capture microdissection to separate cerebellar layers. This enabled us to pinpoint a potential timeframe of vulnerability; indeed, at P8, IH cerebella displayed the most downregulated genes, which was progressively reverted at later stages. Moreover, we identified several pathways involved in the pathophysiology of AoP such as “synapse formation” and “cytoskeletal scaffold” in neurons and “myelination” in oligodendrocytes. This indicates that IH could modify the phenotype of various cells and contribute to the observed histological and behavioral deficits.
+
+  The project provides elements to better understand the cellular and molecular aspects of AoP-induced cerebellar injury. In the long term, it could lead to the identification of novel therapeutic targets to address this socially and economically relevant health issue.
+
+categories:
+  - "Neuroscience"
+  - "Neurodevelopment"
+  - "Cerebellum"
+  - "Apnea of Prematurity"
+  - "RT-qPCR"
+
+# citation:
+#   type: article-journal
+#   container-title: "Cell & Bioscience"
+#   container-title-short: "Cell Biosci"
+#   issued: 2023-12-01
+#   doi: 10.1186/s13578-022-00869-5
+#   url: https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-022-00869-5
+#   volume: 12
+#   issue: 1
+#   issn: "2045-3701"
+
+metadata-files: [../../_affiliations.yml]
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    - text: "{{< fa business-time >}} Project (DE-AoP)"
+      file: /content/projects/DE-AoP/
+      aria-label: "Link to the project"
+---
+
+{{< include /content/_hr.qmd >}}
+
+<!-- TODO: remove when published -->
+:::{.callout-note}
+This article is currently in preparation and should be submitted in the summer of 2023
+:::
+
+<!-- <object data="IP23.pdf" type="application/pdf" width="100%" height="1200">
+  <iframe width="100%" height="1200"
+    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.me/raw/main/content/pubs/IP23/IP23.pdf&embedded=true">
+  </iframe>
+</object> -->

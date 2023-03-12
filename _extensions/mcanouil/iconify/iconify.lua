@@ -1,17 +1,41 @@
-local function ensureHtmlDeps()
-  quarto.doc.addHtmlDependency({
+--[[
+# MIT License
+#
+# Copyright (c) Mickaël Canouil
+#
+# Permission is hereby granted, free of charge, to any person obtaining a copy
+# of this software and associated documentation files (the "Software"), to deal
+# in the Software without restriction, including without limitation the rights
+# to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+# copies of the Software, and to permit persons to whom the Software is
+# furnished to do so, subject to the following conditions:
+
+# The above copyright notice and this permission notice shall be included in all
+# copies or substantial portions of the Software.
+
+# THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+# IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+# FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+# AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+# LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+# OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+# SOFTWARE.
+]]
+
+local function ensure_html_deps()
+  quarto.doc.add_html_dependency({
     name = 'iconify',
     version = '1.0.0-beta.2',
     scripts = {"iconify-icon.min.js"}
   })
 end
 
-local function isEmpty(s)
+local function is_empty(s)
   return s == nil or s == ''
 end
 
-local function isValidSize(size)
-  if isEmpty(size) then
+local function is_valid_size(size)
+  if is_empty(size) then
     return ''
   end
   local size_table = {
@@ -53,8 +77,8 @@ end
 return {
   ["iconify"] = function(args, kwargs)
     -- detect html (excluding epub which won't handle fa)
-    if quarto.doc.isFormat("html:js") then
-      ensureHtmlDeps()
+    if quarto.doc.is_format("html:js") then
+      ensure_html_deps()
       local set = "fluent-emoji"
       local icon = pandoc.utils.stringify(args[1])
       if #args > 1 then
@@ -65,41 +89,41 @@ return {
       local attributes = ' icon="' .. set .. ':' .. icon .. '"'
       local label = '"Icon ' .. icon .. ' from ' .. set .. ' Iconify.design set."'
 
-      local size = isValidSize(pandoc.utils.stringify(kwargs["size"]))
-      if not isEmpty(size) then
+      local size = is_valid_size(pandoc.utils.stringify(kwargs["size"]))
+      if not is_empty(size) then
         attributes = attributes .. ' style="' .. size .. '"'
       end
 
       local aria_label = pandoc.utils.stringify(kwargs["label"])
-      if isEmpty(aria_label) then
+      if is_empty(aria_label) then
         aria_label =  ' aria-label="' .. label .. '"'
       else 
         attributes = attributes .. aria_label
       end
       local title = pandoc.utils.stringify(kwargs["title"])
-      if isEmpty(title) then
+      if is_empty(title) then
         title =  ' title="' .. label .. '"'
       else 
         attributes = attributes .. title
       end
       -- local style = pandoc.utils.stringify(kwargs["style"])
-      -- if not isEmpty(style) then
+      -- if not is_empty(style) then
       --   local attributes = attributes .. ' style="' .. style .. '"'
       -- end
       local width = pandoc.utils.stringify(kwargs["width"])
-      if not isEmpty(width) and isEmpty(size) then
+      if not is_empty(width) and is_empty(size) then
         attributes = attributes .. ' width="' .. width .. '"'
       end
       local height = pandoc.utils.stringify(kwargs["height"])
-      if not isEmpty(height) and isEmpty(size)  then
+      if not is_empty(height) and is_empty(size)  then
         attributes = attributes .. ' height="' .. height .. '"'
       end
       local flip = pandoc.utils.stringify(kwargs["flip"])
-      if not isEmpty(flip) then
+      if not is_empty(flip) then
         attributes = attributes .. ' flip="' .. flip.. '"'
       end
       local rotate = pandoc.utils.stringify(kwargs["rotate"])
-      if not isEmpty(rotate) then
+      if not is_empty(rotate) then
         attributes = attributes .. ' rotate="' .. rotate .. '"'
       end
 

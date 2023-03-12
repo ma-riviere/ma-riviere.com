@@ -2,9 +2,9 @@
 title: "Marc-Aurèle Rivière"
 subtitle: "Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
 
-description: "Research Engineer - [LITIS Lab](https://litislab.fr/en/)"
+description: "Research Engineer  \n [University of Rouen-Normandy](https://www.univ-rouen.fr/)  \n [LITIS Lab](https://litislab.fr/en/)"
 
-image: res/avatar.jpg
+image: /res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 about:
@@ -40,7 +40,7 @@ about:
       url: "mailto:marc.aurele.riviere+site@gmail.com"
       aria-label: "Email"
     - text: "{{< fa user-tie >}} Resume"
-      url: res/cv.pdf
+      file: res/cv.pdf
       aria-label: "My resume (PDF)"
 
 website:
@@ -115,7 +115,5 @@ skills_radar$layers[[6]]$aes_params$colour <- "grey70"
   
 skills_radar
 ```
-
-I use this website to gather information on the various [projects](/content/projects/) I have worked on, my [publications](/content/pubs/) and [scientific communications](/content/outreach/), as well as some [blog posts](/content/posts/) (which mainly pertain to R and statistics). I also maintain an up-to-date [resumé](res/cv.pdf).
 
 :::

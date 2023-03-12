@@ -1,5 +1,17 @@
 /*-- scss:defaults --*/
 
+$white:    #fff !default;
+$gray-100: #f8f9fa !default;
+$gray-200: #ebebeb !default;
+$gray-300: #dee2e6 !default;
+$gray-400: #ced4da !default;
+$gray-500: #adb5bd !default;
+$gray-600: #888 !default;
+$gray-700: #444 !default;
+$gray-800: #303030 !default;
+$gray-900: #222 !default;
+$black:    #000 !default;
+
 // Custom
 $gold:         #d8ba55 !default; // #f2a11e
 $blue:         #0d6efd !default;
@@ -20,7 +32,7 @@ $link-color:    $col3 !default;
 
 // Code
 
-$code-block-border-left:          #31BAE9 !default;
+$code-block-border-left:          $gray-500 !default;
 
 /*-- scss:rules --*/
 

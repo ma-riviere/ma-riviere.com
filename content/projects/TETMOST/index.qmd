@@ -5,9 +5,12 @@ date: 2017-09
 doi: "AUTON (CNRS)" # TODO: make specific param
 
 author:
-  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
-  - "[LIR3S (Bourgogne, France)](http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm)"
-  - "[IHRIM (Lyon, France)](https://ihrim.ens-lyon.fr/)"
+  - name: "LITIS"
+    url: "https://www.litislab.fr/"
+  - name: "LIR3S"
+    url: "http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm"
+  - name: "IHRIM"
+    url: "https://ihrim.ens-lyon.fr/"
 
 image: feature.png
 image-alt: "Logo illustrating the TETMOST project"
@@ -36,21 +39,21 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Article (F2T)"
+    - text: "Article (ICCHP'18)"
       icon: file-pdf
-      url: content/pubs/ICCHP18-F2T/
+      file: content/pubs/ICCHP18-F2T/
       aria-label: "See an article about the F2T"
-    - text: "Article (segmentation)"
+    - text: "Article (ICISP'20)"
       icon: file-pdf
-      url: content/pubs/ICISP20/
+      file: content/pubs/ICISP20/
       aria-label: "See an article about the Art segmentation"
     - text: "Poster"
       icon: file-image
-      url: content/projects/TETMOST/poster.pdf
+      file: content/projects/TETMOST/poster.pdf
       aria-label: "See a poster about the project"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](feature.png){.preview-image fig-alt="Image illustrating the project"}
 

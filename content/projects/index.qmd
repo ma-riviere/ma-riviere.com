@@ -10,8 +10,8 @@ listing:
   fields: [doi, image, title, subtitle, description, categories] # author
   categories: numbered
   date-format: medium
-  sort: [date desc, title desc]
-  max-items: 10
+  sort: [date desc, title]
+  page-size: 10
   filter-ui: true
   sort-ui: [date, title]
   field-display-names:

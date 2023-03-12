@@ -1,0 +1,24 @@
+# Blog posts
+
+# Field names
+published-title: "First Published"
+
+citation: true
+toc: true
+number-sections: true
+code-tools:
+  source: true
+  toggle: false
+code-summary: "Alternatives"
+
+comments:
+  giscus:
+    repo: ma-riviere/ma-riviere.me
+    repo-id: "R_kgDOIBvARQ"
+    category: "Announcements"
+    category-id: "DIC_kwDOIBvARc4CRpfR"
+    mapping: "pathname"
+    reactions-enabled: true
+    loading: lazy
+    input-position: "bottom"
+    theme: "light"

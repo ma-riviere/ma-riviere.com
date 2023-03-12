@@ -2,11 +2,14 @@
 title: "NAV-VIR"
 subtitle: "Virtual Map exploration for Visually Impaired People"
 date: 2018-09
+
 doi: "PHC Polonium (French-Polish EU grant)" # TODO: make specific param
 
 author:
-  - "[LITIS (Rouen, France)](https://www.litislab.fr/en/)"
-  - "[Institute of Electronics (Lodz, Poland)](http://www.eletel.p.lodz.pl/eng/)"
+  - name: "LITIS"
+    url: "https://www.litislab.fr/"
+  - name: "Institute of Electronics"
+    url: "http://www.eletel.p.lodz.pl/eng/"
 
 image: feature.png
 image-alt: "3D rendering of the F2T, the main device used during the NAV-VIR project"
@@ -38,15 +41,15 @@ about:
   links:
     - text: "Article"
       icon: file-pdf
-      url: content/pubs/NER19/
+      file: /content/pubs/NER19/
       aria-label: "See an article about the project"
     - text: "Poster"
       icon: file-image
-      url: content/projects/NAV-VIR/poster.pdf
+      url: /content/projects/NAV-VIR/poster.pdf
       aria-label: "See a poster about the project"
 ---
 
-<hr style="margin-bottom: 30px; margin-top: -12px">
+{{< include /content/_hr.qmd >}}
 
 ![](feature.png){.preview-image fig-alt="Image illustrating the project"}
 
