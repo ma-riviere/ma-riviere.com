@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.me/content/code/index.html</link>
+<atom:link href="https://ma-riviere.me/content/code/index.xml" rel="self" type="application/rss+xml"/>
+<description>Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes</description>
+<image>
+<url>https://ma-riviere.me/res/avatar.jpg</url>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.me/content/code/index.html</link>
+</image>
+<generator>quarto-1.3.258</generator>
+<lastBuildDate>Fri, 17 Jun 2022 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Fast spatial data matching in R</title>
+  <link>https://ma-riviere.me/content/code/posts/spatial/index.html</link>
+  <description><![CDATA[ You can check the source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
+  <category>Big Data</category>
+  <category>Data Manipulation</category>
+  <category>Spatial</category>
+  <category>R</category>
+  <category>SQL</category>
+  <category>DuckDB</category>
+  <guid>https://ma-riviere.me/content/code/posts/spatial/index.html</guid>
+  <pubDate>Fri, 17 Jun 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>MCMC for ‘Big Data’ with Stan</title>
+  <link>https://ma-riviere.me/content/code/posts/big-bayes/index.html</link>
+  <description><![CDATA[ You can check the page’s source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
+  <category>Statistics</category>
+  <category>ML</category>
+  <category>Bayesian Modeling</category>
+  <category>Big Data</category>
+  <category>Stan</category>
+  <category>R</category>
+  <guid>https://ma-riviere.me/content/code/posts/big-bayes/index.html</guid>
+  <pubDate>Sat, 04 Jun 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Tidyverse &lt;-&gt; data.table</title>
+  <link>https://ma-riviere.me/content/code/posts/data.table/index.html</link>
+  <description><![CDATA[ <strong>V1:</strong> 2022-05-19<br><strong>V2:</strong> 2022-05-26<br>
+- Improved the section on <strong>keys</strong> (for ordering &amp; filtering)<br>
+- Adding a section for translations of <code>Tidyr</code> (and other similar packages)<br>
+- Capping tables to display 15 rows max when unfolded<br>
+- Improving table display (stripping, hiding the contents of nested columns, …) <strong>V3:</strong> 2022-07-20 - Updating <code>data.table</code>’s examples of dynamic programming using <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html"><code>env</code></a><br>
+- Added new entries in processing examples<br>
+- Added new entries to Tidyr &amp; Others: expand + complete, transpose/rotation, …<br>
+- Added <code>pivot_wider</code> examples to match the <code>dcast</code> ones in the Pivots section<br>
+- Added some new examples here and there across the Basic Operations section<br>
+- Added an entry for operating inside nested data.frames/data.tables<br>
+- Added a processing example for run-length encoding (i.e.&nbsp;successive event tagging) <strong>V4:</strong> 2022-08-05 - Improved <code>pivot</code> section: example of one-hot encoding (and reverse operation) + better examples of partial pivots with <code>.value</code><br>
+- Added <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount()</a></code> (row duplication) example.<br>
+- Improved both light &amp; dark themes (code highlight, tables, …) <strong>V5:</strong> 2023-03-12 - Revamped the whole document with grouped tabsets by framework for better readability<br>
+- Revamped the whole Basic Operations section: better structure, reworked examples, …<br>
+- Revamped the whole Joins section: better structure, new examples (e.g.&nbsp;<code>join_by</code>), better explanations, …<br>
+- Updated code to reflect recent updates of the <code>Tidyverse</code>:<br>
+- <code>dplyr</code> (1.1.0): <code>.by</code>, <code>reframe</code>, <code>join_by</code>, <code>consecutive_id</code>, …<br>
+- <code>purrr</code> (1.0.0): <code>list_rbind</code>, <code>list_cbind</code>, <code>pmap_vec</code>, …<br>
+- <code>tidyr</code> (1.3.0): updated the <code>separate/separate_rows</code> section to the newer <code>separate_wider/longer_*</code><br>
+- Updated code to reflect recent updates of <code>data.table</code> (1.14.9): <code>let</code>, <code><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">DT()</a></code>, … ]]></description>
+  <category>Data Manipulation</category>
+  <category>Tidyverse</category>
+  <category>data.table</category>
+  <category>R</category>
+  <guid>https://ma-riviere.me/content/code/posts/data.table/index.html</guid>
+  <pubDate>Wed, 18 May 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>LT-AoP: Data &amp; Analyses</title>
+  <dc:creator>Marc-Aurèle Rivière</dc:creator>
+  <dc:creator>Agalic Rodriguez-Duboc</dc:creator>
+  <link>https://ma-riviere.me/content/code/projects/LT-AoP/index.html</link>
+  <description><![CDATA[ The <a href="../../../../content/projects/LT-AoP/">LT-AoP</a> project included behavioral, immunohistochemistry and RT-qPCR data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the <a href="https://glmmtmb.github.io/glmmTMB/">glmmTMB</a> package <span class="citation" data-cites="glmmTMB">(Brooks et al., 2017)</span>. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms. ]]></description>
+  <category>Biostatistics</category>
+  <category>Bioinformatics</category>
+  <category>Transcriptomics</category>
+  <category>Immunohistochemistry</category>
+  <category>Behavioral</category>
+  <category>RT-qPCR</category>
+  <guid>https://ma-riviere.me/content/code/projects/LT-AoP/index.html</guid>
+  <pubDate>Sat, 30 Apr 2022 22:00:00 GMT</pubDate>
+  <media:content url="https://ma-riviere.me/content/code/projects/LT-AoP/feature.png" medium="image" type="image/png" height="86" width="144"/>
+</item>
+<item>
+  <title>Bayesian Rock Climbing Rankings</title>
+  <link>https://ma-riviere.me/content/code/posts/climbing/index.html</link>
+  <description><![CDATA[ You can check the page’s source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
+  <category>Statistics</category>
+  <category>ML</category>
+  <category>Bayesian Modeling</category>
+  <category>Stan</category>
+  <category>R</category>
+  <guid>https://ma-riviere.me/content/code/posts/climbing/index.html</guid>
+  <pubDate>Mon, 18 Apr 2022 22:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>

@@ -159,6 +159,7 @@ code span.ex {
 }
 
 code span.re {
+  background-color: #f8f8f2;
   color: #656b6e;
 }
 
@@ -176,6 +177,7 @@ code span.er {
 }
 
 code span.al {
+  background-color: #2a0f15;
   font-weight: bold;
   color: #f07178;
 }

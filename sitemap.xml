@@ -2,118 +2,130 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ma-riviere.me/index.html</loc>
-    <lastmod>2022-12-09T13:58:44.831Z</lastmod>
+    <lastmod>2023-03-12T21:01:29.573Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/scicom/Exp-JPO/index.html</loc>
-    <lastmod>2022-12-09T13:21:14.491Z</lastmod>
+    <loc>https://ma-riviere.me/content/about.html</loc>
+    <lastmod>2023-03-12T20:30:45.453Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/scicom/Exp/index.html</loc>
-    <lastmod>2022-12-09T13:21:14.701Z</lastmod>
+    <loc>https://ma-riviere.me/content/code/index.html</loc>
+    <lastmod>2023-03-12T21:01:24.693Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/talks/FR-NO/index.html</loc>
-    <lastmod>2022-12-09T13:21:14.921Z</lastmod>
+    <loc>https://ma-riviere.me/content/code/posts/big-bayes/index.html</loc>
+    <lastmod>2023-03-12T20:31:24.933Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/talks/ICCHP18/index.html</loc>
-    <lastmod>2022-12-09T13:21:15.151Z</lastmod>
+    <loc>https://ma-riviere.me/content/code/posts/climbing/index.html</loc>
+    <lastmod>2023-03-12T20:32:46.283Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/talks/RUNN19/index.html</loc>
-    <lastmod>2022-12-09T13:21:15.371Z</lastmod>
+    <loc>https://ma-riviere.me/content/code/posts/data.table/index.html</loc>
+    <lastmod>2023-03-12T20:37:25.323Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/talks/SKERI/index.html</loc>
-    <lastmod>2022-12-09T13:58:43.171Z</lastmod>
+    <loc>https://ma-riviere.me/content/code/posts/spatial/index.html</loc>
+    <lastmod>2023-03-12T21:01:24.073Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/posts/big-bayes/index.html</loc>
-    <lastmod>2022-12-09T13:21:53.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.me/content/posts/climbing/index.html</loc>
-    <lastmod>2022-12-09T13:23:31.601Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.me/content/posts/data.table/index.html</loc>
-    <lastmod>2022-12-09T13:29:45.941Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.me/content/posts/index.html</loc>
-    <lastmod>2022-12-09T13:49:21.011Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.me/content/posts/spatial/index.html</loc>
-    <lastmod>2022-12-09T13:49:20.691Z</lastmod>
+    <loc>https://ma-riviere.me/content/code/projects/LT-AoP/index.html</loc>
+    <lastmod>2023-03-12T20:43:24.143Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/ACCESSPACE/index.html</loc>
-    <lastmod>2022-12-09T13:35:51.151Z</lastmod>
+    <lastmod>2023-03-12T20:43:25.023Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/AdViS/index.html</loc>
-    <lastmod>2022-12-09T13:35:51.411Z</lastmod>
+    <lastmod>2023-03-12T20:43:25.373Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/CamIO/index.html</loc>
-    <lastmod>2022-12-09T13:35:51.671Z</lastmod>
+    <lastmod>2023-03-12T20:43:25.653Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/DE-AoP/index.html</loc>
-    <lastmod>2022-12-09T13:35:52.091Z</lastmod>
+    <lastmod>2023-03-12T20:43:25.953Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/LT-AoP/index.html</loc>
-    <lastmod>2022-12-09T13:35:52.361Z</lastmod>
+    <lastmod>2023-03-12T20:43:26.293Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/NAV-VIR/index.html</loc>
-    <lastmod>2022-12-09T13:35:52.611Z</lastmod>
+    <lastmod>2023-03-12T20:43:26.583Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/SAM-Guide/index.html</loc>
-    <lastmod>2022-12-09T13:35:52.931Z</lastmod>
+    <lastmod>2023-03-12T20:43:27.053Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/TETMOST/index.html</loc>
-    <lastmod>2022-12-09T13:35:53.191Z</lastmod>
+    <lastmod>2023-03-12T20:43:27.393Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/projects/index.html</loc>
-    <lastmod>2022-12-09T13:35:53.541Z</lastmod>
+    <lastmod>2023-03-12T20:43:28.123Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/ICCHP18-F2T/index.html</loc>
-    <lastmod>2022-12-09T13:35:53.861Z</lastmod>
+    <lastmod>2023-03-12T20:43:28.533Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/ICCHP18-TactiBelt/index.html</loc>
-    <lastmod>2022-12-09T13:35:54.181Z</lastmod>
+    <lastmod>2023-03-12T20:43:28.973Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/ICCHP20/index.html</loc>
-    <lastmod>2022-12-09T13:35:54.501Z</lastmod>
+    <lastmod>2023-03-12T20:43:29.393Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/ICISP20/index.html</loc>
-    <lastmod>2022-12-09T13:35:54.851Z</lastmod>
+    <lastmod>2023-03-12T20:43:29.833Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/pubs/IP23/index.html</loc>
+    <lastmod>2023-03-12T20:43:30.213Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/JEP22/index.html</loc>
-    <lastmod>2022-12-09T13:35:55.171Z</lastmod>
+    <lastmod>2023-03-12T20:43:30.633Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/NER19/index.html</loc>
-    <lastmod>2022-12-09T13:35:55.481Z</lastmod>
+    <lastmod>2023-03-12T20:43:31.043Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.me/content/pubs/index.html</loc>
-    <lastmod>2022-12-09T13:35:55.781Z</lastmod>
+    <lastmod>2023-03-12T20:43:31.743Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.me/content/outreach/index.html</loc>
-    <lastmod>2022-12-09T13:58:43.451Z</lastmod>
+    <loc>https://ma-riviere.me/content/sci-com/index.html</loc>
+    <lastmod>2023-03-12T20:48:05.623Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/sci-com/outreach/Exp-JPO/index.html</loc>
+    <lastmod>2023-03-12T20:43:32.503Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/sci-com/outreach/Exp/index.html</loc>
+    <lastmod>2023-03-12T20:43:32.753Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/sci-com/talks/ICCHP18/index.html</loc>
+    <lastmod>2023-03-12T20:43:33.013Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/sci-com/talks/ProbAI19/index.html</loc>
+    <lastmod>2023-03-12T20:43:33.273Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/sci-com/talks/RUNN19/index.html</loc>
+    <lastmod>2023-03-12T20:43:33.623Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.me/content/sci-com/talks/SKERI/index.html</loc>
+    <lastmod>2023-03-12T20:43:33.893Z</lastmod>
   </url>
 </urlset>
