@@ -29,7 +29,7 @@ listing:
 
 # {{< iconify mdi git >}} Code projects
 
-Code projects linked published articles.
+Code projects linked to published articles.
 
 :::{#code-projects}
 :::

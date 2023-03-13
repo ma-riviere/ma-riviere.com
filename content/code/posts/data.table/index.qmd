@@ -36,27 +36,27 @@ execute:
   - Improved the section on **keys** (for ordering & filtering)  
   - Adding a [section](#tidyr-others) for translations of `Tidyr` (and other similar packages)      
   - Capping tables to display 15 rows max when unfolded  
-  - Improving table display (stripping, hiding the contents of nested columns, ...)
-**V3:** 2022-07-20
+  - Improving table display (stripping, hiding the contents of nested columns, ...)  
+**V3:** 2022-07-20  
   - Updating `data.table`'s examples of dynamic programming using [`env`](https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html)  
   - Added new entries in [processing examples](#processing-examples)  
   - Added new entries to [Tidyr & Others](#tidyr-others): expand + complete, transpose/rotation, ...  
   - Added `pivot_wider` examples to match the `dcast` ones in the [Pivots](#pivots) section  
   - Added some new examples here and there across the [Basic Operations](#basic-operations) section  
   - Added an entry for operating inside nested data.frames/data.tables  
-  - Added a processing example for run-length encoding (i.e. successive event tagging)
-**V4:** 2022-08-05
+  - Added a processing example for run-length encoding (i.e. successive event tagging)  
+**V4:** 2022-08-05  
   - Improved `pivot` section: example of one-hot encoding (and reverse operation) + better examples of partial pivots with `.value`  
   - Added `tidyr::uncount()` (row duplication) example.  
-  - Improved both light & dark themes (code highlight, tables, ...)
-**V5:** 2023-03-12
+  - Improved both light & dark themes (code highlight, tables, ...)  
+**V5:** 2023-03-12  
   - Revamped the whole document with grouped tabsets by framework for better readability  
   - Revamped the whole [Basic Operations](#basic-operations) section: better structure, reworked examples, ...   
   - Revamped the whole [Joins](#joins) section: better structure, new examples (e.g. `join_by`), better explanations, ...  
   - Updated code to reflect recent updates of the `Tidyverse`:  
-    - `dplyr` (1.1.0): `.by`, `reframe`, `join_by`, `consecutive_id`, ...  
-    - `purrr` (1.0.0): `list_rbind`, `list_cbind`, `pmap_vec`, ...  
-    - `tidyr` (1.3.0): updated the `separate/separate_rows` section to the newer `separate_wider/longer_*`  
+      + `dplyr` (1.1.0): `.by`, `reframe`, `join_by`, `consecutive_id`, ...  
+      + `purrr` (1.0.0): `list_rbind`, `list_cbind`, ...  
+      + `tidyr` (1.3.0): updated the `separate/separate_rows` section to the newer `separate_wider/longer_*`  
   - Updated code to reflect recent updates of `data.table` (1.14.9): `let`, `DT()`, ...  
 :::
 
@@ -74,20 +74,12 @@ execute:
 ## TIDYR 1.3:
 ### Unnest_wider/longer
 
-## PURRR 1.0:
-### - list_rbind / list_cbind / list_c <--> rbindlist / do.call(c, ...)
-### - map_dfr -> map() |> list_rbind() ?
-### - pmap_vec instead of pmap + as.vector ???
-
 ## DATA.TABLE 1.14.9:
 ### nafill(x, type = c("const", "locf", "nocb"))
 #### - locf: last observation carried forward
 #### - nocb: next observation carried backward
 
 ## Time methods (eq to lubridate): https://rdatatable.gitlab.io/data.table/reference/IDateTime.html
-
-## PIVOTS:
-### - Add tabsets
 
 ## JOINS:
 ### - Rework .EACHI example (and add to joins) --> by = .EACHI == by = .I for both tables ?!!?
@@ -108,9 +100,6 @@ execute:
 ### - split() vs group_split()
 ### - nest_join()
 ### - with_order()
-
-## tidyr:
-### - Nesting with grouping variable inside: DAT[, .(data = list(data.table(group, .SD))), by = group]
 ```
 
 
@@ -136,16 +125,15 @@ renv::install(
   c(
     "here",
     "readr",
-    "Rdatatable/data.table", # >= 1.14.8
+    "Rdatatable/data.table", # >= 1.14.9
     "dplyr", # >= 1.1.0
-    "tidyr",
+    "tidyr", # >= 1.3.0
     "pipebind",
     "stringr",
     "purrr", # >= 1.0.0
     "lubridate",
     "broom",
-    "nplyr",
-    "datawizard"
+    "nplyr"
   )
 )
 ```
@@ -158,7 +146,7 @@ library(here)        # Project management
 library(data.table)  # Data wrangling (>= 1.14.9)
 library(dplyr)       # Data wrangling (>= 1.1.0)
 library(tidyr)       # Data wrangling (extras) (>= 1.3.0)
-library(pipebind)    # Piping goodies (>= 0.1.1)
+library(pipebind)    # Piping goodies
 
 library(stringr)     # Manipulating strings
 library(purrr)       # Manipulating lists (>= 1.0.0)
@@ -457,6 +445,8 @@ mtcars |> slice(1) # slice_head(n = 1)
 mtcars |> slice(n()) # slice_tail(n = 1)
 ```
 
+***
+
 Slice a random sample of rows:
 
 ```{r}
@@ -473,6 +463,8 @@ MT[1]
 ```{r}
 MT[.N]
 ```
+
+***
 
 Slice a random sample of rows:
 
@@ -494,6 +486,8 @@ MT[sample(.N, 5)]
 mtcars |> distinct(mpg, hp, .keep_all = TRUE)
 ```
 
+***
+
 **Number of unique rows/values**
 
 ```{r}
@@ -506,6 +500,8 @@ n_distinct(mtcars$gear)
 ```{r}
 unique(MT, by = c("mpg", "hp")) # cols = other_cols_to_keep
 ```
+
+***
 
 **Number of unique rows/values**
 
@@ -585,6 +581,8 @@ cols <- c("gear", "cyl")
 mtcars |> filter(f_dyn(gear, cyl))
 ```
 
+***
+
 **Dynamically:**
 
 Taking column names:
@@ -607,6 +605,8 @@ mtcars |> filter(f_dat(cur_data()))
 ```{r}
 MT[f_dyn(gear, cyl),]
 ```
+
+***
 
 **Dynamically:**
 
@@ -660,6 +660,8 @@ cols <- c("drat", "wt", "qsec")
 mtcars |> filter(decp(drat) & decp(wt) & decp(qsec))
 ```
 
+***
+
 **Dynamically:**
 
 ```{r}
@@ -673,6 +675,8 @@ mtcars |> filter(if_all(cols, decp))
 ```{r}
 MT[decp(drat) & decp(wt) & decp(qsec), ]
 ```
+
+***
 
 **Dynamically:**
 
@@ -716,13 +720,15 @@ IRIS <- as.data.table(iris)[, Species := as.character(Species)]
 
 ##### Tidyverse
 
-Manually:
+**Manually:**
 
 ```{r}
 mtcars |> rename(CYL = cyl, MPG = mpg)
 ```
 
-Dynamically:
+***
+
+**Dynamically:**
 
 ```{r}
 mtcars |> rename_with(\(c) toupper(c), .cols = matches("^d"))
@@ -731,13 +737,15 @@ mtcars |> rename_with(\(c) toupper(c), .cols = matches("^d"))
 
 ##### data.table
 
-Manually:
+**Manually:**
 
 ```{r}
 setnames(copy(MT), c("cyl", "mpg"), c("CYL", "MPG"))[]
 ```
 
-Dynamically:
+***
+
+**Dynamically:**
 
 ```{r}
 setnames(copy(MT), grep("^d", colnames(MT)), toupper)[]
@@ -768,6 +776,8 @@ MT |> select(matches("cyl|disp"))
 
 <br>
 
+***
+
 **Remove a column:**
 
 ```{r}
@@ -788,6 +798,8 @@ MT[ , .SD, .SDcols = c("mpg", "disp")]
 
 MT[, .SD, .SDcols = patterns("mpg|disp")]
 ```
+
+***
 
 **Remove a column:**
 
@@ -816,6 +828,8 @@ copy(MT)[, cyl := NULL][]
 mtcars |> pull(disp)
 ```
 
+***
+
 **Select & Rename:**
 
 ```{r}
@@ -824,13 +838,15 @@ mtcars |> select(dispp = disp)
 
 ##### data.table
 
-**Select & Extrac:**
+**Select & Extract:**
 
 ```{r}
 #| results: markup
 
 MT[, disp]
 ```
+
+***
 
 **Select & Rename:**
 
@@ -844,7 +860,7 @@ MT[, .(dispp = disp)]
 
 ### Dynamic selection
 
-**By name:**
+### By name:
 
 ```{r}
 cols <- c("cyl", "disp")
@@ -860,7 +876,9 @@ mtcars |> select(all_of(cols)) # select(!!cols)
 
 <br>
 
-Removing a column:
+***
+
+**Removing a column:**
 
 ```{r}
 mtcars |> select(!{{cols}}) # select(-matches(cols))
@@ -886,7 +904,9 @@ MT[, .SD, .SDcols = cols]
 MT[, j, env = list(j = as.list(cols))]
 ```
 
-Removing a column:
+***
+
+**Removing a column:**
 
 ```{r}
 MT[, !..cols]
@@ -911,7 +931,7 @@ copy(MT)[, (cols) := NULL][]
 :::
 
 
-**By pattern:**
+#### By pattern:
 
 ::: {.panel-tabset group="framework"}
 
@@ -948,7 +968,7 @@ MT[, MT[, sapply(.SD, \(x) all(x != 0))], with = FALSE]
 :::
 
 
-**By column type:**
+#### By column type:
 
 ```{r}
 iris |> select(where(\(x) !is.numeric(x)))
@@ -999,14 +1019,15 @@ mtcars |> transmute(cyl = cyl * 2)
 MT[, .(cyl = cyl * 2)]
 ```
 
-Transmute & Extract:
+***
+
+**Transmute & Extract:**
 
 ```{r}
 #| results: markup
 
 MT[, (cyl = cyl * 2)]
 ```
-
 
 :::
 
@@ -1130,6 +1151,8 @@ mtcars |> mutate(Size = case_when(
 ))
 ```
 
+***
+
 **Mutate only rows meeting conditions:**
 
 ```{r}
@@ -1156,6 +1179,8 @@ copy(MT)[, Size := fcase(
   default = "Unk"
 )][]
 ```
+
+***
 
 **Mutate only rows meeting conditions:**
 
@@ -1187,6 +1212,8 @@ mtcars |> mutate(across(c("mpg", "disp"), min, .names = "min_{col}"))
 
 <br><br>
 
+***
+
 **As a `transmute`:**
 
 ```{r}
@@ -1194,6 +1221,8 @@ mtcars |> transmute(across(c("mpg", "disp"), min, .names = "min_{col}"))
 ```
 
 <br>
+
+***
 
 **Dynamically:**
 
@@ -1216,15 +1245,17 @@ copy(MT)[
 copy(MT)[, c("min_mpg", "min_disp") := lapply(.(mpg, disp), min)][]
 ```
 
+***
+
 **As a `transmute`:**
 
 A second step is needed to add `min_` before the names:
 
 ```{r}
-(MT[, lapply(.SD[, .(mpg, disp)], min)] |> 
-   bind(d, setnames(d, names(d), \(x) paste0("min_", x)))
-)[]
+(MT[, lapply(.SD[, .(mpg, disp)], min)] |> bind(d, setnames(d, names(d), \(x) paste0("min_", x))))[]
 ```
+
+***
 
 **Dynamically:**
 
@@ -1261,18 +1292,16 @@ mtcars |> mutate(across(mpg, list(min = min, max = max), .names = "{fn}_{col}"))
 
 <br>
 
+***
+
 **Multiple columns:**
 
 ```{r}
-mtcars |> mutate(
-    across(matches("mpg|disp"), list(min = min, max = max), .names = "{fn}_{col}")
-  )
+mtcars |> mutate(across(matches("mpg|disp"), list(min = min, max = max), .names = "{fn}_{col}"))
 ```
 
 ```{r}
-mtcars |> mutate(
-    across(cols, list(min = \(x) min(x), max = \(x) max(x)), .names = "{fn}_{col}")
-  )
+mtcars |> mutate(across(cols, list(min = \(x) min(x), max = \(x) max(x)), .names = "{fn}_{col}"))
 ```
 
 
@@ -1293,9 +1322,11 @@ copy(MT)[, c("min_mpg", "max_mpg") :=
         ][]
 
 copy(MT)[, c("min_mpg", "max_mpg") := 
-           lapply(.(get(col)), \(x) list(min(x), max(x))) |> unlist(recursive = F)
+           lapply(.(get(col)), \(x) list(min(x), max(x))) |> unlist(recursive = FALSE)
         ][]
 ```
+
+***
 
 **Multiple columns:**
 
@@ -1355,21 +1386,26 @@ copy(MT)[, rsum := apply(.SD, 1, sum), .SDcols = is.numeric][]
 ##### Tidyverse
 
 ```{r}
-mtcars |> mutate(
-  pmap_dfr(
-    across(where(is.numeric)), 
-    \(...) c(...) |> bind(x, list(mean = mean(x), sum = sum(x)))
+mtcars |> 
+  mutate(pmap_dfr(across(where(is.numeric)), \(...) list(mean = mean(c(...)), sum = sum(c(...)))))
+```
+
+```{r}
+#| eval: false
+#| code-fold: true
+
+mtcars |> 
+  mutate(
+    pmap(across(where(is.numeric)), \(...) list(mean = mean(c(...)), sum = sum(c(...)))) |> 
+      bind_rows()
   )
-)
 ```
 
 Hybrid base R-Tidyverse:
 
 ```{r}
-mtcars |> mutate(
-  apply(across(where(is.numeric)), 1, \(x) list(mean = mean(x), sum = sum(x))) |> 
-    bind_rows()
-)
+mtcars |> 
+  mutate(apply(across(where(is.numeric)), 1, \(x) list(mean = mean(x), sum = sum(x))) |> bind_rows())
 ```
 
 ##### data.table
@@ -1424,6 +1460,8 @@ cols_missing <- c("cyl", "disp", "missing_col")
 mtcars |> group_by(cyl, gear)
 ```
 
+***
+
 **Dynamic grouping:**
 
 ```{r}
@@ -1442,6 +1480,8 @@ mtcars |> group_by(across(any_of(cols_missing)))
 ```{r}
 MT[, .SD, by = .(cyl, gear)]
 ```
+
+***
 
 **Dynamic grouping:**
 
@@ -1466,21 +1506,10 @@ MT[, .SD, by = intersect(cols_missing, colnames(MT))]
 ##### Tidyverse
 
 ```{r}
-#| layout-nrow: 1
-#| layout-ncol: 3
-
 mtcars |> 
   group_by(cyl) |> 
-  summarize(plot(gear, mpg, main = paste("Cyl:", cur_group()))) -> void
-```
-
-```{r}
-#| layout-nrow: 1
-#| layout-ncol: 3
-
-mtcars |> 
-  group_by(cyl) |> 
-  group_walk(\(d, g) with(d, plot(gear, mpg, main = paste("Cyl:", g$cyl))))
+  filter(cur_group_id() == 1) |> # To only keep one plot
+  group_walk(\(d, g) with(d, plot(hp, mpg, main = paste("Cyl:", g$cyl))))
 ```
 
 
@@ -1489,10 +1518,9 @@ mtcars |>
 Use the `.BY` argument to get the current group name:
 
 ```{r}
-#| layout-nrow: 1
-#| layout-ncol: 3
+#| eval: false
 
-MT[, with(.SD, plot(gear, mpg, main = paste("Cyl:", .BY))), by = cyl] -> void
+MT[, with(.SD, plot(hp, mpg, main = paste("Cyl:", .BY))), keyby = cyl]
 ```
 
 :::
@@ -1517,7 +1545,7 @@ IRIS <- as.data.table(iris)[, Species := as.character(Species)]
 `.GRP`: Group indices  
 `.NGRP`: Number of groups  
 
-**Adding rows indices:**
+#### Adding rows indices:
 
 ```{r}
 mtcars |> mutate(I = row_number())
@@ -1525,7 +1553,7 @@ mtcars |> mutate(I = row_number())
 copy(MT)[ , I := .I][]
 ```
 
-**Adding group indices:**
+#### Adding group indices:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1542,6 +1570,8 @@ Mutate instead of summarize:
 ```{r}
 mtcars |> mutate(GRP = cur_group_id(), .by = cyl)
 ```
+
+***
 
 **Adding row numbers within each group:**
 
@@ -1563,6 +1593,8 @@ Mutate instead of summarize:
 copy(MT)[, GRP := .GRP, by = cyl][]
 ```
 
+***
+
 **Adding row numbers within each group:**
 
 ```{r}
@@ -1576,7 +1608,7 @@ copy(MT)[, I_GRP := rowid(gear)][]
 
 ### Filtering based on row numbers (slicing)
 
-**Extracting a specific row:**
+#### Extracting a specific row:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1603,7 +1635,7 @@ MT[5,]
 :::
 
 
-**Slicing rows:**
+#### Slicing rows:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1630,7 +1662,7 @@ MT[MT[, .I[(.N-9):.N]]] # Gets the last 10 rows' indices and filters based on th
 :::
 
 
-**Slicing groups:**
+#### Slicing groups:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1641,6 +1673,8 @@ MT[MT[, .I[(.N-9):.N]]] # Gets the last 10 rows' indices and filters based on th
 ```{r}
 mtcars |> slice_sample(n = 5, by = cyl)
 ```
+
+***
 
 **Filter groups by condition:**
 
@@ -1658,6 +1692,8 @@ mtcars |> group_by(cyl) |> group_modify(\(d,g) if (nrow(d) >= 8) d else data.fra
 MT[, .SD[sample(.N, 5)], keyby = cyl]
 ```
 
+***
+
 **Filter groups by condition:**
 
 ```{r}
@@ -1672,7 +1708,7 @@ MT[, .SD[.N >= 8], by = cyl]
 
 ### Extracting row indices
 
-**Getting the row numbers of specific observations:**
+#### Getting the row numbers of specific observations:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1707,15 +1743,13 @@ copy(MT)[, I := .I][, .SD[c(1, .N)], by = cyl]
 :::
 
 
-**Extracting row indices after filtering:**
-
-:::{.callout-important appearance="simple"}
-`.I` gives the vector of row numbers *after* any subsetting/filtering has been done
-:::
+#### Extracting row indices after filtering:
 
 ::: {.panel-tabset group="framework"}
 
 ##### Tidyverse
+
+<br>
 
 Extracting row numbers in the original dataset:
 
@@ -1730,6 +1764,10 @@ mtcars |> filter(gear == 4) |> mutate(I = row_number()) |> pull(I)
 ```
 
 ##### data.table
+
+:::{.callout-warning appearance="simple"}
+`.I` gives the vector of row numbers *after* any subsetting/filtering has been done
+:::
 
 Extracting row numbers in the original dataset:
 
@@ -1882,7 +1920,7 @@ MT[, .N, by = .(cyl > 6)]
 
 ### Column-wise summary
 
-**Apply one function to multiple columns:**
+#### Apply one function to multiple columns:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1926,7 +1964,7 @@ MT[, lapply(.SD, mean), by = cyl, .SDcols = patterns("^d")]
 :::
 
 
-**Applying multiple functions to one column:**
+#### Applying multiple functions to one column:
 
 ::: {.panel-tabset group="framework"}
 
@@ -1936,8 +1974,12 @@ MT[, lapply(.SD, mean), by = cyl, .SDcols = patterns("^d")]
 mtcars |> summarize(mean(mpg), sd(mpg), .by = cyl)
 ```
 
+<br><br>
+
+With column names:
+
 ```{r}
-mtcars |> summarize(mean_mpg = mean(mpg), sd_mpg = sd(mpg), .by = cyl)
+mtcars |> summarize(mean = mean(mpg), sd = sd(mpg), .by = cyl)
 ```
 
 ```{r}
@@ -1952,34 +1994,23 @@ MT[, .(mean(mpg), sd(mpg)), by = cyl]
 ```
 
 ```{r}
-MT[, .(mean_mpg = mean(mpg), sd_mpg = sd(mpg)), by = cyl]
-```
-
-```{r}
 MT[, lapply(.(mpg), \(x) list(mean(x), sd(x))) |> rbindlist(), by = cyl]
 ```
 
 With column names:
 
 ```{r}
-MT[, 
-  lapply(.SD, \(x) list(mean_mpg = mean(x), sd_mpg = sd(x))) |> rbindlist(), 
-  by = cyl, .SDcols = "mpg"
-]
+MT[, .(mean = mean(mpg), sd = sd(mpg)), by = cyl]
 ```
 
 ```{r}
-MT[, 
-  lapply(.SD, \(x) list(mean = mean(x), sd = sd(x))) |> rbindlist(idcol = "Var"), 
-  by = cyl, .SDcols = "mpg"
-]
+MT[, lapply(.SD, \(x) list(mean = mean(x), sd = sd(x))) |> rbindlist(), by = cyl, .SDcols = "mpg"]
 ```
-
 
 :::
 
 
-**Apply multiple functions to multiple columns:**
+#### Apply multiple functions to multiple columns:
 
 :::{.callout-note appearance="simple"}
 Depending on the output we want (i.e. having the function's output as columns or rows), we can either provide a list of functions to apply (`list_of_fns`), or a function returning a list (`fn_returning_list`).
@@ -2000,22 +2031,30 @@ fn_returning_list <- \(x) list(mean = mean(x), sd = sd(x))
 **One column per function, one row per variable:**
 
 ```{r}
-mtcars |> 
-  reframe(map_dfr(across(all_of(cols)), fn_returning_list, .id = "Var"), .by = cyl)
+reframe(mtcars, map_dfr(across(all_of(cols)), fn_returning_list, .id = "Var"), .by = cyl)
 ```
+
+```{r}
+#| eval: false
+#| code-fold: true
+
+reframe(mtcars, map(across(all_of(cols)), fn_returning_list) |> bind_rows(.id = "Var"), .by = cyl)
+```
+
+***
 
 **One column per variable, one row per function:**
 
 ```{r}
-mtcars |> 
-  reframe(map_dfr(list_of_fns, \(f) map(across(all_of(cols)), f), .id = "Fn"), .by = cyl)
+reframe(mtcars, map_dfr(list_of_fns, \(f) map(across(all_of(cols)), f), .id = "Fn"), .by = cyl)
 ```
+
+***
 
 **One column per function/variable combination:**
 
 ```{r}
-mtcars |> 
-  summarize(across(all_of(cols), list_of_fns, .names = "{col}.{fn}"), .by = cyl)
+summarize(mtcars, across(all_of(cols), list_of_fns, .names = "{col}.{fn}"), .by = cyl)
 ```
 
 
@@ -2024,29 +2063,32 @@ mtcars |>
 **One column per function, one row per variable:**
 
 ```{r}
-MT[, 
-  lapply(.SD, fn_returning_list) |> rbindlist(idcol = "Var"), 
-  by = cyl, .SDcols = cols
-]
+MT[, lapply(.SD, fn_returning_list) |> rbindlist(idcol = "Var"), by = cyl, .SDcols = cols]
 ```
+
+<br>
+
+***
 
 **One column per variable, one row per function:**
 
 ```{r}
-MT[, 
-  lapply(list_of_fns, \(f) lapply(.SD, f)) |> rbindlist(idcol = "Fn"), 
-  by = cyl, .SDcols = cols
-]
+MT[, lapply(list_of_fns, \(f) lapply(.SD, f)) |> rbindlist(idcol = "Fn"), by = cyl, .SDcols = cols]
 ```
+
+***
 
 **One column per function/variable combination:**
 
 ```{r}
-MT[, 
-  lapply(.SD, fn_returning_list) |> 
-    unlist(recursive = FALSE), # do.call(c, args = _)
-  by = cyl, .SDcols = cols
-]
+MT[, lapply(.SD, fn_returning_list) |> unlist(recursive = FALSE), by = cyl, .SDcols = cols]
+```
+
+```{r}
+#| echo: false
+#| code-fold: true
+
+MT[, lapply(.SD, fn_returning_list) |> do.call(c, args = _), by = cyl, .SDcols = cols]
 ```
 
 Different column order & naming scheme:
@@ -2054,7 +2096,7 @@ Different column order & naming scheme:
 ```{r}
 MT[, 
   lapply(list_of_fns, \(f) lapply(.SD, f)) |> 
-    unlist(recursive = FALSE), # do.call(c, args = _)
+    unlist(recursive = FALSE),
   by = cyl, .SDcols = cols
 ]
 ```
@@ -2111,6 +2153,10 @@ family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child
 
 ### Basic Melt/Longer
 
+:::: {.callout-tip appearance="simple"}
+`data.table::melt` does partial argument matching and thus accepts shortened versions of its arguments. E.g.: `variable.name` <=> `variable` (or `var`), `value.name` <=> `value` (or `val`), `measure.vars` <=> `measure`, `id.vars` <=> `id`, `pattern` <=> `pat`, ...
+::::
+
 **One group of columns --> single value column**
 
 ::: {.panel-tabset group="framework"}
@@ -2126,7 +2172,7 @@ pivot_longer(FAM1, cols = matches("dob_"), names_to = "variable")
 ```{r}
 melt(FAM1, measure.vars = c("dob_child1", "dob_child2", "dob_child3"))
 
-melt(FAM1, measure.vars = patterns("^dob_"))
+melt(FAM1, measure = patterns("^dob_"))
 ```
 
 :::
@@ -2145,7 +2191,7 @@ melt(FAM1, measure.vars = patterns("^dob_"))
 ##### data.table
 
 ```{r}
-melt(FAM1, measure.vars = patterns(child1 = "child1$", child2 = "child2$|child3$"))
+melt(FAM1, measure = patterns(child1 = "child1$", child2 = "child2$|child3$"))
 ```
 
 :::
@@ -2187,7 +2233,7 @@ pivot_longer(
 ##### data.table
 
 ```{r}
-melt(MOVIES_WIDE, id.vars = "ID", variable.name = "Genre")[value != 0][order(ID), -"value"]
+melt(MOVIES_WIDE, id.vars = "ID", var = "Genre")[value != 0][order(ID), -"value"]
 ```
 
 :::
@@ -2209,7 +2255,7 @@ Using the `.value` special identifier allows to do a "half" pivot: the values th
 :::
 
 ```{r}
-pivot_longer(fam2, cols = matches("^dob|^gender"), names_to = c(".value", "child"), names_sep = "_child")
+pivot_longer(fam2, matches("^dob|^gender"), names_to = c(".value", "child"), names_sep = "_child")
 ```
 
 
@@ -2218,7 +2264,7 @@ pivot_longer(fam2, cols = matches("^dob|^gender"), names_to = c(".value", "child
 **Using `.value`:**
 
 ```{r}
-melt(FAM2, measure.vars = patterns("^dob", "^gender"), value.name = c("dob", "gender"), variable.name = "child")
+melt(FAM2, measure = patterns("^dob", "^gender"), val = c("dob", "gender"), var = "child")
 ```
 
 ***
@@ -2229,14 +2275,14 @@ melt(FAM2, measure.vars = patterns("^dob", "^gender"), value.name = c("dob", "ge
 colA <- str_subset(colnames(FAM2), "^dob")
 colB <- str_subset(colnames(FAM2), "^gender")
 
-melt(FAM2, measure.vars = list(colA, colB), value.name = c("dob", "gender"), variable.name = "child")
+melt(FAM2, measure = list(colA, colB), val = c("dob", "gender"), var = "child")
 ```
 
 ```{r}
 #| eval: false
 #| code-fold: true
 
-melt(FAM2, measure.vars = list(a, b), value.name = c("dob", "gender"), variable.name = "child") |> 
+melt(FAM2, measure = list(a, b), val = c("dob", "gender"), var = "child") |> 
   substitute2(env = list(a = I(str_subset(colnames(FAM2), "^dob")), b = I(str_subset(colnames(FAM2), "^gender")))) |> eval()
 ```
 
@@ -2245,14 +2291,14 @@ melt(FAM2, measure.vars = list(a, b), value.name = c("dob", "gender"), variable.
 **Using `measure` and `value.name`:**
 
 ```{r}
-melt(FAM2, measure.vars = measure(value.name, child = \(x) as.integer(x), sep = "_child"))
+melt(FAM2, measure = measure(value.name, child = \(x) as.integer(x), sep = "_child"))
 ```
 
 ```{r}
 #| eval: false
 #| code-fold: true
 
-melt(FAM2, measure.vars = measurev(list(value.name = NULL, child = as.integer), pattern = "(.*)_child(\\d{1})"))
+melt(FAM2, measure = measurev(list(value.name = NULL, child = as.integer), pat = "(.*)_child(\\d)"))
 ```
 
 
@@ -2273,9 +2319,9 @@ melt(FAM2, measure.vars = measurev(list(value.name = NULL, child = as.integer), 
 ```{r}
 #| echo: false
 
-FAM1L <- FAM1 |> melt(measure.vars = c("dob_child1", "dob_child2", "dob_child3"))
+FAM1L <- melt(FAM1, measure = c("dob_child1", "dob_child2", "dob_child3"))
 
-FAM2L <- FAM2 |> melt(measure.vars = measure(value.name, child = \(.x) as.integer(.x), sep = "_child"))
+FAM2L <- melt(FAM2, measure = measure(value.name, child = \(.x) as.integer(.x), sep = "_child"))
 ```
 
 ```{r}
@@ -2386,7 +2432,7 @@ pivot_wider(fam1l, id_cols = all_of(id_vars), names_from = variable)
 ```{r}
 dcast(FAM1L, family_id + age_mother ~ base::get(var_name))
 
-dcast(FAM1L, family_id + age_mother ~ v1) |> substitute2(env = list(v1 = var_name)) |> eval()
+dcast(FAM1L, family_id + age_mother ~ x) |> substitute2(env = list(x = var_name)) |> eval()
 ```
 
 Multiple dynamic names:
@@ -2394,7 +2440,7 @@ Multiple dynamic names:
 ```{r}
 dcast(FAM1L, str_c(str_c(id_vars, collapse = " + "), " ~ variable"))
 
-dcast(FAM1L, v1 + v2 ~ variable) |> substitute2(env = list(v1 = id_vars[1], v2 = id_vars[2])) |> eval()
+dcast(FAM1L, x + y ~ variable) |> substitute2(env = list(x = id_vars[1], y = id_vars[2])) |> eval()
 ```
 
 :::
@@ -2432,7 +2478,7 @@ The logic is inverted between `dplyr` (keep) and `data.table` (drop):
 ##### Tidyverse
 
 ```{r}
-pivot_wider(fam1l, names_from = variable, values_from = value, id_expand = TRUE, names_expand = FALSE) # (keep_id, keep_names)
+pivot_wider(fam1l, names_from = variable, values_from = value, id_expand = T, names_expand = F)
 ```
 
 ##### data.table
@@ -2491,7 +2537,7 @@ dcast(FAM1L, family_id + age_mother ~ .)
 
 :::
 
-Customizing the default behavior (`length()`) using the `fun.aggregate` argument:
+Customizing the default behavior (`length()`) using the `fun.aggregate` (<=> `fun.agg` or `fun`) argument:
 
 *Here, we count the number of child for each each combination of (family_id + age_mother) -> sum all non-NA `value`*
 
@@ -2500,7 +2546,9 @@ Customizing the default behavior (`length()`) using the `fun.aggregate` argument
 ##### Tidyverse
 
 ```{r}
-(pivot_wider(fam1l, id_cols = c(family_id, age_mother), names_from = variable, values_fn = \(x) !is.na(x)) 
+(pivot_wider(
+    fam1l, id_cols = c(family_id, age_mother), names_from = variable, values_fn = \(x) !is.na(x)
+  ) 
   |> mutate(child_count = apply(pick(matches("_child")), 1, \(x) sum(x)))
   |> select(-matches("^dob_"))
 )
@@ -2527,7 +2575,7 @@ Customizing the default behavior (`length()`) using the `fun.aggregate` argument
 ##### data.table
 
 ```{r}
-(dcast(FAM1L, family_id + age_mother ~ ., fun.agg = \(x) sum(!is.na(x))) |> setnames(".", "child_count"))
+(dcast(FAM1L, family_id + age_mother ~ ., fun = \(x) sum(!is.na(x))) |> setnames(".", "child_count"))
 ```
 
 :::
@@ -2564,20 +2612,22 @@ Data:
 )
 ```
 
+***
+
 * Multiple aggregation functions applied to multiple variables (all combinations):
 
 ```{r}
-(pivot_wider(
-    DTL, id_cols = c("id1", "id2"), names_from = "group", values_from = c("v1", "v2"), 
-    values_fn = \(x) tibble("sum" = sum(x), "mean" = mean(x)), names_vary = "slowest", names_sort = TRUE
+(DTL |> pivot_wider(
+    id_cols = c("id1", "id2"), names_from = "group", names_vary = "slowest", names_sort = TRUE,
+    values_from = c("v1", "v2"), values_fn = \(x) tibble("sum" = sum(x), "mean" = mean(x))
   ) 
   |> unnest(cols = matches("^v1|^v2"), names_sep = "_")
 )
 ```
 
-* Multiple aggregation functions applied to multiple variables (one-to-one):
+***
 
-*Here, we apply `sum` to `v1` (for both `group` a & b), and `mean` to `v2` (for both `group` a & b)*
+* Multiple aggregation functions applied to multiple variables (one-to-one):
 
 ```{r}
 # Not possible with pivot_wider AFAIK
@@ -2592,11 +2642,19 @@ Data:
 dcast(DTL, id1 + id2 ~ group, fun.aggregate = list(sum, mean), value.var = "v1")
 ```
 
+<br><br>
+
+***
+
 * Multiple aggregation functions applied to multiple variables (all combinations):
 
 ```{r}
 dcast(DTL, id1 + id2 ~ group, fun.aggregate = list(sum, mean), value.var = c("v1", "v2"))
 ```
+
+<br><br>
+
+***
 
 * Multiple aggregation functions applied to multiple variables (one-to-one):
 
@@ -2644,10 +2702,7 @@ pivot_wider(
 ##### data.table
 
 ```{r}
-dcast(
-  MOVIES_LONG, ... ~ Genre, value.var = "Genre", 
-  fun.agg = \(x) !is.na(x), fill = FALSE
-)
+dcast(MOVIES_LONG, ... ~ Genre, value.var = "Genre", fun.agg = \(x) !is.na(x), fill = FALSE)
 ```
 
 :::
@@ -3016,8 +3071,6 @@ The condition has to be a simple inequality between existing columns: it cannot 
 inner_join(events, strikes, join_by(e.start >= s.end))
 ```
 
-
-
 #### data.table
 
 ```{r}
@@ -3108,7 +3161,7 @@ inner_join(events, strikes, join_by(closest(e.start >= s.end)))
 
 ```{r}
 EVENTS[STRIKES, on = .(e.start <= s.start), nomatch = NULL
-     ][, .SD[which.min(abs(e.start - e.end))], by = "event"] # No `closest` equivalent for non-equi joins in data.table
+     ][, .SD[which.min(abs(e.start - e.end))], by = "event"] # No `closest` equivalent
 ```
 
 ```{r}
@@ -3131,7 +3184,7 @@ EVENTS[STRIKES, on = .(e.start <= s.start), nomatch = NULL
 
 ```{r}
 EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL
-     ][, .SD[which.min(abs(e.start - e.end))], by = "event"] # No `closest` equivalent for non-equi joins in data.table
+     ][, .SD[which.min(abs(e.start - e.end))], by = "event"] # No `closest` equivalent
 ```
 
 ```{r}
@@ -3153,17 +3206,20 @@ EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL
 
 #### Tidyverse
 
+:::: {.callout-note appearance="simple" collapse="true"}
+
+##### `dplyr` helper functions
+
 `dplyr` provides three helper functions to make it easier to work with intervals:  
 - `between(x, y_min, y_max)` (<=> `x >= y_min, x <= y_max`): the provided value is within a given range   
 - `within(x_min, x_max, y_min, y_max)` (<=> `x_min >= y_min, x_max <= y_max`): the ranges of the first table are contained within the second's  
 - `overlaps(x_min, x_max, y_min, y_max)` (<=> `x_min <= y_max, x_max >= y_min`): the two ranges overlap partially
 
-
-***
+::::
 
 * **Between:** Which events had a strike staring in the two hours before the beginning of the event ?
 
-:::: {.callout-note appearance="simple"}
+:::: {.callout-tip appearance="simple"}
 First, we need to create the new "2 hours after the beginning of the event" column since we cannot use arbitrary functions in `join_by()` (e.g. we cannot do `between(s.start, e.start, e.start + hours(2))`)
 ::::
 
@@ -3219,6 +3275,8 @@ inner_join(events, events, join_by(e.id < e.id, e.start <= e.end, e.end >= e.sta
 
 #### data.table
 
+<br>
+
 * **Between:** Which events had a strike staring in the two hours before the beginning of the event ?
 
 ```{r}
@@ -3227,6 +3285,8 @@ copy(EVENTS)[, e.start_minus2 := e.start - hours(2)
            ][, -"e.start_minus2"]
 ```
 
+<br><br><br><br><br><br>
+
 ***
 
 * **Within:** Which strikes occurred entirely within the period of an event ?
@@ -3234,6 +3294,8 @@ copy(EVENTS)[, e.start_minus2 := e.start - hours(2)
 ```{r}
 EVENTS[STRIKES, on = .(e.start <= s.start, e.end >= s.end), nomatch = NULL]
 ```
+
+<br><br><br><br><br><br>
 
 ***
 
@@ -3344,7 +3406,7 @@ MT.ext |> separate_wider_position(x, widths  = c(gear = 1, delim = 1, carb = 1))
 ```
 
 :::: {.callout-note}
-`separate_wider_*` superscede both `extract` and `separate`.
+`separate_wider_*` supersedes both `extract` and `separate`.
 ::::
 
 ```{r}
@@ -3375,10 +3437,9 @@ copy(MT.ext)[, c("gear", "carb") := str_extract_all(x, "\\d") |> list_transpose(
 :::
 
 
-### Separate longer
+### Separate longer/rows
 
 Separating a row into multiple rows, duplicating the rest of the values.
-
 
 **Data**
 
@@ -3408,7 +3469,7 @@ SP |> separate_longer_position(val, width = 1) |> filter(val != ",")
 ```
 
 :::: {.callout-warning appearance="simple"}
-`separate_longer_*` now superscedes `separate_rows`
+`separate_longer_*` now supersedes `separate_rows`
 ::::
 
 ```{r}
@@ -3560,13 +3621,18 @@ fsetdiff(MT, setcolorder(MT[, if(.N > 1) .SD, by = .(mpg, hp)], colnames(MT)))
 #### Tidyverse
 
 ```{r}
-DUPED |> mutate(Repeats = apply(pick(everything()), 1, \(r) r[which(duplicated(r))] |> unique() |> str_c(collapse = ", ")))
+mutate(DUPED, Repeats = apply(
+    pick(everything()), 1, \(r) r[which(duplicated(r))] |> unique() |> str_c(collapse = ", ")
+  )
+)
 ```
 
 #### data.table
 
 ```{r}
-DUPED[, Repeats := apply(.SD, 1, \(r) r[which(duplicated(r))] |> unique() |> str_c(collapse = ", "))][]
+copy(DUPED)[
+  , Repeats := apply(.SD, 1, \(r) r[which(duplicated(r))] |> unique() |> str_c(collapse = ", "))
+  ][]
 ```
 
 :::
@@ -3865,26 +3931,49 @@ When a column contains a data.table/data.frame (with multiple columns, structure
 #### Tidyverse
 
 ```{r}
-(mtcars_nest <- mtcars |> tidyr::nest(data = -cyl)) # Data is inside a tibble
+mtcars |> tidyr::nest(data = -cyl) # Data is inside tibbles
 ```
 
 ```{r}
 #| eval: false
 #| code-fold: true
 
-mtcars |> nest_by(cyl) |> ungroup() # Data is inside a vctrs_list_of
+mtcars |> nest_by(cyl) |> ungroup() # Data is inside vctrs_list_of. Returns a rowwise() df
 ```
+
+Nesting while keeping the grouping variable inside the nested tables:
+
+```{r}
+mtcars |> tidyr::nest(data = everything(), .by = cyl)
+```
+
 
 #### data.table
 
 ```{r}
-(MT_NEST <- MT[, .(data = .(.SD)), keyby = cyl])
+MT[, .(data = .(.SD)), keyby = cyl]
 ```
+
+Nesting while keeping the grouping variable inside the nested tables:
+
+```{r}
+MT[, .(data = list(data.table(cyl, .SD))), keyby = cyl]
+```
+
 
 :::
 
 
 **Unnesting**
+
+Data:
+
+```{r}
+mtcars_nest <- mtcars |> tidyr::nest(data = -cyl)
+
+MT_NEST <- MT[, .(data = .(.SD)), keyby = cyl]
+```
+
 
 ::: {.panel-tabset group="framework"}
 
@@ -3931,8 +4020,15 @@ MT_NEST[, rbindlist(data), keyby = cyl] # MT_NEST[, do.call(c, data), keyby = cy
 #### Tidyverse
 
 ```{r}
-mt_nest_mult |> unnest(c(data1, data2))
+mt_nest_mult |> unnest(cols = c(data1, data2))
 ```
+
+Using a pattern to specify the columns to unnest:
+
+```{r}
+mt_nest_mult |> unnest(cols = matches("data"))
+```
+
 
 #### data.table
 
@@ -3940,8 +4036,23 @@ mt_nest_mult |> unnest(c(data1, data2))
 MT_NEST_MULT[, c(rbindlist(data1), rbindlist(data2)), keyby = .(cyl, gear)]
 ```
 
+Using a pattern to specify the columns to unnest:
+
 ```{r}
-MT_NEST_MULT[, do.call(c, unname(lapply(.SD, \(c) rbindlist(c)))), .SDcols = patterns('data'), keyby = .(cyl, gear)]
+MT_NEST_MULT[, 
+  do.call(c, unname(lapply(.SD, \(c) rbindlist(c)))), .SDcols = patterns('data'), 
+  keyby = .(cyl, gear)
+]
+```
+
+```{r}
+#| echo: false
+#| code-fold: true
+
+MT_NEST_MULT[, 
+  list_cbind(unname(lapply(.SD, \(c) rbindlist(c)))), .SDcols = patterns('data'), 
+  keyby = .(cyl, gear)
+]
 ```
 
 :::
@@ -4032,7 +4143,7 @@ MT_NEST[, rbindlist(lapply(data, \(ndt) linreg(ndt))), keyby = cyl][]
 
 ```{r}
 mt_nest |> 
-  mutate(data = map(data, \(tibl) mutate(tibl, sum = pmap_dbl(pick(everything()), sum)))) |> 
+  mutate(data = map(data, \(t) mutate(t, sum = pmap_dbl(pick(everything()), sum)))) |> 
   unnest(data)
 ```
 
@@ -4041,7 +4152,7 @@ mt_nest |>
 #| code-fold: true
 
 mt_nest |> 
-  mutate(across(data, \(tibls) map(tibls, \(tibl) mutate(tibl, sum = apply(pick(everything()), 1, sum))))) |> 
+  mutate(across(data, \(ts) map(ts, \(t) mutate(t, sum = apply(pick(everything()), 1, sum))))) |> 
   unnest(data)
 ```
 
@@ -4149,6 +4260,8 @@ MT[, .SD[which.min(mpg)], keyby = cyl]
 **Data:**
 
 ```{r}
+#| echo: false
+
 (DAT <- structure(list(
   id = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L), 
   name = c("Jane", "Jane", "Jane", "Jane", "Jane", "Jane", "Jane", "Jane", "Bob", "Bob", "Bob", "Bob", "Bob", "Bob", "Bob", "Bob"), 
@@ -4247,6 +4360,8 @@ GSJM1[GSJM2, .(z = sum(z) * mul), by = .EACHI]
 **Data**
 
 ```{r}
+#| echo: false
+
 (DT_COMA <- data.table(
   first = c(1,"2,3",3,4,5,6.5,7,8,9,0), 
   second = c(1,"2,,5",3,4,5,"6,5,9",7,8,9,0), 
@@ -4263,7 +4378,8 @@ Removing unwanted commas within words
 **`Tidyverse`:**
 
 ```{r}
-DT_COMA |> mutate(across(where(\(v) is.character(v) & all(is.na(as.numeric(v)))), \(v) str_remove_all(v, ",")))
+DT_COMA |> 
+  mutate(across(where(\(v) is.character(v) & all(is.na(as.numeric(v)))), \(v) str_remove_all(v, ",")))
 ```
 
 **`data.table`:**
@@ -4282,7 +4398,7 @@ Each numeric row that has multiple comma-separated values has to be split into m
 **`Tidyverse`:**
 
 ```{r}
-cols_to_separate <- DT_COMA |> select(where(\(v) is.character(v) & any(!is.na(as.numeric(v))))) |> colnames()
+cols_to_separate <- select(DT_COMA, where(\(v) is.character(v) & any(!is.na(as.numeric(v))))) |> colnames()
 
 reduce(
   cols_to_separate, 
