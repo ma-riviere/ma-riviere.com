@@ -49,21 +49,24 @@
 - Improved the section on <strong>keys</strong> (for ordering &amp; filtering)<br>
 - Adding a section for translations of <code>Tidyr</code> (and other similar packages)<br>
 - Capping tables to display 15 rows max when unfolded<br>
-- Improving table display (stripping, hiding the contents of nested columns, …) <strong>V3:</strong> 2022-07-20 - Updating <code>data.table</code>’s examples of dynamic programming using <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html"><code>env</code></a><br>
+- Improving table display (stripping, hiding the contents of nested columns, …)<br><strong>V3:</strong> 2022-07-20<br>
+- Updating <code>data.table</code>’s examples of dynamic programming using <a href="https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html"><code>env</code></a><br>
 - Added new entries in processing examples<br>
 - Added new entries to Tidyr &amp; Others: expand + complete, transpose/rotation, …<br>
 - Added <code>pivot_wider</code> examples to match the <code>dcast</code> ones in the Pivots section<br>
 - Added some new examples here and there across the Basic Operations section<br>
 - Added an entry for operating inside nested data.frames/data.tables<br>
-- Added a processing example for run-length encoding (i.e.&nbsp;successive event tagging) <strong>V4:</strong> 2022-08-05 - Improved <code>pivot</code> section: example of one-hot encoding (and reverse operation) + better examples of partial pivots with <code>.value</code><br>
+- Added a processing example for run-length encoding (i.e.&nbsp;successive event tagging)<br><strong>V4:</strong> 2022-08-05<br>
+- Improved <code>pivot</code> section: example of one-hot encoding (and reverse operation) + better examples of partial pivots with <code>.value</code><br>
 - Added <code><a href="https://tidyr.tidyverse.org/reference/uncount.html">tidyr::uncount()</a></code> (row duplication) example.<br>
-- Improved both light &amp; dark themes (code highlight, tables, …) <strong>V5:</strong> 2023-03-12 - Revamped the whole document with grouped tabsets by framework for better readability<br>
+- Improved both light &amp; dark themes (code highlight, tables, …)<br><strong>V5:</strong> 2023-03-12<br>
+- Revamped the whole document with grouped tabsets by framework for better readability<br>
 - Revamped the whole Basic Operations section: better structure, reworked examples, …<br>
 - Revamped the whole Joins section: better structure, new examples (e.g.&nbsp;<code>join_by</code>), better explanations, …<br>
 - Updated code to reflect recent updates of the <code>Tidyverse</code>:<br>
-- <code>dplyr</code> (1.1.0): <code>.by</code>, <code>reframe</code>, <code>join_by</code>, <code>consecutive_id</code>, …<br>
-- <code>purrr</code> (1.0.0): <code>list_rbind</code>, <code>list_cbind</code>, <code>pmap_vec</code>, …<br>
-- <code>tidyr</code> (1.3.0): updated the <code>separate/separate_rows</code> section to the newer <code>separate_wider/longer_*</code><br>
++ <code>dplyr</code> (1.1.0): <code>.by</code>, <code>reframe</code>, <code>join_by</code>, <code>consecutive_id</code>, …<br>
++ <code>purrr</code> (1.0.0): <code>list_rbind</code>, <code>list_cbind</code>, …<br>
++ <code>tidyr</code> (1.3.0): updated the <code>separate/separate_rows</code> section to the newer <code>separate_wider/longer_*</code><br>
 - Updated code to reflect recent updates of <code>data.table</code> (1.14.9): <code>let</code>, <code><a href="https://Rdatatable.gitlab.io/data.table/reference/data.table.html">DT()</a></code>, … ]]></description>
   <category>Data Manipulation</category>
   <category>Tidyverse</category>
