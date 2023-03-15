@@ -1737,8 +1737,7 @@ To finish, let's pivot the resulting data back into the wider format it was orig
 #| time_it: true
 
 rides_merged <- dcast(
-  rides_clean_l_merged, 
-  ... ~ way, sep = "_station_", value.var = c("name", "id", "lat", "lng")
+  rides_clean_l_merged, ... ~ way, sep = "_station_", value.var = c("name", "id", "lat", "lng")
 )
 ```
 
