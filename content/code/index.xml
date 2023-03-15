@@ -14,7 +14,7 @@
 <title>Marc-Aurèle Rivière</title>
 <link>https://ma-riviere.me/content/code/index.html</link>
 </image>
-<generator>quarto-1.3.258</generator>
+<generator>quarto-1.3.269</generator>
 <lastBuildDate>Fri, 17 Jun 2022 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Fast spatial data matching in R</title>
@@ -43,7 +43,7 @@
   <pubDate>Sat, 04 Jun 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
-  <title>Tidyverse &lt;-&gt; data.table</title>
+  <title>Data wrangling with data.table and the Tidyverse</title>
   <link>https://ma-riviere.me/content/code/posts/data.table/index.html</link>
   <description><![CDATA[ <strong>V1:</strong> 2022-05-19<br><strong>V2:</strong> 2022-05-26<br>
 - Improved the section on <strong>keys</strong> (for ordering &amp; filtering)<br>
