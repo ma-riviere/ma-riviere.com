@@ -314,7 +314,7 @@ duckdb_register(con_duck, "rides", rides_df) # As a VIEW
 #| output: false
 #| time_it: true
 
-open_csv_dataset(data_path, convert_options = CsvConvertOptions$create(strings_can_be_null = T)) |> 
+open_csv_dataset(data_path, convert_options = CsvConvertOptions$create(strings_can_be_null = TRUE)) |> 
   to_duckdb(con_duck, "rides_arr")
 ```
 

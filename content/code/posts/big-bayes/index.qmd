@@ -221,7 +221,7 @@ matches_data_path <- here::here("res", "data", "tennis")
 #| output: false
 
 matches_data_raw <- (dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv")
-  |> map(\(f) read_csv(f, num_threads = 32, show_col_types = FALSE) |> 
+  |> map(\(f) read_csv(f, show_col_types = FALSE) |> 
       select(
         tourney_date, tourney_level, round, 
         winner_id, winner_name, loser_id, loser_name, score
@@ -281,7 +281,7 @@ player_data_path <- here::here("res", "data", "tennis", "atp_players.csv")
 ```{r}
 #| output: asis
 
-(player_data_raw <- read_csv(player_data_path) 
+(player_data_raw <- read_csv(player_data_path, show_col_types = FALSE) 
  |> mutate(player_name = str_c(name_first, name_last, sep = " "))
  |> select(player_id, player_name)
 )
@@ -293,10 +293,13 @@ Filtering `player_data` to only keep the players actually present in our data, a
 #| output: asis
 
 (player_data <- with(matches_data_clean, tibble(player_id = union(winner_id, loser_id)))
- |> summarize(player_idx = cur_group_id(), .by = player_id) 
+ |> group_by(player_id) 
+ |> summarize(player_idx = cur_group_id()) 
  |> left_join(player_data_raw)
 )
 ```
+
+<!-- DO NOT USE summarize(player_idx = cur_group_id(), .by = player_id) here -->
 
 
 <!------------------------------------------------------------------------------>
@@ -415,7 +418,6 @@ tennis_data_stan <- list(
 
 str(tennis_data_stan)
 ```
-
 
 <!------------------------------------------------------------------------------>
 ## Model fit
