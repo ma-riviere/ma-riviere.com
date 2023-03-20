@@ -2781,10 +2781,19 @@ left_join(cities, countries, by = "country_id", multiple = "all")
 #### data.table
 
 :::: {.callout-warning appearance="simple"}
-`data.table` natively only supports right joins: it filters the rows of the first table by those of the second (`FIRST[SECOND]`), *but* only keeps the unmatched rows from the second table. Here are two possible workarounds:  
+`data.table` natively only supports right joins: it filters the rows of the first table by those of the second (`FIRST[SECOND]`), *but* only keeps the unmatched rows from the second table. 
+
+```{r}
+#| code-fold: true
+#| code-summary: The normal output of the join
+
+CITIES[COUNTRIES, on = .(country_id)]
+```
+
+The unmatched rows from `countries` were kept, but not the ones from `cities`. Here are two possible workarounds:  
 ::::
 
-Inverting the two tables and then inverting the order of appearance of the columns:
+Inverting the two tables (`countries` first), and then inverting the order of the columns in the result:
 
 ```{r}
 COUNTRIES[CITIES, .(city_id, city, country_id, country), on = .(country_id)]

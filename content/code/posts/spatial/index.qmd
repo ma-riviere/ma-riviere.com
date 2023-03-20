@@ -314,16 +314,12 @@ duckdb_register(con_duck, "rides", rides_df) # As a VIEW
 #| output: false
 #| time_it: true
 
-open_dataset(data_path, format = "csv", factory_options = list(exclude_invalid_files = TRUE)) |> 
-  to_duckdb(con_duck) |> 
-  mutate(across(everything(), \(x) if_else(length(x) == 0, NA, x))) |> 
-  compute("rides_arr")
+open_csv_dataset(data_path, convert_options = CsvConvertOptions$create(strings_can_be_null = T)) |> 
+  to_duckdb(con_duck, "rides_arr")
 ```
 
 ```{r}
 #| echo: false
-
-dbRemoveTable(con_duck, "rides_arr")
 
 if (!interactive()) TIMES$loading_arrow_duck
 ```
