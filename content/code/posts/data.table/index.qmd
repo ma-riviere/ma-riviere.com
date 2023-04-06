@@ -3035,7 +3035,7 @@ events <- (data.frame(
     e.start = c("2023-06-07 13:00:00", "2023-06-05 10:00:00", "2023-06-05 12:00:00"),
     e.end = c("2023-06-07 18:00:00", "2023-06-05 13:00:00", "2023-06-05 22:00:00")
   )
-  |> mutate(across(matches("^e\\."), lubridate::ymd_hms))
+  |> mutate(across(matches("start|end"), lubridate::ymd_hms))
   |> arrange(e.start)
   |> mutate(e.id = row_number(), .before = 1)
 )
@@ -3053,7 +3053,7 @@ strikes <- (data.frame(
     s.start = c("2023-06-08 9:00:00", "2023-06-05 11:00:00", "2023-07-05 16:00:00", "2023-06-05 14:00:00"),
     s.end = c("2023-06-08 20:00:00", "2023-06-05 20:00:00", "2023-07-05 22:00:00", "2023-06-05 16:00:00")
   )
-  |> mutate(across(matches("^s\\."), lubridate::ymd_hms))
+  |> mutate(across(matches("start|end"), lubridate::ymd_hms))
   |> arrange(s.start)
   |> mutate(s.id = row_number(), .before = 1)
 )
@@ -3149,7 +3149,7 @@ Rolling joins are a special type of inequality join where instead of getting eve
 
 #### Tidyverse
 
-* Which strike started the soonest *after* the beginning of each event ?
+* Which strike started the soonest *after* the beginning an event ?
 
 ```{r}
 inner_join(events, strikes, join_by(closest(e.start <= s.start)))
@@ -3157,7 +3157,7 @@ inner_join(events, strikes, join_by(closest(e.start <= s.start)))
 
 ***
 
-* Which strike happened soonest *before* the start of each event ?
+* Which strike ended the soonest *before* the start an event ?
 
 ```{r}
 inner_join(events, strikes, join_by(closest(e.start >= s.end)))
@@ -3166,44 +3166,32 @@ inner_join(events, strikes, join_by(closest(e.start >= s.end)))
 
 #### data.table
 
-* Which strike started the soonest *after* the beginning of each event ?
+* Which strike started the soonest *after* the beginning an event ?
 
 ```{r}
-EVENTS[STRIKES, on = .(e.start <= s.start), nomatch = NULL
-     ][, .SD[which.min(abs(e.start - e.end))], by = "event"] # No `closest` equivalent
+EVENTS[STRIKES, on = .(e.start == s.start), roll = "nearest"
+     ][, .SD[which.min(abs(e.start - e.end))], by = "e.id"]
 ```
 
-```{r}
-#| echo: false
 
-## TODO
-
-# EVENTS[STRIKES, on = .(e.start == s.start), nomatch = NULL, roll = "nearest"]
-```
-
-<!-- ::: {.callout-note appearance="simple"} -->
-<!-- Using the `roll` argument relaxes the equality constraint of the join (`e.start == s.end`). -->
-
-<!-- The `roll` argument of `data.table` joins is not yet implemented for non-equi joins, so we have to manually filter the join results to only keep the closest strike from each event. -->
-<!-- ::: -->
+::: {.callout-note appearance="simple"}
+Using the `roll` argument relaxes the equality constraint of the join (`e.start == s.end`).
+:::
 
 ***
 
-* Which strike happened right *before* the start of each event ?
+* Which strike ended the soonest *before* the start an event ?
 
 ```{r}
-EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL
-     ][, .SD[which.min(abs(e.start - e.end))], by = "event"] # No `closest` equivalent
+EVENTS[STRIKES, on = .(e.start == s.end), roll = -Inf
+      ][, .SD[which.min(abs(e.start - e.end))], by = "e.id"]
 ```
 
 ```{r}
 #| echo: false
+#| eval: false
 
-## TODO
-
-# EVENTS[STRIKES, on = "ID", roll = -Inf]
-
-# EVENTS[STRIKES, on = "ID", rollends = TRUE]
+EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL][, .SD[which.min(abs(e.start - e.end))], by = "event"]
 ```
 
 :::
