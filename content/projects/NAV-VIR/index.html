@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.310">
+<meta name="generator" content="quarto-1.4.90">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -68,7 +68,8 @@ ul.task-list li input[type="checkbox"] {
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-QP3K4HM02B"></script>
@@ -92,22 +93,18 @@ cookieconsent.run({
   "notice_banner_reject_button_hide":false,
   "preferences_center_close_button_hide":false,
   "website_name":""
+  ,
+"language":"en"
   });
 });
 </script> 
   
 <style>
-    .quarto-title-block .quarto-title-banner,
-    .quarto-title-block .quarto-title-banner h1,
-    .quarto-title-block .quarto-title-banner h2,
-    .quarto-title-block .quarto-title-banner h3,
-    .quarto-title-block .quarto-title-banner h4,
-    .quarto-title-block .quarto-title-banner h5,
-    .quarto-title-block .quarto-title-banner h6
-    {
-      background: #4B5B68;
-    }
-    </style>
+
+      .quarto-title-block .quarto-title-banner {
+        background: #4B5B68;
+      }
+</style>
 
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
@@ -135,7 +132,7 @@ cookieconsent.run({
   <header id="quarto-header" class="headroom fixed-top">
     <nav class="navbar navbar-expand-md navbar-dark ">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Marc-Aurèle Rivière</span>
     </a>
@@ -175,7 +172,8 @@ cookieconsent.run({
  <span class="menu-text"></span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools">
+          </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
     <div class="dropdown">
       <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
       <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
@@ -193,7 +191,6 @@ cookieconsent.run({
     </div>
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
-          </div> <!-- /navcollapse -->
       </div> <!-- /container-fluid -->
     </nav>
 </header>
@@ -231,14 +228,6 @@ cookieconsent.run({
       <div class="quarto-title-meta-heading">Began Around</div>
       <div class="quarto-title-meta-contents">
         <p class="date">September 1, 2018</p>
-      </div>
-    </div>
-      <div>
-      <div class="quarto-title-meta-heading">Funding Instrument</div>
-      <div class="quarto-title-meta-contents">
-        <p class="doi">
-          <a href="https://doi.org/PHC Polonium (French-Polish EU grant)">PHC Polonium (French-Polish EU grant)</a>
-        </p>
       </div>
     </div>
     </div>
@@ -307,7 +296,7 @@ cookieconsent.run({
 <hr style="margin-bottom: 30px; margin-top: -12px;" width="1000px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Image illustrating the project"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
+<p><a href="feature.png" class="lightbox" title="Image illustrating the project" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
 </figure>
 </div>
 <section id="introduction" class="level1" data-number="1">
@@ -322,12 +311,12 @@ cookieconsent.run({
 <div class="quarto-layout-row quarto-layout-valign-top">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 46.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="F2T-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Photo of the F2T interface"><img src="F2T-v2.jpg" class="img-fluid figure-img" alt="Photo of the F2T interface"></a></p>
+<p><a href="F2T-v2.jpg" class="lightbox" title="Photo of the F2T interface" data-gallery="quarto-lightbox-gallery-2"><img src="F2T-v2.jpg" class="img-fluid figure-img" alt="Photo of the F2T interface"></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 54.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="F2T-explanation.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Schema explaining the F2T interface"><img src="F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
+<p><a href="F2T-explanation.png" class="lightbox" title="Schema explaining the F2T interface" data-gallery="quarto-lightbox-gallery-3"><img src="F2T-explanation.png" class="img-fluid figure-img" alt="Schema explaining the F2T interface"></a></p>
 </figure>
 </div>
 </div>
@@ -340,13 +329,13 @@ cookieconsent.run({
 <p><strong>1)</strong> We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="F2T-interface.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Screenshot of the F2T control interface"><img src="F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
+<p><a href="F2T-interface.png" class="lightbox" title="Screenshot of the F2T control interface" data-gallery="quarto-lightbox-gallery-4"><img src="F2T-interface.png" class="img-fluid figure-img" alt="Screenshot of the F2T control interface"></a></p>
 </figure>
 </div>
 <p><strong>2)</strong> We investigated and developed tools to automatically generate a navigation graph from a floor plan, which can then be converted into a tactile image and explored with the F2T:</p>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="map-graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Illustrations of the navigation graph generation"><img src="map-graph.png" class="img-fluid figure-img" alt="Illustrations of the navigation graph generation"></a></p>
+<p><a href="map-graph.png" class="lightbox" title="Illustrations of the navigation graph generation" data-gallery="quarto-lightbox-gallery-5"><img src="map-graph.png" class="img-fluid figure-img" alt="Illustrations of the navigation graph generation"></a></p>
 </figure>
 </div>
 </section>
@@ -354,17 +343,17 @@ cookieconsent.run({
 <h1 data-number="3"><span class="header-section-number">3</span> My role in this project</h1>
 <hr>
 <p><strong>1)</strong> Participated in the development of a <a href="https://github.com/ma-riviere/F2T-interface">Java app</a> to control the F2T and display tactile “images”.</p>
-<p><strong>2)</strong> Helped design the first round of experimental evaluations, where participants where tasked with recognizing simple geometrical shapes as well as the layout of a simple mock apartment.</p>
+<p><strong>2)</strong> Helped design the first round of experimental evaluations, where participants where tasked with recognizing and re-drawing simple geometrical shapes, as well as the layout of a simple mock apartment.</p>
 <div class="quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-center">
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 40.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="exp-setup.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="A drawing illustrating the experimental setup of NAV-VIR"><img src="exp-setup.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
+<p><a href="exp-setup.png" class="lightbox" title="A drawing illustrating the experimental setup of NAV-VIR" data-gallery="quarto-lightbox-gallery-6"><img src="exp-setup.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
 </figure>
 </div>
 <div class="quarto-figure quarto-figure-center" style="flex-basis: 60.0%;justify-content: center;">
 <figure class="figure">
-<p><a href="rooms.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="A drawing illustrating the experimental setup of NAV-VIR"><img src="rooms.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
+<p><a href="rooms.png" class="lightbox" title="A drawing illustrating the experimental setup of NAV-VIR" data-gallery="quarto-lightbox-gallery-7"><img src="rooms.png" class="img-fluid figure-img" alt="A drawing illustrating the experimental setup of NAV-VIR"></a></p>
 </figure>
 </div>
 </div>
@@ -421,6 +410,33 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       } else {
         el.classList.add('notransition');
       }
+    }
+  }
+  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+    let newTheme = '';
+    if(darkModeDefault) {
+      newTheme = isAlternate ? baseTheme : alternateTheme;
+    } else {
+      newTheme = isAlternate ? alternateTheme : baseTheme;
+    }
+    const changeGiscusTheme = () => {
+      // From: https://github.com/giscus/giscus/issues/336
+      const sendMessage = (message) => {
+        const iframe = document.querySelector('iframe.giscus-frame');
+        if (!iframe) return;
+        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+      }
+      sendMessage({
+        setConfig: {
+          theme: newTheme
+        }
+      });
+    }
+    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+    if (isGiscussLoaded) {
+      changeGiscusTheme();
     }
   }
   const toggleColorMode = (alternate) => {
@@ -489,13 +505,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  const darkModeDefault = false;
+  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
     let toAlternate = !hasAlternateSentinel();
     toggleColorMode(toAlternate);
     setStyleSentinel(toAlternate);
+    toggleGiscusIfUsed(toAlternate, darkModeDefault);
   };
   // Ensure there is a toggle, if there isn't float one in the top right
   if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
@@ -567,10 +585,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -580,8 +597,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -594,6 +620,61 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
       return note.innerHTML;
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    if (id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        for (let i = 0; i < 2; i++) {
+          container.appendChild(note.children[i].cloneNode(true));
+        }
+        return container.innerHTML
+      } else {
+        return note.innerHTML;
+      }
+    } else {
+      return note.innerHTML;
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      try { hash = new URL(url).hash; } catch {}
+      const id = hash.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note !== null) {
+        try {
+          const html = processXRef(id, note);
+          instance.setContent(html);
+        } finally {
+          instance.enable();
+          instance.show();
+        }
+      } else {
+        // See if we can fetch this
+        fetch(url.split('#')[0])
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.getElementById(id);
+          console.log(htmlDoc.body.innerHTML);
+          if (note !== null) {
+            const html = processXRef(id, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -741,21 +822,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-left">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../../LICENSE.md">© 2021-2023, Marc-Aurèle Rivière</a>
+    <a class="nav-link" href="../../../LICENSE.md">
+<p>© 2021-2023, Marc-Aurèle Rivière</p>
+</a>
   </li>  
 </ul>
     </div>   
-    <div class="nav-footer-center"><div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
+    <div class="nav-footer-center">
+
+<div class="cookie-consent-footer"><a href="#" id="open_preferences_center">Cookie Preferences</a></div></div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="https://quarto.org/">Made with Quarto ♥️</a>
+    <a class="nav-link" href="https://quarto.org/">
+<p>Made with Quarto ♥️</p>
+</a>
   </li>  
 </ul>
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","openEffect":"zoom","descPosition":"bottom","loop":true});</script>
 
 
 
