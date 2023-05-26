@@ -5,6 +5,7 @@ published-title: "First Published"
 
 citation: true
 toc: true
+# toc-location: right-body
 number-sections: true
 code-tools:
   source: true
@@ -21,4 +22,3 @@ comments:
     reactions-enabled: true
     loading: lazy
     input-position: "bottom"
-    theme: "light"

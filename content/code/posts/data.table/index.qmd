@@ -218,7 +218,7 @@ library(withr)
 
 :::{.callout-tip appearance="simple"}
 
-## `data.table` general syntax
+## `data.table` general syntax:
 
 DT[`row selector` (filter/sort), `col selector` (select/mutate/summarize/reframe/rename), `modifiers` (group/join by)]
 :::
@@ -286,7 +286,7 @@ IRIS[chorder(Species)]
 - Using `keyby` instead of `by` when grouping will set the grouping factors as keys
 
 :::{.callout-tip appearance="simple"}
-See [this SO post](https://stackoverflow.com/questions/20039335/what-is-the-purpose-of-setting-a-key-in-data-table?rq=1) for more information on keys.
+## See [this SO post](https://stackoverflow.com/questions/20039335/what-is-the-purpose-of-setting-a-key-in-data-table?rq=1) for more information on keys.
 :::
 
 ```{r}
@@ -306,7 +306,7 @@ key(MT)
 ```
 
 :::{.callout-warning appearance="simple"}
-Unless our task involves repeated subsetting on the same column, the speed gain from key-based subsetting could effectively be nullified by the time needed to reorder the data in RAM, especially for large datasets.
+## Unless our task involves repeated subsetting on the same column, the speed gain from key-based subsetting could effectively be nullified by the time needed to reorder the data in RAM, especially for large datasets.
 :::
 
 
@@ -518,7 +518,7 @@ uniqueN(MT, by = "gear")
 When keys or indices are defined, we can filter based on them, which is often a lot faster.  
 
 :::{.callout-tip appearance="simple"}
-We do not even need to specify the column name we are filtering on: the values will be attributed to the keys in order.
+## We do not even need to specify the column name we are filtering on: the values will be attributed to the keys in order.
 :::
 
 
@@ -547,8 +547,7 @@ Since the time to compute the secondary indices is quite small, we don’t have 
 
 
 :::{.callout-tip appearance="simple"}
-When using `on` with multiple values, the `nomatch = NULL` argument avoids 
-creating combinations that do not exist in the original data (i.e. for `cyl == 5` here)
+## When using `on` with multiple values, the `nomatch = NULL` argument avoids creating combinations that do not exist in the original data (i.e. for `cyl == 5` here)
 :::
 
 ```{r}
@@ -625,7 +624,9 @@ MT[f_dat(MT),] # Can't use .SD in i
 _In two steps:_
 
 :::{.callout-note appearance="simple"}
-We can't use `.SD` in the `i` clause of a `data.table`, but we can bypass that constraint by doing the operation in two steps:  
+## We can't use `.SD` in the `i` clause of a `data.table`
+
+But we can bypass that constraint by doing the operation in two steps:  
 - Obtaining a vector stating if each row of the table matches or not the conditions  
 - Filtering the original table based on the vector
 :::
@@ -713,7 +714,7 @@ IRIS <- as.data.table(iris)[, Species := as.character(Species)]
 ```
 
 :::{.callout-note appearance="simple"}
-`setnames` changes column names **in-place**
+## `setnames` changes column names **in-place**
 :::
 
 ::: {.panel-tabset group="framework"}
@@ -1442,7 +1443,7 @@ IRIS <- as.data.table(iris)[, Species := as.character(Species)]
 ```
 
 :::{.callout-note appearance="simple"}
-The examples listed apply a grouping but do nothing (using `.SD` to simply keep all columns as is)
+## The examples listed apply a grouping but do nothing (using `.SD` to simply keep all columns as is)
 :::
 
 ```{r}
@@ -1766,7 +1767,7 @@ mtcars |> filter(gear == 4) |> mutate(I = row_number()) |> pull(I)
 ##### data.table
 
 :::{.callout-warning appearance="simple"}
-`.I` gives the vector of row numbers *after* any subsetting/filtering has been done
+## `.I` gives the vector of row numbers *after* any subsetting/filtering has been done
 :::
 
 Extracting row numbers in the original dataset:
@@ -1851,7 +1852,7 @@ setcolorder(copy(MT), c("carb", sort(setdiff(colnames(MT), "carb"))))[]
 :::
 
 <!-------------------------------------------------------->
-## Summarize:
+## Summarize/Reframe:
 
 ```{r}
 #| echo: false
@@ -2013,7 +2014,7 @@ MT[, lapply(.SD, \(x) list(mean = mean(x), sd = sd(x))) |> rbindlist(), by = cyl
 #### Apply multiple functions to multiple columns:
 
 :::{.callout-note appearance="simple"}
-Depending on the output we want (i.e. having the function's output as columns or rows), we can either provide a list of functions to apply (`list_of_fns`), or a function returning a list (`fn_returning_list`).
+## Depending on the output we want (i.e. having the function's output as columns or rows), we can either provide a list of functions to apply (`list_of_fns`), or a function returning a list (`fn_returning_list`).
 :::
 
 ```{r}
@@ -2154,7 +2155,7 @@ family_id age_mother dob_child1 dob_child2 dob_child3 gender_child1 gender_child
 ### Basic Melt/Longer
 
 :::: {.callout-tip appearance="simple"}
-`data.table::melt` does partial argument matching and thus accepts shortened versions of its arguments. E.g.: `variable.name` <=> `variable` (or `var`), `value.name` <=> `value` (or `val`), `measure.vars` <=> `measure`, `id.vars` <=> `id`, `pattern` <=> `pat`, ...
+## `data.table::melt` does partial argument matching and thus accepts shortened versions of its arguments. E.g.: `variable.name` <=> `variable` (or `var`), `value.name` <=> `value` (or `val`), `measure.vars` <=> `measure`, `id.vars` <=> `id`, `pattern` <=> `pat`, ...
 ::::
 
 **One group of columns --> single value column**
@@ -2251,7 +2252,7 @@ Multiple groups of columns --> Multiple value columns
 **Using `.value`:**
 
 :::{.callout-tip appearance="simple"}
-Using the `.value` special identifier allows to do a "half" pivot: the values that would be listed as rows under `.value` are instead used as columns.
+## Using the `.value` special identifier allows to do a "half" pivot: the values that would be listed as rows under `.value` are instead used as columns.
 :::
 
 ```{r}
@@ -2361,7 +2362,7 @@ pivot_wider(fam1l, names_from = variable)
 ```
 
 :::: {.callout-note appearance="simple"}
-By default, `id_cols = everything()`
+## By default, `id_cols = everything()`
 ::::
 
 ##### data.table
@@ -2371,7 +2372,7 @@ FAM1L |> dcast(... ~ variable)
 ```
 
 :::: {.callout-note appearance="simple"}
-`...` <=> "every unused column"
+## `...` <=> "every unused column"
 ::::
 
 :::
@@ -2470,7 +2471,7 @@ dcast(FAM1L, family_id + age_mother ~ paste0("Attr: ", variable))
 ### Unused combinations
 
 :::{.callout-warning appearance="simple"}
-The logic is inverted between `dplyr` (keep) and `data.table` (drop):
+## The logic is inverted between `dplyr` (keep) and `data.table` (drop):
 :::
 
 ::: {.panel-tabset group="framework"}
@@ -2502,7 +2503,7 @@ fam1l |> filter(value >= lubridate::ymd(20030101)) |>
 ```
 
 :::{.callout-warning appearance="simple"}
-AFAIK, `pivot_wider` can't do this on it's own.
+## AFAIK, `pivot_wider` can't do this on it's own.
 :::
 
 ##### data.table
@@ -2716,7 +2717,7 @@ dcast(MOVIES_LONG, ... ~ Genre, value.var = "Genre", fun = \(x) !is.na(x), fill 
 ***
 
 :::{.callout-tip  appearance="simple"}
-A JOIN is just a special type of SUBSET: we subset the rows of one table based on the matching rows of a second one. And the matching conditions define what type of join we are applying.
+## A JOIN is just a special type of SUBSET: we subset the rows of one table based on the matching rows of a second one. And the matching conditions define what type of join we are applying.
 :::
 
 <!-------------------------------------------------------->
@@ -2781,7 +2782,10 @@ left_join(cities, countries, by = "country_id", multiple = "all")
 #### data.table
 
 :::: {.callout-warning appearance="simple"}
-`data.table` natively only supports right joins: it filters the rows of the first table by those of the second (`FIRST[SECOND]`), *but* only keeps the unmatched rows from the second table. 
+
+## `data.table` natively only supports right joins
+
+It filters the rows of the first table by those of the second (`FIRST[SECOND]`), *but* only keeps the unmatched rows from the second table. 
 
 ```{r}
 #| code-fold: true
@@ -2791,6 +2795,7 @@ CITIES[COUNTRIES, on = .(country_id)]
 ```
 
 The unmatched rows from `countries` were kept, but not the ones from `cities`. Here are two possible workarounds:  
+
 ::::
 
 Inverting the two tables (`countries` first), and then inverting the order of the columns in the result:
@@ -2950,7 +2955,7 @@ Use to filter one table (left) based on another (right): it will only keep the c
 ### Semi join
 
 ::: {.callout-tip appearance="simple"}
-Will give the same result as an inner join, but will only keep the columns of the first table (no information is added).
+## Will give the same result as an inner join, but will only keep the columns of the first table (no information is added).
 :::
 
 Here, it will filter `countries` to only keep the countries having a matching `country_id` in the cities table.
@@ -3019,7 +3024,7 @@ We can divide non-equi joins between:
 - **Overlap joins**: matching to all values within a range.  
 
 ::: {.callout-tip appearance="simple"}
-Please refer to [this page](https://r4ds.hadley.nz/joins.html#non-equi-joins) of the second edition of R4DS for more detailed explanations.
+## Please refer to [this page](https://r4ds.hadley.nz/joins.html#non-equi-joins) of the second edition of R4DS for more detailed explanations.
 :::
 
 
@@ -3067,7 +3072,7 @@ strikes <- (data.frame(
 Inequality joins are joins (left, right, inner, ...) that use inequalities (`<`, `<=`, `>=`, or `>`) to specify the matching criteria.
 
 ::: {.callout-warning appearance="simple"}
-The condition has to be a simple inequality between existing columns: it cannot be an arbitrary function (e.g. `date.x <= min(date.y) * 2` will not work).
+## The condition has to be a simple inequality between existing columns: it cannot be an arbitrary function (e.g. `date.x <= min(date.y) * 2` will not work).
 :::
 
 * For each event, which strikes occurred (finished) before the event ?
@@ -3086,7 +3091,7 @@ inner_join(events, strikes, join_by(e.start >= s.end))
 EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL]
 ```
 
-::: {.callout-warning appearance="simple"}
+::: {.callout-warning}
 When specifying an equality or inequality condition, `data.table` will merge the two columns: only one will remain, with the values of the second column and the name of the first. Here, `e.start` will have the values of `s.end` (which will be removed).
 
 I'm not sure if this is a bug or not.
@@ -3097,7 +3102,7 @@ I'm not sure if this is a bug or not.
 
 ::: {.callout-tip appearance="simple"}
 
-A useful use-case for un-equality joins is to avoid duplicates when generating combinations of items in cross joins:
+## A useful use-case for un-equality joins is to avoid duplicates when generating combinations of items in cross joins:
 
 **Data:**
 
@@ -3175,7 +3180,7 @@ EVENTS[STRIKES, on = .(e.start == s.start), roll = "nearest"
 
 
 ::: {.callout-note appearance="simple"}
-Using the `roll` argument relaxes the equality constraint of the join (`e.start == s.end`).
+## Using the `roll` argument relaxes the equality constraint of the join (`e.start == s.end`).
 :::
 
 ***
@@ -3217,7 +3222,7 @@ EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL][, .SD[which.min(abs(e.
 * **Between:** Which events had a strike staring in the two hours before the beginning of the event ?
 
 :::: {.callout-tip appearance="simple"}
-First, we need to create the new "2 hours after the beginning of the event" column since we cannot use arbitrary functions in `join_by()` (e.g. we cannot do `between(s.start, e.start, e.start + hours(2))`)
+## First, we need to create the new "2 hours after the beginning of the event" column since we cannot use arbitrary functions in `join_by()` (e.g. we cannot do `between(s.start, e.start, e.start + hours(2))`)
 ::::
 
 ```{r}
@@ -3241,7 +3246,7 @@ inner_join(events2, strikes, join_by(e.start_minus2 <= s.start, e.start >= s.sta
 * **Within:** Which strikes occurred entirely within the period of an event ?
 
 :::: {.callout-note appearance="simple"}
-`within()`'s definition restricts us to the first range being within the second, meaning the first table must be the one with the smaller range. Here, it means `strikes` has to be first, and that will give us the opposite of the order of columns we want.
+## `within()`'s definition restricts us to the first range being within the second, meaning the first table must be the one with the smaller range. Here, it means `strikes` has to be first, and that will give us the opposite of the order of columns we want.
 ::::
 
 ```{r}
@@ -3403,7 +3408,7 @@ MT.ext |> separate_wider_position(x, widths  = c(gear = 1, delim = 1, carb = 1))
 ```
 
 :::: {.callout-note}
-`separate_wider_*` supersedes both `extract` and `separate`.
+## `separate_wider_*` supersedes both `extract` and `separate`.
 ::::
 
 ```{r}
@@ -3466,7 +3471,7 @@ SP |> separate_longer_position(val, width = 1) |> filter(val != ",")
 ```
 
 :::: {.callout-warning appearance="simple"}
-`separate_longer_*` now supersedes `separate_rows`
+## `separate_longer_*` now supersedes `separate_rows`
 ::::
 
 ```{r}
@@ -3558,7 +3563,7 @@ MT[, if(.N > 1) .SD, by = .(mpg, hp)]
 
 #### Removing duplicated rows
 
-:::{.callout-note appearance="simple"}
+:::{.callout-note}
 This is different from distinct/unique, which will keep one of the duplicated rows of each group.
 
 This removes all groups which have duplicated rows.
@@ -4283,7 +4288,7 @@ DAT |>
 ```
 
 :::{.callout-note appearance="simple"}
-Here, the grouping is done BEFORE the filter -> there will be empty groups, meaning they will sum to 0
+## Here, the grouping is done BEFORE the filter -> there will be empty groups, meaning they will sum to 0
 :::
 
 **`data.table`:**

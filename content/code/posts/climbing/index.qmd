@@ -330,7 +330,7 @@ mode <- \(x) levels(x)[which.max(tabulate(match(x, levels(x))))]
 ```
 
 :::{.callout-note appearance="simple"}
-Comparing `data.table`, `dtplyr`, and `dbplyr`:
+## Comparing `data.table`, `dtplyr`, and `dbplyr`:
 :::
 
 ::: {.panel-tabset}
@@ -544,7 +544,7 @@ mod_stan_path <- here::here("res", "models", "climbing_mod_stan.rds")
 ## Stan code
 
 :::{.callout-note appearance="simple"}
-Updated Stan code using **within-chain parallelization**
+## Updated Stan code using **within-chain parallelization**
 :::
 
 ```{cmdstan, output.var = "mod_stan_exe", eval = !USE_CACHE}
@@ -815,7 +815,7 @@ hist_trace_plot(
 Getting our Posterior Predictions (subset of 500 draws per route) into long format:
 
 :::{.callout-note appearance="simple"}
-Comparing `data.table`, `dtplyr`, `dbplyr`, and `dplyr` (which uses the *rvar* format from `posterior`):
+## Comparing `data.table`, `dtplyr`, `dbplyr`, and `dplyr` (which uses the *rvar* format from `posterior`):
 :::
 
 ::: {.panel-tabset}

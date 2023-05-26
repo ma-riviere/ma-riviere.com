@@ -21,6 +21,15 @@ image-alt: "Posterior predictive checks for a Gamma autoregressive model on mous
 
 description: "Behavioral, immunohistochemistry and RT-qPCR data for the LT-AoP project were analysed in R, hosted on GitHub, and archived through Zenodo."
 
+abstract: | 
+  The [LT-AoP](/content/projects/LT-AoP/) project included behavioral, immunohistochemistry and RT-qPCR data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
+
+  The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
+
+  Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
+
+  A website documenting the analyses and their results was generated using Quarto, to allow interested readers to explore our data & models' outputs without having to run the code themselves.
+
 categories:
   - "Biostatistics"
   - "Bioinformatics"
@@ -53,13 +62,5 @@ bibliography: refs.bib
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px;" width="1300">
-
-The [LT-AoP](/content/projects/LT-AoP/) project included behavioral, immunohistochemistry and RT-qPCR data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
-
-The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
-
-Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
-
-A website documenting the analyses and their results was generated using Quarto, to allow interested readers to explore our data & models' outputs without having to run the code themselves:
 
 <iframe src="https://ma-riviere.github.io/LT-AoP-22/" width="100%" height="1350" allow="fullscreen"></iframe>

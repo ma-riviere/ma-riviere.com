@@ -81,15 +81,15 @@ renv::install(c(
   "Rdatatable/data.table", # >= 1.14.9
   "dplyr", # >= 1.1.0
   "tidyr",
-  "dtplyr", # >= 1.3.0
+  "dtplyr", # >= 1.3.2
   "DBI",
-  "dbplyr", # >= 2.3.0
+  "dbplyr", # >= 2.3.2
   "arrow",
-  "duckdb", # >= 0.7.1
+  "duckdb", # >= 0.8.0
   "stringr",
   "purrr", # >= 1.0.0
   "fuzzyjoin",
-  "r-spatial/sf"
+  "sf"
 ))
 ```
 
@@ -198,15 +198,6 @@ duckdb_path <- here(data_path, "stations.db")
 ```
 
 
-::: {.callout-caution appearance="simple" collapse="true"}
-
-#### Note on the choice of Database: 
-
-A more logical choice would have been `PostGIS`, an extension of `Postgres` for spatial data, which includes native support for geometry/geography data types, as well as methods for distance calculations. However, setting up and interfacing `PostGIS` with R is significantly more convoluted than `DuckDB`, and analytical queries on `PostGIS` are much slower than on `DuckDB`. The only downside to using `DuckDB` for this example is that we will need to define our haversine (i.e. distance-on-a-sphere) function ourselves.
-
-:::
-
-
 :::{.panel-tabset}
 
 #### Tidyverse
@@ -245,8 +236,21 @@ if (!interactive()) TIMES$loading_dt
 
 #### DuckDB
 
+::: {.callout-caution appearance="simple" collapse="true"}
+
+#### Note on the choice of Database: 
+
+A more logical choice would have been `PostGIS`, an extension of `Postgres` for spatial data, which includes native support for geometry/geography data types, as well as methods for distance calculations. However, setting up and interfacing `PostGIS` with R is significantly more convoluted than `DuckDB`, and analytical queries on `PostGIS` are much slower than on `DuckDB`. The only downside to using `DuckDB` for this example is that we will need to define our haversine (i.e. distance-on-a-sphere) function ourselves.
+
+:::
+
 ```{r}
-con_duck <- dbConnect(duckdb(), dbdir = ":memory:") # Or a .db file for out-of-RAM storage
+con_duck <- duckdb::dbConnect(duckdb(), dbdir = ":memory:")
+```
+
+```{sql connection = "con_duck", output = FALSE, output.var = "void", echo = FALSE, eval = FALSE}
+INSTALL spatial;
+LOAD spatial;
 ```
 
 ```{r}
@@ -254,8 +258,6 @@ con_duck <- dbConnect(duckdb(), dbdir = ":memory:") # Or a .db file for out-of-R
 #| output: false
 
 knitr::opts_chunk$set(connection = "con_duck")
-
-# dbExecute(con_duck, "SET experimental_parallel_csv=true")
 ```
 
 ```{r}
@@ -427,7 +429,7 @@ if (!interactive()) TIMES$rides_clean_dt
   |> mutate(ride_dist_m = case_when(
     is_looped ~ 0, 
     is.na(start_lng) | is.na(start_lat) | is.na(end_lng) | is.na(end_lat) ~ NA_real_,
-    .default = haversine(start_lng, start_lat, end_lng, end_lat)) # This will call the SQL haversine function
+    .default = haversine(start_lng, start_lat, end_lng, end_lat))  # This will call our SQL function
   )
   |> mutate(ride_speed_km_h = case_when(
     ride_dist_m == 0 | ride_dur_min == 0 ~ NA_real_, 
@@ -705,8 +707,8 @@ if (!interactive()) TIMES$acc_duck
 
 #### dbplyr
 
-:::: {.callout-note appearance="simple"}
-Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, but since we have previously defined a `decp` SQL function, this function will get called when the SQL query is executed.
+:::: {.callout-note}
+Here, `dbplyr` will leave the `decp` call as-is in the SQL translation, and since we have previously defined a `decp` SQL function, this function will get called when the SQL query is executed.
 ::::
 
 ```{r}
@@ -1179,7 +1181,7 @@ matched_clean
 And our `r nrow(matched_clean)` rows missing an id or name get matched !
 
 
-:::{.callout-note appearance="simple"}
+:::{.callout-note}
 However, those `r nrow(matched_clean)` already had an `id` (they were only missing a `name`). We could have filled their missing `name` with a join to `stations_clean`, instead of a convoluted proximity-based matching (which is more resource intensive and less accurate).
 
 Let's check that both methods yield the same results:
@@ -1555,7 +1557,9 @@ Finally, we need to update the original dataset (`rides_clean_l`) with the entri
 ## Merging the two datasets
 
 :::{.callout-note appearance="simple"}
-We can update the initial (cleaned) data with the position-matched in two ways:  
+
+## We can update the initial (cleaned) data with the position-matched in two ways:  
+
 - A `join` + `coalesce`: join the two tables and merge the two `name` & `id` columns (new and old) together.  
 - A `rows_patch`: only replace the missing values (`name` & `id`) by matching new and old rows together.
 :::

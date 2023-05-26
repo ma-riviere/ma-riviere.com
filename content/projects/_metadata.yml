@@ -2,7 +2,6 @@
 
 published-title: "Began Around"
 author-title: "Consortium"
-doi-title: "Funding Instrument" #TODO: change the link with JS, or better, change the template
 
 toc: true
 number-sections: true

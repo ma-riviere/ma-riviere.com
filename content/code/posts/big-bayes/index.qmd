@@ -340,7 +340,7 @@ tennis_mod_path <- here::here("res", "models", "tennis_mod_stan.rds")
 ## Stan code
 
 :::{.callout-note appearance="simple"}
-Updated Stan code with **within-chain parallelization**
+## Updated Stan code with **within-chain parallelization**
 :::
 
 ```{cmdstan, output.var = "tennis_mod_exe", eval = !USE_CACHE}

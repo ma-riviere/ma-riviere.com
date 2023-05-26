@@ -3,10 +3,8 @@ title: "AdViS"
 subtitle: "Adaptative Visual Substitution"
 date: 2014-07
 
-doi: "AUTON (CNRS) & LabEx PERSYVAL (PIA)" # TODO: make specific param
-
 author:
-  - name: "LPNC"
+  - name: "Psychology and NeuroCognition Lab (LPNC)"
     url: "https://lpnc.univ-grenoble-alpes.fr/"
   - name: "GIPSA-Lab"
     url: "https://gipsa-lab.grenoble-inp.fr/"

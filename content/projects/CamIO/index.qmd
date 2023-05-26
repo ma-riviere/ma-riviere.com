@@ -3,11 +3,9 @@ title: "CamIO"
 subtitle: "Camera Input-Output"
 date: 2018-03-01
 
-doi: "NIH/NEI & NIDILRR RERC" # TODO: make specific param
-
 author:
-  - name: "SKERI"
-    url: "https://www.skeri.org/"
+  - name: "Smith-Kettlewell Eye Research Institute (SKERI)"
+    url: "https://www.ski.org/"
 
 image: feature.png
 

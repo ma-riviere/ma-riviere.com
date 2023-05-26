@@ -1,9 +1,9 @@
 ---
-title: "Apnea of prematurity induces oxidative stress-mediated transcriptional changes in the murine cerebellum"
+title: "Apnea of Prematurity induces short and long-term development-related transcriptional changes in the murine cerebellum"
 subtitle: "*In Preparation*"
 
-date: 2023-08-01
-published-title: "To be published by" # TODO: remove after the fact
+date: 2023-06-01
+published-title: "To be submitted by" # TODO: change to "To be published by", and later remove
 
 author:
   - name: "Agalic Rodriguez-Duboc"
@@ -11,16 +11,19 @@ author:
     url: https://agalic-rd.com
     affiliations:
     - ref: cbg
+  - name: "Magali Basille-Duguay"
+    affiliations:
+      - ref: nordic
+  - name: "Aurélien Debonne"
+    affiliations:
+      - ref: cbg
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
     affiliations:
       - ref: litis
-  - name: "Magali Basille-Duguay"
+  - name: "David Vaudry"
     affiliations:
-      - ref: dc2n
-  - name: "Aurélien Debonne"
-    affiliations:
-      - ref: univ-rouen
+      - ref: cbg
   - name: "Delphine Burel"
     email: "delphine.burel@univ-rouen.fr"
     affiliations:
@@ -42,7 +45,7 @@ abstract: |
   The project provides elements to better understand the cellular and molecular aspects of AoP-induced cerebellar injury. In the long term, it could lead to the identification of novel therapeutic targets to address this socially and economically relevant health issue.
 
 categories:
-  - "Neuroscience"
+  - "Molecular Neurosciences"
   - "Neurodevelopment"
   - "Cerebellum"
   - "Apnea of Prematurity"
@@ -64,20 +67,26 @@ metadata-files: [../../_affiliations.yml]
 # Dirty trick to get some links/buttons
 about:
   links:
+    # - text: "{{< ai springer >}} Article (online)"
+    #   url: TODO
+    #   aria-label: "Link to the online version of the article"
     - text: "{{< fa business-time >}} Project (DE-AoP)"
       file: /content/projects/DE-AoP/
       aria-label: "Link to the project"
+    # - text: "{{< fa chart-column >}} Data & Analyses"
+    #   file: content/code/DE-AoP/
+    #   aria-label: "Webpage presenting the data & analyses of this project"
 ---
 
 {{< include /content/_hr.qmd >}}
 
 <!-- TODO: remove when published -->
-:::{.callout-note}
-This article is currently in preparation and should be submitted in the summer of 2023
+:::{.callout-note appearance="simple"}
+### This article is currently in preparation and should be submitted by the end of May 2023
 :::
 
-<!-- <object data="IP23.pdf" type="application/pdf" width="100%" height="1200">
-  <iframe width="100%" height="1200"
-    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.me/raw/main/content/pubs/IP23/IP23.pdf&embedded=true">
+<!-- <object data="IP23.pdf" type="application/pdf" width="100%" height="1000">
+  <iframe width="100%" height="1000"
+    src="https://docs.google.com/viewer?url=https://github.com/agalic-rd/agalic-rd.com/raw/main/content/pubs/articles/IP23/IP23.pdf&embedded=true">
   </iframe>
 </object> -->

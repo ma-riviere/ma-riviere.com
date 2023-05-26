@@ -2,3 +2,4 @@
 
 metadata-files:
   - ../_links.yml
+#   - ../_affiliations.yml # We can't add it here, or it'll make author/affiliation appear at the top of the listing (recheck this periodically with new versions !)

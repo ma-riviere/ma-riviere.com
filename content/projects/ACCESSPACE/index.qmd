@@ -3,8 +3,6 @@ title: "ACCESSPACE"
 subtitle: "Helping Visually Impaired People travel autonomously"
 date: 2017-01
 
-doi: "CCAH & FIRAH" # TODO: make specific param
-
 author:
   - name: "LITIS"
     url: "https://www.litislab.fr/"
@@ -129,8 +127,9 @@ The ACCESSPACE project was promoted in various mainstream and technical media, s
 - On [Oxytude](https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/), a weekly podcast reviewing news related to visual impairment ({{< iconify twemoji flag-france >}})  
 - On [FIRAH](https://www.firah.org/fr/accesspace.html), the French Foundation on Applied Research for Handicap ({{< iconify twemoji flag-france >}})
 
-This project has been warmly welcomed by the VIP community and was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇.
-
+:::{.callout-tip appearance="simple"}
+## This project has been warmly welcomed by the VIP community and was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇
+:::
 
 # My role in this project
 ***
@@ -143,6 +142,6 @@ This project has been warmly welcomed by the VIP community and was awarded the *
 
 **3)** Participated in the development of a [Java application](https://github.com/ma-riviere/BeltControl) to control and test the TactiBelt.
 
-**4)** Handled the preliminary experimental evaluations of the TactiBelt.
+**4)** Handled the preliminary experimental evaluations of the TactiBelt, and the analyses of said data.
 
-**5)** Presenting the project a a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an [international conference](/content/sci-com/talks/ICCHP18/), and various outreach events (see the *dissemination section* above for more details).
+**5)** Presenting the project with a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an [international conference](/content/sci-com/talks/ICCHP18/), and various outreach events (see the *dissemination section* above for more details).

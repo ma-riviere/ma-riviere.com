@@ -7,14 +7,12 @@ number-sections: false
 
 listing:
   contents: "*.{md,qmd,Rmd}"
-  fields: [doi, image, title, subtitle, description, categories] # author
+  fields: [image, title, subtitle, description, categories] # author
   categories: numbered
   date-format: medium
   sort: [date desc, title]
   page-size: 10
   filter-ui: true
   sort-ui: [date, title]
-  field-display-names:
-    doi: "Funding" #TODO: change the template instead
 ---
 

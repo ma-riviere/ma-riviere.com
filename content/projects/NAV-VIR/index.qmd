@@ -3,8 +3,6 @@ title: "NAV-VIR"
 subtitle: "Virtual Map exploration for Visually Impaired People"
 date: 2018-09
 
-doi: "PHC Polonium (French-Polish EU grant)" # TODO: make specific param
-
 author:
   - name: "LITIS"
     url: "https://www.litislab.fr/"
@@ -90,7 +88,7 @@ During this project, we improved upon the first iteration of the **Force Feedbac
 
 **1)** Participated in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
 
-**2)** Helped design the first round of experimental evaluations, where participants where tasked with recognizing simple geometrical shapes as well as the layout of a simple mock apartment.
+**2)** Helped design the first round of experimental evaluations, where participants where tasked with recognizing and re-drawing simple geometrical shapes, as well as the layout of a simple mock apartment.
 
 :::{layout='[40,60]' layout-valign="center"}
 

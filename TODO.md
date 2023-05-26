@@ -1,14 +1,19 @@
 **General:**
 - Different color for selected menu
-
 - Use midjourney to generate images for posts
 
-**Template:**
+**Templates:**
 - <hr> integrated to template
+
+Pub template:
 - Display: Equal contributor, corresponding
 - Loop for links as buttons
 
+Project template:
+- Funding instrument
+
 **Projects:**
+- Fill in more info (e.g. TETMOST)
 
 **Pubs:**
 

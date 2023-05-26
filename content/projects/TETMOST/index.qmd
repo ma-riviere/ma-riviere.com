@@ -2,7 +2,6 @@
 title: "TETMOST"
 subtitle: "Making Art more accessible to Visually Impaired People"
 date: 2017-09
-doi: "AUTON (CNRS)" # TODO: make specific param
 
 author:
   - name: "LITIS"

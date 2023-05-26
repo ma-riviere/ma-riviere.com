@@ -1,6 +1,6 @@
 ---
 title: "ACCESSPACE: overview and future prospects"
-subtitle: "[Rencontres Universitaires Numériques Normandes (RUNN'19)](http://www.normandie-univ.fr/rencontres-universitaires-numeriques-normandes-runn-2019-63109.kjsp)"
+subtitle: "[Rencontres Universitaires Numériques Normandes (RUNN'19)](https://www.normandie-univ.fr/numerique/journees-thematiques-runn/runn-2019/)"
 date: 2019-11-21
 
 # Location
@@ -38,5 +38,5 @@ about:
 </object>
 
 :::{.callout-tip appearance="simple"}
-This talk got the best presentation award of RUNN'19 🥇
+# This talk got the best presentation award of RUNN'19 🥇
 :::

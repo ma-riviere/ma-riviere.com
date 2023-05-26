@@ -50,8 +50,13 @@ h5.quarto-listing-category-title { color: $col2; }
 .quarto-title:not(.column-body) h1.title { color: $col1; }
 
 .quarto-title-block .quarto-title-banner {
-    background-color: $col2  !important;
+    background-color: $col2 !important;
     color: white;
+}
+
+.quarto-title-banner .quarto-title h1.title { 
+    color: #F0F3F3; /* Otherwise title appear gray after Quarto 1.3.300~ish */
+    /* background-color: transparent !important; */
 }
 
 .quarto-title:not(.column-body) .subtitle { color: $col2; }

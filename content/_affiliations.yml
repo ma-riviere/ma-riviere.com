@@ -11,13 +11,19 @@ affiliations:
     city: Saint-Etienne-du-Rouvray
     country: France
   - id: dc2n
-    name: "Differenciation, Neural and Neuroencodrine Communication"
+    name: "Neural and Neuroencodrine Differenciation & Communication"
     url: http://dc2n.labos.univ-rouen.fr/
     city: Rouen
     country: France
   - id: cbg
     name: Cancer and Brain Genomics
-    url: https://irib.univ-rouen.fr/index.php?info=entites&id=69
+    url: https://recherche.univ-rouen.fr/cbg-cancer-and-brain-genomics-umr-1245-679263.kjsp
+    city: Rouen
+    country: France
+  - id: nordic
+    # name: "Neuroendocrine, Endocrine and Germinal Differentiation Communication"
+    name: "NorDic"
+    url: https://sciences-techniques.univ-rouen.fr/nordic-neuroendocrine-endocrine-and-germinal-differentiation-communication-umr-1239-679078.kjsp
     city: Rouen
     country: France
   - id: univ-caen
