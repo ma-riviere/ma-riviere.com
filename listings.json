@@ -10,6 +10,18 @@
     ]
   },
   {
+    "listing": "/content/pubs/index.html",
+    "items": [
+      "/content/pubs/IP23/index.html",
+      "/content/pubs/JEP22/index.html",
+      "/content/pubs/ICCHP20/index.html",
+      "/content/pubs/ICISP20/index.html",
+      "/content/pubs/NER19/index.html",
+      "/content/pubs/ICCHP18-TactiBelt/index.html",
+      "/content/pubs/ICCHP18-F2T/index.html"
+    ]
+  },
+  {
     "listing": "/content/projects/index.html",
     "items": [
       "/content/projects/SAM-Guide/index.html",
@@ -20,18 +32,6 @@
       "/content/projects/ACCESSPACE/index.html",
       "/content/projects/LT-AoP/index.html",
       "/content/projects/AdViS/index.html"
-    ]
-  },
-  {
-    "listing": "/content/pubs/index.html",
-    "items": [
-      "/content/pubs/IP23/index.html",
-      "/content/pubs/JEP22/index.html",
-      "/content/pubs/ICCHP20/index.html",
-      "/content/pubs/ICISP20/index.html",
-      "/content/pubs/NER19/index.html",
-      "/content/pubs/ICCHP18-TactiBelt/index.html",
-      "/content/pubs/ICCHP18-F2T/index.html"
     ]
   },
   {
