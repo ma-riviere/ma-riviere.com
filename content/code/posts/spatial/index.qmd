@@ -215,6 +215,7 @@ read_csv(files, show_col_types = FALSE)
 ```{r}
 #| eval: false
 #| code-fold: true
+#| code-summary: Alternatives
 
 map(files, \(f) read_csv(f, show_col_types = FALSE)) |> list_rbind()
 

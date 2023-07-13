@@ -36,10 +36,13 @@ categories:
 # Dirty trick to get some links/buttons
 about:
   links:
-    - text: "Article (in preparation)"
+    - text: "Article (in press)"
       icon: file-pdf
-      file: content/pubs/IP23/
-      aria-label: "See a conference article illustrating the project"
+      file: /content/pubs/MCN23/
+      aria-label: "See the article illustrating the project"
+    - text: "{{< fa chart-column >}} Data & Analyses"
+      file: /content/code/projects/DE-AoP/
+      aria-label: "Webpage presenting the data & analyses made for this project"
 ---
 
 {{< include /content/_hr.qmd >}}
@@ -52,6 +55,6 @@ about:
 **1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [
 Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process.
 
-**2)** Handled the RT-qPCR data processing and analysis, as well as documenting and open-sourcing the resulting code.
+**2)** Handled the RT-qPCR & IHC data processing and analysis, as well as documenting & open-sourcing the resulting code.
 
-**3)** Participated in writing the [journal article](/content/pubs/IP23/) summarizing the results of this project.
+**3)** Participated in writing the [journal article](/content/pubs/MCN23/) summarizing the results of this project.

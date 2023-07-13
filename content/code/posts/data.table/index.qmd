@@ -67,7 +67,11 @@ execute:
 
 # TODO:
 
-## See: https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
+# rollup, cube, groupingsets
+
+## See: 
+### - https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
+### - https://atrebas.github.io/post/2020-06-14-datatable-pandas/
 
 # ----------------------------------------------------------
 

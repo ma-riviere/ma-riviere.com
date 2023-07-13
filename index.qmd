@@ -1,8 +1,8 @@
 ---
 title: "Marc-Aurèle Rivière"
-subtitle: "Cognitive Neuroscientist interested in Behavioral Research, Data Science,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
+subtitle: "Data Scientist and Cognitive Neuroscientist, interested in Behavioral Research,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
 
-description: "Research Engineer  \n [University of Rouen-Normandy](https://www.univ-rouen.fr/)  \n [LITIS Lab](https://litislab.fr/en/)"
+description: "Research Engineer  \n [University of Rouen-Normandy](https://www.univ-rouen.fr/)"
 
 image: /res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"
@@ -57,7 +57,7 @@ filters:
 
 I'm a recovering academic who worked on several research projects at the intersection between **Cognitive Neurosciences** and **Biomedical Engineering**. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of [:Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) and Augmented Reality, within the [:Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
 
-I have since retrained as a **Data Scientist** with a fondness statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
+I have since retrained as a **Data Scientist** with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
 
 ```{r}
 #| echo: false

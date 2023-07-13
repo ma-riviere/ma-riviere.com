@@ -1,9 +1,9 @@
 ---
 title: "Apnea of Prematurity induces short and long-term development-related transcriptional changes in the murine cerebellum"
-subtitle: "*In Preparation*"
+subtitle: "*In Press*"
 
-date: 2023-06-01
-published-title: "To be submitted by" # TODO: change to "To be published by", and later remove
+date: 2023-07-13
+published-title: "Submitted on"
 
 author:
   - name: "Agalic Rodriguez-Duboc"
@@ -67,26 +67,25 @@ metadata-files: [../../_affiliations.yml]
 # Dirty trick to get some links/buttons
 about:
   links:
-    # - text: "{{< ai springer >}} Article (online)"
+    # - text: "{{< ai elsevier >}} Article (online)"
     #   url: TODO
     #   aria-label: "Link to the online version of the article"
     - text: "{{< fa business-time >}} Project (DE-AoP)"
       file: /content/projects/DE-AoP/
       aria-label: "Link to the project"
-    # - text: "{{< fa chart-column >}} Data & Analyses"
-    #   file: content/code/DE-AoP/
-    #   aria-label: "Webpage presenting the data & analyses of this project"
+    - text: "{{< fa chart-column >}} Data & Analyses"
+      file: content/code/DE-AoP/
+      aria-label: "Webpage presenting the data & analyses of this project"
 ---
 
 {{< include /content/_hr.qmd >}}
 
-<!-- TODO: remove when published -->
 :::{.callout-note appearance="simple"}
-### This article is currently in preparation and should be submitted by the end of May 2023
+### This article is currently being reviewed in *Molecular and Cellular Neuroscience*
 :::
 
-<!-- <object data="IP23.pdf" type="application/pdf" width="100%" height="1000">
+<!-- <object data="MCN23.pdf" type="application/pdf" width="100%" height="1000">
   <iframe width="100%" height="1000"
-    src="https://docs.google.com/viewer?url=https://github.com/agalic-rd/agalic-rd.com/raw/main/content/pubs/articles/IP23/IP23.pdf&embedded=true">
+    src="https://docs.google.com/viewer?url=https://github.com/agalic-rd/agalic-rd.com/raw/main/content/pubs/articles/MCN23/MCN23.pdf&embedded=true">
   </iframe>
 </object> -->

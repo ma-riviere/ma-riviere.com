@@ -36,7 +36,7 @@ categories:
   - "Transcriptomics"
   - "Immunohistochemistry"
   - "Behavioral"
-  - "RT-qPCR"
+  - "R"
 
 # Dirty trick to get some links/buttons
 about:

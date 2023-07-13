@@ -1,6 +1,7 @@
 ---
 title: "{{< fa user-tie >}} About Me"
-subtitle: '<a href="../res/cv.pdf" class="btn btn-outline-info btn-sm">Check my CV</a>'
+subtitle: 'Researcher & Data Scientist'
+description: '<a href="../res/cv.pdf" class="btn btn-outline-info btn-sm">{{< fa user-tie >}} Check my CV</a>'
 
 image: ../res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"
@@ -12,35 +13,53 @@ website:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
 ---
 
-## {{< fa briefcase >}} Employment
+◈ Recovering Academic turned Data Scientist.  
+◈ Identify issues, synthesize theories, engineer solutions, design experiments, wrangle data, and extract insights.  
+◈ Proficient R programmer, decent software engineer.
 
-- **Research Engineer** (2021-Present)  
-  [LITIS Lab]{.about-details}
+
+## {{< fa briefcase >}} Work Experience
+
+- **Data Science Consultant** (2020-Present)  
+  [Self-employed]{.about-employer}  
+  ♦ [Automated lead acquisition for a leasing company (R + web scraping + D&B/GPT APIs)]{.about-missions}  
+  ♦ [Statistical modeling of qPCR & IHC data (R), with automatic generation of reports (Quarto) and Dashboards (Shiny)]{.about-missions}  
+  
+
+- **Research Engineer** (2021-2023)  
+  [LITIS Lab]{.about-employer}  
+  ♦ [Designed & developed an AR platform in Unity (C#), and wearable haptic interfaces for Visually Impaired People (Java/Arduino)]{.about-missions}  
+  ♦ [Developed and tested camera-based solutions for indoor localization (Python/C++)]{.about-missions}  
 
 - **Graduate Teaching Fellow** (2017-2020)  
-  [University of Rouen-Normandy]{.about-details}
+  [University of Rouen-Normandy]{.about-employer}  
+  ♦ [Gave university classes on Web Development (JS), Image Processing (Python), GUI design (Java), and ML/DL for Computer Vision]{.about-missions}
 
 ## {{< fa graduation-cap >}} Education
 
 - **PhD in Cognitive Neurosciences** (2017-2020)  
   [*Unfinished - COVID*]{.small style="color: #eac019"}  
-  [University of Rouen-Normandy]{.about-details}
+  [University of Rouen-Normandy]{.about-employer}
 
 - **MSc in Cognitive Neurosciences** (2015-2016)  
-  [Grenoble INP - Phelma]{.about-details}
+  [Grenoble INP - Phelma]{.about-employer}
 
 - **MSc in Organisational Psychology** (2013-2015)  
-  [University of Strasbourg]{.about-details}
+  [University of Strasbourg]{.about-employer}
 
 ## {{< fa address-book >}} Contact Me
 
-You can send me an [email](mailto:marc.aurele.riviere@gmail.com) or directly message me on [twitter](https://twitter.com/mariviere1) or [Mastodon](https://fediscience.org/web/@mariviere).
+You can send me an [email](mailto:marc.aurele.riviere@gmail.com), or directly message me on [twitter](https://twitter.com/mariviere1). <!-- or [Mastodon](https://fediscience.org/web/@mariviere). -->
+
+<!--
 
 ## {{< fa location-dot >}} Location
 
-Office U2.1.51, [LITIS Lab](https://litislab.fr/en/), Saint-Etienne-du-Rouvray, France.
+[LITIS Lab](https://litislab.fr/en/), Rouen, France.
 
 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d2597.178095254828!2d1.068668!3d49.386623!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x99721d01c683ed03!2sLitis!5e0!3m2!1sen!2sfr!4v1663157185844!5m2!1sen!2sfr" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+-->
 
 ## {{< fa code >}} About this site
 

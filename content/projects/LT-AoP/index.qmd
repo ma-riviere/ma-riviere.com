@@ -34,7 +34,7 @@ about:
   links:
     - text: "{{< fa arrow-up-right-from-square >}} Article"
       url: https://agalic-rd.com/content/pubs/articles/CB22/
-      aria-label: "See an article illustrating the project"
+      aria-label: "See the article illustrating the project"
     - text: "{{< fa chart-column >}} Data & Analyses"
       file: /content/code/projects/LT-AoP/
       aria-label: "Webpage presenting the data & analyses made for this project"
