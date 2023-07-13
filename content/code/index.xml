@@ -6,19 +6,19 @@
       version="2.0">
 <channel>
 <title>Marc-Aurèle Rivière</title>
-<link>https://ma-riviere.me/content/code/index.html</link>
-<atom:link href="https://ma-riviere.me/content/code/index.xml" rel="self" type="application/rss+xml"/>
+<link>https://ma-riviere.com/content/code/index.html</link>
+<atom:link href="https://ma-riviere.com/content/code/index.xml" rel="self" type="application/rss+xml"/>
 <description>Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes</description>
 <image>
-<url>https://ma-riviere.me/res/avatar.jpg</url>
+<url>https://ma-riviere.com/res/avatar.jpg</url>
 <title>Marc-Aurèle Rivière</title>
-<link>https://ma-riviere.me/content/code/index.html</link>
+<link>https://ma-riviere.com/content/code/index.html</link>
 </image>
 <generator>quarto-1.4.104</generator>
 <lastBuildDate>Fri, 17 Jun 2022 22:00:00 GMT</lastBuildDate>
 <item>
   <title>Fast spatial data matching in R</title>
-  <link>https://ma-riviere.me/content/code/posts/spatial/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/spatial/index.html</link>
   <description><![CDATA[ You can check the source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
   <category>Big Data</category>
   <category>Data Manipulation</category>
@@ -26,12 +26,12 @@
   <category>R</category>
   <category>SQL</category>
   <category>DuckDB</category>
-  <guid>https://ma-riviere.me/content/code/posts/spatial/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/spatial/index.html</guid>
   <pubDate>Fri, 17 Jun 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>MCMC for ‘Big Data’ with Stan</title>
-  <link>https://ma-riviere.me/content/code/posts/big-bayes/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/big-bayes/index.html</link>
   <description><![CDATA[ You can check the page’s source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
   <category>Statistics</category>
   <category>ML</category>
@@ -39,12 +39,12 @@
   <category>Big Data</category>
   <category>Stan</category>
   <category>R</category>
-  <guid>https://ma-riviere.me/content/code/posts/big-bayes/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/big-bayes/index.html</guid>
   <pubDate>Sat, 04 Jun 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Data wrangling with data.table and the Tidyverse</title>
-  <link>https://ma-riviere.me/content/code/posts/data.table/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/data.table/index.html</link>
   <description><![CDATA[ <strong>V1:</strong> 2022-05-19<br><strong>V2:</strong> 2022-05-26<br>
 - Improved the section on <strong>keys</strong> (for ordering &amp; filtering)<br>
 - Adding a section for translations of <code>Tidyr</code> (and other similar packages)<br>
@@ -72,14 +72,14 @@
   <category>Tidyverse</category>
   <category>data.table</category>
   <category>R</category>
-  <guid>https://ma-riviere.me/content/code/posts/data.table/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/data.table/index.html</guid>
   <pubDate>Wed, 18 May 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>LT-AoP: Data &amp; Analyses</title>
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Agalic Rodriguez-Duboc</dc:creator>
-  <link>https://ma-riviere.me/content/code/projects/LT-AoP/index.html</link>
+  <link>https://ma-riviere.com/content/code/projects/LT-AoP/index.html</link>
   <description><![CDATA[ undefined ]]></description>
   <category>Biostatistics</category>
   <category>Bioinformatics</category>
@@ -87,20 +87,20 @@
   <category>Immunohistochemistry</category>
   <category>Behavioral</category>
   <category>RT-qPCR</category>
-  <guid>https://ma-riviere.me/content/code/projects/LT-AoP/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/projects/LT-AoP/index.html</guid>
   <pubDate>Sat, 30 Apr 2022 22:00:00 GMT</pubDate>
-  <media:content url="https://ma-riviere.me/content/code/projects/LT-AoP/feature.png" medium="image" type="image/png" height="86" width="144"/>
+  <media:content url="https://ma-riviere.com/content/code/projects/LT-AoP/feature.png" medium="image" type="image/png" height="86" width="144"/>
 </item>
 <item>
   <title>Bayesian Rock Climbing Rankings</title>
-  <link>https://ma-riviere.me/content/code/posts/climbing/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/climbing/index.html</link>
   <description><![CDATA[ You can check the page’s source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
   <category>Statistics</category>
   <category>ML</category>
   <category>Bayesian Modeling</category>
   <category>Stan</category>
   <category>R</category>
-  <guid>https://ma-riviere.me/content/code/posts/climbing/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/climbing/index.html</guid>
   <pubDate>Mon, 18 Apr 2022 22:00:00 GMT</pubDate>
 </item>
 </channel>
