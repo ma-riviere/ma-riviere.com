@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.224">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -112,7 +115,7 @@ cookieconsent.run({
 <meta property="og:title" content="Marc-Aurèle Rivière - TETMOST">
 <meta property="og:description" content="Developping a haptic interface to intuitively represent images and Art to VIP">
 <meta property="og:image" content="https://ma-riviere.com/content/projects/TETMOST/feature.png">
-<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="385">
 <meta property="og:image:width" content="1372">
@@ -707,7 +710,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
@@ -886,7 +888,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":true,"descPosition":"bottom","closeEffect":"zoom","selector":".lightbox","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","loop":true,"selector":".lightbox","closeEffect":"zoom"});</script>
+
 
 
 

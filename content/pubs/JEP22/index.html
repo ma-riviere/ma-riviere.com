@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.224">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -112,7 +115,7 @@ cookieconsent.run({
 <meta property="og:title" content="Marc-Aurèle Rivière - Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen">
 <meta property="og:description" content="This study reveals that patterns made up of several vibration points are better recognized when pattern elements are clearly isolated in time and space. The feeling of a single point moving continuously along the skin, as if the pattern was manually drawn on the skin, does not appear to favor the recognition of patterns’ shape">
 <meta property="og:image" content="https://ma-riviere.com/res/avatar.jpg">
-<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:alt" content="Profile picture of Marc-Aurèle Rivière">
 <meta name="twitter:title" content="Marc-Aurèle Rivière - Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen">
@@ -670,7 +673,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
@@ -849,6 +851,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

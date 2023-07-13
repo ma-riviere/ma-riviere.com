@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.224">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -75,6 +75,9 @@ div.csl-indent {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -127,7 +130,7 @@ cookieconsent.run({
 <meta property="og:title" content="Marc-Aurèle Rivière - LT-AoP: Data &amp; Analyses">
 <meta property="og:description" content="Behavioral, immunohistochemistry and RT-qPCR data for the LT-AoP project were analysed in R, hosted on GitHub, and archived through Zenodo.">
 <meta property="og:image" content="https://ma-riviere.com/content/code/projects/LT-AoP/feature.png">
-<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="820">
 <meta property="og:image:width" content="1369">
@@ -227,7 +230,7 @@ cookieconsent.run({
                 <div class="quarto-category">Transcriptomics</div>
                 <div class="quarto-category">Immunohistochemistry</div>
                 <div class="quarto-category">Behavioral</div>
-                <div class="quarto-category">RT-qPCR</div>
+                <div class="quarto-category">R</div>
               </div>
                   </div>
   </div>
@@ -646,7 +649,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
@@ -825,6 +827,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

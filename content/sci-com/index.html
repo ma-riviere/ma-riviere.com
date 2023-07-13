@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.224">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -54,6 +54,9 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -165,7 +168,7 @@ cookieconsent.run({
 <meta property="og:title" content="Marc-Aurèle Rivière -  Communications">
 <meta property="og:description" content="The talks and outreach activities I’ve partaken in">
 <meta property="og:image" content="https://ma-riviere.com/res/avatar.jpg">
-<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:alt" content="Profile picture of Marc-Aurèle Rivière">
 <meta name="twitter:title" content="Marc-Aurèle Rivière -  Communications">
@@ -840,7 +843,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
@@ -1019,6 +1021,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
+
 
 
 

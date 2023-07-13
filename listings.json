@@ -13,6 +13,7 @@
   {
     "listing": "/content/code/index.html",
     "items": [
+      "/content/code/projects/DE-AoP/index.html",
       "/content/code/projects/LT-AoP/index.html",
       "/content/code/posts/spatial/index.html",
       "/content/code/posts/big-bayes/index.html",
@@ -36,7 +37,7 @@
   {
     "listing": "/content/pubs/index.html",
     "items": [
-      "/content/pubs/IP23/index.html",
+      "/content/pubs/MCN23/index.html",
       "/content/pubs/JEP22/index.html",
       "/content/pubs/ICCHP20/index.html",
       "/content/pubs/ICISP20/index.html",

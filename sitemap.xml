@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ma-riviere.com/index.html</loc>
-    <lastmod>2023-07-13T11:27:31.245Z</lastmod>
+    <lastmod>2023-07-13T19:17:37.166Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/sci-com/talks/SKERI/index.html</loc>
@@ -25,8 +25,8 @@
     <lastmod>2023-03-05T19:33:05.152Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.com/content/pubs/IP23/index.html</loc>
-    <lastmod>2023-05-23T14:00:52.638Z</lastmod>
+    <loc>https://ma-riviere.com/content/pubs/JEP22/index.html</loc>
+    <lastmod>2023-07-13T10:56:08.105Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/pubs/ICCHP20/index.html</loc>
@@ -34,7 +34,7 @@
   </url>
   <url>
     <loc>https://ma-riviere.com/content/pubs/ICCHP18-F2T/index.html</loc>
-    <lastmod>2023-07-13T10:56:03.655Z</lastmod>
+    <lastmod>2023-07-13T18:32:34.787Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/TETMOST/index.html</loc>
@@ -46,7 +46,7 @@
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/DE-AoP/index.html</loc>
-    <lastmod>2023-05-23T13:51:32.798Z</lastmod>
+    <lastmod>2023-07-13T18:32:06.467Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/AdViS/index.html</loc>
@@ -54,31 +54,35 @@
   </url>
   <url>
     <loc>https://ma-riviere.com/content/code/projects/LT-AoP/index.html</loc>
-    <lastmod>2023-05-23T14:10:14.138Z</lastmod>
+    <lastmod>2023-07-13T18:18:19.697Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.com/content/code/posts/data.table/index.html</loc>
-    <lastmod>2023-05-30T14:48:19.115Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.com/content/code/posts/big-bayes/index.html</loc>
-    <lastmod>2023-05-26T11:52:43.504Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.com/content/about.html</loc>
-    <lastmod>2023-03-05T14:09:45.636Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.com/content/code/index.html</loc>
-    <lastmod>2023-03-13T10:11:28.102Z</lastmod>
+    <loc>https://ma-riviere.com/content/code/posts/spatial/index.html</loc>
+    <lastmod>2023-07-13T12:06:24.004Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/code/posts/climbing/index.html</loc>
     <lastmod>2023-05-26T11:52:17.964Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.com/content/code/posts/spatial/index.html</loc>
-    <lastmod>2023-07-13T11:23:56.765Z</lastmod>
+    <loc>https://ma-riviere.com/content/code/index.html</loc>
+    <lastmod>2023-03-13T10:11:28.102Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.com/content/about.html</loc>
+    <lastmod>2023-07-13T18:06:00.037Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.com/content/code/posts/big-bayes/index.html</loc>
+    <lastmod>2023-05-26T11:52:43.504Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.com/content/code/posts/data.table/index.html</loc>
+    <lastmod>2023-07-13T14:41:42.431Z</lastmod>
+  </url>
+  <url>
+    <loc>https://ma-riviere.com/content/code/projects/DE-AoP/index.html</loc>
+    <lastmod>2023-07-13T18:36:27.957Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/ACCESSPACE/index.html</loc>
@@ -90,7 +94,7 @@
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/LT-AoP/index.html</loc>
-    <lastmod>2023-05-23T14:03:18.278Z</lastmod>
+    <lastmod>2023-07-13T18:26:17.137Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/SAM-Guide/index.html</loc>
@@ -98,7 +102,7 @@
   </url>
   <url>
     <loc>https://ma-riviere.com/content/projects/index.html</loc>
-    <lastmod>2023-05-26T15:43:29.672Z</lastmod>
+    <lastmod>2023-07-13T14:58:27.151Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/pubs/ICCHP18-TactiBelt/index.html</loc>
@@ -109,8 +113,8 @@
     <lastmod>2023-03-05T17:23:32.184Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.com/content/pubs/JEP22/index.html</loc>
-    <lastmod>2023-07-13T10:56:08.105Z</lastmod>
+    <loc>https://ma-riviere.com/content/pubs/MCN23/index.html</loc>
+    <lastmod>2023-07-13T19:17:30.976Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/pubs/index.html</loc>

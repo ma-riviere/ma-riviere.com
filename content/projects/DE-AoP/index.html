@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.224">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -60,6 +60,9 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -112,7 +115,7 @@ cookieconsent.run({
 <meta property="og:title" content="Marc-Aurèle Rivière - DE-AoP">
 <meta property="og:description" content="Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development">
 <meta property="og:image" content="https://ma-riviere.com/content/projects/DE-AoP/feature.png">
-<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="2868">
 <meta property="og:image:width" content="3150">
@@ -254,9 +257,12 @@ cookieconsent.run({
   <div class="about-entity">
     <div class="entity-contents">
        <div class="about-links">
-  <a href="/content/pubs/IP23/" class="about-link" rel="" target="">
+  <a href="/content/pubs/MCN23/" class="about-link" rel="" target="">
     <i class="bi bi-file-pdf"></i>
-     <span class="about-link-text">Article (in preparation)</span>
+     <span class="about-link-text">Article (in press)</span>
+  </a>
+  <a href="/content/code/projects/DE-AoP/" class="about-link" rel="" target="">
+     <span class="about-link-text"><i class="fa-solid fa-chart-column" aria-label="chart-column"></i> Data &amp; Analyses</span>
   </a>
 </div>
       <div class="about-contents"><main class="content quarto-banner-title-block" id="quarto-document-content">
@@ -288,15 +294,15 @@ cookieconsent.run({
 <hr style="margin-bottom: 30px; margin-top: -12px;" width="1000px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="feature.png" class="lightbox" title="Image illustrating the project" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Image illustrating the project"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
 </figure>
 </div>
 <section id="my-role-in-this-project" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> My role in this project</h1>
 <hr>
 <p><strong>1)</strong> Developed tools to assist the project’s researchers in exploring their data. Among those tools, I coded and hosted a modular <a href="https://mar-studio.shinyapps.io/ShinyQPCR2/">Shiny dashboard</a> to assist in the data exploration process.</p>
-<p><strong>2)</strong> Handled the RT-qPCR data processing and analysis, as well as documenting and open-sourcing the resulting code.</p>
-<p><strong>3)</strong> Participated in writing the <a href="../../../content/pubs/IP23/">journal article</a> summarizing the results of this project.</p>
+<p><strong>2)</strong> Handled the RT-qPCR &amp; IHC data processing and analysis, as well as documenting &amp; open-sourcing the resulting code.</p>
+<p><strong>3)</strong> Participated in writing the <a href="../../../content/pubs/MCN23/">journal article</a> summarizing the results of this project.</p>
 
 
 </section>
@@ -602,7 +608,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
@@ -781,7 +786,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":true,"closeEffect":"zoom","descPosition":"bottom","selector":".lightbox","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"loop":true,"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom"});</script>
+
 
 
 

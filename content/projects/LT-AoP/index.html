@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.104">
+<meta name="generator" content="quarto-1.4.224">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,6 +58,9 @@ ul.task-list li input[type="checkbox"] {
   "panel-placement": "end",
   "type": "overlay",
   "limit": 20,
+  "keyboard-shortcut": [
+    null
+  ],
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -110,7 +113,7 @@ cookieconsent.run({
 <meta property="og:title" content="Marc-Aurèle Rivière - LT-AoP">
 <meta property="og:description" content="Impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it">
 <meta property="og:image" content="https://ma-riviere.com/content/projects/LT-AoP/feature.png">
-<meta property="og:site-name" content="Marc-Aurèle Rivière">
+<meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="1294">
 <meta property="og:image:width" content="1517">
@@ -286,7 +289,7 @@ cookieconsent.run({
 <hr style="margin-bottom: 30px; margin-top: -12px;" width="1000px">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="feature.png" class="lightbox" title="Image illustrating the project" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Image illustrating the project"><img src="feature.png" class="img-fluid figure-img" alt="Image illustrating the project"></a></p>
 </figure>
 </div>
 <section id="my-role-in-this-project" class="level1" data-number="1">
@@ -599,7 +602,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
           const parser = new DOMParser();
           const htmlDoc = parser.parseFromString(html, "text/html");
           const note = htmlDoc.getElementById(id);
-          console.log(htmlDoc.body.innerHTML);
           if (note !== null) {
             const html = processXRef(id, note);
             instance.setContent(html);
@@ -778,7 +780,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":true,"selector":".lightbox","closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom"});</script>
+<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","descPosition":"bottom","selector":".lightbox","loop":true,"closeEffect":"zoom"});</script>
+
 
 
 
