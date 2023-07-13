@@ -2033,14 +2033,14 @@ fn_returning_list <- \(x) list(mean = mean(x), sd = sd(x))
 **One column per function, one row per variable:**
 
 ```{r}
-reframe(mtcars, map_dfr(across(all_of(cols)), fn_returning_list, .id = "Var"), .by = cyl)
+reframe(mtcars, map_dfr(pick(all_of(cols)), fn_returning_list, .id = "Var"), .by = cyl)
 ```
 
 ```{r}
 #| eval: false
 #| code-fold: true
 
-reframe(mtcars, map(across(all_of(cols)), fn_returning_list) |> bind_rows(.id = "Var"), .by = cyl)
+reframe(mtcars, map(pick(all_of(cols)), fn_returning_list) |> bind_rows(.id = "Var"), .by = cyl)
 ```
 
 ***
@@ -2048,7 +2048,7 @@ reframe(mtcars, map(across(all_of(cols)), fn_returning_list) |> bind_rows(.id = 
 **One column per variable, one row per function:**
 
 ```{r}
-reframe(mtcars, map_dfr(list_of_fns, \(f) map(across(all_of(cols)), f), .id = "Fn"), .by = cyl)
+reframe(mtcars, map_dfr(list_of_fns, \(f) map(pick(all_of(cols)), f), .id = "Fn"), .by = cyl)
 ```
 
 ***
@@ -2955,7 +2955,7 @@ Use to filter one table (left) based on another (right): it will only keep the c
 
 ### Semi join
 
-::: {.callout-tip}
+::: {.callout-note}
 Will give the same result as an inner join, but will only keep the columns of the first table (no information is added).
 :::
 
@@ -3092,7 +3092,7 @@ inner_join(events, strikes, join_by(e.start >= s.end))
 EVENTS[STRIKES, on = .(e.start >= s.end), nomatch = NULL]
 ```
 
-::: {.callout-warning}
+::: {.callout-caution}
 When specifying an equality or inequality condition, `data.table` will merge the two columns: only one will remain, with the values of the second column and the name of the first. Here, `e.start` will have the values of `s.end` (which will be removed).
 
 I'm not sure if this is a bug or not.
@@ -3424,7 +3424,7 @@ MT.ext |> separate_wider_position(x, widths  = c(gear = 1, delim = 1, carb = 1))
 ```
 
 :::: {.callout-note}
-## `separate_wider_*` supersedes both `extract` and `separate`.
+`separate_wider_*` supersedes both `extract` and `separate`.
 ::::
 
 ```{r}

@@ -55,11 +55,9 @@ filters:
 
 ::: {.column-page}
 
-**Cognitive Neuroscientist** interested in Perception, Spatial Cognition, and Human-Machine Interfaces. 
+I'm a recovering academic who worked on several research projects at the intersection between **Cognitive Neurosciences** and **Biomedical Engineering**. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of [:Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) and Augmented Reality, within the [:Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
 
-I'm a recovering academic who worked on several projects at the intersection between Cognitive Neurosciences and Biomedical Engineering. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of [:Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) and Augmented Reality, within the [:Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
-
-I have since retrained as a **Data Scientist** with a fondness for Bayesian methods, and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
+I have since retrained as a **Data Scientist** with a fondness statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
 
 ```{r}
 #| echo: false

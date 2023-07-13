@@ -207,7 +207,18 @@ duckdb_path <- here(data_path, "stations.db")
 #| time_it: true
 #| output: false
 
+read_csv(files, show_col_types = FALSE)
+```
+
+<!-- ALTERNATIVES -->
+
+```{r}
+#| eval: false
+#| code-fold: true
+
 map(files, \(f) read_csv(f, show_col_types = FALSE)) |> list_rbind()
+
+map_dfr(files, \(f) read_csv(f, show_col_types = FALSE))
 ```
 
 ```{r}

@@ -20,8 +20,8 @@ website:
   description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   image: res/avatar.jpg
   favicon: res/favicon.png
-  site-url: 'https://ma-riviere.me'
-  repo-url: https://github.com/ma-riviere/ma-riviere.me
+  site-url: 'https://ma-riviere.com'
+  repo-url: https://github.com/ma-riviere/ma-riviere.com
   # repo-branch: main
   # repo-actions: [source, issue]
   
@@ -77,7 +77,7 @@ website:
       - icon: github
         menu:
           - text: Source Code
-            url:  https://github.com/ma-riviere/ma-riviere.me/
+            url:  https://github.com/ma-riviere/ma-riviere.com/
             aria-label: "Website's source code"
           - text: GitHub Profile
             url: https://github.com/ma-riviere/
