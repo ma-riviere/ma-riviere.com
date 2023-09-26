@@ -24,7 +24,8 @@ details > summary { color: rgb(136, 136, 136); }
 
 /* For the about trick to add link buttons */
 .quarto-about-solana.column-body {
-  padding-top: 0 !important
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
 }
 
 .quarto-about-jolla div p {
