@@ -1,9 +1,12 @@
 # Blog posts
 
+citation:
+  author: "Marc-Aurèle Rivière"
+
 # Field names
 published-title: "First Published"
+abstract-title: "Summary"
 
-citation: true
 toc: true
 # toc-location: right-body
 number-sections: true

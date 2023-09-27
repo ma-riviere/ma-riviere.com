@@ -1,6 +1,6 @@
 ---
 title: "Marc-Aurèle Rivière"
-subtitle: "Data Scientist and Cognitive Neuroscientist, interested in Behavioral Research,  \n and Human-Machine Interfaces  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
+subtitle: "**Data Scientist & Cognitive Neuroscientist**  \n Perception, Spatial Cognition, Augmented Reality, and Human-Machine Interfaces  \n Proficient R programmer | Decent software developper  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
 
 description: "Research Engineer  \n [University of Rouen-Normandy](https://www.univ-rouen.fr/)"
 
@@ -21,11 +21,6 @@ about:
       url: https://twitter.com/mariviere1
       rel: "me"
       aria-label: "Twitter"
-    - text: "Mastodon"
-      icon: mastodon
-      href: https://fediscience.org/@mariviere
-      rel: "me"
-      aria-label: "Mastodon"
     - text: LinkedIn
       icon: linkedin
       url: https://linkedin.com/in/ma-riviere
@@ -48,14 +43,11 @@ website:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   twitter-card:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
-
-filters:
-  - nutshell
 ---
 
 ::: {.column-page}
 
-I'm a recovering academic who worked on several research projects at the intersection between **Cognitive Neurosciences** and **Biomedical Engineering**. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of [:Computer Vision](https://en.wikipedia.org/wiki/Computer_vision) and Augmented Reality, within the [:Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
+I'm a recovering academic who worked on several research projects at the intersection between **Cognitive Neurosciences** and **Biomedical Engineering**. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of Computer Vision and Augmented Reality, within the [Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
 
 I have since retrained as a **Data Scientist** with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
 
@@ -74,9 +66,9 @@ I have since retrained as a **Data Scientist** with a fondness for statistical m
 skills <- tibble::tibble(
   `Behavioral \n Research  ` = 0.95,
   `  Data       \nScience` = 0.85,
-  `      Scientific  \nCommunication` = 0.85,
+  `   Scientific  \nCommunication` = 0.85,
   `Human-Machine  \n    Interfaces    ` = 0.75,
-  `Computer  \n   Vision    ` = 0.625,
+  `Software  \n Engineering` = 0.625,
   `Project     \nManagement` = 0.75,
 ) |> mutate(ID = row_number(), .before = 1)
 

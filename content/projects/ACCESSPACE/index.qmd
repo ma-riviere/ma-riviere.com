@@ -26,12 +26,13 @@ abstract: |
   The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user's location & surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Visual Impairment"
+  - "Research"
+  - "Software Engineering"
+  - "Data Science"
+  - "Human-Computer Interaction"
   - "Augmented Reality"
-  - "Sensory Substitution"
   - "Haptic Interface"
+  - "Sensory Substitution"
   - "Computer Vision"
 
 # Dirty trick to get some links/buttons
@@ -56,7 +57,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](header.jpg){.preview-image fig-alt="Banner illustrating the project"}
+![](header.jpg){fig-alt="Banner illustrating the project"}
 
 # Introduction
 ***

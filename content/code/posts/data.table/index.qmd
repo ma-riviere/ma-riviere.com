@@ -29,35 +29,44 @@ execute:
 
 :::{.callout-tip collapse="true"}
 
-# Expand for Version History
+# 🆕 Expand for Version History
 
-**V1:** 2022-05-19  
-**V2:** 2022-05-26   
-  - Improved the section on **keys** (for ordering & filtering)  
-  - Adding a [section](#tidyr-others) for translations of `Tidyr` (and other similar packages)      
-  - Capping tables to display 15 rows max when unfolded  
-  - Improving table display (stripping, hiding the contents of nested columns, ...)  
-**V3:** 2022-07-20  
-  - Updating `data.table`'s examples of dynamic programming using [`env`](https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html)  
-  - Added new entries in [processing examples](#processing-examples)  
-  - Added new entries to [Tidyr & Others](#tidyr-others): expand + complete, transpose/rotation, ...  
-  - Added `pivot_wider` examples to match the `dcast` ones in the [Pivots](#pivots) section  
-  - Added some new examples here and there across the [Basic Operations](#basic-operations) section  
-  - Added an entry for operating inside nested data.frames/data.tables  
-  - Added a processing example for run-length encoding (i.e. successive event tagging)  
-**V4:** 2022-08-05  
-  - Improved `pivot` section: example of one-hot encoding (and reverse operation) + better examples of partial pivots with `.value`  
-  - Added `tidyr::uncount()` (row duplication) example.  
-  - Improved both light & dark themes (code highlight, tables, ...)  
-**V5:** 2023-03-12  
-  - Revamped the whole document with grouped tabsets by framework for better readability  
-  - Revamped the whole [Basic Operations](#basic-operations) section: better structure, reworked examples, ...   
-  - Revamped the whole [Joins](#joins) section: better structure, new examples (e.g. `join_by`), better explanations, ...  
-  - Updated code to reflect recent updates of the `Tidyverse`:  
-    + `dplyr` (1.1.0): `.by`, `reframe`, `join_by`, `consecutive_id`, ...  
-    + `purrr` (1.0.0): `list_rbind`, `list_cbind`, ...  
-    + `tidyr` (1.3.0): updated the `separate/separate_rows` section to the newer `separate_wider/longer_*`  
-  - Updated code to reflect recent updates of `data.table` (1.14.9): `let`, `DT()`, ...  
+**v1:** 2022-05-19  
+
+**v2:** 2022-05-26   
+
+- Improved the section on **keys** (for ordering & filtering)  
+- Adding a [section](#tidyr-others) for translations of `Tidyr` (and other similar packages)      
+- Capping tables to display 15 rows max when unfolded  
+- Improving table display (stripping, hiding the contents of nested columns, ...)
+  
+**v3:** 2022-07-20  
+
+- Updating `data.table`'s examples of dynamic programming using [`env`](https://rdatatable.gitlab.io/data.table/articles/datatable-programming.html)  
+- Added new entries in [processing examples](#processing-examples)  
+- Added new entries to [Tidyr & Others](#tidyr-others): expand + complete, transpose/rotation, ...  
+- Added `pivot_wider` examples to match the `dcast` ones in the [Pivots](#pivots) section  
+- Added some new examples here and there across the [Basic Operations](#basic-operations) section  
+- Added an entry for operating inside nested data.frames/data.tables  
+- Added a processing example for run-length encoding (i.e. successive event tagging)
+
+**v4:** 2022-08-05  
+
+- Improved `pivot` section: example of one-hot encoding (and reverse operation) + better examples of partial pivots with `.value`  
+- Added `tidyr::uncount()` (row duplication) example.  
+- Improved both light & dark themes (code highlight, tables, ...)  
+
+**v5:** 2023-03-12  
+
+- Revamped the whole document with grouped tabsets by framework for better readability  
+- Revamped the whole [Basic Operations](#basic-operations) section: better structure, reworked examples, ...   
+- Revamped the whole [Joins](#joins) section: better structure, new examples (e.g. `join_by`), better explanations, ...  
+- Updated code to reflect recent updates of the `Tidyverse`:  
+    - `dplyr` (1.1.0): `.by`, `reframe`, `join_by`, `consecutive_id`, ...  
+    - `purrr` (1.0.0): `list_rbind`, `list_cbind`, ...  
+    - `tidyr` (1.3.0): updated the `separate/separate_rows` section to the newer `separate_wider/longer_*`  
+- Updated code to reflect recent updates of `data.table` (1.14.9): `let`, `DT()`, ...  
+
 :::
 
 ```{r}
@@ -65,15 +74,13 @@ execute:
 #| eval: false
 #| output: false
 
-# TODO:
-
-# rollup, cube, groupingsets
-
 ## See: 
 ### - https://atrebas.github.io/post/2019-03-03-datatable-dplyr/
 ### - https://atrebas.github.io/post/2020-06-14-datatable-pandas/
 
 # ----------------------------------------------------------
+
+# TODO:
 
 ## TIDYR 1.3:
 ### Unnest_wider/longer
@@ -85,16 +92,24 @@ execute:
 
 ## Time methods (eq to lubridate): https://rdatatable.gitlab.io/data.table/reference/IDateTime.html
 
+## PIVOTS:
+### - rowid() in dcast
+### - Column selection in melt:
+#### melt(id.cols = patterns("^[^dist_]"), measure = measure(method, pattern = "dist_(.*)")) # Measure gets everything not in id.cols
+#### melt(measure = measure(method, pattern = "dist_(.*)", cols = c("dist_sf", "dist_haversine"))) # Manual column names (can't use patterns here)
+#### <=> pivot_longer(cols = starts_with("dist"), names_sep = "_", names_to = c(NA, "method"))
+#### <=> pivot_longer(cols = starts_with("dist"), names_pattern = "dist_(.*)", names_to = c(NA, "method"))
+
 ## JOINS:
-### - Rework .EACHI example (and add to joins) --> by = .EACHI == by = .I for both tables ?!!?
+### - Add .EACHI example --> by = .EACHI == by = .I for both tables ?!!?
 #### See: https://scitilab.com/post_data/non_equi_joins/2020_11_17_non_equi_merge/#a-second-real-life-example
 #### DT <- data.table(x=rep(c("b","a","c"),each=3), y=c(1,3,6), v=1:9)
 #### X  <- data.table(x=c("c","b"), v=8:7, foo=c(4,2))
 #### DT[X, on=.(x, v>=v), sum(y)*foo, by=.EACHI]
 
 ## EXAMPLES:
-### Solution for recursive self-join
-### frollmean() frollsum() frollapply()
+### - frollmean() frollsum() frollapply()
+### - rollup, cube, groupingsets
 
 # ----------------------------------------------------------
 
@@ -117,8 +132,6 @@ execute:
 #| output: false
 
 source(here::here("src", "init_min.R"), echo = FALSE)
-
-config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
@@ -158,12 +171,12 @@ library(lubridate)   # Manipulating dates
 
 library(broom)
 
-data.table::setDTthreads(parallel::detectCores(logical = TRUE))
+data.table::setDTthreads(parallel::detectCores(logical = FALSE))
 ```
 
 :::{.callout-tip collapse="true"}
 
-# Expand for Session Info
+# 💻 Expand for Session Info
 
 ```{r}
 #| echo: false
@@ -3798,7 +3811,7 @@ dat_agg |>
 (melt(DAT_AGG, measure.vars = cols, variable.name = "Severity", value.name = "Count")
   [rep(1:.N, Count)][, ID_new := .I] 
   |> dcast(... ~ Severity, value.var = "Severity", fun.agg = \(x) ifelse(is.na(x), 0, 1), fill = 0)
-  |> DT(, -"Count")
+  |> _[, -"Count"]
 )
 ```
 
@@ -4249,618 +4262,6 @@ data.table::transpose(MT_SUMMARY, keep.names = "Statistic", make.names = 1)
 :::
 
 
-
-<!-------------------------------------------------------->
-<!-------------------------------------------------------->
-# Processing examples
-***
-
-Examples of interesting tasks that I've collected over time.
-
-<!-------------------------------------------------------->
-## Find minimum in each group
-
-```{r}
-MT |> slice_min(mpg, by = cyl, with_ties = FALSE)
-```
-
-```{r}
-#| code-fold: true
-
-MT |> slice(which.min(mpg), .by = cyl)
-```
-
-
-```{r}
-MT[, .SD[which.min(mpg)], keyby = cyl]
-```
-
-
-<!-------------------------------------------------------->
-## GROUP > FILTER > MUTATE
-
-**Data:**
-
-```{r}
-#| echo: false
-
-(DAT <- structure(list(
-  id = c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 2L, 2L), 
-  name = c("Jane", "Jane", "Jane", "Jane", "Jane", "Jane", "Jane", "Jane", "Bob", "Bob", "Bob", "Bob", "Bob", "Bob", "Bob", "Bob"), 
-  year = c(1980L, 1981L, 1982L, 1983L, 1984L, 1985L, 1986L, 1987L, 1985L, 1986L, 1987L, 1988L, 1989L, 1990L, 1991L, 1992L), 
-  job = c("Manager", "Manager", "Manager", "Manager", "Manager", "Manager", "Boss", "Boss", "Manager", "Manager", "Manager", "Boss", "Boss", "Boss", "Boss", "Boss"), 
-  job2 = c(1L, 1L, 1L, 1L, 1L, 1L, 0L, 0L, 1L, 1L, 1L, 0L, 0L, 0L, 0L, 0L)
-  ), 
-  .Names = c("id", "name", "year", "job", "job2"), 
-  class = "data.frame", 
-  row.names = c(NA, -16L)
-) |> setDT())
-```
-
-**`Tidyverse`:**
-
-```{r}
-DAT |> 
-  group_by(name, job) |> 
-  filter(job != "Boss" | year == min(year)) |> 
-  mutate(cumu_job2 = cumsum(job2)) |> 
-  ungroup()
-```
-
-:::{.callout-note}
-Here, the grouping is done BEFORE the filter -> there will be empty groups, meaning they will sum to 0
-:::
-
-**`data.table`:**
-
-Solution 1:
-
-```{r}
-DAT[ , .SD[job != "Boss" | year == min(year), .(cumu_job2 = cumsum(job2))], by = .(name, job)]
-```
-
-Solution 2:
-
-```{r}
-DAT[ , .(cum_job2 = cumsum(job2[job != "Boss" | year == min(year)])), by = .(name, job)]
-```
-
-Solution 3:
-
-```{r}
-DAT[DAT[, .I[job != "Boss" | year == min(year)], by = .(name, job)]$V1
-  ][, cumu_job2 := cumsum(job2), by = .(name, job)][]
-```
-
-**If we filtered after the grouping:**
-
-```{r}
-DAT[job != "Boss" | year == min(year), list(cumu_job2 = cumsum(job2)), by = .(name, job)]
-```
-
-
-<!-------------------------------------------------------->
-## GROUP > SUMMARIZE > JOIN > MUTATE
-
-**Data:**
-
-```{r}
-(GSJM1 <- data.table(x = c(1,1,1,1,2,2,2,2), y = c("a", "a", "b", "b"), z = 1:8, key = c("x", "y")))
-(GSJM2 <- data.table(x = 1:2, y = c("a", "b"), mul = 4:3, key = c("x", "y")))
-```
-
-**`Tidyverse`:**
-
-```{r}
-as.data.frame(GSJM1) |> 
-  summarise(z = sum(z), .by = c(x, y)) |>
-  right_join(GSJM2) |>
-  mutate(z = z * mul) |> 
-  select(-mul)
-```
-
-**`data.table`:**
-
-Basic:
-
-```{r}
-GSJM1[, .(z = sum(z)), by = .(x, y)][GSJM2][, let(z = z * mul, mul = NULL)][]
-```
-
-Advanced (using `.EACHI`):
-
-<!-- See: https://stackoverflow.com/questions/27004002/eachi-in-data-table/27004566#27004566 -->
-
-```{r}
-GSJM1[GSJM2, .(z = sum(z) * mul), by = .EACHI]
-```
-
-
-<!-------------------------------------------------------->
-## Separating rows & cleaning text
-
-**Data**
-
-```{r}
-#| echo: false
-
-(DT_COMA <- data.table(
-  first = c(1,"2,3",3,4,5,6.5,7,8,9,0), 
-  second = c(1,"2,,5",3,4,5,"6,5,9",7,8,9,0), 
-  third = c("one", "two", "thr,ee", "four", "five", "six", "sev,en", "eight", "nine", "zero"), 
-  fourth = as.Date(c(1/1/2020, 2/1/2020, 3/1/2020, 4/1/2020, 5/1/2020, 6/1/2020, 7/1/2020, 8/1/2020, 9/1/2020, 10/1/2020), origin = "1970-01-01")
-  )
-)
-```
-
-### Step1: Cleaning
-
-Removing unwanted commas within words
-
-**`Tidyverse`:**
-
-```{r}
-DT_COMA |> 
-  mutate(across(where(\(v) is.character(v) & all(is.na(as.numeric(v)))), \(v) str_remove_all(v, ",")))
-```
-
-**`data.table`:**
-
-```{r}
-cols_to_clean <- DT_COMA[, .SD, .SDcols = \(v) is.character(v) & all(is.na(as.numeric(v)))] |> colnames()
-
-copy(DT_COMA)[, c(cols_to_clean) := map(.SD[, cols_to_clean, with = F], \(v) str_remove_all(v, ","))][]
-```
-
-
-### Step 2: Separating rows
-
-Each numeric row that has multiple comma-separated values has to be split into multiple rows (one value per row)
-
-**`Tidyverse`:**
-
-```{r}
-cols_to_separate <- select(DT_COMA, where(\(v) is.character(v) & any(!is.na(as.numeric(v))))) |> colnames()
-
-reduce(
-  cols_to_separate, 
-  \(acc, col) acc |> tidyr::separate_rows(col, sep = ",", convert = T), 
-  .init = DT_COMA
-)
-```
-
-**`data.table`:**
-
-```{r}
-cols_to_separate <- DT_COMA[, .SD, .SDcols = \(v) is.character(v) & any(!is.na(as.numeric(v)))] |> colnames()
-
-(reduce(
-  cols_to_separate,
-  \(acc, col) acc[rep(1:.N, lengths(strsplit(get(col), ",")))][, (col) := type.convert(unlist(strsplit(acc[[col]], ",", fixed = T)), as.is = T, na.strings = "")],
-  .init = DT_COMA
-))[]
-```
-
-
-### Combining both steps
-
-**`Tidyverse`:**
-
-```{r}
-DT_COMA <- DT_COMA |> mutate(across(where(\(v) is.character(v) & all(is.na(as.numeric(v)))), \(v) str_remove_all(v, ",")))
-
-reduce(
-  select(DT_COMA, where(\(v) is.character(v) & any(!is.na(as.numeric(v))))) |> colnames(), 
-  \(acc, col) acc |> tidyr::separate_rows(col, sep = ",", convert = T), 
-  .init = DT_COMA
-)
-```
-
-**`data.table`:**
-
-```{r}
-cols_to_clean <- DT_COMA[, .SD, .SDcols = \(v) is.character(v) & all(is.na(as.numeric(v)))] |> colnames()
-cols_to_separate <- DT_COMA[, .SD, .SDcols = \(v) is.character(v) & any(!is.na(as.numeric(v)))] |> colnames()
-
-DT_COMA[, c(cols_to_clean) := map(.SD[, cols_to_clean, with = F], \(v) str_remove_all(v, ","))]
-
-(reduce(
-  cols_to_separate,
-  \(acc, col) acc[rep(1:.N, lengths(strsplit(get(col), ",")))][, (col) := type.convert(unlist(strsplit(acc[[col]], ",", fixed = T)), as.is = T, na.strings = "")],
-  .init = DT_COMA
-))[]
-```
-
-
-<!-------------------------------------------------------->
-## Multiple choice questions
-
-**Data:**
-
-```{r}
-#| echo: false
-#| output: false
-
-surv <- data.frame(
-  ID = c(1:5),
-  response = c(
-    "I read the assigned readings.|I reread my notes.|I worked with one or more classmates.",
-    "I read the assigned readings.|I reviewed this week's slides.",
-    "I worked on practice problems.|I read the assigned readings.|I reread my notes.",
-    "I worked on practice problems.|I read the assigned readings.|I reread my notes.",
-    "I worked on practice problems.|I read the assigned readings.|I reread my notes.|I reviewed this week's slides.|I worked with one or more classmates."
-  )
-)
-
-SURV <- as.data.table(surv)
-```
-
-```{r}
-surv
-```
-
-Here we will spread the answers into their own columns using a pivot because not all rows have all the possible answers:
-
-**`Tidyverse`:**
-
-```{r}
-surv |> 
-  mutate(response = str_split(response, fixed("|"))) |> 
-  unnest(response) |> 
-  pivot_wider(id_cols = ID, names_from = response, values_from = response, values_fn = \(.x) sum(!is.na(.x)), values_fill = 0)
-```
-
-**`data.table`:**
-
-```{r}
-SURV[, c(.SD, tstrsplit(response, "|", fixed = T))][, -"response"] |> 
-  melt(measure.vars = patterns("^V")) |> 
-  dcast(ID ~ value, fun.agg = \(.x) sum(!is.na(.x)), subset = .(!is.na(value)))
-```
-
-
-<!-------------------------------------------------------->
-## Filling with lagging conditions
-
-**Task:** See [this SO question](https://stackoverflow.com/questions/71952593/filling-rows-of-multiple-columns-based-on-multiple-conditions).
-
-**Data:**
-
-```{r}
-ZIP <- structure(
-  list(
-    zipcode = c(1001, 1002, 1003, 1004, 1101, 1102, 1103, 1104, 1201, 1202, 1203, 1302), 
-    areacode = c(4, 4, NA, 4, 4, 4, NA, 1, 4, 4, NA, 4), 
-    type = structure(c(1L, 1L, NA, 1L, 2L, 2L, NA, 1L, 1L, 1L, NA, 1L), .Label = c("clay", "sand"), class = "factor"), 
-    region = c(3, 3, NA, 3, 3, 3, NA, 3, 3, 3, NA, 3), 
-    do_not_fill = c(1, NA, NA, 1, 1, NA, NA, 1, NA, NA, NA, 1)
-    ), 
-  class = c("data.table", "data.frame"), row.names = c(NA, -4L)
-)
-```
-
-**`Tidyverse`:**
-
-```{r}
-as_tibble(ZIP) |>
-  mutate(type = as.character(type)) |>
-  mutate(
-    across(1:4, ~ ifelse(
-        is.na(.) & lag(areacode) == lead(areacode) & 
-          lag(as.numeric(substr(zipcode, 1, 2))) == lead(as.numeric(substr(zipcode, 1, 2))),
-        lag(.), .
-      )
-    )
-  )
-```
-
-**`data.table`:**
-
-```{r}
-ZIP[, c(lapply(.SD, \(v) {fifelse(
-  is.na(areacode) & lag(areacode) == lead(areacode) &
-    lag(as.numeric(substr(zipcode, 1, 2))) == lead(as.numeric(substr(zipcode, 1, 2))), lag(v), v)}), 
-  .SD[, .(do_not_fill)]), .SDcols = !patterns("do_not_fill")]
-```
-
-
-<!-------------------------------------------------------->
-## Join + Coalesce
-
-**Task:** Replace the missing dates from one dataset with the earliest date from another dataset, matching by ID:
-
-**Data:**
-
-```{r}
-(dt1 <- data.table::fread(
-"
-      id  x       y   z         
-     1    A       1    NA        
-     2    C       3    NA        
-     3    C       3    NA        
-     4    C       2    NA        
-     5    B       2    2019-08-04
-     6    C       1    2019-09-18
-     7    B       3    2019-12-17
-     8    A       2    2019-11-02
-     9    A       3    2020-03-16
-    10    A       1    2020-01-31
-"
-))
-
-(dt2 <- data.table::fread(
-"      id      date
-      1      2012-09-25
-      1      2012-03-26
-      1      2012-11-12
-      2      2013-01-24
-      2      2012-05-04
-      2      2012-02-24
-      3      2012-05-30
-      3      2012-02-15
-      4      2012-03-13
-      4      2012-05-18
-"))
-```
-
-**`Tidyverse`:**
-
-Using `coalesce`:
-
-```{r}
-left_join(
-  dt1, 
-  dt2 |> summarize(date = min(date), .by = id), 
-  by = "id"
-) |> mutate(date = coalesce(z, date), z = NULL)
-```
-
-Using the [`rows_*` functions](https://dplyr.tidyverse.org/reference/rows.html):
-
-```{r}
-rows_patch(
-  dt1 |> rename(date = z), 
-  dt2 |> summarize(date = min(date), .by = id), 
-  by = "id"
-)
-```
-
-**`data.table`:**
-
-As a right join:
-
-```{r}
-copy(dt2)[, .(date = min(date)), by = id
-  ][dt1, on = "id"][, let(date = fcoalesce(date, z), z = NULL)][]
-```
-
-As a left join:
-
-```{r}
-copy(dt1)[dt2[, .(date = min(date)), by = id], c("id", "date") := .(i.id, i.date), on = "id"
-  ][, let(date = fcoalesce(date, z), z = NULL)][]
-```
-
-
-<!-------------------------------------------------------->
-## Join on multiple columns (partial matching)
-
-**Task:** Join both tables based on matching IDs, but the IDs are split between multiple columns in one table (`id1` & `id2`).
-
-```{r}
-(dt1 <- data.table(id = c("ABC", "AAA", "CBC"), x = 1:3))
-
-(dt2 <- data.table(
-  id1 = c("ABC", "AA", "CB"), 
-  id2 = c("AB", "AAA", "CBC"), 
-  y = c(0.307, 0.144, 0.786))
-)
-```
-
-**Solution 1:**
-
-Combine the two ID columns into one with `pivot_longer`, then join:
-
-```{r}
-dt2 |> pivot_longer(matches("^id"), names_to = NULL, values_to = "id") |> right_join(dt1)
-```
-
-```{r}
-melt(dt2, measure.vars = patterns("^id"), value.name = "id")[, variable := NULL][dt1, on = "id"]
-```
-
-
-**Solution 2:**
-
-Combine the two ID columns into one with `unite` + `separate_rows`, then join:
-
-_(From [@TimTeaFan](https://twitter.com/TimTeaFan/status/1534492468787421187)_
-
-```{r}
-dt2 |> unite("id", id1, id2, sep = "_") |> separate_rows("id") |> right_join(dt1)
-```
-
-```{r}
-copy(dt2)[, id := paste(id1, id2, sep = "_")
-        ][, c(V1 = strsplit(id, "_", fixed = TRUE), .SD), by = id
-        ][, let(id = V1, V1 = NULL, id1 = NULL, id2 = NULL)
-        ][dt1, on = "id"]
-```
-
-
-**Solution 3:**
-
-Join on one of the two columns (`id2` here), and then fill in (patch) the missing values:
-
-```{r}
-left_join(dt2, dt1, by = c("id2" = "id")) |> 
-  rows_patch(rename(dt1, id1 = id), unmatched = "ignore")
-```
-
-
-## Merging rows across multiple columns (every X rows)
-
-**Data:**
-
-```{r}
-(BANK <- data.table(
-    date = c("30 feb", "NA", "NA", "NA", "31 feb", "NA", "NA", "NA"), 
-    description = c("Mary", "had a", "little", "lamb", "Twinkle", "twinkle", "little", "star"), 
-    withdrawal = c("100", "NA", "NA", "NA", "NA", "NA", "NA", "NA"), 
-    deposit = c("NA", "NA", "NA", "NA", "100", "NA", "NA", "NA")
-  )[, lapply(.SD, \(c) type.convert(c, as.is = T))]
-)
-```
-
-```{r}
-merge_and_convert <- function(v) {
-  type.convert(v, as.is = T) |> na.omit() |> 
-    paste(collapse = " ") |> type.convert(as.is = T) |> 
-    bind(x, ifelse(is.logical(x), as.integer(x), x))
-}
-```
-
-**`Tidyverse`:**
-
-Solution 1:
-
-```{r}
-mutate(BANK, ID = ceiling(seq_along(row_number())/4)) |> 
-  summarize(across(everything(), \(m) merge_and_convert(m)), .by = ID)
-```
-
-Solution 2:
-
-```{r}
-summarize(BANK, across(
-  everything(), 
-  \(c) sapply(split(c, ceiling(seq_along(c)/4)), \(m) merge_and_convert(m))
-))
-```
-
-**`data.table`:**
-
-```{r}
-BANK[, lapply(.SD, \(c) sapply(split(c, ceiling(seq_along(c)/4)), \(m) merge_and_convert(m)))]
-```
-
-
-```{r}
-copy(BANK)[, ID := ceiling(seq_along(.I)/4)][, lapply(.SD, \(m) merge_and_convert(m)), by = ID][]
-```
-
-
-<!-------------------------------------------------------->
-## Tagging successive events
-
-Tagging repeated blocks of events (aka _run length encoding_):
-
-```{r}
-(dat <- data.frame(event = c(
-  rep("A", 3),
-  rep("B", 5),
-  rep("C", 2),
-  rep("B", 2),
-  rep("A", 3)
-)))
-
-DAT <- as.data.table(dat)
-```
-
-**Manually:**
-
-```{r}
-dat |> mutate(ID = with(rle(event), rep(seq_along(lengths), lengths)))
-
-dat |> mutate(ID = c(0, cumsum(diff(as.integer(factor(event))) != 0)) + 1)
-```
-
-**`Tidyverse`:**
-
-```{r}
-dat |> mutate(ID = consecutive_id(event))
-```
-
-**`data.table`:**
-
-```{r}
-DAT[, ID := rleid(event)][]
-```
-
-<!------
-## Recursive self join
-
-**Data:**
-
-```{r}
-#| echo: false
-
-HIERA <- fread(
-  "id	first_name	last_name	manager_id
-  1	Maisy	Bloom	NA
-  2	Caine	Farrow	1
-  3	Waqar	Jarvis	2
-  4	Lacey-Mai	Rahman	2
-  5	Merryn	French	3"
-)
-
-(hiera <- as.data.frame(HIERA))
-```
-
-The goal here is to find out who the topmost supervisor of every person in the table:
-
-::: {.panel-tabset group="framework"}
-
-#### Tidyverse
-
-**Solution 1:**
-
-```{r}
-find_top <- function(original, current = NULL) {
-  if (is.null(current)) current <- original
-  
-  new_dat <- (
-    current 
-    |> mutate(manager_chain = pmap(across(matches("manager")), \(...) c(...) |> na.omit() |> unname() |> c()))
-    |> left_join(original |> select(matches("id")), join_by(manager_id == id)) 
-    |> mutate(manager_id = manager_id.y) 
-    |> select(-manager_id.y)
-  )
-  
-  if (!all(is.na(new_dat$manager_id))) find_top(original, new_dat)
-  else return(new_dat |> rows_patch(original, by = "id"))
-}
-
-find_top(hiera) |> mutate(manager_chain = apply(across(manager_chain), 1, \(x) str_c(unlist(x), collapse = ", ")))
-```
-
-**Solution 2:** displaying the hierarchy chain
-
-```{r}
-final <- hiera
-counter <- 1
-
-while (!all(is.na(final$manager_id))) {
-  final <- final |> 
-    mutate("`n+{counter}`" := manager_id) |> 
-    left_join(select(hiera, matches("id")), join_by(manager_id == id)) |> 
-    mutate(manager_id = manager_id.y) |> 
-    select(-manager_id.y)
-  
-  counter <- counter + 1
-}
-
-final |> select(-manager_id)
-```
-
-#### data.table
-
-```{r}
-# TODO
-```
-
-:::
------>
 
 ***
 

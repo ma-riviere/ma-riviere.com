@@ -23,12 +23,13 @@ website:
     description: "Smart pen providing real-time audio-feedback on objects using smartphone's sensors"
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Visual Impairment"
+  - "Research"
+  - "Software Engineering"
+  - "Data Science"
+  - "Human-Computer Interaction"
   - "Augmented Reality"
-  - "Sensory Substitution"
   - "Auditory Interface"
+  - "Sensory Substitution"
   - "Computer Vision"
 
 # Dirty trick to get some links/buttons
@@ -49,7 +50,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+![](feature.png){fig-alt="Image illustrating the project"}
 
 # Introduction
 ***
@@ -79,4 +80,4 @@ Indoor Atlas
 
 :::
 
-**2)** Assist in writing a [scientific paper](/content/pubs/ICCHP20/) presenting the project.
+**2)** Assist in analyzing the data and writing a [scientific paper](/content/pubs/ICCHP20/) presenting the project.

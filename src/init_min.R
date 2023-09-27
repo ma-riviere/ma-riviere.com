@@ -20,4 +20,8 @@ theme_scripts <- c(
   "theme.R",
   list.files(path = here::here(com_path, "theme"), pattern = "*.R") |> Filter(\(f) !endsWith(f, "theme.R"), x = _)
 )
-sapply(theme_scripts, \(f) source(here::here(com_path, "theme", f), verbose = FALSE, echo = FALSE)) -> void
+
+sapply(theme_scripts, \(f) source(here::here(com_path, "theme", f), verbose = FALSE, echo = FALSE)) |> invisible()
+
+## Load configs ##
+config <- config::get(file = here("_config.yml"))

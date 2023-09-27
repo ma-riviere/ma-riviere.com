@@ -43,8 +43,6 @@ You can check the page's source code by clicking on the **</> Code** button at t
 #| output: false
 
 source(here::here("src", "init_min.R"), echo = FALSE)
-
-config <- config::get(file = here("_config.yml"))
 ```
 
 ```{r}
@@ -133,7 +131,8 @@ cmdstanr::install_cmdstan(cpp_options = cpp_opts, quiet = TRUE)
 #| code-fold: true
 #| code-summary: Loading CmdStan (if already installed)
 
-highest_cmdstan_version <- fs::dir_ls(config$cmdstan_path) |> fs::path_file() |> 
+highest_cmdstan_version <- dir_ls(config$cmdstan_path) |> 
+  path_file() |> 
   keep(\(e) str_detect(e, "cmdstan-")) |> 
   bind(x, str_split(x, '-', simplify = TRUE)[,2]) |> 
   reduce(\(x, y) ifelse(utils::compareVersion(x, y) == 1, x, y))
@@ -151,7 +150,7 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 
 :::{.callout-tip collapse="true"}
 
-## Expand for Session Info
+## 💻 Expand for Session Info
 
 ```{r}
 #| echo: false
@@ -208,7 +207,11 @@ knitr::knit_hooks$set(time_it = local({
 <!------------------------------------------------------------------------------>
 ## Matches data
 
-Loading the raw matches data:
+<a class="btn btn-primary" target="_blank" href="/res/data/tennis/matches.zip" download="">
+  <i class="bi bi-download"></i> Download the matches' data
+</a>
+
+Loading the matches' data:
 
 ```{r}
 #| echo: false
@@ -216,12 +219,13 @@ Loading the raw matches data:
 matches_data_path <- here::here("res", "data", "tennis")
 ```
 
-
 ```{r}
 #| output: false
 
-matches_data_raw <- (dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv")
-  |> map(\(f) read_csv(f, show_col_types = FALSE) |> 
+## Loading and combining all the "atp_matches" csv files, only keeping the desired columns
+matches_data_raw <- (
+  dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv")
+  |> map(\(file) read_csv(file, show_col_types = FALSE) |> 
       select(
         tourney_date, tourney_level, round, 
         winner_id, winner_name, loser_id, loser_name, score
@@ -232,7 +236,7 @@ matches_data_raw <- (dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv")
 )
 ```
 
-Filtering matches based on the [original posts' data processing](https://github.com/martiningram/mcmc_runtime_comparison/blob/main/sackmann.py):
+Filtering and cleaning the combined matches' data (based on the [original post's data processing](https://github.com/martiningram/mcmc_runtime_comparison/blob/main/sackmann.py)):
 
 ```{r}
 #| output: asis
@@ -269,6 +273,10 @@ round_numbers = list(
 <!------------------------------------------------------------------------------>
 ## Player data
 
+<a class="btn btn-primary" target="_blank" href="/res/data/tennis/atp_players.csv" download="">
+  <i class="bi bi-download"></i> Download the players' data
+</a>
+
 Loading the raw player data:
 
 ```{r}
@@ -276,7 +284,6 @@ Loading the raw player data:
 
 player_data_path <- here::here("res", "data", "tennis", "atp_players.csv")
 ```
-
 
 ```{r}
 #| output: asis
@@ -335,12 +342,11 @@ USE_CACHE <- TRUE
 tennis_mod_path <- here::here("res", "models", "tennis_mod_stan.rds")
 ```
 
-
 <!------------------------------------------------------------------------------>
 ## Stan code
 
 :::{.callout-note appearance="simple"}
-## Updated Stan code with **within-chain parallelization**
+Updated Stan code with **within-chain parallelization**
 :::
 
 ```{cmdstan, output.var = "tennis_mod_exe", eval = !USE_CACHE}
@@ -481,14 +487,14 @@ tennis_mod_fit$save_object(file = tennis_mod_path)
 #| fig.width: 10
 #| output: asis
 
-bayesplot::mcmc_neff_hist(bayesplot::neff_ratio(tennis_mod_fit))
+mcmc_neff_hist(neff_ratio(tennis_mod_fit))
 ```
 
 ```{r}
 #| fig.width: 10
 #| output: asis
 
-bayesplot::mcmc_rhat_hist(bayesplot::rhat(tennis_mod_fit))
+mcmc_rhat_hist(rhat(tennis_mod_fit))
 ```
 
 **Plotting random subsets of the traces:**
@@ -496,9 +502,9 @@ bayesplot::mcmc_rhat_hist(bayesplot::rhat(tennis_mod_fit))
 ```{r}
 hist_trace_plot <- function(mod, vars) {
   draws <- mod$draws(variables = vars, format = "draws_list")
-  patchwork::wrap_plots(
-    bayesplot::mcmc_hist(draws, facet_args = list(nrow = length(vars))),
-    bayesplot::mcmc_trace(draws, facet_args = list(nrow = length(vars))),
+  wrap_plots(
+    mcmc_hist(draws, facet_args = list(nrow = length(vars))),
+    mcmc_trace(draws, facet_args = list(nrow = length(vars))),
     widths = c(1, 1.5)
   )
 }
@@ -529,9 +535,10 @@ Getting our Posterior Predictions into long format and joining the result with `
 ```{r}
 #| output: asis
 
-(player_skills <- as.data.table(tennis_mod_fit$draws(variables = "player_skills") |> 
-    bind(x, subset_draws(x, "player_skills", regex = T, draw = sample.int(ndraws(x), size = 500))))
-   [, .(player_skills = list(value)), by = variable
+(player_skills <- tennis_mod_fit$draws(variables = "player_skills")
+  |> bind(x, subset_draws(x, "player_skills", regex = TRUE, draw = sample.int(ndraws(x), size = 500)))
+  |> as.data.table()
+  |> _[, .(player_skills = list(value)), by = variable
   ][, let(player_idx = as.integer(str_extract(variable, "\\d{1,4}")), variable = NULL)
   ][, let(skill_mean = sapply(player_skills, mean), skill_sd = sapply(player_skills, sd))
   ][as.data.table(player_data), on = "player_idx", nomatch = NULL
@@ -548,8 +555,8 @@ Getting our Posterior Predictions into long format and joining the result with `
 #| code-summary: Plot code
 
 ridgeline_plot <- function(dat, var) {
-  dat[, .(player_skills = unlist(player_skills)), by = setdiff(names(dat), 'player_skills')
-     ][, player_name := factor(player_name, levels = unique(player_name))] -> dat
+  dat <- dat[, .(player_skills = unlist(player_skills)), by = setdiff(names(dat), 'player_skills')
+     ][, player_name := factor(player_name, levels = unique(player_name))]
   
   ggplot(dat, aes_string(y = var)) +
     ggridges::geom_density_ridges(

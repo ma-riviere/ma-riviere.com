@@ -26,13 +26,13 @@ website:
     description: "An audio-tactile interface for virtually exploring maps and preparing journeys"
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Visual Impairment"
+  - "Research"
+  - "Software Engineering"
+  - "Human-Computer Interaction"
   - "Virtual Reality"
-  - "Sensory Substitution"
   - "Haptic Interface"
   - "Auditory Interface"
+  - "Sensory Substitution"
 
 # Dirty trick to get some links/buttons
 about:
@@ -49,7 +49,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+![](feature.png){fig-alt="Image illustrating the project"}
 
 # Introduction
 ***

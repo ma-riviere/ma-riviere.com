@@ -5,8 +5,10 @@
 **Templates:**
 - <hr> integrated to template
 
+- CSL citation styles ? (see Quarto docs)
+
 Pub template:
-- Display: Equal contributor, corresponding
+- Display: Equal contributor
 - Loop for links as buttons
 
 Project template:

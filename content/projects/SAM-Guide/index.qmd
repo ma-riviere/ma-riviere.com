@@ -34,14 +34,14 @@ abstract: |
   SAM-Guide is a inter-disciplinary collaboration project (ANR 2021 PRC) between three sites: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University, (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Visual Impairment"
+  - "Research"
+  - "Software Engineering"
+  - "Data Science"
+  - "Human-Computer Interaction"
   - "Augmented Reality"
   - "Sensory Substitution"
   - "Auditory Interface"
   - "Haptic Interface"
-  - "Computer Vision"
 
 # Dirty trick to get some links/buttons
 about:
@@ -54,7 +54,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Banner illustrating the project"}
+![](feature.png){fig-alt="Banner illustrating the project"}
 
 # Introduction
 ***

@@ -35,12 +35,13 @@ abstract: |
   This paper introduces the [NAV-VIR](/content/projects/NAV-VIR) system, a multimodal virtual environment to assist visually impaired people in virtually discovering and exploring unknown areas from the safety of their home. The originality of NAV-VIR resides in (1) an optimized representation of the surrounding topography, the spatial gist, based on human spatial cognition models and the sensorimotor supplementation framework, and (2) a multimodal orientation-aware immersive virtual environment relying on two synergetic interfaces: an interactive force feedback tablet, the F2T, and an immersive HRTF-based 3D audio simulation relying on binaural recordings of real environments. This paper presents NAV-VIR functionalities and its preliminary evaluation through a simple shape and movement perception task.
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Augmented Reality"
+  - "Cognitive Psychology"
   - "Sensory Substitution"
+  - "Accessibility"
+  - "Engineering"
   - "Auditory Interface"
   - "Haptic Interface"
+  - "Augmented Reality"
 
 citation:
   type: paper-conference

@@ -1,1 +1,4 @@
-<hr style="margin-bottom: 30px; margin-top: -12px;" width="1000px">
+:::{#about-links}
+:::
+
+<hr style="margin-bottom: 0px; margin-top: -12px;" width="1000px">

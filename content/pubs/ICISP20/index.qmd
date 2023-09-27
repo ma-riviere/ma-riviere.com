@@ -35,11 +35,11 @@ abstract: |
   This paper presents a new way to access visual information in museums through tactile exploration, and related techniques to efficiently transform visual data into tactile objects. Accessibility to cultural heritage and artworks for people with visual impairments requires the segmentation of images and paintings to extract and classify their contents into meaningful elements which can then be presented through a tactile medium. In this paper, we investigate the feasibility and how to optimize the tactile discovery of an image. First, we study the emergence of image comprehension through tactile discovery, using 3D-printed objects extracted from paintings. Later, we present a dynamic Force Feedback Tablet (F2T) used to convey the 2D shape and texture information of objects through haptic feedback. We then explore several image segmentation methods to automate the extraction of meaningful objects from selected artworks, to be presented to visually impaired people through the F2T. Finally, we evaluate how to best combine the F2T’s haptic effects in order to convey the extracted objects and features to the users, with the aim of facilitating the comprehension of the represented objects and their affordances.
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
+  - "Engineering"
   - "Computer Vision"
   - "Sensory Substitution"
   - "Haptic Interface"
+  - "Accessibility"
 
 citation:
   type: paper-conference

@@ -26,12 +26,13 @@ website:
     description: "Wearable visuo-auditive substitution system for blind navigation and object-reaching"
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Visual Impairment"
+  - "Research"
+  - "Software Engineering"
+  - "Data Science"
+  - "Human-Computer Interaction"
   - "Augmented Reality"
-  - "Sensory Substitution"
   - "Auditory Interface"
+  - "Sensory Substitution"
   - "Computer Vision"
 
 # Dirty trick to get some links/buttons
@@ -55,7 +56,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+![](feature.png){fig-alt="Image illustrating the project"}
 
 # Introduction
 ***
@@ -71,7 +72,7 @@ AdViS aims to explore various ways to provide visuo-spatial information through 
 
 ![AdViS - Depth Map navigation](advis-diagram.png){alt="AdViS system's operating diagram"}
 
-![AdViS - Motion Capture](feature.png){.preview-image alt="AdViS system's operating diagram with motion capture"}
+![AdViS - Motion Capture](feature.png){alt="AdViS system's operating diagram with motion capture"}
 
 :::
 

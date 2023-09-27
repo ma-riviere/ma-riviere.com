@@ -8,7 +8,7 @@ project_repos <- c(
   CRAN = "https://cloud.r-project.org/"
 )
 
-base_pkgs <- c("renv", "here", "config", "rlang", "fs", "knitr", "rmarkdown", "crayon", "usethis", "glue", "magrittr", "todor", "pipebind")
+base_pkgs <- c("renv", "here", "config", "rlang", "fs", "knitr", "rmarkdown", "glue", "magrittr", "cli", "pipebind")
 
 project_pkgs <- c(
   ### Pre-requisites
@@ -22,11 +22,8 @@ project_pkgs <- c(
   "dplyr",
   "lubridate",
   "Rdatatable/data.table",
-  "Tidyverse/dtplyr",
   "Tidyverse/dbplyr",
   "arrow",
-  "furrr",
-  "DBI",
   "RSQLite",
   "duckdb",
   "fuzzyjoin",
@@ -53,14 +50,11 @@ project_pkgs <- c(
 
   ### Publishing
   "gt",
-  "jthomasmock/gtExtras",
   "sessioninfo",
   "quarto",
   "downlit",
   "xml2",
   
   ### Misc
-  "styler", 
-  "miniUI", 
   "gtools"
 )

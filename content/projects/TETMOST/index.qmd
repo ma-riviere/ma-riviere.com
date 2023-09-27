@@ -28,9 +28,9 @@ website:
     description: "Developping a haptic interface to intuitively represent images and Art to VIP"
 
 categories:
-  - "Assistive Devices"
-  - "Accessibility"
-  - "Visual Impairment"
+  - "Research"
+  - "Software Engineering"
+  - "Human-Computer Interaction"
   - "Virtual Reality"
   - "Sensory Substitution"
   - "Haptic Interface"
@@ -54,7 +54,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+![](feature.png){fig-alt="Image illustrating the project"}
 
 # Introduction
 ***

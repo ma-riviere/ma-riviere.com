@@ -19,6 +19,8 @@ description: "This project studies the underlying molecular and cellular mechani
 abstract: |
   This work aims at shedding light on the mechanisms underlying cerebellar hypoxic injury. To this end, a transcriptomic study (by RT-qPCR) of genes involved in oxydative stress, cell differentiation, and migration was performed. We analyzed the expression of these genes in different developmental stages (P4, P8, P12, P21 and adults), and in different cell types, using laser capture microdissection to separate cerebellar layers. This project provides cues to better understand the cellular and molecular aspects of AoP-induced cerebellar injury.
 
+# funding: "TODO"
+
 website:
   open-graph:
     description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
@@ -26,9 +28,11 @@ website:
     description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
 
 categories:
+  - "Research"
+  - "Data Science"
+  - "Software Engineering"
   - "Biostatistics"
   - "Transcriptomics"
-  - "Data Science"
   - "Cerebellum"
   - "Hypoxia"
   - "RT-qPCR"
@@ -38,7 +42,7 @@ about:
   links:
     - text: "Article (in press)"
       icon: file-pdf
-      file: /content/pubs/MCN23/
+      file: /content/pubs/CRN23/
       aria-label: "See the article illustrating the project"
     - text: "{{< fa chart-column >}} Data & Analyses"
       file: /content/code/projects/DE-AoP/
@@ -47,7 +51,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+![](feature.png){fig-alt="Image illustrating the project"}
 
 # My role in this project
 ***
@@ -57,4 +61,4 @@ Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the d
 
 **2)** Handled the RT-qPCR & IHC data processing and analysis, as well as documenting & open-sourcing the resulting code.
 
-**3)** Participated in writing the [journal article](/content/pubs/MCN23/) summarizing the results of this project.
+**3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project.

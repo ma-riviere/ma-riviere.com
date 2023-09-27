@@ -28,14 +28,18 @@ listing:
 
 # {{< fa chalkboard-user >}} Outreach
 
-Scientific communication for laymen during outreach events.
+:::{.callout-note appearance="simple"}
+Scientific communication for laymen during outreach events
+:::
 
 :::{#scicom-outreach}
 :::
 
 # {{< iconify carbon group-presentation >}} Talks
 
-Scientific communication for experts & researchers during conferences, seminars & invited talks.
+:::{.callout-note appearance="simple"}
+Scientific communication for experts & researchers during conferences, seminars & invited talks
+:::
 
 :::{#scicom-talks}
 :::

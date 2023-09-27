@@ -38,5 +38,5 @@ about:
 </object>
 
 :::{.callout-tip appearance="simple"}
-# This talk got the best presentation award of RUNN'19 🥇
+This talk got the best presentation award of RUNN'19 🥇
 :::

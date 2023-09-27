@@ -15,6 +15,8 @@ description: "This project studied the impact of apnea of prematurity on cerebel
 abstract: |
   This study aimed to identify the effects of AoP on cerebellar development, and to demonstrate that the cerebellum is vulnerable to AoP. This was shown via enzymatic assay studies and RT-qPCR. Results confirmed the presence of alterations of cellular mechanisms, such as oxidative stress, leading to a delay in cerebellar maturation. This was further assessed through visible changes in cellular phenotype and histology via immunocytochemistry. Furthermore, behavioral studies showed that functional and behavioral alterations persisted in adulthood.
 
+# funding: "TODO"
+
 website:
   open-graph:
     description: "Impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it"
@@ -22,9 +24,11 @@ website:
     description: "Impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it"
 
 categories:
+  - "Research"
+  - "Data Science"
+  - "Software Engineering"
   - "Biostatistics"
   - "Transcriptomics"
-  - "Data Science"
   - "Cerebellum"
   - "Hypoxia"
   - "RT-qPCR"
@@ -42,7 +46,7 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){.preview-image fig-alt="Image illustrating the project"}
+![](feature.png){fig-alt="Image illustrating the project"}
 
 # My role in this project
 ***

@@ -29,14 +29,18 @@ listing:
 
 # {{< iconify mdi git >}} Code projects
 
-Code projects linked to published articles.
+:::{.callout-note appearance="simple"}
+Code projects linked to published articles
+:::
 
 :::{#code-projects}
 :::
 
 # {{< iconify mdi message-cog >}} Blog posts
 
-Miscellaneous blog posts about **R**, **Stats** and **Data Science**.
+:::{.callout-note appearance="simple"}
+Miscellaneous blog posts about **R**, **Stats** and **Data Science**
+:::
 
 :::{#code-posts}
 :::

@@ -1,6 +1,7 @@
 project:
   type: website
   output-dir: "_site"
+  # DO NOT USE lib-dir
   resources:
     - .nojekyll
     - CNAME
@@ -22,8 +23,6 @@ website:
   favicon: res/favicon.png
   site-url: 'https://ma-riviere.com'
   repo-url: https://github.com/ma-riviere/ma-riviere.com
-  # repo-branch: main
-  # repo-actions: [source, issue]
   
   ### Analytics ###
   google-analytics:
@@ -43,12 +42,16 @@ website:
     location: navbar
     type: overlay
     collapse-after: 10
+    show-item-context: true
+    # show-item-parent: breadcrumbs
   
   ### Navigation ###
   # page-navigation: true
+  bread-crumbs: true
+  
   navbar:
-    # logo: TODO
-    # logo-alt: ""
+    # logo: res/hexacode.svg
+    # logo-alt: "Hexagon containing a neuron"
     pinned: true
     collapse: true
     collapse-below: md

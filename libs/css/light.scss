@@ -66,3 +66,15 @@ h5.quarto-listing-category-title { color: $col2; }
 .card-body > .card-title { color: $col3; }
 
 .navbar .nav-item > a.nav-link.active { border-top: 2px solid; } // #b4c5e9
+
+.quarto-listing-category > div[data-category='Research'],
+.quarto-listing-category > div[data-category='Software Engineering'],
+.quarto-listing-category > div[data-category='Data Science'] {
+    font-weight: bold;
+}
+
+.quarto-listing-category > div[data-category='Cognitive Psychology'],
+.quarto-listing-category > div[data-category='Engineering'],
+.quarto-listing-category > div[data-category='Neuroscience'] {
+    font-weight: bold;
+}

@@ -2,5 +2,5 @@ quarto-ext/fontawesome
 quarto-ext/lightbox
 mcanouil/quarto-iconify
 schochastics/academicons
-schochastics/quarto-nutshell
 sellorm/quarto-social-embeds
+shafayetShafee/add-code-files

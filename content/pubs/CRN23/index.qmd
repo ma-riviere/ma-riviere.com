@@ -1,0 +1,107 @@
+---
+title: "Apnea of Prematurity induces short and long-term development-related transcriptional changes in the murine cerebellum"
+subtitle: "*In Press*"
+
+author:
+  - name: "Agalic Rodriguez-Duboc"
+    # degrees: ["MD", "PhD"]
+    orcid: 0000-0002-2084-3780
+    url: https://agalic-rd.com
+    affiliations:
+      - ref: cbg
+    roles: ["investigation", "methodology", "project administration", "data curation", "formal analysis", "visualization", "illustration", "validation", "writing - original draft", "writing - review & editing"]
+    
+  - name: "Magali Basille-Duguay"
+    affiliations:
+      - ref: nordic
+    roles: ["supervision", "investigation", "resources", "writing - review & editing"]
+    
+  - name: "Aurélien Debonne"
+    affiliations:
+      - ref: cbg
+    roles: ["investigation", "writing - review & editing"]
+    
+  - name: "Marc-Aurèle Rivière"
+    orcid: 0000-0002-5108-3382
+    affiliations:
+      - ref: litis
+    roles: ["methodology", "software", "data curation", "formal analysis", "visualization", "validation", "writing - review & editing"]
+    
+  - name: "David Vaudry"
+    affiliations:
+      - ref: cbg
+    roles: ["funding acquisition", "resources", "conceptualization", "writing - review & editing"]
+    
+  - name: "Delphine Burel"
+    email: "delphine.burel@univ-rouen.fr"
+    affiliations:
+      - ref: cbg
+    roles: ["conceptualization", "methodology", "funding acquisition", "project administration", "supervision", "resources", "writing - original draft", "writing - review & editing"]
+    attributes:
+      corresponding: true
+
+metadata-files: ["../../_affiliations.yml"]
+
+# doi: TODO
+
+description: "This paper aims to present transcriptomic data that participates in understanding the molecular basis for the histological and behavioral abnormalities caused by intermittent hypoxia."
+
+abstract: |
+  Apnea of prematurity (AOP) occurs in over 50% of preterm infants and induces a perinatal intermittent hypoxia (IH) which represents a leading cause of morbimortality worldwide. At birth, the human cerebellar cortex is still immature, making it vulnerable to perinatal events. Moreover, a correlation between cerebellar functions and the deficits observed in children having suffered from AOP has been demonstrated. Yet, the cerebellar alterations underpinning this link remain poorly understood. 
+  
+  To shed light on the involvement of the cerebellum in perinatal hypoxia-related sequelae, we developed a mouse model of AOP. In previous works, we found that IH induces oxidative stress in the developing cerebellum as shown by the overexpression of genes involved in reactive oxygen species production, and the under-expression of genes encoding antioxidant enzymes. These alterations suggest a failure of the defense system against oxidative stress and could be responsible for neuronal death in the cerebellum.
+
+  Based on these results, we performed a transcriptomic study of the genes involved in the processes that occur during cerebellar development. We analyzed the expression of these genes at various developmental stages and in different cell types, by real time PCR. This enabled us to pinpoint a timeframe of vulnerability at P8, which represents the age with the highest number of downregulated genes in the cerebellum. Moreover, we identified several molecular pathways that are impacted by our IH protocol, such as proliferation, migration, and differentiation. This suggests that IH can  modify  the development of various cells, and then  contribute to the histological and behavioral deficits already observed in this model.
+
+  Overall, our data indicate that the cerebellum is highly sensitive to IH, and provide  elements to better understand the pathophysiology of AOP by deciphering its cellular and molecular causal  mechanisms. In the long term, the present results could lead to the identification of novel therapeutic targets to improve the clinical management of this highly prevalent pathology.
+
+funding: "Agalic Rodriguez-Duboc was the recipient of a doctoral fellowship from The Ministère de l’Enseignement Supérieur, de la Recherche et de l’Innovation. This work was supported by INSERM U1239 and U1245, University of Rouen Normandie, the Normandy Region and the European Union."
+
+# acknowledgements: "We would like to thank François Chadelaud and Dr. Sarah Leroux from Rouen University for the development of the hypoxia chamber. We are grateful to Dr. Hélène Lacaille for the development of the oxidative stress panel during her PhD."
+
+categories:
+  - "Neuroscience"
+  - "Molecular Neuroscience"
+  - "Neurodevelopment"
+  - "Cerebellum"
+  - "Apnea of Prematurity"
+  - "RT-qPCR"
+
+## See: https://docs.citationstyles.org/en/stable/specification.html
+citation:
+  type: article-journal
+  container-title: "Current Research in Neurobiology"
+  container-title-short: "Curr. Res. Neurobiol."
+  status: "in press"
+  page: "1-22"
+#   doi: 10.1186/s13578-022-00869-5
+#   url: https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-022-00869-5
+#   volume: 12
+#   issue: 1
+#   issn: "2045-3701"
+
+# Dirty trick to get some links/buttons
+about:
+  links:
+    # - text: "{{< ai elsevier >}} Article (online)"
+    #   url: TODO
+    #   aria-label: "Link to the online version of the article"
+    - text: "{{< fa business-time >}} Project (DE-AoP)"
+      file: /content/projects/DE-AoP/
+      aria-label: "Link to the project"
+    - text: "{{< fa chart-column >}} Data & Analyses"
+      file: content/code/projects/DE-AoP/
+      aria-label: "Webpage presenting the data & analyses of this project"
+---
+
+{{< include /content/_hr.qmd >}}
+
+:::{.callout-note appearance="simple"}
+This paper is currently being reviewed in *Current Research in Neurobiology*
+:::
+
+<!-- <object data="CRN23.pdf" type="application/pdf" width="100%" height="1000">
+  <iframe width="100%" height="1000"
+    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.com/raw/main/content/pubs/articles/CRN23/CRN23.pdf&embedded=true">
+  </iframe>
+</object> -->
