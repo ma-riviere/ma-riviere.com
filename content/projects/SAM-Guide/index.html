@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.376">
+<meta name="generator" content="quarto-1.4.352">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -49,12 +49,12 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script src="../../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script>
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script>
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -65,7 +65,7 @@ ul.task-list li input[type="checkbox"] {
   "keyboard-shortcut": [
     null
   ],
-  "show-item-context": true,
+  "show-item-parent": "breadcrumbs",
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -315,11 +315,9 @@ cookieconsent.run({
 </div>
 
 <hr style="margin-bottom: 0px; margin-top: -12px;" width="1000px">
-<div id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="quarto-figure quarto-figure-center" alt="Banner illustrating the project">
-<figure class="quarto-float quarto-float-fig figure">
-<div>
-<a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1" data-description=": " title="Banner illustrating the project"><img src="feature.png" id="fig-539a35d47e664c97a50115a146a7f1bd-1" class="img-fluid figure-img" alt="Banner illustrating the project"></a>
-</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="feature.png" class="lightbox" title="Banner illustrating the project" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid figure-img" alt="Banner illustrating the project"></a></p>
 </figure>
 </div>
 <section id="introduction" class="level1" data-number="1">
@@ -338,92 +336,56 @@ cookieconsent.run({
 <hr>
 <p><strong>1)</strong> I was a major actor behind the birth of this project, by connecting the consortium members together and writing most of the grant proposal (ANR AAPG 2021, funding of 609k€). This project will last 4 years and allow the recruitment of 2 PhD students, one post-doc, and one Research Engineer.</p>
 <p><strong>2)</strong> I designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication (thanks to an ESP32 module) and amovible vibrators:</p>
-<div id="fig-tactibelt-v2" class="quarto-figure quarto-figure-center" alt="Photography of the second iteration of the TactiBelt">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tactibelt-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="TactiBelt-v2.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-description="Figure&nbsp;1: Second prototype of the TactiBelt" title="Photography of the second iteration of the TactiBelt"><img src="TactiBelt-v2.jpg" title="Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a>
-</div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tactibelt-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Second prototype of the TactiBelt
-</figcaption>
+<div id="fig-tactibelt-v2" class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="TactiBelt-v2.jpg" class="lightbox" title="Second prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-2"><img src="TactiBelt-v2.jpg" title="Photography of the second iteration of the TactiBelt" class="img-fluid figure-img" alt="Photography of the second iteration of the TactiBelt"></a></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Second prototype of the TactiBelt</figcaption>
 </figure>
 </div>
 <p><strong>3)</strong> I lead the design and development of the project’s experimental platform. The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses <a href="https://puredata.info/">PureData</a> for sound-wave generation and <a href="https://valvesoftware.github.io/steam-audio/">Steam Audio</a> for 3D audio modeling, and communicates with the consortium’s non-visual interfaces wirelessly.</p>
 <div id="fig-unity" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-unity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-unity" style="flex-basis: 50.3%;justify-content: center;">
-<div id="fig-unity-testenv" class="quarto-figure quarto-figure-center" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-unity-testenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="Unity.png" class="lightbox" data-gallery="fig-unity" data-description="Figure&nbsp;2&nbsp;(a): Testing environment with a PureData audio beacon" title="Screenshot of the testing environment of the experimental platform of SAM-Guide"><img src="Unity.png" class="img-fluid figure-img" data-ref-parent="fig-unity" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a>
-</div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-unity-testenv-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Testing environment with a PureData audio beacon
-</figcaption>
+<div id="fig-unity-testenv" class="quarto-figure quarto-figure-center" style="flex-basis: 50.3%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity.png" class="lightbox" title="Testing environment with a PureData audio beacon" data-gallery="quarto-lightbox-gallery-3"><img src="Unity.png" class="img-fluid figure-img" alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"></a></p>
+<figcaption class="figure-caption">(a) Testing environment with a PureData audio beacon</figcaption>
 </figure>
-</div>
 </div>
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 0.5%;justify-content: center;">
 <p>&nbsp;</p>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-unity" style="flex-basis: 49.2%;justify-content: center;">
-<div id="fig-unity-maze" class="quarto-figure quarto-figure-center" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-unity-maze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="Unity-maze.png" class="lightbox" data-gallery="fig-unity" data-description="Figure&nbsp;2&nbsp;(b): Auto-generated maze with 3D audio beacons on waypoints" title="Screenshot of the maze generator of the experimental platform of SAM-Guide"><img src="Unity-maze.png" class="img-fluid figure-img" data-ref-parent="fig-unity" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a>
-</div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-unity-maze-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Auto-generated maze with 3D audio beacons on waypoints
-</figcaption>
+<div id="fig-unity-maze" class="quarto-figure quarto-figure-center" style="flex-basis: 49.2%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity-maze.png" class="lightbox" title="Auto-generated maze with 3D audio beacons on waypoints" data-gallery="quarto-lightbox-gallery-4"><img src="Unity-maze.png" class="img-fluid figure-img" alt="Screenshot of the maze generator of the experimental platform of SAM-Guide"></a></p>
+<figcaption class="figure-caption">(b) Auto-generated maze with 3D audio beacons on waypoints</figcaption>
 </figure>
 </div>
 </div>
-</div>
-</div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-unity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Screenshots from SAM-Guide’s experimental platform <em>(in development)</em>
-</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Screenshots from SAM-Guide’s experimental platform <em>(in development)</em></figcaption><p></p>
 </figure>
 </div>
 <p>This platform allows one to <strong>easily spin up experimental trials</strong> by specifying the desired characteristics in a JSON file (based on the <a href="https://openmaze.duncanlab.org/documentation">OpenMaze</a> project). Unity will automatically generate the trial’s environment according to those specifications and populate it with the relevant items (e.g.&nbsp;a tactile-signal emitting beacon signalling a target to reach in a maze), handle the transition between successive trials and blocks of trials, and log all the relevant user metrics into a data file.</p>
 <div id="fig-specs" class="quarto-layout-panel">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-specs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<figure class="figure">
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-specs" style="flex-basis: 50.5%;justify-content: center;">
-<div id="fig-unity-protocol1" class="quarto-figure quarto-figure-center" alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-unity-protocol1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="Unity-protocol 1.png" class="lightbox" data-gallery="fig-specs" data-description="Figure&nbsp;3&nbsp;(a): Specifying the avatar and the experimental blocks’ characteristics" title="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"><img src="Unity-protocol 1.png" class="img-fluid figure-img" data-ref-parent="fig-specs" alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"></a>
-</div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-unity-protocol1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(a) Specifying the avatar and the experimental blocks’ characteristics
-</figcaption>
+<div id="fig-unity-protocol1" class="quarto-figure quarto-figure-center" style="flex-basis: 50.5%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity-protocol 1.png" class="lightbox" title="Specifying the avatar and the experimental blocks’ characteristics" data-gallery="quarto-lightbox-gallery-5"><img src="Unity-protocol 1.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"></a></p>
+<figcaption class="figure-caption">(a) Specifying the avatar and the experimental blocks’ characteristics</figcaption>
 </figure>
-</div>
 </div>
 <div class="quarto-figure-spacer quarto-layout-cell" style="flex-basis: 0.5%;justify-content: center;">
 <p>&nbsp;</p>
 </div>
-<div class="quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-specs" style="flex-basis: 49.0%;justify-content: center;">
-<div id="fig-unity-protocol3" class="quarto-figure quarto-figure-center" alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks">
-<figure class="quarto-float quarto-subfloat-fig figure">
-<div aria-describedby="fig-unity-protocol3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="Unity-protocol 3.png" class="lightbox" data-gallery="fig-specs" data-description="Figure&nbsp;3&nbsp;(b): Specifying experimental trials, which can be repeated and randomized within blocks" title="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"><img src="Unity-protocol 3.png" class="img-fluid figure-img" data-ref-parent="fig-specs" alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"></a>
-</div>
-<figcaption class="figure quarto-subfloat-caption quarto-subfloat-fig" id="fig-unity-protocol3-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-(b) Specifying experimental trials, which can be repeated and randomized within blocks
-</figcaption>
+<div id="fig-unity-protocol3" class="quarto-figure quarto-figure-center" style="flex-basis: 49.0%;justify-content: center;">
+<figure class="figure">
+<p><a href="Unity-protocol 3.png" class="lightbox" title="Specifying experimental trials, which can be repeated and randomized within blocks" data-gallery="quarto-lightbox-gallery-6"><img src="Unity-protocol 3.png" class="img-fluid figure-img" alt="Screenshot of the experimental protocol file specifying experimental trials, which can be repeated and randomized within blocks"></a></p>
+<figcaption class="figure-caption">(b) Specifying experimental trials, which can be repeated and randomized within blocks</figcaption>
 </figure>
 </div>
 </div>
-</div>
-</div>
-<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-specs-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;3: Examples of settings used to generate experimental trials on the fly.
-</figcaption>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Examples of settings used to generate experimental trials on the fly.</figcaption><p></p>
 </figure>
 </div>
 <p><strong>4)</strong> Handled the experimental design of the first wave of experiments using the TactiBelt for “blind” navigation.</p>
@@ -955,7 +917,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"loop":true,"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","selector":".lightbox"});</script>
+<script>var lightboxQuarto = GLightbox({"selector":".lightbox","closeEffect":"zoom","loop":true,"descPosition":"bottom","openEffect":"zoom"});</script>
 
 
 
