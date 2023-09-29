@@ -23,7 +23,6 @@ details > summary { color: rgb(136, 136, 136); }
 }
 
 .about-entity > img.about-image {
-  /** -webkit-clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%); **/
   clip-path: polygon(50% 0%, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
 }
 

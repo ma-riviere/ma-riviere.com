@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.352">
+<meta name="generator" content="quarto-1.4.392">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -46,12 +46,12 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
+<script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -62,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
   "keyboard-shortcut": [
     null
   ],
-  "show-item-parent": "breadcrumbs",
+  "show-item-context": true,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -138,7 +138,7 @@ cookieconsent.run({
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../res/hexabrain.svg" alt="Hexagon containing a stylized brain" class="navbar-logo">
+    <img src="../../../res/hexabrain.svg" alt="Stylized depicption of a brain inside a hexagon" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Marc-Aurèle Rivière</span>
@@ -299,6 +299,7 @@ cookieconsent.run({
 
 
 
+
 <div class="quarto-about-solana column-body">
   <div class="about-entity">
     <div class="entity-contents">
@@ -328,11 +329,7 @@ cookieconsent.run({
 </div>
 
 <hr style="margin-bottom: 0px; margin-top: -12px;" width="1000px">
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="header.jpg" class="lightbox" title="Banner illustrating the project" data-gallery="quarto-lightbox-gallery-1"><img src="header.jpg" class="img-fluid figure-img" alt="Banner illustrating the project"></a></p>
-</figure>
-</div>
+<p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1" title="Banner illustrating the project"><img src="header.jpg" class="img-fluid" alt="Banner illustrating the project"></a></p>
 <section id="introduction" class="level1" data-number="1">
 <h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
 <hr>
@@ -342,10 +339,14 @@ cookieconsent.run({
 <strong>2)</strong> Design a haptic interface that allows to communicate said spatial representation easily to the user<br>
 <strong>3)</strong> Implement the software require to support the various functions of this interface (e.g.&nbsp;Indoor Localisation, Obstacle Detection, Mapping, …)</p>
 <p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
-<div id="fig-neuro" class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="neuro.png" class="lightbox" title="ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a></p>
-<figcaption class="figure-caption">Figure&nbsp;1: ACCESSPACE guiding principle</figcaption>
+<div id="fig-neuro" class="quarto-figure quarto-figure-center" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="neuro.png" class="lightbox" data-description="Figure&nbsp;1: ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2" title="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: ACCESSPACE guiding principle
+</figcaption>
 </figure>
 </div>
 <p>Using those principles, we devised an <strong>encoding scheme</strong> that provides the user with 3 types of information through egocentered tactile feedback:</p>
@@ -358,8 +359,8 @@ cookieconsent.run({
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="nav.png" class="lightbox" title="Illustration of the navigation graph idea" data-gallery="quarto-lightbox-gallery-3"><img src="nav.png" title="An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
-<figcaption class="figure-caption">Illustration of the navigation graph idea</figcaption>
+<p><a href="nav.png" class="lightbox" data-description="" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="nav.png" title="An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid quarto-figure-center figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<figcaption>Illustration of the navigation graph idea</figcaption>
 </figure>
 </div>
 </section>
@@ -369,10 +370,14 @@ cookieconsent.run({
 <section id="our-interface-the-tactibelt" class="level2" data-number="2.1">
 <h2 data-number="2.1" data-anchor-id="our-interface-the-tactibelt"><span class="header-section-number">2.1</span> Our interface: the TactiBelt</h2>
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
-<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="TactiBelt.png" class="lightbox" title="First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4"><img src="TactiBelt.png" title="A photography showing the first version of the TactiBelt" class="img-fluid figure-img" alt="A photography showing the first version of the TactiBelt"></a></p>
-<figcaption class="figure-caption">Figure&nbsp;2: First prototype of the TactiBelt</figcaption>
+<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center" alt="A photography showing the first version of the TactiBelt" data-fig-align="center">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tactibelt-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<a href="TactiBelt.png" class="lightbox" data-description="Figure&nbsp;2: First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4" title="A photography showing the first version of the TactiBelt"><img src="TactiBelt.png" title="A photography showing the first version of the TactiBelt" class="img-fluid quarto-figure-center figure-img" alt="A photography showing the first version of the TactiBelt"></a>
+</div>
+<figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tactibelt-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: First prototype of the TactiBelt
+</figcaption>
 </figure>
 </div>
 </section>
@@ -380,36 +385,16 @@ cookieconsent.run({
 <h2 data-number="2.2" data-anchor-id="software-tools"><span class="header-section-number">2.2</span> Software tools</h2>
 <p>To capture and extract the information we need from the VIP’s environment, we devised a series of software tools relying mostly on Computer Vision:</p>
 <p><strong>1)</strong> Obstacle detection and indoor localisation using the <a href="https://github.com/raulmur/ORB_SLAM2">ORB-SLAM</a> algorithm:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="ORB-SLAM.png" class="lightbox" title="Image showing the ORB-SLAM algorithm running inside our office" data-gallery="quarto-lightbox-gallery-5"><img src="ORB-SLAM.png" title="Image showing the ORB-SLAM algorithm running inside our office" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the ORB-SLAM algorithm running inside our office"></a></p>
-</figure>
-</div>
+<p><a href="ORB-SLAM.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5" title="Image showing the ORB-SLAM algorithm running inside our office"><img src="ORB-SLAM.png" title="Image showing the ORB-SLAM algorithm running inside our office" class="img-fluid quarto-figure-center" style="width:60.0%" alt="Image showing the ORB-SLAM algorithm running inside our office"></a></p>
 <p><strong>2)</strong> Depth estimation from a monocular RGB camera, using the <a href="https://github.com/mrharicot/monodepth">MonoDepth</a> algorithm:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="MonoDepth.png" class="lightbox" title="Image showing the MonoDepth algorithm running just outside our lab" data-gallery="quarto-lightbox-gallery-6"><img src="MonoDepth.png" title="Image showing the MonoDepth algorithm running just outside our lab" class="img-fluid figure-img" style="width:60.0%" alt="Image showing the MonoDepth algorithm running just outside our lab"></a></p>
-</figure>
-</div>
+<p><a href="MonoDepth.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6" title="Image showing the MonoDepth algorithm running just outside our lab"><img src="MonoDepth.png" title="Image showing the MonoDepth algorithm running just outside our lab" class="img-fluid quarto-figure-center" style="width:60.0%" alt="Image showing the MonoDepth algorithm running just outside our lab"></a></p>
 <p><strong>3)</strong> Generating a mobility graph of the environment during movement using Reinforcement Learning:</p>
 <p>Applied to an artificial agent exploring a virtual maze, looking for food:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="graph.png" class="lightbox" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" data-gallery="quarto-lightbox-gallery-7"><img src="graph.png" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" class="img-fluid figure-img" alt="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"></a></p>
-</figure>
-</div>
+<p><a href="graph.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"><img src="graph.png" title="Image showing the navigation graph generated by an artificial agent exploring a virtual maze" class="img-fluid" alt="Image showing the navigation graph generated by an artificial agent exploring a virtual maze"></a></p>
 <p>Applied to a real agent (human pushing a cart with a camera and the computer running the algorithm around a meeting table):</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="graph2.png" class="lightbox" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" data-gallery="quarto-lightbox-gallery-8"><img src="graph2.png" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" class="img-fluid figure-img" alt="Image showing the navigation graph generated by moving the camera around a metting table in a room"></a></p>
-</figure>
-</div>
+<p><a href="graph2.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8" title="Image showing the navigation graph generated by moving the camera around a metting table in a room"><img src="graph2.png" title="Image showing the navigation graph generated by moving the camera around a metting table in a room" class="img-fluid quarto-figure-center" alt="Image showing the navigation graph generated by moving the camera around a metting table in a room"></a></p>
 <p><strong>4)</strong> A virtual environment to test the TactiBelt and our candidate spatial encoding schemes:</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><a href="VR.png" class="lightbox" title="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback" data-gallery="quarto-lightbox-gallery-9"><img src="VR.png" class="img-fluid figure-img" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
-</figure>
-</div>
+<p><a href="VR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9" title="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"><img src="VR.png" class="img-fluid" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
 </section>
 <section id="project-dissemination" class="level2" data-number="2.3">
 <h2 data-number="2.3" data-anchor-id="project-dissemination"><span class="header-section-number">2.3</span> Project dissemination</h2>
@@ -715,15 +700,38 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       }
     }
     stripColumnClz(note)
-    if (id.startsWith('sec-')) {
+    const typesetMath = (el) => {
+      if (window.MathJax) {
+        // MathJax Typeset
+        window.MathJax.typeset([el]);
+      } else if (window.katex) {
+        // KaTeX Render
+        var mathElements = el.getElementsByClassName("math");
+        var macros = [];
+        for (var i = 0; i < mathElements.length; i++) {
+          var texText = mathElements[i].firstChild;
+          if (mathElements[i].tagName == "SPAN") {
+            window.katex.render(texText.data, mathElements[i], {
+              displayMode: mathElements[i].classList.contains('display'),
+              throwOnError: false,
+              macros: macros,
+              fleqn: false
+            });
+          }
+        }
+      }
+    }
+    if (id === null || id.startsWith('sec-')) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
         for (let i = 0; i < 2; i++) {
           container.appendChild(note.children[i].cloneNode(true));
         }
+        typesetMath(container);
         return container.innerHTML
       } else {
+        typesetMath(note);
         return note.innerHTML;
       }
     } else {
@@ -732,6 +740,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (anchorLink) {
         anchorLink.remove();
       }
+      typesetMath(note);
       return note.innerHTML;
     }
   }
@@ -774,6 +783,29 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
       }
     }, function(instance) {
     });
@@ -849,7 +881,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     window.addEventListener(
       "resize",
       throttle(() => {
-        console.log("RESIZE");
         elRect = undefined;
         if (selectedAnnoteEl) {
           selectCodeLines(selectedAnnoteEl);
@@ -930,12 +961,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     }
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
       var filterRegex = new RegExp("https:\/\/ma-riviere\.com");
     var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href);
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
     // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):(.quarto-navigation-tool)');
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
     for (var i=0; i<links.length; i++) {
       const link = links[i];
       if (!isInternal(link.href)) {
@@ -971,7 +1003,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","selector":".lightbox","loop":true,"descPosition":"bottom","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox","openEffect":"zoom"});</script>
 
 
 

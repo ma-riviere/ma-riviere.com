@@ -6,21 +6,21 @@
       version="2.0">
 <channel>
 <title>Marc-Aurèle Rivière</title>
-<link>https://ma-riviere.com/content/code/index.html</link>
+<link>https://ma-riviere.com/content/code/</link>
 <atom:link href="https://ma-riviere.com/content/code/index.xml" rel="self" type="application/rss+xml"/>
 <description>Cognitive &amp; Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes</description>
 <image>
 <url>https://ma-riviere.com/res/avatar.jpg</url>
 <title>Marc-Aurèle Rivière</title>
-<link>https://ma-riviere.com/content/code/index.html</link>
+<link>https://ma-riviere.com/content/code/</link>
 </image>
-<generator>quarto-1.4.352</generator>
+<generator>quarto-1.4.392</generator>
 <lastBuildDate>Wed, 12 Jul 2023 22:00:00 GMT</lastBuildDate>
 <item>
   <title>DE-AoP: Data &amp; Analyses</title>
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Agalic Rodriguez-Duboc</dc:creator>
-  <link>https://ma-riviere.com/content/code/projects/DE-AoP/index.html</link>
+  <link>https://ma-riviere.com/content/code/projects/DE-AoP/</link>
   <description><![CDATA[ 
   let processScroll = () => {
     let docElem = document.documentElement, 
@@ -41,13 +41,13 @@
   <category>Transcriptomics</category>
   <category>Immunohistochemistry</category>
   <category>R</category>
-  <guid>https://ma-riviere.com/content/code/projects/DE-AoP/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/projects/DE-AoP/</guid>
   <pubDate>Wed, 12 Jul 2023 22:00:00 GMT</pubDate>
   <media:content url="https://ma-riviere.com/content/code/projects/DE-AoP/feature.png" medium="image" type="image/png" height="125" width="144"/>
 </item>
 <item>
   <title>Fast spatial data matching in R</title>
-  <link>https://ma-riviere.com/content/code/posts/spatial/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/spatial/</link>
   <description><![CDATA[ You can check the source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
   <category>Big Data</category>
   <category>Data Manipulation</category>
@@ -56,12 +56,12 @@
   <category>SQL</category>
   <category>DuckDB</category>
   <category>Spatial</category>
-  <guid>https://ma-riviere.com/content/code/posts/spatial/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/spatial/</guid>
   <pubDate>Fri, 17 Jun 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>MCMC for ‘Big Data’ with Stan</title>
-  <link>https://ma-riviere.com/content/code/posts/big-bayes/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/big-bayes/</link>
   <description><![CDATA[ You can check the page’s source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
   <category>Statistics</category>
   <category>ML</category>
@@ -69,25 +69,25 @@
   <category>Big Data</category>
   <category>Stan</category>
   <category>R</category>
-  <guid>https://ma-riviere.com/content/code/posts/big-bayes/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/big-bayes/</guid>
   <pubDate>Sat, 04 Jun 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>Data wrangling with data.table and the Tidyverse</title>
-  <link>https://ma-riviere.com/content/code/posts/data.table/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/data.table/</link>
   <description><![CDATA[ <strong>v1:</strong> 2022-05-19 ]]></description>
   <category>Data Manipulation</category>
   <category>Tidyverse</category>
   <category>data.table</category>
   <category>R</category>
-  <guid>https://ma-riviere.com/content/code/posts/data.table/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/data.table/</guid>
   <pubDate>Wed, 18 May 2022 22:00:00 GMT</pubDate>
 </item>
 <item>
   <title>LT-AoP: Data &amp; Analyses</title>
   <dc:creator>Marc-Aurèle Rivière</dc:creator>
   <dc:creator>Agalic Rodriguez-Duboc</dc:creator>
-  <link>https://ma-riviere.com/content/code/projects/LT-AoP/index.html</link>
+  <link>https://ma-riviere.com/content/code/projects/LT-AoP/</link>
   <description><![CDATA[ 
   let processScroll = () => {
     let docElem = document.documentElement, 
@@ -109,20 +109,20 @@
   <category>Immunohistochemistry</category>
   <category>Behavioral</category>
   <category>R</category>
-  <guid>https://ma-riviere.com/content/code/projects/LT-AoP/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/projects/LT-AoP/</guid>
   <pubDate>Sat, 30 Apr 2022 22:00:00 GMT</pubDate>
   <media:content url="https://ma-riviere.com/content/code/projects/LT-AoP/feature.png" medium="image" type="image/png" height="86" width="144"/>
 </item>
 <item>
   <title>Bayesian Rock Climbing Rankings</title>
-  <link>https://ma-riviere.com/content/code/posts/climbing/index.html</link>
+  <link>https://ma-riviere.com/content/code/posts/climbing/</link>
   <description><![CDATA[ You can check the page’s source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
   <category>Statistics</category>
   <category>ML</category>
   <category>Bayesian Modeling</category>
   <category>Stan</category>
   <category>R</category>
-  <guid>https://ma-riviere.com/content/code/posts/climbing/index.html</guid>
+  <guid>https://ma-riviere.com/content/code/posts/climbing/</guid>
   <pubDate>Mon, 18 Apr 2022 22:00:00 GMT</pubDate>
 </item>
 </channel>

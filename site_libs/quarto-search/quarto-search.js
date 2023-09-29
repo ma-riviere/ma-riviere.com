@@ -188,8 +188,8 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
                     title: isExpanded
                       ? language["search-hide-matches-text"]
                       : remainingCount === 1
-                      ? `${remainingCount} ${language["search-more-match-text"]}`
-                      : `${remainingCount} ${language["search-more-matches-text"]}`,
+                        ? `${remainingCount} ${language["search-more-match-text"]}`
+                        : `${remainingCount} ${language["search-more-matches-text"]}`,
                     type: kItemTypeMore,
                     href: kItemTypeMoreHref,
                   });
@@ -307,9 +307,8 @@ window.document.addEventListener("DOMContentLoaded", function (_event) {
               return createElement(
                 "div",
                 {
-                  class: `quarto-search-no-results${
-                    hasQuery ? "" : " no-query"
-                  }`,
+                  class: `quarto-search-no-results${hasQuery ? "" : " no-query"
+                    }`,
                 },
                 language["search-no-results-text"]
               );
@@ -748,17 +747,17 @@ function createDocumentCard(
   });
   const titleEl = createElement("p", { class: "search-result-title" }, title);
   const titleContents = [iconEl, titleEl];
-  const showParent = quartoSearchOptions["show-item-parent"];
+  const showParent = quartoSearchOptions["show-item-context"];
   if (crumbs && showParent) {
     let crumbsOut = undefined;
     const crumbClz = ["search-result-crumbs"];
     if (showParent === "root") {
       crumbsOut = crumbs.length > 1 ? crumbs[0] : undefined;
-    } else if (showParent === "breadcrumbs") {
+    } else if (showParent === "parent") {
+      crumbsOut = crumbs.length > 1 ? crumbs[crumbs.length - 2] : undefined;
+    } else {
       crumbsOut = crumbs.length > 1 ? crumbs.join(" > ") : undefined;
       crumbClz.push("search-result-crumbs-wrap");
-    } else {
-      crumbsOut = crumbs.length > 1 ? crumbs[crumbs.length - 2] : undefined;
     }
 
     const crumbEl = createElement(
