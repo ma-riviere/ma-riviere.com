@@ -26,7 +26,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./res/favicon.png" rel="icon" type="image/png">
+<link href="./res/hexabrain.svg" rel="icon" type="image/svg+xml">
 <script src="site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js"></script>
@@ -39,9 +39,6 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<script src="site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
-<link href="site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet">
 <link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
@@ -110,6 +107,8 @@ cookieconsent.run({
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-md navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./res/hexabrain.svg" alt="Hexagon containing a stylized brain" class="navbar-logo"></a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Marc-Aurèle Rivière</span>
     </a>
@@ -177,7 +176,7 @@ cookieconsent.run({
 <div class="quarto-about-trestles page-columns page-full">
   <div class="about-entity">
     <img src="/res/avatar.jpg" alt="Profile picture of Marc-Aurèle Rivière" class="about-image
-  round " style="height: 20em; width: 20em;">
+  rectangle " style="width: 20em;">
 <header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Marc-Aurèle Rivière</h1>
 <p class="subtitle lead"><strong>Data Scientist &amp; Cognitive Neuroscientist</strong><br>
@@ -217,16 +216,77 @@ Proficient R programmer | Decent software developper<br><iconify-icon inline="" 
   </a>
 </div>
   </div>
-  <div class="about-contents page-columns page-full"><main class="content page-columns page-full" id="quarto-document-content"><div class="page-columns page-full">
+  <div class="about-contents page-columns page-full"><main class="content page-columns page-full" id="quarto-document-content"><script src="libs/js/charts.umd.js"></script><div class="column-page">
 <p>I’m a recovering academic who worked on several research projects at the intersection between <strong>Cognitive Neurosciences</strong> and <strong>Biomedical Engineering</strong>. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of Computer Vision and Augmented Reality, within the <a href="https://en.wikipedia.org/wiki/Sensory_substitution">Sensory Substitution</a> framework.</p>
 <p>I have since retrained as a <strong>Data Scientist</strong> with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.</p>
-<div class="cell page-columns page-full" data-layout-align="center">
-<div class="cell-output-display page-columns page-full">
-<div class="quarto-figure quarto-figure-center page-columns page-full">
-<figure class="figure page-columns page-full"><p class="page-columns page-full"><a href="index_files/figure-html/unnamed-chunk-2-1.svg" class="lightbox page-columns page-full" title="A radar chart of my main skills" data-gallery="quarto-lightbox-gallery-1"><img src="index_files/figure-html/unnamed-chunk-2-1.svg" class="img-fluid figure-img column-page" alt="A radar chart of my main skills" width="3000"></a></p>
-</figure>
+<div style="height: 650px; display: flex; justify-content: center; margin-top: 40px;">
+<canvas id="marachinde"></canvas>
 </div>
-</div>
+<div class="cell" data-layout-align="center">
+<script>
+const ctx = document.getElementById('marachinde');
+const data = {
+  labels: [
+    'Cognitive Neuroscience',
+    // ['Behavioral', 'Research'],
+    'Behavioral Research',
+    'Scientific Communication',
+    'Data Science',
+    'Software Engineering',
+    'Project Management'
+  ],
+  datasets: [{
+    label: '',
+    data: [90, 90, 80, 85, 70, 75],
+    fill: true,
+    backgroundColor: 'rgba(82, 0, 252, 0.2)',
+    borderColor: 'rgb(82, 0, 252)',
+    pointBackgroundColor: 'rgb(82, 0, 252)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(82, 0, 252)'
+  }]
+};
+new Chart(ctx, {
+  type: 'radar',
+  data: data,
+  options: {
+    plugins: {
+      // title: {display: true, text: "My profile", font: {size: 20}},
+      legend: {display: false}
+    },
+    scale: {
+      ticks: {stepSize: 20}
+    },
+    scales: {
+      r: {
+        // angleLines: {display: false},
+        pointLabels: {
+          // color: 'darkgrey',
+          font: {
+            size: 16,
+            // style: 'italic',
+            weight: 'bold'
+          }
+        },
+        ticks: {display: false},
+        suggestedMin: 0,
+        suggestedMax: 100
+      }
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+    layout: {
+      padding: 0,
+    },
+    elements: {
+      line: {
+        borderWidth: 3
+      }
+    }
+  },
+});
+</script>
 </div>
 </div>
 
@@ -752,7 +812,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </ul>
 </div>
   </div>
-</footer><script>var lightboxQuarto = GLightbox({"descPosition":"bottom","openEffect":"zoom","selector":".lightbox","closeEffect":"zoom","loop":true});</script>
+</footer>
 
 
 </body></html>
