@@ -134,42 +134,44 @@ execute:
 source(here::here("src", "init_min.R"), echo = FALSE)
 ```
 
-```{r}
+```{r lockfile}
 #| echo: false
 #| eval: false
+#| output: false
 
-renv::install(
-  c(
-    "here",
-    "readr",
-    "Rdatatable/data.table", # >= 1.14.9
-    "dplyr", # >= 1.1.0
-    "tidyr", # >= 1.3.0
-    "pipebind",
-    "stringr",
-    "purrr", # >= 1.0.0
-    "lubridate",
-    "broom",
-    "nplyr"
-  )
+renv::use(
+  "Rdatatable/data.table",
+  "broom@1.0.5",
+  "dplyr@1.1.3",
+  "here@1.0.1",
+  "lubridate@1.9.2",
+  "nplyr@0.2.0",
+  "pipebind@0.1.2",
+  "purrr@1.0.2",
+  "readr@2.1.4",
+  "stringr@1.5.0",
+  "tibble@3.2.1",
+  "tidyr@1.3.0",
+  verbose = FALSE
 )
 ```
 
 ```{r}
 #| output: false
 
-library(here)        # Project management
-
-library(data.table)  # Data wrangling (>= 1.14.9)
-library(dplyr)       # Data wrangling (>= 1.1.0)
-library(tidyr)       # Data wrangling (extras) (>= 1.3.0)
+library(here)        # Working directory management
 library(pipebind)    # Piping goodies
 
-library(stringr)     # Manipulating strings
-library(purrr)       # Manipulating lists (>= 1.0.0)
-library(lubridate)   # Manipulating dates
+library(data.table)  # Fast data manipulation (in-RAM)
 
-library(broom)
+library(tibble)      # Extending data.frames             (Tidyverse)
+library(dplyr)       # Manipulating data.frames - core   (Tidyverse)
+library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
+library(stringr)     # Manipulating strings              (Tidyverse)
+library(purrr)       # Manipulating lists                (Tidyverse)
+library(lubridate)   # Manipulating date/time            (Tidyverse)
+
+library(broom)       # Tidying up models output          (Tidymodels)
 
 data.table::setDTthreads(parallel::detectCores(logical = FALSE))
 ```
@@ -438,7 +440,7 @@ MT[disp %like% "^\\d{3}\\."]
 ```{r}
 #| eval: false
 #| code-fold: true
-#| code-summary: Variants
+#| code-summary: "Variants"
 
 IRIS[Species %flike% "set"] # Fixed (not regex)
 
@@ -2807,7 +2809,7 @@ It filters the rows of the first table by those of the second (`FIRST[SECOND]`),
 
 ```{r}
 #| code-fold: true
-#| code-summary: The normal output of the join
+#| code-summary: "The normal output of the join"
 
 CITIES[COUNTRIES, on = .(country_id)]
 ```
@@ -3447,7 +3449,7 @@ MT.ext |> separate_wider_position(x, widths  = c(gear = 1, delim = 1, carb = 1))
 ```{r}
 #| eval: false
 #| code-fold: true
-#| code-summary: Old syntax
+#| code-summary: "Old syntax"
 
 tidyr::separate(MT.ext, x, into = c("gear", "carb"), sep = "_", remove = TRUE)
 
@@ -3510,7 +3512,7 @@ SP |> separate_longer_position(val, width = 1) |> filter(val != ",")
 ```{r}
 #| eval: false
 #| code-fold: true
-#| code-summary: Old syntax
+#| code-summary: "Old syntax"
 
 SP |> separate_rows(val, sep = ",", convert = TRUE)
 ```
@@ -4194,7 +4196,7 @@ mt_nest |>
 ```{r}
 #| eval: false
 #| code-fold: true
-#| code-summary: Using the `nplyr` package
+#| code-summary: "Using the `nplyr` package"
 
 library(nplyr)
 

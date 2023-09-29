@@ -46,55 +46,54 @@ You can check the page's source code by clicking on the **</> Code** button at t
 source(here::here("src", "init_min.R"), echo = FALSE)
 ```
 
-```{r}
+```{r lockfile}
 #| echo: false
 #| eval: false
+#| output: false
 
-renv::install(c(
-  "here",
-  "pipebind",
-  "fs",
-  "dplyr", # >= 1.1.0
-  "tidyr",
-  "purrr", # >= 1.0.0
-  "stringr",
-  "lubridate",
-  "Rdatatable/data.table",
-  "duckdb", # >= 0.7.0
-  "DBI",
-  "dbplyr", # >= 2.3.0
-  "cmdstanr",
-  "posterior",
-  "ggplot2",
-  "ggridges",
-  "bayesplot",
-  "patchwork"
-))
+renv::use(
+  "Rdatatable/data.table", 
+  "Tidyverse/dbplyr@main", 
+  "bayesplot@1.10.0", 
+  "dplyr@1.1.3", 
+  "duckdb@0.8.1-3", 
+  "fs@1.6.3", 
+  "ggplot2@3.4.3", 
+  "ggridges@0.5.4", 
+  "here@1.0.1", 
+  "lubridate@1.9.2", 
+  "patchwork@1.1.3", 
+  "pipebind@0.1.2", 
+  "posterior@1.4.1", 
+  "purrr@1.0.2", 
+  "stan-dev/cmdstanr",
+  "stringr@1.5.0", 
+  "tidyr@1.3.0",
+  verbose = FALSE
+)
 ```
 
 ```{r}
-library(here)        # File path management
+library(here)        # Working directory management
+library(fs)          # File & folder manipulation
 library(pipebind)    # Piping goodies
-library(fs)          # File & path manipulation
 
-library(dplyr)       # Data wrangling
-library(tidyr)       # Data wrangling (extras)
-library(purrr)       # Manipulating lists
-library(stringr)     # Manipulating strings
-library(lubridate)   # Manipulating dates
+library(cmdstanr)    # Lightweight R interface for Stan
+library(posterior)   # Wrangling Stan models' output
 
-library(data.table)  # Data wrangling (fast)
-
-library(DBI)         # Database management
+library(data.table)  # Fast data manipulation (in-RAM)
 library(duckdb)      # DuckDB R interface
-library(dbplyr)      # SQL backend for dplyr
 
-library(cmdstanr)    # R interface with Stan
-library(posterior)   # Wrangling Stan model ouputs
+library(dplyr)       # Manipulating data.frames - core   (Tidyverse)
+library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
+library(dbplyr)      # DB/SQL backend for dplyr/tidyr    (Tidyverse)
+library(stringr)     # Manipulating strings              (Tidyverse)
+library(purrr)       # Manipulating lists                (Tidyverse)
+library(lubridate)   # Manipulating date/time            (Tidyverse)
+library(ggplot2)     # Best plotting library             (Tidyverse)
 
-library(ggplot2)     # Plots
-library(ggridges)    # Ridgeline plots
-library(bayesplot)   # Plots for Stan models
+library(ggridges)    # Ridgeline plots (ggplot2 addon)
+library(bayesplot)   # PPC/Diagnostic plots for Stan models
 library(patchwork)   # Combining plots
 
 options(
@@ -107,7 +106,7 @@ options(
 
 nrows_print <- 10
 
-data.table::setDTthreads(getOption("mc.cores"))
+data.table::setDTthreads(parallel::detectCores(logical = FALSE))
 ```
 
 
@@ -238,10 +237,10 @@ CALL sqlite_attach(?db_path);
 
 ### dbplyr
 
-`dbplyr` automatically translates `dplyr` code into SQL
+`dbplyr` automatically translates `dplyr`/`tidyr` code into SQL
 
 ```{r}
-#| label: load_dbp
+#| label: "dbp_load"
 #| output: false
 #| time_it: true
 
@@ -276,12 +275,12 @@ CALL sqlite_attach(?db_path);
 #| echo: false
 #| output: asis
 
-TIMES$load_dbp
+TIMES$dbp_load
 ```
 
 ### SQL
 
-```{sql connection = "con_duck", time_it = TRUE, label = "load_sql", output.var = "climb_df"}
+```{sql connection = "con_duck", time_it = TRUE, label = "sql_load", output.var = "climb_df"}
 SELECT
   ascent.user_id
   , REPLACE(ascent.crag, ' ', '_')
@@ -303,7 +302,7 @@ WHERE ascent.country = 'USA'
 #| echo: false
 #| output: asis
 
-TIMES$load_sql
+TIMES$sql_load
 ```
 
 :::
@@ -340,7 +339,7 @@ Comparing `data.table` and `dbplyr`:
 
 ```{r}
 #| code-fold: true
-#| code-summary: threshold_ascents_dt
+#| code-summary: "threshold_ascents_dt"
 
 climb_dt <- setDT(climb_df) |> setkey(route_id, user_id)
 
@@ -353,7 +352,7 @@ threshold_ascents_dt <- function(old, lim = 20) {
 ```
 
 ```{r}
-#| label: processing_dt
+#| label: "dt_process"
 #| time_it: true
 #| output: asis
 
@@ -383,7 +382,7 @@ dt_clean <- (
 ```{r}
 #| echo: false
 
-TIMES$processing_dt
+TIMES$dt_process
 ```
 
 
@@ -391,7 +390,7 @@ TIMES$processing_dt
 
 ```{r}
 #| code-fold: true
-#| code-summary: threshold_ascents_dbp
+#| code-summary: "threshold_ascents_dbp"
 #| output: false
 
 db_create_index(con_duck, "climb_dbp", "route_id")
@@ -414,8 +413,8 @@ threshold_ascents_dbp <- function(old, lim = 20, collect = TRUE) {
 Since DuckDB doesn't have a `mode` function, we need to find another way to obtain the most common `route_rating` and `bouldering_grade` for each `route_id`. I do this by creating a reference table for each unique `route_id` for each of the two ratings, and then update the original data's rows based on them.
 
 ```{r}
+#| label: "dbp_process1"
 #| output: false
-#| label: processing_dbp1
 #| time_it: true
 
 (tbl(con_duck, "climb_dbp")
@@ -438,8 +437,8 @@ Since DuckDB doesn't have a `mode` function, we need to find another way to obta
 ```
 
 ```{r}
+#| label: "dbp_process2"
 #| output: false
-#| label: processing_dbp2
 #| time_it: true
 
 (tbl(con_duck, "climb_dbp")
@@ -463,7 +462,7 @@ Since DuckDB doesn't have a `mode` function, we need to find another way to obta
 ```{r}
 #| echo: false
 
-TIMES$processing_dbp1 + TIMES$processing_dbp2
+TIMES$dbp_process1 + TIMES$dbp_process2
 ```
 
 :::
@@ -737,8 +736,8 @@ hist_trace_plot <- function(mod, vars) {
 ```
 
 ```{r}
-#| fig.width: 10
-#| fig.height: 10
+#| fig-width: 10
+#| fig-height: 10
 #| output: asis
 
 hist_trace_plot(
@@ -748,8 +747,8 @@ hist_trace_plot(
 ```
 
 ```{r}
-#| fig.width: 10
-#| fig.height: 10
+#| fig-width: 10
+#| fig-height: 10
 #| output: asis
 
 hist_trace_plot(
@@ -778,7 +777,7 @@ Comparing `data.table`, `dbplyr`, and `dplyr` (which uses the *rvar* format from
 ### data.table
 
 ```{r}
-#| label: time_pp_dt
+#| label: "dt_pp"
 #| time_it: true
 
 draws_dt <- (
@@ -808,24 +807,21 @@ pp_dt <- (
 
 pp_dt
 
-TIMES$time_pp_dt
+TIMES$dt_pp
 ```
 
 
 ### dbplyr
 
 ```{r}
-#| label: time_pp_dbp1
+#| label: "dbp_pp1"
 #| output: false
 #| time_it: true
 
 db_create_index(con_duck, "dbp_clean", "route_idx")
 
 (mod_stan$draws(variables = "route_difficulty") 
-  |> bind(x, subset_draws(
-    x, "route_difficulty", regex = TRUE, 
-    draw = sample.int(ndraws(x), size = 500)) 
-  ) 
+  |> bind(x, subset_draws(x, "route_difficulty", regex = TRUE, draw = sample.int(ndraws(x), size = 500))) 
   |> as_draws_df()
   |> as.data.frame()
   |> pivot_longer(everything(), names_to = "route_idx", names_pattern = ".*\\[(\\d{1,4})\\]")
@@ -842,7 +838,7 @@ db_create_index(con_duck, "dbp_clean", "route_idx")
 ```
 
 ```{r}
-#| label: time_pp_dbp2
+#| label: "dbp_pp2"
 #| time_it: true
 #| echo: false
 #| output: asis
@@ -850,9 +846,9 @@ db_create_index(con_duck, "dbp_clean", "route_idx")
 ## Summarizing draws into a list, to display the result in the same format as the `data.table` solution
 (tbl(con_duck, "pp_dbp")
   |> summarize(
+    .by = route_idx,
     across(c(bouldering_grade, route_rating, climb_type), first),
-    route_difficulty = list(value),
-    .by = route_idx
+    route_difficulty = list(value)
   )
   |> collect()
   |> mutate(
@@ -865,7 +861,7 @@ db_create_index(con_duck, "dbp_clean", "route_idx")
 ```{r}
 #| echo: false
 
-TIMES$time_pp_dbp1 + TIMES$time_pp_dbp2
+TIMES$dbp_pp1 + TIMES$dbp_pp2
 ```
 
 
@@ -874,7 +870,7 @@ TIMES$time_pp_dbp1 + TIMES$time_pp_dbp2
 With `dplyr`, we can use the [rvar format](https://mc-stan.org/posterior/articles/rvar.html) to encapsulate the samples from the model, which drastically reduces the size of the samples' data.frame
 
 ```{r}
-#| label: time_pp_df
+#| label: "dp_pp"
 #| time_it: true
 #| output: asis
 
@@ -898,7 +894,7 @@ With `dplyr`, we can use the [rvar format](https://mc-stan.org/posterior/article
 #| echo: false
 #| output: asis
 
-TIMES$time_pp_df
+TIMES$dp_pp
 ```
 
 :::
@@ -909,7 +905,7 @@ TIMES$time_pp_df
 
 ```{r}
 #| code-fold: true
-#| code-summary: Plot code
+#| code-summary: "Plot code"
 
 ridgeline_plot <- function(dat, var) {
   if (class(dat[, route_difficulty]) == "list")
@@ -930,8 +926,8 @@ ridgeline_plot <- function(dat, var) {
 **Route Rating:**
 
 ```{r}
-#| fig.height: 14
-#| fig.width: 8
+#| fig-height: 14
+#| fig-width: 8
 #| output: asis
 
 ridgeline_plot(pp_dt[climb_type == 0], "route_rating")
@@ -940,8 +936,8 @@ ridgeline_plot(pp_dt[climb_type == 0], "route_rating")
 **Bouldering Grade:**
 
 ```{r}
-#| fig.height: 14
-#| fig.width: 8
+#| fig-height: 14
+#| fig-width: 8
 #| output: asis
 
 ridgeline_plot(pp_dt[climb_type == 1 & bouldering_grade != "V0"], "bouldering_grade")
@@ -953,5 +949,4 @@ ridgeline_plot(pp_dt[climb_type == 1 & bouldering_grade != "V0"], "bouldering_gr
 #| echo: false
 
 dbDisconnect(con_duck, shutdown = TRUE)
-# fs::file_delete(duckdb_path)
 ```

@@ -9,7 +9,7 @@ image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 about:
   template: trestles
-  image-shape: round
+  image-shape: rectangle
   links:
     - text: "GitHub"
       icon: github
@@ -43,6 +43,11 @@ website:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   twitter-card:
     description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+
+engine: knitr
+
+include-before-body:
+  - text: "<script src='libs/js/charts.umd.js'></script>"
 ---
 
 ::: {.column-page}
@@ -51,59 +56,78 @@ I'm a recovering academic who worked on several research projects at the interse
 
 I have since retrained as a **Data Scientist** with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
 
-```{r}
-#| echo: false
-#| output: false
-#| file: !expr here::here("src", "init.R")
-```
+<div style="height: 650px; display: flex; justify-content: center; margin-top: 40px;">
+  <canvas id="marachinde"></canvas>
+</div>
 
-```{r}
-#| echo: false
-#| fig-width: 10
-#| fig-height: 6
-#| fig-alt: A radar chart of my main skills
+```{js}
+//| echo: false
+//| output: false
 
-skills <- tibble::tibble(
-  `Behavioral \n Research  ` = 0.95,
-  `  Data       \nScience` = 0.85,
-  `   Scientific  \nCommunication` = 0.85,
-  `Human-Machine  \n    Interfaces    ` = 0.75,
-  `Software  \n Engineering` = 0.625,
-  `Project     \nManagement` = 0.75,
-) |> mutate(ID = row_number(), .before = 1)
+const ctx = document.getElementById('marachinde');
 
-skills_radar <- (ggradar::ggradar(
-    skills,
-    values.radar = NA,
-    grid.mid = 0,
-    grid.label.size = 0,
-    axis.label.size = 4.7,
-    group.line.width = 1,
-    group.point.size = 3,
-    group.colours = "#00AFBB",
-    background.circle.colour = NA,
-    gridline.mid.colour = "grey",
-    gridline.min.linetype = "solid",
-    gridline.mid.linetype = "dotted",
-    gridline.max.linetype = "longdash",
-    fill = TRUE,
-    fill.alpha = 0.3
-  ) 
-  + theme(
-    legend.position = "none",
-    plot.background = ggplot2::element_rect(fill = "transparent", colour = NA),
-    panel.background = ggplot2::element_rect(fill = "transparent", colour = NA),
-    panel.border = element_blank(),
-    axis.text.x = element_blank(),
-    axis.text.y = element_blank()
-  )
-)
+const data = {
+  labels: [
+    'Cognitive Neuroscience',
+    // ['Behavioral', 'Research'],
+    'Behavioral Research',
+    'Scientific Communication',
+    'Data Science',
+    'Software Engineering',
+    'Project Management'
+  ],
+  datasets: [{
+    label: '',
+    data: [90, 90, 80, 85, 70, 75],
+    fill: true,
+    backgroundColor: 'rgba(82, 0, 252, 0.2)',
+    borderColor: 'rgb(82, 0, 252)',
+    pointBackgroundColor: 'rgb(82, 0, 252)',
+    pointBorderColor: '#fff',
+    pointHoverBackgroundColor: '#fff',
+    pointHoverBorderColor: 'rgb(82, 0, 252)'
+  }]
+};
 
-skills_radar$layers[[1]]$aes_params$colour <- "grey70"
-skills_radar$layers[[5]]$aes_params$colour <- "grey70"
-skills_radar$layers[[6]]$aes_params$colour <- "grey70"
-  
-skills_radar
+new Chart(ctx, {
+  type: 'radar',
+  data: data,
+  options: {
+    plugins: {
+      // title: {display: true, text: "My profile", font: {size: 20}},
+      legend: {display: false}
+    },
+    scale: {
+      ticks: {stepSize: 20}
+    },
+    scales: {
+      r: {
+        // angleLines: {display: false},
+        pointLabels: {
+          // color: 'darkgrey',
+          font: {
+            size: 16,
+            // style: 'italic',
+            weight: 'bold'
+          }
+        },
+        ticks: {display: false},
+        suggestedMin: 0,
+        suggestedMax: 100
+      }
+    },
+    maintainAspectRatio: false,
+    responsive: true,
+    layout: {
+      padding: 0,
+    },
+    elements: {
+      line: {
+        borderWidth: 3
+      }
+    }
+  },
+});
 ```
 
 :::

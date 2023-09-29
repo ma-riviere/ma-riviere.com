@@ -69,12 +69,20 @@ h5.quarto-listing-category-title { color: $col2; }
 
 .quarto-listing-category > div[data-category='Research'],
 .quarto-listing-category > div[data-category='Software Engineering'],
-.quarto-listing-category > div[data-category='Data Science'] {
+.quarto-listing-category > div[data-category='Data Science'],
+.listing-categories > div[onClick*="('Research')"],
+.listing-categories > div[onClick*="('Software Engineering')"],
+.listing-categories > div[onClick*="('Data Science')"]
+{
     font-weight: bold;
 }
 
 .quarto-listing-category > div[data-category='Cognitive Psychology'],
 .quarto-listing-category > div[data-category='Engineering'],
-.quarto-listing-category > div[data-category='Neuroscience'] {
+.quarto-listing-category > div[data-category='Neuroscience'],
+.listing-categories > div[onClick*="('Cognitive Psychology')"],
+.listing-categories > div[onClick*="('Engineering')"],
+.listing-categories > div[onClick*="('Neuroscience')"]
+{
     font-weight: bold;
 }

@@ -31,13 +31,13 @@ toc-depth: 2
 {{< include /content/_hr.qmd >}}
 
 :::{.callout-tip}
+
 You can check the source code by clicking on the **</> Code** button at the top-right.
 
-The data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
+The data is a list of bike rides from the [Divvy](https://www.divvybikes.com/) bike-sharing service in Chicago, and the stations are the bike stations where the bikes can be picked up and dropped off. This post was prompted by a question on Reddit: how could one identified the many unknown stations within the rides data (i.e. starting or ending stations missing id and name) to known stations by their geographical proximity. 
 
-This post the result of my answer to [this reddit question](https://www.reddit.com/r/rstats/comments/vdwi6o/finding_records_based_on_approximate_lattitude/).
+This post is related to a case study of **Google's Data Analytics certificate**, and the data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
 
-It is linked to a case study of **Google's Data Analytics certificate**.
 :::
 
 :::{.callout-tip collapse="true"}
@@ -49,9 +49,7 @@ It is linked to a case study of **Google's Data Analytics certificate**.
 **v2:** 2022-10-29  
 
 - Added a `DuckDB` + `arrow` example for the data loading.  
-
 - Added data cleaning section (removing implausible rides).  
-
 - Added `sf`, `dbplyr` and `data.table` (manual) examples for the spatial join.  
 
 **v3:** 2023-03-12  
@@ -63,11 +61,9 @@ It is linked to a case study of **Google's Data Analytics certificate**.
 - Updated the SQL/`dbplyr` examples with DuckDB v0.8.1:  
     * Using the new `PIVOT/UNPIVOT` SQL statements  
     * Using the new [`spatial`](https://duckdb.org/docs/extensions/spatial.html) DuckDB extension for spatial operations  
-
 - Updates the `data.table` examples:  
     * Using both `sf` and manual distances calculations (haversine) for spatial operations    
     * Removed the `dtplyr` examples  
-
 - Improved the document's structure & explanations
 :::
 
@@ -83,25 +79,31 @@ It is linked to a case study of **Google's Data Analytics certificate**.
 source(here::here("src", "init_min.R"), echo = FALSE)
 ```
 
-```{r}
+```{r lockfile}
 #| echo: false
 #| eval: false
+#| output: false
 
-renv::install(c(
-  "here",
-  "fs",
-  "pipebind",
-  "Rdatatable/data.table", # >= 1.14.9
-  "dplyr", # >= 1.1.0
-  "tidyr",
-  "stringr",
-  "purrr", # >= 1.0.0
-  "duckdb", # >= 0.8.0
-  "dbplyr", # >= 2.3.3
-  "arrow",
-  "fuzzyjoin",
-  "sf"
-))
+renv::use(
+  "Rdatatable/data.table",
+  "Tidyverse/dbplyr@main",
+  "arrow@13.0.0",
+  "dplyr@1.1.3",
+  "duckdb@0.8.1-3",
+  "fs@1.6.3",
+  "fuzzyjoin@0.1.6",
+  "ggplot2@3.4.3",
+  "here@1.0.1",
+  "leaflet@2.2.0",
+  "lubridate@1.9.2",
+  "pipebind@0.1.2",
+  "purrr@1.0.2",
+  "readr@2.1.4",
+  "sf@1.0-14",
+  "stringr@1.5.0",
+  "tidyr@1.3.0",
+  verbose = FALSE
+)
 ```
 
 ```{r}
@@ -117,6 +119,7 @@ library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
 library(stringr)     # Manipulating strings              (Tidyverse)
 library(purrr)       # Manipulating lists                (Tidyverse)
 library(lubridate)   # Manipulating date/time            (Tidyverse)
+library(ggplot2)     # Best plotting library             (Tidyverse)
 
 library(dbplyr)      # SQL back-end for dplyr            (Tidyverse)
 library(duckdb)      # Quack Stack
@@ -228,7 +231,7 @@ duckdb_path <- here(data_path, "stations.db")
 ### data.table
 
 ```{r}
-#| label: dt_loading
+#| label: "dt_loading"
 #| time_it: true
 #| output: false
 
@@ -245,7 +248,7 @@ if (!interactive()) TIMES$dt_loading
 ### Tidyverse
 
 ```{r}
-#| label: tidy_loading
+#| label: "tidy_loading"
 #| time_it: true
 #| output: false
 
@@ -263,7 +266,7 @@ if (!interactive()) TIMES$tidy_loading
 ```{r}
 #| eval: false
 #| code-fold: true
-#| code-summary: Alternatives
+#| code-summary: "Alternatives"
 
 map(files, \(f) read_csv(f, show_col_types = FALSE)) |> list_rbind()
 
@@ -285,7 +288,7 @@ knitr::opts_chunk$set(connection = "con")
 ```
 
 ```{r}
-#| label: duck_loading
+#| label: "duck_loading"
 #| output: false
 #| time_it: true
 
@@ -329,7 +332,7 @@ withr::with_dir(
 ### arrow + DuckDB
 
 ```{r}
-#| label: arrow_duck_loading
+#| label: "arrow_duck_loading"
 #| output: false
 #| time_it: true
 
@@ -436,7 +439,7 @@ Then, we are going to filter out rides that are implausible (i.e. too short, too
 First, let's create a new dataset with a POINT geometry for both start and end stations' positions:
 
 ```{r}
-#| label: dt_clean_geom_1
+#| label: "dt_clean_geom_1"
 #| time_it: true
 #| output: false
 
@@ -452,7 +455,7 @@ rides_geom <- (
 Then, use those two points to compute an accurate distance between each rides' `start_pos` and `end_pos`, and use that distance to filter implausible rides:
 
 ```{r}
-#| label: dt_clean_geom_2
+#| label: "dt_clean_geom_2"
 #| time_it: true
 #| output: false
 
@@ -485,7 +488,7 @@ if (!interactive()) TIMES$dt_clean_geom_1 + TIMES$dt_clean_geom_2
 The `haversine` function computes the distance between two points on a sphere, based on their coordinates. But the Earth isn't a sphere, so the estimated distance will only be approximate. However, for small distances, it's accurate enough for our goals. And it's much faster !
 
 ```{r}
-#| label: dt_clean_haversine
+#| label: "dt_clean_haversine"
 #| time_it: true
 #| output: false
 
@@ -526,7 +529,7 @@ LOAD spatial;
 ```
 
 ```{r}
-#| label: dbp_clean
+#| label: "dbp_clean"
 #| time_it: true
 #| output: false
 
@@ -575,7 +578,7 @@ CREATE OR REPLACE FUNCTION haversine(lng1, lat1, lng2, lat2)
 ```
 
 ```{r}
-#| label: dbp_clean_haversine
+#| label: "dbp_clean_haversine"
 #| time_it: true
 #| output: false
 
@@ -633,7 +636,7 @@ Our cleaning removed `r scales::label_comma()(nrow(rides) - nrow(rides_clean_geo
 
 ```{r}
 #| code-fold: true
-#| code-summary: Code
+#| code-summary: "Code"
 #| fig-width: 10 
 
 (rides_clean_haversine[
@@ -660,7 +663,7 @@ Our cleaning removed `r scales::label_comma()(nrow(rides) - nrow(rides_clean_geo
 ```{r}
 #| echo: false
 #| output: false
-#| label: cleaning_post_clean
+#| label: "cleaning_post_clean"
 
 ## We'll use the cleaned data for the rest of the document
 
@@ -681,7 +684,7 @@ Since we are interested in filling missing station information, we will first pi
 ### In-RAM
 
 ```{r}
-#| label: dt_longer
+#| label: "dt_longer"
 #| time_it: true
 #| output: false
 
@@ -701,7 +704,7 @@ if (!interactive()) TIMES$dt_longer
 ### Out-of-RAM
 
 ```{r}
-#| label: dbp_longer
+#| label: "dbp_longer"
 #| time_it: true
 #| output: false
 
@@ -886,7 +889,7 @@ And now, let's apply it to our table of unknown stations (`rides_clean_geom_long
 ### In-RAM
 
 ```{r}
-#| label: dt_acc4_unk
+#| label: "dt_acc4_unk"
 #| time_it: true
 
 rides_clean_geom_long_unk_acc4 <- rides_clean_geom_long_unk[has_acc4(lat) & has_acc4(lng), ]
@@ -902,7 +905,7 @@ if (!interactive()) TIMES$dt_acc4_unk
 ### Out-of-RAM
 
 ```{r}
-#| label: dbp_acc4_unk
+#| label: "dbp_acc4_unk"
 #| output: false
 #| time_it: true
 
@@ -989,7 +992,7 @@ Here, since we want to establish our "stations" lookup table from the "accuracy-
 #### In-RAM
 
 ```{r}
-#| label: dt_acc4
+#| label: "dt_acc4"
 #| time_it: true
 #| output: false
 
@@ -1006,7 +1009,7 @@ if (!interactive()) TIMES$dt_acc4
 #### Out-of-RAM
 
 ```{r}
-#| label: dbp_acc4
+#| label: "dbp_acc4"
 #| time_it: true
 #| output: false
 
@@ -1036,7 +1039,7 @@ Now, let's use the resulting table (`rides_clean_geom_long_acc4`) to build our s
 **Precise location with `sf::st_centroid`:**
 
 ```{r}
-#| label: dt_stations_acc4_geom
+#| label: "dt_stations_acc4_geom"
 #| time_it: true
 #| output: false
 
@@ -1061,7 +1064,7 @@ if (!interactive()) TIMES$dt_stations_acc4_geom
 **Approximate location by averaging the coordinates:**
 
 ```{r}
-#| label: dt_stations_acc4_mean
+#| label: "dt_stations_acc4_mean"
 #| time_it: true
 #| output: false
 
@@ -1089,14 +1092,14 @@ if (!interactive()) TIMES$dt_stations_acc4_mean
 
 ```{r}
 #| output: false
-#| label: dbp_stations_acc4_geom
+#| label: "dbp_stations_acc4_geom"
 #| time_it: true
 
 (tbl(con, "rides_clean_geom_long_acc4")
   |> filter(!is.na(id), !is.na(name))
   |> summarize(
-      pos = list(pos) |> st_collect() |> st_centroid(),
-      .by = c(id, name)
+      .by = c(id, name),
+      pos = list(pos) |> st_collect() |> st_centroid()
   )
   |> arrange(id)
   |> compute("stations_clean_acc4_geom", overwrite = TRUE)
@@ -1134,14 +1137,14 @@ if (!interactive()) TIMES$sql_stations_acc4_geom
 
 ```{r}
 #| output: false
-#| label: dbp_stations_acc4_mean
+#| label: "dbp_stations_acc4_mean"
 #| time_it: true
 
 (tbl(con, "rides_clean_geom_long_acc4")
   |> filter(!is.na(id), !is.na(name))
   |> summarize(
-    across(c(lat, lng), mean),
-    .by = c(id, name)
+      .by = c(id, name),
+      across(c(lat, lng), mean)
   )
   |> arrange(id)
   |> compute("stations_clean_acc4_mean", overwrite = TRUE)
@@ -1211,7 +1214,7 @@ stations_clean_acc4_mean[, lapply(.SD, as.character)]
 **Precise location with `sf::st_centroid`:**
 
 ```{r}
-#| label: dt_stations_geom
+#| label: "dt_stations_geom"
 #| time_it: true
 #| output: false
 
@@ -1235,7 +1238,7 @@ if (!interactive()) TIMES$dt_stations_geom
 **Approximate location by averaging the coordinates:**
 
 ```{r}
-#| label: dt_stations_mean
+#| label: "dt_stations_mean"
 #| time_it: true
 #| output: false
 
@@ -1263,14 +1266,14 @@ if (!interactive()) TIMES$dt_stations_mean
 
 ```{r}
 #| output: false
-#| label: dbp_stations_geom
+#| label: "dbp_stations_geom"
 #| time_it: true
 
 (tbl(con, "rides_clean_geom_long")
   |> filter(!is.na(id), !is.na(name))
   |> summarize(
-      pos = list(pos) |> st_collect() |> st_centroid(),
-      .by = c(id, name)
+      .by = c(id, name),
+      pos = list(pos) |> st_collect() |> st_centroid()
   )
   |> arrange(id)
   |> compute("stations_clean_geom", overwrite = TRUE)
@@ -1308,14 +1311,14 @@ if (!interactive()) TIMES$sql_stations_geom
 
 ```{r}
 #| output: false
-#| label: dbp_stations_mean
+#| label: "dbp_stations_mean"
 #| time_it: true
 
 (tbl(con, "rides_clean_geom_long")
   |> filter(!is.na(id), !is.na(name))
   |> summarize(
-    across(c(lat, lng), mean),
-    .by = c(id, name)
+      .by = c(id, name),
+      across(c(lat, lng), mean)
   )
   |> arrange(id)
   |> compute("stations_clean_mean", overwrite = TRUE)
@@ -1385,7 +1388,7 @@ Let's compare both sources of data (filtered or not) and methods of combining lo
 
 ```{r}
 #| code-fold: true
-#| code-summary: Code
+#| code-summary: "Code"
 #| fig-width: 9
 #| fig-height: 6
 
@@ -1443,7 +1446,7 @@ As for stations present in both lookup tables, there seems to be virtually no di
 
 Taken together, this means we should only use the filtered (accuracy-4) stations lookup table going forwards, but we use the average of lat/lng instead of the `st_centroid` if we want to save time on computations.
 
-*PS: Another (most likely better) solution here would have been to query OpenStreetMap or Google Maps for the coordinates of each station and build our lookup table that way.*
+*PS: Abetter solution here would have been to query OpenStreetMap or Google Maps for the coordinates of each station, and build our lookup table with those.*
 
 :::
 
@@ -1468,7 +1471,7 @@ There are `r scales::label_comma()(nrow(rides_clean_geom_long_unk_acc4))` entrie
 **Precise geom-distance join using `sf` geometries:**
 
 ```{r}
-#| label: sf_match_acc4
+#| label: "sf_match_acc4"
 #| time_it: true
 #| output: false
 
@@ -1514,7 +1517,7 @@ if (!interactive()) TIMES$sf_match_acc4
 **Approximate haversine-distance join using `fuzzyjoin`:**
 
 ```{r}
-#| label: fuzzy_match_acc4
+#| label: "fuzzy_match_acc4"
 #| time_it: true
 #| output: false
 
@@ -1554,7 +1557,7 @@ if (!interactive()) TIMES$fuzzy_match_acc4
 **Precise geom-distance join using `spatial` geometries:**
 
 ```{r}
-#| label: dbp_match_acc4_geom
+#| label: "dbp_match_acc4_geom"
 #| time_it: true
 #| output: false
 
@@ -1641,7 +1644,7 @@ if (!interactive()) TIMES$sql_match_acc4_geom
 **Approximate haversine-distance join:**
 
 ```{r}
-#| label: dbp_match_acc4_haversine
+#| label: "dbp_match_acc4_haversine"
 #| time_it: true
 #| output: false
 
@@ -1757,7 +1760,7 @@ There are `r scales::label_comma()(nrow(rides_clean_geom_long_unk))` entries fro
 **Precise geom-distance join using `sf` geometries:**
 
 ```{r}
-#| label: sf_match
+#| label: "sf_match"
 #| time_it: true
 #| output: false
 
@@ -1803,7 +1806,7 @@ if (!interactive()) TIMES$sf_match
 **Approximate haversine-distance join using `fuzzyjoin`:**
 
 ```{r}
-#| label: fuzzy_match
+#| label: "fuzzy_match"
 #| time_it: true
 #| output: false
 
@@ -1845,7 +1848,7 @@ if (!interactive()) TIMES$fuzzy_match
 **Precise geom-distance join using `spatial` geometries:**
 
 ```{r}
-#| label: dbp_match_geom
+#| label: "dbp_match_geom"
 #| time_it: true
 #| output: false
 
@@ -1931,7 +1934,7 @@ if (!interactive()) TIMES$sql_match_geom
 **Approximate haversine-distance join:**
 
 ```{r}
-#| label: dbp_match_haversine
+#| label: "dbp_match_haversine"
 #| time_it: true
 #| output: false
 
@@ -1997,7 +2000,9 @@ tbl(con, "matched_clean_geom") |> head(nrows_print) |> collect()
 tbl(con, "matched_clean_haversine") |> head(nrows_print) |> collect()
 ```
 
-We have filled many more rides here, but surprisingly, all those rides only correspond to a small number of stations:
+:::
+
+We have filled many more rides here, but surprisingly, all those rides only correspond to 3 stations:
 
 ```{r}
 #| output: asis
@@ -2009,7 +2014,8 @@ We have filled many more rides here, but surprisingly, all those rides only corr
 )
 ```
 
-:::
+And 2 of those are the same as the ones matched from the accuracy-4 data.
+
 
 ::: {.callout-caution appearance="simple" collapse=true}
 
@@ -2019,7 +2025,7 @@ Are some stations identified differently between the haversine and geom-based jo
 
 ```{r}
 #| code-fold: true
-#| code-summary: Code
+#| code-summary: "Code"
 #| output: asis
 
 bind_rows(
@@ -2097,7 +2103,7 @@ Finally, we can update the original dataset with the entries that were position-
 ### In-RAM
 
 ```{r}
-#| label: dt_merge
+#| label: "dt_merge"
 #| time_it: true
 #| output: false
 
@@ -2127,7 +2133,7 @@ gc()
 ### Out-of-RAM
 
 ```{r}
-#| label: dbp_merge
+#| label: "dbp_merge"
 #| output: false
 #| time_it: true
 
@@ -2224,7 +2230,7 @@ To finish, let's pivot the resulting data back into the wider format it was orig
 ### In-RAM
 
 ```{r}
-#| label: dt_wider
+#| label: "dt_wider"
 #| time_it: true
 
 rides_clean_geom_filled <- (
@@ -2245,7 +2251,7 @@ if (!interactive()) TIMES$dt_wider
 ### Out-of-RAM
 
 ```{r}
-#| label: dbp_wider
+#| label: "dbp_wider"
 #| output: false
 #| time_it: true
 

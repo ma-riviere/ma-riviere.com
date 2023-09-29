@@ -45,49 +45,54 @@ You can check the page's source code by clicking on the **</> Code** button at t
 source(here::here("src", "init_min.R"), echo = FALSE)
 ```
 
-```{r}
+```{r lockfile}
 #| echo: false
 #| eval: false
+#| output: false
 
-renv::install(c(
-  "here",
-  "pipebind",
-  "fs",
-  "readr",
+renv::use(
   "Rdatatable/data.table",
-  "dplyr",
-  "tidyr",
-  "purrr",
-  "stringr",
-  "lubridate",
-  "cmdstanr",
-  "posterior",
-  "ggplot2",
-  "ggridges",
-  "bayesplot",
-  "patchwork"
-))
+  "bayesplot@1.10.0",
+  "dplyr@1.1.3",
+  "fs@1.6.3",
+  "ggplot2@3.4.3",
+  "ggridges@0.5.4",
+  "here@1.0.1",
+  "lubridate@1.9.2",
+  "patchwork@1.1.3",
+  "pipebind@0.1.2",
+  "posterior@1.4.1",
+  "purrr@1.0.2",
+  "readr@2.1.4",
+  "stan-dev/cmdstanr",
+  "stringr@1.5.0",
+  "tibble@3.2.1",
+  "tidyr@1.3.0",
+  verbose = FALSE
+)
 ```
 
 ```{r}
-library(here)        # File path management
+library(here)        # Working directory management
+library(fs)          # File & folder manipulation
 library(pipebind)    # Piping goodies
-library(fs)          # File & path manipulation
-library(readr)       # Reading files
 
-library(data.table)  # Data wrangling (fast)
-library(dplyr)       # Data wrangling
-library(tidyr)       # Data wrangling (misc)
-library(purrr)       # Manipulating lists
-library(stringr)     # Manipulating strings
-library(lubridate)   # Manipulating dates
+library(cmdstanr)    # Lightweight R interface for Stan
+library(posterior)   # Wrangling Stan models' output
 
-library(cmdstanr)    # R interface with Stan
-library(posterior)   # Wrangling Stan model ouputs
+library(data.table)  # Fast data manipulation (in-RAM)
 
-library(ggplot2)     # Plots
-library(ggridges)    # Ridgeline plots
-library(bayesplot)   # Plots for Stan models
+library(tibble)      # Extending data.frames             (Tidyverse)
+library(readr)       # Reading data from files           (Tidyverse)
+library(dplyr)       # Manipulating data.frames - core   (Tidyverse)
+library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
+library(stringr)     # Manipulating strings              (Tidyverse)
+library(purrr)       # Manipulating lists                (Tidyverse)
+library(lubridate)   # Manipulating date/time            (Tidyverse)
+library(ggplot2)     # Best plotting library             (Tidyverse)
+
+library(ggridges)    # Ridgeline plots (ggplot2 addon)
+library(bayesplot)   # PPC/Diagnostic plots for Stan models
 library(patchwork)   # Combining plots
 
 options(
@@ -100,7 +105,7 @@ options(
 
 nrows_print <- 10
 
-data.table::setDTthreads(getOption("mc.cores"))
+data.table::setDTthreads(parallel::detectCores(logical = FALSE))
 ```
 
 
@@ -552,7 +557,7 @@ Getting our Posterior Predictions into long format and joining the result with `
 
 ```{r}
 #| code-fold: true
-#| code-summary: Plot code
+#| code-summary: "Plot code"
 
 ridgeline_plot <- function(dat, var) {
   dat <- dat[, .(player_skills = unlist(player_skills)), by = setdiff(names(dat), 'player_skills')

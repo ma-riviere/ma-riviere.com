@@ -20,7 +20,7 @@ website:
   title: "Marc-Aurèle Rivière"
   description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
   image: res/avatar.jpg
-  favicon: res/favicon.png
+  favicon: res/hexabrain.svg
   site-url: 'https://ma-riviere.com'
   repo-url: https://github.com/ma-riviere/ma-riviere.com
   
@@ -42,16 +42,16 @@ website:
     location: navbar
     type: overlay
     collapse-after: 10
-    show-item-context: true
-    # show-item-parent: breadcrumbs
+    # show-item-context: true
+    show-item-parent: "breadcrumbs"
   
   ### Navigation ###
   # page-navigation: true
   bread-crumbs: true
   
   navbar:
-    # logo: res/hexacode.svg
-    # logo-alt: "Hexagon containing a neuron"
+    logo: res/hexabrain.svg
+    logo-alt: "Hexagon containing a stylized brain"
     pinned: true
     collapse: true
     collapse-below: md
