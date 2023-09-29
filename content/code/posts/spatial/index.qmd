@@ -34,7 +34,7 @@ toc-depth: 2
 
 You can check the source code by clicking on the **</> Code** button at the top-right.
 
-The data is a list of bike rides from the [Divvy](https://www.divvybikes.com/) bike-sharing service in Chicago, and the stations are the bike stations where the bikes can be picked up and dropped off. This post was prompted by a question on Reddit: how could one identified the many unknown stations within the rides data (i.e. starting or ending stations missing id and name) to known stations by their geographical proximity. 
+The data is a list of bike rides from the [Divvy](https://www.divvybikes.com/) bike-sharing service in Chicago, and the stations are the bike stations where the bikes can be picked up and dropped off. This post was prompted by a question on Reddit: how could one identify the many unknown stations within the rides data (i.e. rides' start or end stations missing their id and name) to known stations, by their geographical proximity. 
 
 This post is related to a case study of **Google's Data Analytics certificate**, and the data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
 
