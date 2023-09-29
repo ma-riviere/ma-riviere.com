@@ -56,7 +56,7 @@ I'm a recovering academic who worked on several research projects at the interse
 
 I have since retrained as a **Data Scientist** with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
 
-<div style="height: 650px; display: flex; justify-content: center; margin-top: 40px;">
+<div style="height: 550px; display: flex; justify-content: center; margin-top: 40px;">
   <canvas id="marachinde"></canvas>
 </div>
 
