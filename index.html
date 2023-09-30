@@ -108,7 +108,7 @@ cookieconsent.run({
   <header id="quarto-header" class="headroom fixed-top"><nav class="navbar navbar-expand-md navbar-dark "><div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./res/hexabrain.svg" alt="Stylized depicption of a brain inside a hexagon" class="navbar-logo"></a>
+    <img src="./res/hexabrain.svg" alt="Stylized depiction of a brain inside a hexagon" class="navbar-logo"></a>
     <a class="navbar-brand" href="./index.html">
     <span class="navbar-title">Marc-Aurèle Rivière</span>
     </a>
@@ -228,12 +228,11 @@ const ctx = document.getElementById('marachinde');
 const data = {
   labels: [
     'Cognitive Neuroscience',
-    // ['Behavioral', 'Research'],
-    'Behavioral Research',
-    'Scientific Communication',
+    ['Behavioral', 'Research'],
+    ['Scientific', 'Communication'],
     'Data Science',
-    'Software Engineering',
-    'Project Management'
+    ['Software', 'Engineering'],
+    ['Project', 'Management']
   ],
   datasets: [{
     label: '',
@@ -260,11 +259,17 @@ new Chart(ctx, {
     },
     scales: {
       r: {
-        // angleLines: {display: false},
+        angleLines: {
+          color: '#666666'
+          // display: false
+        },
+        grid: {
+          color: '#a8a6a6'
+        },
         pointLabels: {
           // color: 'darkgrey',
           font: {
-            size: 16,
+            size: 14,
             // style: 'italic',
             weight: 'bold'
           }
