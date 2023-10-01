@@ -188,7 +188,7 @@
     },
     "arrow": {
       "Package": "arrow",
-      "Version": "13.0.0",
+      "Version": "13.0.0.1",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -206,7 +206,7 @@
         "utils",
         "vctrs"
       ],
-      "Hash": "228c453a8e0fc89dd8834e3c516959fa"
+      "Hash": "5f5124b727a451be32d23dcd2c41ebe8"
     },
     "askpass": {
       "Package": "askpass",
@@ -465,7 +465,7 @@
       "RemoteUsername": "stan-dev",
       "RemoteRepo": "cmdstanr",
       "RemoteRef": "master",
-      "RemoteSha": "17678d554324af0e2b9ddb0f66d2dc5b3b4930d4",
+      "RemoteSha": "a2af1672125ff8137d185c6a576c44055f63bc43",
       "Requirements": [
         "R",
         "R6",
@@ -477,7 +477,7 @@
         "rlang",
         "withr"
       ],
-      "Hash": "be3cd187fa6e18a5dd31121c03e04df7"
+      "Hash": "3a896f0672044806f05717c0e1e103f5"
     },
     "coda": {
       "Package": "coda",
@@ -564,6 +564,19 @@
       ],
       "Hash": "93762d0a34d78e6a025efdbfb5c6bb41"
     },
+    "crosstalk": {
+      "Package": "crosstalk",
+      "Version": "1.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R6",
+        "htmltools",
+        "jsonlite",
+        "lazyeval"
+      ],
+      "Hash": "6aa54f69598c32177e920eb3402e8293"
+    },
     "curl": {
       "Package": "curl",
       "Version": "5.0.1",
@@ -592,14 +605,14 @@
     },
     "dbplyr": {
       "Package": "dbplyr",
-      "Version": "2.3.3.9000",
+      "Version": "2.3.4.9000",
       "Source": "GitHub",
       "RemoteType": "github",
       "RemoteHost": "api.github.com",
       "RemoteUsername": "Tidyverse",
       "RemoteRepo": "dbplyr",
       "RemoteRef": "main",
-      "RemoteSha": "ac59da3cd363b5457f5f4fb844bcfd6b1e30becd",
+      "RemoteSha": "cc8ecdb1b1ac0f1d740a2fcd91da06b339ec2eba",
       "Requirements": [
         "DBI",
         "R",
@@ -621,7 +634,7 @@
         "vctrs",
         "withr"
       ],
-      "Hash": "e74fafe374c1cee3da7f0af099c6e56d"
+      "Hash": "2786461200328fd4df82f08dfa72a451"
     },
     "desc": {
       "Package": "desc",
@@ -711,30 +724,6 @@
       ],
       "Hash": "e85ffbebaad5f70e1a2e2ef4302b4949"
     },
-    "dtplyr": {
-      "Package": "dtplyr",
-      "Version": "1.3.1.9000",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "Tidyverse",
-      "RemoteRepo": "dtplyr",
-      "RemoteRef": "main",
-      "RemoteSha": "97bfef11cc43f2b4ce025e1a2b7489559c0f6086",
-      "Requirements": [
-        "R",
-        "cli",
-        "data.table",
-        "dplyr",
-        "glue",
-        "lifecycle",
-        "rlang",
-        "tibble",
-        "tidyselect",
-        "vctrs"
-      ],
-      "Hash": "8db492c8e23476a868b8721c8223f3f3"
-    },
     "duckdb": {
       "Package": "duckdb",
       "Version": "0.8.1-3",
@@ -823,22 +812,6 @@
         "rlang"
       ],
       "Hash": "1e22b8cabbad1eae951a75e9f8b52378"
-    },
-    "forcats": {
-      "Package": "forcats",
-      "Version": "1.0.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "cli",
-        "glue",
-        "lifecycle",
-        "magrittr",
-        "rlang",
-        "tibble"
-      ],
-      "Hash": "1a0a9a3d5083d0d573c4214576f1e690"
     },
     "fs": {
       "Package": "fs",
@@ -986,22 +959,6 @@
       ],
       "Hash": "85846544c596e71f8f46483ab165da33"
     },
-    "ggradar": {
-      "Package": "ggradar",
-      "Version": "0.2",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "ricardo-bion",
-      "RemoteRepo": "ggradar",
-      "RemoteRef": "master",
-      "RemoteSha": "53404a563e2629e034cc7dd21afda40d213d1c64",
-      "Requirements": [
-        "forcats",
-        "ggplot2"
-      ],
-      "Hash": "db2f4329801c2edaed06320d9d53ce62"
-    },
     "ggridges": {
       "Package": "ggridges",
       "Version": "0.5.4",
@@ -1142,32 +1099,6 @@
         "xml2"
       ],
       "Hash": "d55233a737e43e44987724e57dfec302"
-    },
-    "gtExtras": {
-      "Package": "gtExtras",
-      "Version": "0.4.6.9001",
-      "Source": "GitHub",
-      "RemoteType": "github",
-      "RemoteHost": "api.github.com",
-      "RemoteUsername": "jthomasmock",
-      "RemoteRepo": "gtExtras",
-      "RemoteRef": "master",
-      "RemoteSha": "bf69f95384a9a6e39667de6d6a9bb366f9c6cb93",
-      "Requirements": [
-        "R",
-        "commonmark",
-        "dplyr",
-        "fontawesome",
-        "ggplot2",
-        "glue",
-        "gt",
-        "htmltools",
-        "knitr",
-        "paletteer",
-        "rlang",
-        "scales"
-      ],
-      "Hash": "3ed9132a5ce898bf5d2e462133c73c89"
     },
     "gtable": {
       "Package": "gtable",
@@ -1416,6 +1347,51 @@
       ],
       "Hash": "0b8a6d63c8770f02a8b5635f3c431e6b"
     },
+    "lazyeval": {
+      "Package": "lazyeval",
+      "Version": "0.2.2",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "d908914ae53b04d4c0c0fd72ecc35370"
+    },
+    "leaflet": {
+      "Package": "leaflet",
+      "Version": "2.2.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "RColorBrewer",
+        "crosstalk",
+        "htmltools",
+        "htmlwidgets",
+        "jquerylib",
+        "leaflet.providers",
+        "magrittr",
+        "methods",
+        "png",
+        "raster",
+        "scales",
+        "sp",
+        "stats",
+        "viridis",
+        "xfun"
+      ],
+      "Hash": "f73dcc38ff38127bc11ea776786996de"
+    },
+    "leaflet.providers": {
+      "Package": "leaflet.providers",
+      "Version": "1.13.0",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R"
+      ],
+      "Hash": "235cd5abed82d9e6e79eb05eee248983"
+    },
     "lifecycle": {
       "Package": "lifecycle",
       "Version": "1.0.3",
@@ -1455,7 +1431,7 @@
     },
     "lubridate": {
       "Package": "lubridate",
-      "Version": "1.9.2",
+      "Version": "1.9.3",
       "Source": "Repository",
       "Repository": "CRAN",
       "Requirements": [
@@ -1464,7 +1440,7 @@
         "methods",
         "timechange"
       ],
-      "Hash": "e25f18436e3efd42c7c590a1c4c15390"
+      "Hash": "680ad542fbcf801442c83a6ac5a2126c"
     },
     "magrittr": {
       "Package": "magrittr",
@@ -1593,20 +1569,6 @@
         "utils"
       ],
       "Hash": "481428983c19a7c443f7ea1beff0a2de"
-    },
-    "paletteer": {
-      "Package": "paletteer",
-      "Version": "1.5.0",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "prismatic",
-        "rematch2",
-        "rlang",
-        "rstudioapi"
-      ],
-      "Hash": "2cc72e89c9f4dc12c38d848914aac313"
     },
     "parallelly": {
       "Package": "parallelly",
@@ -1740,19 +1702,6 @@
       "Repository": "CRAN",
       "Hash": "95ef9167b75dde9d2ccc3c7528393e7e"
     },
-    "prismatic": {
-      "Package": "prismatic",
-      "Version": "1.1.1",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "R",
-        "farver",
-        "grDevices",
-        "graphics"
-      ],
-      "Hash": "faa2193fdec94a45b4390aefc1280a62"
-    },
     "processx": {
       "Package": "processx",
       "Version": "3.8.2",
@@ -1854,6 +1803,20 @@
       ],
       "Hash": "5e3c5dc0b071b21fa128676560dbe94d"
     },
+    "raster": {
+      "Package": "raster",
+      "Version": "3.6-23",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "methods",
+        "sp",
+        "terra"
+      ],
+      "Hash": "337d6d70f7d6bf78df236a5a53f09db0"
+    },
     "reactR": {
       "Package": "reactR",
       "Version": "0.4.4",
@@ -1901,16 +1864,6 @@
         "vroom"
       ],
       "Hash": "b5047343b3825f37ad9d3b5d89aa1078"
-    },
-    "rematch2": {
-      "Package": "rematch2",
-      "Version": "2.1.2",
-      "Source": "Repository",
-      "Repository": "CRAN",
-      "Requirements": [
-        "tibble"
-      ],
-      "Hash": "76c9e04c712a05848ae7a23d2f170a40"
     },
     "renv": {
       "Package": "renv",
@@ -2195,6 +2148,18 @@
       ],
       "Hash": "fd792ceac77f96b647fa8d6e1788969a"
     },
+    "terra": {
+      "Package": "terra",
+      "Version": "1.7-46",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "Rcpp",
+        "methods"
+      ],
+      "Hash": "d15182a8a20ffc5880e721bfa1bf4ce9"
+    },
     "tibble": {
       "Package": "tibble",
       "Version": "3.2.1",
@@ -2375,6 +2340,19 @@
         "rlang"
       ],
       "Hash": "d0ef2856b83dc33ea6e255caf6229ee2"
+    },
+    "viridis": {
+      "Package": "viridis",
+      "Version": "0.6.4",
+      "Source": "Repository",
+      "Repository": "CRAN",
+      "Requirements": [
+        "R",
+        "ggplot2",
+        "gridExtra",
+        "viridisLite"
+      ],
+      "Hash": "80cd127bc8c9d3d9f0904ead9a9102f1"
     },
     "viridisLite": {
       "Package": "viridisLite",

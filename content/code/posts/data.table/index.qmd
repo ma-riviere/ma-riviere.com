@@ -1,6 +1,6 @@
 ---
 title: "Data wrangling with data.table and the Tidyverse"
-subtitle: "Various ways to accomplish most data wrangling operations with both `data.table` and the Tidyverse."
+subtitle: "Common data wrangling operations with both `data.table` and the Tidyverse."
 
 date: 2022-05-19
 

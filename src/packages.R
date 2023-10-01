@@ -24,7 +24,6 @@ project_pkgs <- c(
   "Rdatatable/data.table",
   "Tidyverse/dbplyr",
   "arrow",
-  "RSQLite",
   "duckdb",
   "fuzzyjoin",
   "sf",
@@ -46,7 +45,6 @@ project_pkgs <- c(
   "patchwork",
   "bayesplot",
   "ggridges",
-  "ricardo-bion/ggradar",
 
   ### Publishing
   "gt",
