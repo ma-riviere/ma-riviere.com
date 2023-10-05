@@ -44,7 +44,6 @@ project_pkgs <- c(
   "ggtext",
   "patchwork",
   "bayesplot",
-  "ggridges",
 
   ### Publishing
   "gt",

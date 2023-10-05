@@ -5,7 +5,7 @@ subtitle: "With R and Stan"
 date: 2022-04-19
 
 abstract: |
-  This post is a transposition to R of Ethan Rosenthal's [article](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) on modeling Rock Climbing using a Bayesian IRT model. 
+  This post is a transposition to R of Ethan Rosenthal's [blog post](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) on modeling Rock Climbing using a Bayesian IRT model. 
   
   The original Stan code was updated to use [within-chain parallelization](https://mc-stan.org/docs/2_30/stan-users-guide/reduce-sum.html) and [compiler optimization](https://mc-stan.org/docs/2_30/stan-users-guide/optimization.html) for faster CPU sampling.
   
@@ -59,7 +59,6 @@ renv::use(
   "duckdb@0.8.1-3", 
   "fs@1.6.3", 
   "ggplot2@3.4.3", 
-  "ggridges@0.5.4", 
   "here@1.0.1", 
   "lubridate@1.9.2", 
   "patchwork@1.1.3", 
@@ -92,7 +91,6 @@ library(purrr)       # Manipulating lists                (Tidyverse)
 library(lubridate)   # Manipulating date/time            (Tidyverse)
 library(ggplot2)     # Best plotting library             (Tidyverse)
 
-library(ggridges)    # Ridgeline plots (ggplot2 addon)
 library(bayesplot)   # PPC/Diagnostic plots for Stan models
 library(patchwork)   # Combining plots
 
@@ -106,7 +104,7 @@ options(
 
 nrows_print <- 10
 
-data.table::setDTthreads(parallel::detectCores(logical = FALSE))
+setDTthreads(parallel::detectCores(logical = FALSE))
 ```
 
 
@@ -911,15 +909,22 @@ ridgeline_plot <- function(dat, var) {
   if (class(dat[, route_difficulty]) == "list")
     dat <- dat[, .(route_difficulty = unlist(route_difficulty)), by = setdiff(names(dat), 'route_difficulty')]
   
-  ggplot(dat, aes_string(y = var)) +
-  ggridges::geom_density_ridges(
-    aes_string(x = "route_difficulty", fill = var), 
-    alpha = 0.5, scale = 2.5, color = "grey30"
-  ) +
-  geom_vline(xintercept = 0, linetype = "dashed", color = "grey50") +
-  labs(x = str_to_title(str_replace_all(var, "_", " ")), y = "") +
-  scale_y_discrete(position = "right") +
-  theme(legend.position = "none", axis.line.y = element_blank())
+  return(
+    ggplot(dat, aes(route_difficulty, y = {{ var }}, fill = {{ var }}))
+    + geom_ribbon(
+      stat = "density", outline.type = "upper", color = "grey30",
+      aes(
+        fill = stage({{ var }}, after_scale = alpha(fill, 0.5)),
+        ymin = after_stat(group),
+        ymax = after_stat(group + ndensity * 1.6)
+      )
+    )
+    * ggblend::blend("multiply")
+    + geom_vline(xintercept = 0, linetype = "dashed", color = "grey50")
+    + labs(x = str_to_title(str_replace_all(deparse(substitute(var)), "_", " ")), y = "")
+    + scale_y_discrete(position = "right")
+    + theme(legend.position = "none", axis.line.y = element_blank())
+  )
 }
 ```
 
@@ -930,7 +935,7 @@ ridgeline_plot <- function(dat, var) {
 #| fig-width: 8
 #| output: asis
 
-ridgeline_plot(pp_dt[climb_type == 0], "route_rating")
+pp_dt[climb_type == 0] |> ridgeline_plot(route_rating)
 ```
 
 **Bouldering Grade:**
@@ -940,7 +945,7 @@ ridgeline_plot(pp_dt[climb_type == 0], "route_rating")
 #| fig-width: 8
 #| output: asis
 
-ridgeline_plot(pp_dt[climb_type == 1 & bouldering_grade != "V0"], "bouldering_grade")
+pp_dt[climb_type == 1 & bouldering_grade != "V0"] |> ridgeline_plot(bouldering_grade)
 ```
 
 <!--------------------------------->

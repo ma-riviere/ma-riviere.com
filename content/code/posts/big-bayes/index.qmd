@@ -56,7 +56,6 @@ renv::use(
   "dplyr@1.1.3",
   "fs@1.6.3",
   "ggplot2@3.4.3",
-  "ggridges@0.5.4",
   "here@1.0.1",
   "lubridate@1.9.2",
   "patchwork@1.1.3",
@@ -91,7 +90,6 @@ library(purrr)       # Manipulating lists                (Tidyverse)
 library(lubridate)   # Manipulating date/time            (Tidyverse)
 library(ggplot2)     # Best plotting library             (Tidyverse)
 
-library(ggridges)    # Ridgeline plots (ggplot2 addon)
 library(bayesplot)   # PPC/Diagnostic plots for Stan models
 library(patchwork)   # Combining plots
 
@@ -105,7 +103,7 @@ options(
 
 nrows_print <- 10
 
-data.table::setDTthreads(parallel::detectCores(logical = FALSE))
+setDTthreads(parallel::detectCores(logical = FALSE))
 ```
 
 
@@ -229,14 +227,11 @@ matches_data_path <- here::here("res", "data", "tennis")
 
 ## Loading and combining all the "atp_matches" csv files, only keeping the desired columns
 matches_data_raw <- (
-  dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv")
-  |> map(\(file) read_csv(file, show_col_types = FALSE) |> 
-      select(
-        tourney_date, tourney_level, round, 
-        winner_id, winner_name, loser_id, loser_name, score
-      )
+  read_csv(dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv"), show_col_types = FALSE)
+  |> select(
+    tourney_date, tourney_level, round, 
+    winner_id, winner_name, loser_id, loser_name, score
   )
-  |> list_rbind()
   |> mutate(tourney_date = lubridate::ymd(tourney_date))
 )
 ```
@@ -266,7 +261,7 @@ round_numbers = list(
     round %in% names(round_numbers)
   )
   |> mutate(
-    round_number = sapply(round, \(r) round_numbers[[r]]),
+    round_number = recode(round, !!!round_numbers),
     label = 1
   )
   |> arrange(tourney_date, round_number)
@@ -285,13 +280,9 @@ round_numbers = list(
 Loading the raw player data:
 
 ```{r}
-#| echo: false
-
-player_data_path <- here::here("res", "data", "tennis", "atp_players.csv")
-```
-
-```{r}
 #| output: asis
+
+player_data_path <- here("res", "data", "tennis", "atp_players.csv")
 
 (player_data_raw <- read_csv(player_data_path, show_col_types = FALSE) 
  |> mutate(player_name = str_c(name_first, name_last, sep = " "))
@@ -561,39 +552,42 @@ Getting our Posterior Predictions into long format and joining the result with `
 
 ridgeline_plot <- function(dat, var) {
   dat <- dat[, .(player_skills = unlist(player_skills)), by = setdiff(names(dat), 'player_skills')
-     ][, player_name := factor(player_name, levels = unique(player_name))]
+     ][, player_name := factor(player_name, levels = rev(unique(player_name)))]
   
-  ggplot(dat, aes_string(y = var)) +
-    ggridges::geom_density_ridges(
-      aes_string(x = "player_skills", fill = var), 
-      alpha = 0.5, scale = 2, color = "grey30"
-    ) +
-    labs(x = "Player Skills", y = "") +
-    scale_y_discrete(
-      position = "right", 
-      limits = \(x) rev(x), 
-      labels = \(x) str_replace_all(x, "\\s", "\n")
-    ) +
-    theme(legend.position = "none", axis.line.y = element_blank())
+  return(
+    ggplot(dat, aes(player_skills, y = {{ var }}, fill = {{ var }}))
+    + geom_ribbon(
+      stat = "density", outline.type = "upper", color = "grey30",
+      aes(
+        fill = stage({{ var }}, after_scale = alpha(fill, 0.5)),
+        ymin = after_stat(group),
+        ymax = after_stat(group + ndensity * 1.6)
+      )
+    )
+    * ggblend::blend("multiply")
+    + labs(x = "Player Skills", y = "")
+    + scale_y_discrete(position = "right", labels = \(x) str_replace_all(x, "\\s", "\n"))
+    + theme(legend.position = "none", axis.line.y = element_blank())
+  )
 }
 ```
 
 Plotting the `player_skills` posteriors of the _top 10_ players:
 
 ```{r}
-#| fig.height: 14
-#| fig.width: 8
+#| fig-height: 12
+#| fig-width: 8
 #| output: asis
 
-ridgeline_plot(head(player_skills, 10), "player_name")
+head(player_skills, 10) |> ridgeline_plot(player_name)
 ```
 
 Plotting the `player_skills` posteriors of the _bottom 10_ players:
 
 ```{r}
-#| fig.height: 14
-#| fig.width: 8
+#| fig-height: 12
+#| fig-width: 8
 #| output: asis
 
-ridgeline_plot(tail(player_skills, 10), "player_name")
+tail(player_skills, 10) |> ridgeline_plot(player_name)
 ```
