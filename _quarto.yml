@@ -54,6 +54,7 @@ website:
     pinned: true
     collapse: true
     collapse-below: md
+    toggle-position: left
     left:
       - text: "{{< fa business-time >}} Projects"
         file: content/projects/index.qmd

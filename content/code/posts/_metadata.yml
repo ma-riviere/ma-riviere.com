@@ -8,6 +8,7 @@ published-title: "First Published"
 abstract-title: "Summary"
 
 toc: true
+toc-depth: 2
 # toc-location: right-body
 number-sections: true
 code-tools:

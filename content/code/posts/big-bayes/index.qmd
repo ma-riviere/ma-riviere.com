@@ -33,6 +33,18 @@ categories:
 You can check the page's source code by clicking on the **</> Code** button at the top-right.
 :::
 
+```{r}
+#| echo: false
+#| eval: false
+#| output: false
+
+# TODO:
+## - Better model fit saving:
+### * fit$draws() + try(fit$sampler_diagnostics(), silent = TRUE)
+### * qs::qsave(fit, file = "fit.qs") + fit <- qs::qread("fit.qs")
+### * Make model downloadable
+```
+
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>
 # Setup {.unnumbered}
@@ -225,13 +237,9 @@ matches_data_path <- here::here("res", "data", "tennis")
 ```{r}
 #| output: false
 
-## Loading and combining all the "atp_matches" csv files, only keeping the desired columns
 matches_data_raw <- (
   read_csv(dir_ls(matches_data_path, regexp = "atp_matches_(.*).csv"), show_col_types = FALSE)
-  |> select(
-    tourney_date, tourney_level, round, 
-    winner_id, winner_name, loser_id, loser_name, score
-  )
+  |> select(tourney_date, tourney_level, round, winner_id, winner_name, loser_id, loser_name, score)
   |> mutate(tourney_date = lubridate::ymd(tourney_date))
 )
 ```
@@ -496,6 +504,9 @@ mcmc_rhat_hist(rhat(tennis_mod_fit))
 **Plotting random subsets of the traces:**
 
 ```{r}
+#| code-fold: true
+#| code-summary: "hist_trace_plot"
+
 hist_trace_plot <- function(mod, vars) {
   draws <- mod$draws(variables = vars, format = "draws_list")
   wrap_plots(
@@ -511,10 +522,7 @@ hist_trace_plot <- function(mod, vars) {
 #| fig.height: 10
 #| output: asis
 
-hist_trace_plot(
-  tennis_mod_fit, 
-  paste0("player_skills[", sample(player_data$player_idx, 5), "]")
-)
+hist_trace_plot(tennis_mod_fit, paste0("player_skills[", sample(player_data$player_idx, 5), "]"))
 ```
 
 
@@ -548,7 +556,7 @@ Getting our Posterior Predictions into long format and joining the result with `
 
 ```{r}
 #| code-fold: true
-#| code-summary: "Plot code"
+#| code-summary: "ridgeline_plot"
 
 ridgeline_plot <- function(dat, var) {
   dat <- dat[, .(player_skills = unlist(player_skills)), by = setdiff(names(dat), 'player_skills')

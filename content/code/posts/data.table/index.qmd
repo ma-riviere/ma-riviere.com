@@ -2736,10 +2736,6 @@ dcast(MOVIES_LONG, ... ~ Genre, value.var = "Genre", fun = \(x) !is.na(x), fill 
 # Joins
 ***
 
-:::{.callout-tip}
-A JOIN is just a special type of SUBSET: we subset the rows of one table based on the matching rows of a second one. And the matching conditions define what type of join we are applying.
-:::
-
 <!-------------------------------------------------------->
 ## Mutating Joins
 
