@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.392">
+<meta name="generator" content="quarto-1.4.415">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -58,7 +58,7 @@ ul.task-list li input[type="checkbox"] {
   "collapse-after": 10,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
   "keyboard-shortcut": [
     null
   ],
@@ -138,7 +138,7 @@ cookieconsent.run({
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../res/hexabrain.svg" alt="Stylized depicption of a brain inside a hexagon" class="navbar-logo">
+    <img src="../../../res/hexabrain.svg" alt="Stylized depiction of a brain inside a hexagon" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Marc-Aurèle Rivière</span>
@@ -342,7 +342,7 @@ cookieconsent.run({
 <div id="fig-neuro" class="quarto-figure quarto-figure-center" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="neuro.png" class="lightbox" data-description="Figure&nbsp;1: ACCESSPACE guiding principle" data-gallery="quarto-lightbox-gallery-2" title="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a>
+<a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" data-description="Figure&nbsp;1: ACCESSPACE guiding principle" title="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a>
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: ACCESSPACE guiding principle
@@ -359,7 +359,7 @@ Figure&nbsp;1: ACCESSPACE guiding principle
 </ul>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><a href="nav.png" class="lightbox" data-description="" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="nav.png" title="An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid quarto-figure-center figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+<p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" data-description="" title="Illustration of the navigation graph idea"><img src="nav.png" title="An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid quarto-figure-center figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
 <figcaption>Illustration of the navigation graph idea</figcaption>
 </figure>
 </div>
@@ -370,10 +370,10 @@ Figure&nbsp;1: ACCESSPACE guiding principle
 <section id="our-interface-the-tactibelt" class="level2" data-number="2.1">
 <h2 data-number="2.1" data-anchor-id="our-interface-the-tactibelt"><span class="header-section-number">2.1</span> Our interface: the TactiBelt</h2>
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
-<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center" alt="A photography showing the first version of the TactiBelt" data-fig-align="center">
+<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center" data-fig-align="center" alt="A photography showing the first version of the TactiBelt">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tactibelt-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="TactiBelt.png" class="lightbox" data-description="Figure&nbsp;2: First prototype of the TactiBelt" data-gallery="quarto-lightbox-gallery-4" title="A photography showing the first version of the TactiBelt"><img src="TactiBelt.png" title="A photography showing the first version of the TactiBelt" class="img-fluid quarto-figure-center figure-img" alt="A photography showing the first version of the TactiBelt"></a>
+<a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" data-description="Figure&nbsp;2: First prototype of the TactiBelt" title="A photography showing the first version of the TactiBelt"><img src="TactiBelt.png" title="A photography showing the first version of the TactiBelt" class="img-fluid quarto-figure-center figure-img" alt="A photography showing the first version of the TactiBelt"></a>
 </div>
 <figcaption class="figure quarto-float-caption quarto-float-fig" id="fig-tactibelt-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: First prototype of the TactiBelt
@@ -973,6 +973,9 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (!isInternal(link.href)) {
           // target, if specified
           link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
       }
     }
 });
@@ -1003,7 +1006,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox","openEffect":"zoom"});</script>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","openEffect":"zoom","descPosition":"bottom","loop":false,"selector":".lightbox"});</script>
 
 
 
