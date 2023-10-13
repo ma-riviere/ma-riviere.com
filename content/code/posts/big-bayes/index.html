@@ -325,7 +325,7 @@ Caution
 </div>
 <div class="callout-body-container callout-body">
 <p>By design, this post contains very few explanations.</p>
-<p>Its goal was simply to translate <a href="https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/">PyMC’s blog post</a> to R, and improve their Stan code for a fairer comparison with PyMC.</p>
+<p>Its goal was simply to translate <a href="https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/">PyMC’s blog post</a> to R, and update their Stan code to use within-chain parallelization and compiler optimizations, for a fairer comparison with PyMC.</p>
 <p>Feel free to read the original blog post to better understand what the code is doing.</p>
 </div>
 </div>
@@ -566,7 +566,7 @@ Tip
 <span>  <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="va">round</span>, <span class="op">-</span><span class="va">tourney_level</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <details><summary><em>data.frame [160,399 x 8]</em>
-</summary><br><div id="dtdacaknfv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
+</summary><br><div id="loczawxylo" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: rgba(255, 255, 255, 0); width: 100%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="100%" bgcolor="rgba(255, 255, 255, 0)">
 <thead style="border-style: none;"><tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; background-color: rgba(255, 255, 255, 0); font-size: 100%; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #0D6EFD; font-weight: bold; border-top-width: 2px; border-top-style: solid; border-top-color: #0d6efd; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #0d6efd;" scope="col" id="tourney_date" bgcolor="rgba(255, 255, 255, 0)" valign="bottom" align="right">
@@ -1008,7 +1008,7 @@ L Weatherhog
 <span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="va">player_id</span>, <span class="va">player_name</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <details><summary><em>data.frame [55,649 x 2]</em>
-</summary><br><div id="qkwxtaxbxf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
+</summary><br><div id="mapfhhcotk" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: rgba(255, 255, 255, 0); width: 100%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="100%" bgcolor="rgba(255, 255, 255, 0)">
 <thead style="border-style: none;"><tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; background-color: rgba(255, 255, 255, 0); font-size: 100%; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #0D6EFD; font-weight: bold; border-top-width: 2px; border-top-style: solid; border-top-color: #0d6efd; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #0d6efd;" scope="col" id="player_id" bgcolor="rgba(255, 255, 255, 0)" valign="bottom" align="right">
@@ -1157,7 +1157,7 @@ Sammy Giammalva
 <span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">player_data_raw</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <details><summary><em>data.frame [4,830 x 3]</em>
-</summary><br><div id="ggfayvwnqm" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
+</summary><br><div id="bwesbkddyv" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: rgba(255, 255, 255, 0); width: 100%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="100%" bgcolor="rgba(255, 255, 255, 0)">
 <thead style="border-style: none;"><tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; background-color: rgba(255, 255, 255, 0); font-size: 100%; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #0D6EFD; font-weight: bold; border-top-width: 2px; border-top-style: solid; border-top-color: #0d6efd; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #0d6efd;" scope="col" id="player_id" bgcolor="rgba(255, 255, 255, 0)" valign="bottom" align="right">
@@ -1362,7 +1362,7 @@ Ken Rosewall
 <span> <span class="op">|&gt;</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span><span class="op">(</span><span class="op">-</span><span class="fu"><a href="https://tidyselect.r-lib.org/reference/starts_with.html">matches</a></span><span class="op">(</span><span class="st">"player_name"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <details><summary><em>data.frame [160,399 x 10]</em>
-</summary><br><div id="ayuckzrbin" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
+</summary><br><div id="hpzgmpoeqr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: rgba(255, 255, 255, 0); width: 100%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="100%" bgcolor="rgba(255, 255, 255, 0)">
 <thead style="border-style: none;"><tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; background-color: rgba(255, 255, 255, 0); font-size: 100%; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #0D6EFD; font-weight: bold; border-top-width: 2px; border-top-style: solid; border-top-color: #0d6efd; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #0d6efd;" scope="col" id="tourney_date" bgcolor="rgba(255, 255, 255, 0)" valign="bottom" align="right">
@@ -2006,7 +2006,7 @@ Note
 <p>Sampling takes ~2.69 minutes on my CPU (Ryzen 5950X, 16 Cores/32 Threads), on WSL2 (Ubuntu 22)</p>
 <div class="cell" data-layout-align="center">
 <details><summary><em>data.table [4 x 2]</em>
-</summary><br><div id="lphxdmfxvb" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
+</summary><br><div id="kahvgeldyf" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: rgba(255, 255, 255, 0); width: 100%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="100%" bgcolor="rgba(255, 255, 255, 0)">
 <thead style="border-style: none;"><tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_right" rowspan="1" colspan="1" style="border-style: none; background-color: rgba(255, 255, 255, 0); font-size: 100%; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #0D6EFD; font-weight: bold; border-top-width: 2px; border-top-style: solid; border-top-color: #0d6efd; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #0d6efd;" scope="col" id="Chain" bgcolor="rgba(255, 255, 255, 0)" valign="bottom" align="right">
@@ -2100,6 +2100,7 @@ Time
 <img src="index_files/figure-html/unnamed-chunk-27-2.svg" class="img-fluid quarto-figure-center">
 </div>
 </div>
+<p>Everything seems good.</p>
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>
 </section><section id="posterior-predictions" class="level1" data-number="4"><h1 data-number="4">
@@ -2119,7 +2120,7 @@ Time
 <span>  <span class="op">]</span><span class="op">[</span><span class="fu"><a href="https://rdrr.io/r/base/order.html">order</a></span><span class="op">(</span><span class="op">-</span><span class="va">skill_mean</span><span class="op">)</span>, <span class="fu">.</span><span class="op">(</span><span class="va">player_name</span>, <span class="va">player_id</span>, <span class="va">player_idx</span>, <span class="va">skill_mean</span>, <span class="va">skill_sd</span>, <span class="va">player_skills</span><span class="op">)</span><span class="op">]</span></span>
 <span><span class="op">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <details><summary><em>data.table [4,830 x 6]</em>
-</summary><br><div id="dlwgccoywr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
+</summary><br><div id="tjfczhysrr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:100%;height:auto;">
 <table class="gt_table" data-quarto-disable-processing="false" data-quarto-bootstrap="false" style="-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji'; display: table; border-collapse: collapse; line-height: normal; margin-left: auto; margin-right: auto; color: #333333; font-size: 16px; font-weight: normal; font-style: normal; background-color: rgba(255, 255, 255, 0); width: 100%; border-top-style: solid; border-top-width: 2px; border-top-color: #A8A8A8; border-right-style: none; border-right-width: 2px; border-right-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #A8A8A8; border-left-style: none; border-left-width: 2px; border-left-color: #D3D3D3;" width="100%" bgcolor="rgba(255, 255, 255, 0)">
 <thead style="border-style: none;"><tr class="gt_col_headings" style="border-style: none; border-top-style: solid; border-top-width: 2px; border-top-color: #D3D3D3; border-bottom-style: solid; border-bottom-width: 2px; border-bottom-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3;">
 <th class="gt_col_heading gt_columns_bottom_border gt_left" rowspan="1" colspan="1" style="border-style: none; background-color: rgba(255, 255, 255, 0); font-size: 100%; text-transform: inherit; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: bottom; padding-top: 5px; padding-bottom: 6px; padding-left: 5px; padding-right: 5px; overflow-x: hidden; text-align: left; color: #0D6EFD; font-weight: bold; border-top-width: 2px; border-top-style: solid; border-top-color: #0d6efd; border-bottom-width: 2px; border-bottom-style: solid; border-bottom-color: #0d6efd;" scope="col" id="player_name" bgcolor="rgba(255, 255, 255, 0)" valign="bottom" align="left">
@@ -2153,10 +2154,10 @@ Novak Djokovic
 2 415
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-3.534
+3.539
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.094
+0.091
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2173,10 +2174,10 @@ Rafael Nadal
 2 367
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-3.427
+3.429
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.093
+0.09
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2193,7 +2194,7 @@ Roger Federer
 2 082
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-3.312
+3.317
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
 0.081
@@ -2213,10 +2214,10 @@ Bjorn Borg
 423
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-3.254
+3.25
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.103
+0.111
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2233,10 +2234,10 @@ Ivan Lendl
 613
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-3.227
+3.229
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.084
+0.08
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2253,10 +2254,10 @@ John McEnroe
 553
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-3.182
+3.184
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.093
+0.095
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2273,10 +2274,10 @@ Jimmy Connors
 280
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-3.167
+3.165
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.075
+0.076
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2293,10 +2294,10 @@ Rod Laver
 28
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-3.012
+3.016
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.114
+0.111
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2304,19 +2305,19 @@ Rod Laver
 </tr>
 <tr style="border-style: none;">
 <td headers="player_name" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; color: #888888;" valign="middle" align="left">
-Pete Sampras
+Andy Murray
 </td>
 <td headers="player_id" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-101 948
+104 918
 </td>
 <td headers="player_idx" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-1 408
+2 413
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-2.919
+2.925
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.088
+0.093
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2324,19 +2325,19 @@ Pete Sampras
 </tr>
 <tr style="border-style: none;">
 <td headers="player_name" class="gt_row gt_left" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: left; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="left">
-Andy Murray
+Pete Sampras
 </td>
 <td headers="player_id" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-104 918
+101 948
 </td>
 <td headers="player_idx" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-2 413
+1 408
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-2.916
+2.92
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.096
+0.086
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2353,10 +2354,10 @@ Boris Becker
 1 127
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-2.832
+2.833
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.094
+0.091
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2373,10 +2374,10 @@ Andre Agassi
 1 310
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-2.776
+2.775
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.079
+0.083
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2393,10 +2394,10 @@ Stefan Edberg
 993
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-2.731
+2.737
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.085
+0.081
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2413,10 +2414,10 @@ Andy Roddick
 2 157
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-2.698
+2.701
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="right">
-0.099
+0.093
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #000000; font-weight: normal; background-color: rgba(239,239,239,0.6);" bgcolor="rgba(239,239,239,0.6)" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -2433,10 +2434,10 @@ Juan Martin del Potro
 2 503
 </td>
 <td headers="skill_mean" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-2.675
+2.669
 </td>
 <td headers="skill_sd" class="gt_row gt_right" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: right; font-variant-numeric: tabular-nums; color: #888888;" valign="middle" align="right">
-0.106
+0.108
 </td>
 <td headers="player_skills" class="gt_row gt_center" style="border-style: none; padding-top: 8px; padding-bottom: 8px; padding-left: 5px; padding-right: 5px; margin: 10px; border-top-style: solid; border-top-width: 1px; border-top-color: #D3D3D3; border-left-style: none; border-left-width: 1px; border-left-color: #D3D3D3; border-right-style: none; border-right-width: 1px; border-right-color: #D3D3D3; vertical-align: middle; overflow-x: hidden; text-align: center; color: #888888;" valign="middle" align="center">
 &lt;numeric [500]&gt;
@@ -3152,7 +3153,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb22-33"><a href="#cb22-33" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-34"><a href="#cb22-34" aria-hidden="true" tabindex="-1"></a>By design, this post contains very few explanations. </span>
 <span id="cb22-35"><a href="#cb22-35" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>Its goal was simply to translate <span class="co">[</span><span class="ot">PyMC's blog post</span><span class="co">](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/)</span> to R, and improve their Stan code for a fairer comparison with PyMC.</span>
+<span id="cb22-36"><a href="#cb22-36" aria-hidden="true" tabindex="-1"></a>Its goal was simply to translate <span class="co">[</span><span class="ot">PyMC's blog post</span><span class="co">](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/)</span> to R, and update their Stan code to use within-chain parallelization and compiler optimizations, for a fairer comparison with PyMC.</span>
 <span id="cb22-37"><a href="#cb22-37" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-38"><a href="#cb22-38" aria-hidden="true" tabindex="-1"></a>Feel free to read the original blog post to better understand what the code is doing.</span>
 <span id="cb22-39"><a href="#cb22-39" aria-hidden="true" tabindex="-1"></a></span>
@@ -3656,70 +3657,71 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 <span id="cb22-589"><a href="#cb22-589" aria-hidden="true" tabindex="-1"></a><span class="fu">hist_trace_plot</span>(tennis_mod_fit, <span class="fu">paste0</span>(<span class="st">"player_skills["</span>, <span class="fu">sample</span>(player_data<span class="sc">$</span>player_idx, <span class="dv">5</span>), <span class="st">"]"</span>))</span>
 <span id="cb22-590"><a href="#cb22-590" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-591"><a href="#cb22-591" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-592"><a href="#cb22-592" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-593"><a href="#cb22-593" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
+<span id="cb22-592"><a href="#cb22-592" aria-hidden="true" tabindex="-1"></a>Everything seems good.</span>
+<span id="cb22-593"><a href="#cb22-593" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb22-594"><a href="#cb22-594" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
-<span id="cb22-595"><a href="#cb22-595" aria-hidden="true" tabindex="-1"></a><span class="fu"># Posterior Predictions</span></span>
-<span id="cb22-596"><a href="#cb22-596" aria-hidden="true" tabindex="-1"></a>***</span>
-<span id="cb22-597"><a href="#cb22-597" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-598"><a href="#cb22-598" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
-<span id="cb22-599"><a href="#cb22-599" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posterior data</span></span>
-<span id="cb22-600"><a href="#cb22-600" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-601"><a href="#cb22-601" aria-hidden="true" tabindex="-1"></a>Getting our Posterior Predictions into long format and joining the result with <span class="in">`player_data`</span>:</span>
-<span id="cb22-602"><a href="#cb22-602" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-605"><a href="#cb22-605" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-606"><a href="#cb22-606" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb22-607"><a href="#cb22-607" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-608"><a href="#cb22-608" aria-hidden="true" tabindex="-1"></a>(player_skills <span class="ot">&lt;-</span> tennis_mod_fit<span class="sc">$</span><span class="fu">draws</span>(<span class="at">variables =</span> <span class="st">"player_skills"</span>)</span>
-<span id="cb22-609"><a href="#cb22-609" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|&gt;</span> <span class="fu">bind</span>(x, <span class="fu">subset_draws</span>(x, <span class="st">"player_skills"</span>, <span class="at">regex =</span> <span class="cn">TRUE</span>, <span class="at">draw =</span> <span class="fu">sample.int</span>(<span class="fu">ndraws</span>(x), <span class="at">size =</span> <span class="dv">500</span>)))</span>
-<span id="cb22-610"><a href="#cb22-610" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|&gt;</span> <span class="fu">as.data.table</span>()</span>
-<span id="cb22-611"><a href="#cb22-611" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|&gt;</span> _[, .(<span class="at">player_skills =</span> <span class="fu">list</span>(value)), <span class="at">by =</span> variable</span>
-<span id="cb22-612"><a href="#cb22-612" aria-hidden="true" tabindex="-1"></a>  ][, <span class="fu">let</span>(<span class="at">player_idx =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(variable, <span class="st">"</span><span class="sc">\\</span><span class="st">d{1,4}"</span>)), <span class="at">variable =</span> <span class="cn">NULL</span>)</span>
-<span id="cb22-613"><a href="#cb22-613" aria-hidden="true" tabindex="-1"></a>  ][, <span class="fu">let</span>(<span class="at">skill_mean =</span> <span class="fu">sapply</span>(player_skills, mean), <span class="at">skill_sd =</span> <span class="fu">sapply</span>(player_skills, sd))</span>
-<span id="cb22-614"><a href="#cb22-614" aria-hidden="true" tabindex="-1"></a>  ][<span class="fu">as.data.table</span>(player_data), <span class="at">on =</span> <span class="st">"player_idx"</span>, <span class="at">nomatch =</span> <span class="cn">NULL</span></span>
-<span id="cb22-615"><a href="#cb22-615" aria-hidden="true" tabindex="-1"></a>  ][<span class="fu">order</span>(<span class="sc">-</span>skill_mean), .(player_name, player_id, player_idx, skill_mean, skill_sd, player_skills)]</span>
-<span id="cb22-616"><a href="#cb22-616" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb22-617"><a href="#cb22-617" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-618"><a href="#cb22-618" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-595"><a href="#cb22-595" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
+<span id="cb22-596"><a href="#cb22-596" aria-hidden="true" tabindex="-1"></a><span class="fu"># Posterior Predictions</span></span>
+<span id="cb22-597"><a href="#cb22-597" aria-hidden="true" tabindex="-1"></a>***</span>
+<span id="cb22-598"><a href="#cb22-598" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-599"><a href="#cb22-599" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
+<span id="cb22-600"><a href="#cb22-600" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posterior data</span></span>
+<span id="cb22-601"><a href="#cb22-601" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-602"><a href="#cb22-602" aria-hidden="true" tabindex="-1"></a>Getting our Posterior Predictions into long format and joining the result with <span class="in">`player_data`</span>:</span>
+<span id="cb22-603"><a href="#cb22-603" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-606"><a href="#cb22-606" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-607"><a href="#cb22-607" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb22-608"><a href="#cb22-608" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-609"><a href="#cb22-609" aria-hidden="true" tabindex="-1"></a>(player_skills <span class="ot">&lt;-</span> tennis_mod_fit<span class="sc">$</span><span class="fu">draws</span>(<span class="at">variables =</span> <span class="st">"player_skills"</span>)</span>
+<span id="cb22-610"><a href="#cb22-610" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|&gt;</span> <span class="fu">bind</span>(x, <span class="fu">subset_draws</span>(x, <span class="st">"player_skills"</span>, <span class="at">regex =</span> <span class="cn">TRUE</span>, <span class="at">draw =</span> <span class="fu">sample.int</span>(<span class="fu">ndraws</span>(x), <span class="at">size =</span> <span class="dv">500</span>)))</span>
+<span id="cb22-611"><a href="#cb22-611" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|&gt;</span> <span class="fu">as.data.table</span>()</span>
+<span id="cb22-612"><a href="#cb22-612" aria-hidden="true" tabindex="-1"></a>  <span class="sc">|&gt;</span> _[, .(<span class="at">player_skills =</span> <span class="fu">list</span>(value)), <span class="at">by =</span> variable</span>
+<span id="cb22-613"><a href="#cb22-613" aria-hidden="true" tabindex="-1"></a>  ][, <span class="fu">let</span>(<span class="at">player_idx =</span> <span class="fu">as.integer</span>(<span class="fu">str_extract</span>(variable, <span class="st">"</span><span class="sc">\\</span><span class="st">d{1,4}"</span>)), <span class="at">variable =</span> <span class="cn">NULL</span>)</span>
+<span id="cb22-614"><a href="#cb22-614" aria-hidden="true" tabindex="-1"></a>  ][, <span class="fu">let</span>(<span class="at">skill_mean =</span> <span class="fu">sapply</span>(player_skills, mean), <span class="at">skill_sd =</span> <span class="fu">sapply</span>(player_skills, sd))</span>
+<span id="cb22-615"><a href="#cb22-615" aria-hidden="true" tabindex="-1"></a>  ][<span class="fu">as.data.table</span>(player_data), <span class="at">on =</span> <span class="st">"player_idx"</span>, <span class="at">nomatch =</span> <span class="cn">NULL</span></span>
+<span id="cb22-616"><a href="#cb22-616" aria-hidden="true" tabindex="-1"></a>  ][<span class="fu">order</span>(<span class="sc">-</span>skill_mean), .(player_name, player_id, player_idx, skill_mean, skill_sd, player_skills)]</span>
+<span id="cb22-617"><a href="#cb22-617" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb22-618"><a href="#cb22-618" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 <span id="cb22-619"><a href="#cb22-619" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-620"><a href="#cb22-620" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
-<span id="cb22-621"><a href="#cb22-621" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posterior plots</span></span>
-<span id="cb22-622"><a href="#cb22-622" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-625"><a href="#cb22-625" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-626"><a href="#cb22-626" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
-<span id="cb22-627"><a href="#cb22-627" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "ridgeline_plot"</span></span>
-<span id="cb22-628"><a href="#cb22-628" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-629"><a href="#cb22-629" aria-hidden="true" tabindex="-1"></a>ridgeline_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(dat, var) {</span>
-<span id="cb22-630"><a href="#cb22-630" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> dat[, .(<span class="at">player_skills =</span> <span class="fu">unlist</span>(player_skills)), by <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(dat), <span class="st">'player_skills'</span>)</span>
-<span id="cb22-631"><a href="#cb22-631" aria-hidden="true" tabindex="-1"></a>     ][, player_name <span class="sc">:</span><span class="er">=</span> <span class="fu">factor</span>(player_name, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(player_name)))]</span>
-<span id="cb22-632"><a href="#cb22-632" aria-hidden="true" tabindex="-1"></a>  </span>
-<span id="cb22-633"><a href="#cb22-633" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
-<span id="cb22-634"><a href="#cb22-634" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(player_skills, <span class="at">y =</span> {{ var }}, <span class="at">fill =</span> {{ var }}))</span>
-<span id="cb22-635"><a href="#cb22-635" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">geom_ribbon</span>(</span>
-<span id="cb22-636"><a href="#cb22-636" aria-hidden="true" tabindex="-1"></a>      <span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">outline.type =</span> <span class="st">"upper"</span>, <span class="at">color =</span> <span class="st">"grey30"</span>,</span>
-<span id="cb22-637"><a href="#cb22-637" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(</span>
-<span id="cb22-638"><a href="#cb22-638" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="fu">stage</span>({{ var }}, <span class="at">after_scale =</span> <span class="fu">alpha</span>(fill, <span class="fl">0.5</span>)),</span>
-<span id="cb22-639"><a href="#cb22-639" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymin =</span> <span class="fu">after_stat</span>(group),</span>
-<span id="cb22-640"><a href="#cb22-640" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymax =</span> <span class="fu">after_stat</span>(group <span class="sc">+</span> ndensity <span class="sc">*</span> <span class="fl">1.6</span>)</span>
-<span id="cb22-641"><a href="#cb22-641" aria-hidden="true" tabindex="-1"></a>      )</span>
-<span id="cb22-642"><a href="#cb22-642" aria-hidden="true" tabindex="-1"></a>    )</span>
-<span id="cb22-643"><a href="#cb22-643" aria-hidden="true" tabindex="-1"></a>    <span class="sc">*</span> ggblend<span class="sc">::</span><span class="fu">blend</span>(<span class="st">"multiply"</span>)</span>
-<span id="cb22-644"><a href="#cb22-644" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Player Skills"</span>, <span class="at">y =</span> <span class="st">""</span>)</span>
-<span id="cb22-645"><a href="#cb22-645" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">"right"</span>, <span class="at">labels =</span> \(x) <span class="fu">str_replace_all</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
-<span id="cb22-646"><a href="#cb22-646" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">axis.line.y =</span> <span class="fu">element_blank</span>())</span>
-<span id="cb22-647"><a href="#cb22-647" aria-hidden="true" tabindex="-1"></a>  )</span>
-<span id="cb22-648"><a href="#cb22-648" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb22-649"><a href="#cb22-649" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
-<span id="cb22-650"><a href="#cb22-650" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-651"><a href="#cb22-651" aria-hidden="true" tabindex="-1"></a>Plotting the <span class="in">`player_skills`</span> posteriors of the _top 10_ players:</span>
-<span id="cb22-652"><a href="#cb22-652" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-655"><a href="#cb22-655" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
-<span id="cb22-656"><a href="#cb22-656" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 12</span></span>
-<span id="cb22-657"><a href="#cb22-657" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
-<span id="cb22-658"><a href="#cb22-658" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
-<span id="cb22-659"><a href="#cb22-659" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb22-660"><a href="#cb22-660" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(player_skills, <span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">ridgeline_plot</span>(player_name)</span>
-<span id="cb22-661"><a href="#cb22-661" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-620"><a href="#cb22-620" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-621"><a href="#cb22-621" aria-hidden="true" tabindex="-1"></a><span class="co">&lt;!------------------------------------------------------------------------------&gt;</span></span>
+<span id="cb22-622"><a href="#cb22-622" aria-hidden="true" tabindex="-1"></a><span class="fu">## Posterior plots</span></span>
+<span id="cb22-623"><a href="#cb22-623" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-626"><a href="#cb22-626" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-627"><a href="#cb22-627" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb22-628"><a href="#cb22-628" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-summary: "ridgeline_plot"</span></span>
+<span id="cb22-629"><a href="#cb22-629" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-630"><a href="#cb22-630" aria-hidden="true" tabindex="-1"></a>ridgeline_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(dat, var) {</span>
+<span id="cb22-631"><a href="#cb22-631" aria-hidden="true" tabindex="-1"></a>  dat <span class="ot">&lt;-</span> dat[, .(<span class="at">player_skills =</span> <span class="fu">unlist</span>(player_skills)), by <span class="ot">=</span> <span class="fu">setdiff</span>(<span class="fu">names</span>(dat), <span class="st">'player_skills'</span>)</span>
+<span id="cb22-632"><a href="#cb22-632" aria-hidden="true" tabindex="-1"></a>     ][, player_name <span class="sc">:</span><span class="er">=</span> <span class="fu">factor</span>(player_name, <span class="at">levels =</span> <span class="fu">rev</span>(<span class="fu">unique</span>(player_name)))]</span>
+<span id="cb22-633"><a href="#cb22-633" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb22-634"><a href="#cb22-634" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(</span>
+<span id="cb22-635"><a href="#cb22-635" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ggplot</span>(dat, <span class="fu">aes</span>(player_skills, <span class="at">y =</span> {{ var }}, <span class="at">fill =</span> {{ var }}))</span>
+<span id="cb22-636"><a href="#cb22-636" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">geom_ribbon</span>(</span>
+<span id="cb22-637"><a href="#cb22-637" aria-hidden="true" tabindex="-1"></a>      <span class="at">stat =</span> <span class="st">"density"</span>, <span class="at">outline.type =</span> <span class="st">"upper"</span>, <span class="at">color =</span> <span class="st">"grey30"</span>,</span>
+<span id="cb22-638"><a href="#cb22-638" aria-hidden="true" tabindex="-1"></a>      <span class="fu">aes</span>(</span>
+<span id="cb22-639"><a href="#cb22-639" aria-hidden="true" tabindex="-1"></a>        <span class="at">fill =</span> <span class="fu">stage</span>({{ var }}, <span class="at">after_scale =</span> <span class="fu">alpha</span>(fill, <span class="fl">0.5</span>)),</span>
+<span id="cb22-640"><a href="#cb22-640" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymin =</span> <span class="fu">after_stat</span>(group),</span>
+<span id="cb22-641"><a href="#cb22-641" aria-hidden="true" tabindex="-1"></a>        <span class="at">ymax =</span> <span class="fu">after_stat</span>(group <span class="sc">+</span> ndensity <span class="sc">*</span> <span class="fl">1.6</span>)</span>
+<span id="cb22-642"><a href="#cb22-642" aria-hidden="true" tabindex="-1"></a>      )</span>
+<span id="cb22-643"><a href="#cb22-643" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb22-644"><a href="#cb22-644" aria-hidden="true" tabindex="-1"></a>    <span class="sc">*</span> ggblend<span class="sc">::</span><span class="fu">blend</span>(<span class="st">"multiply"</span>)</span>
+<span id="cb22-645"><a href="#cb22-645" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Player Skills"</span>, <span class="at">y =</span> <span class="st">""</span>)</span>
+<span id="cb22-646"><a href="#cb22-646" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">scale_y_discrete</span>(<span class="at">position =</span> <span class="st">"right"</span>, <span class="at">labels =</span> \(x) <span class="fu">str_replace_all</span>(x, <span class="st">"</span><span class="sc">\\</span><span class="st">s"</span>, <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>))</span>
+<span id="cb22-647"><a href="#cb22-647" aria-hidden="true" tabindex="-1"></a>    <span class="sc">+</span> <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>, <span class="at">axis.line.y =</span> <span class="fu">element_blank</span>())</span>
+<span id="cb22-648"><a href="#cb22-648" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb22-649"><a href="#cb22-649" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb22-650"><a href="#cb22-650" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
+<span id="cb22-651"><a href="#cb22-651" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-652"><a href="#cb22-652" aria-hidden="true" tabindex="-1"></a>Plotting the <span class="in">`player_skills`</span> posteriors of the _top 10_ players:</span>
+<span id="cb22-653"><a href="#cb22-653" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-656"><a href="#cb22-656" aria-hidden="true" tabindex="-1"></a><span class="in">```{r}</span></span>
+<span id="cb22-657"><a href="#cb22-657" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-height: 12</span></span>
+<span id="cb22-658"><a href="#cb22-658" aria-hidden="true" tabindex="-1"></a><span class="co">#| fig-width: 8</span></span>
+<span id="cb22-659"><a href="#cb22-659" aria-hidden="true" tabindex="-1"></a><span class="co">#| output: asis</span></span>
+<span id="cb22-660"><a href="#cb22-660" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-661"><a href="#cb22-661" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(player_skills, <span class="dv">10</span>) <span class="sc">|&gt;</span> <span class="fu">ridgeline_plot</span>(player_name)</span>
+<span id="cb22-662"><a href="#cb22-662" aria-hidden="true" tabindex="-1"></a><span class="in">```</span></span>
 </code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
