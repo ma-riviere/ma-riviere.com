@@ -13,8 +13,12 @@ base_pkgs <- c("renv", "here", "config", "rlang", "fs", "knitr", "rmarkdown", "g
 project_pkgs <- c(
   ### Pre-requisites
   
-  ### Data wrangling
+  ### Data ingestion
   "readr",
+  "archive",
+  "arrow",
+  
+  ### Data wrangling
   "tibble",
   "stringr",
   "purrr",
@@ -23,11 +27,9 @@ project_pkgs <- c(
   "lubridate",
   "Rdatatable/data.table",
   "Tidyverse/dbplyr",
-  "arrow",
   "duckdb",
   "fuzzyjoin",
   "sf",
-  "broom",
   "datawizard",
   "nplyr",
   
@@ -38,12 +40,16 @@ project_pkgs <- c(
   ### Model analysis
   "posterior",
   "tidybayes",
+  "broom",
   
   ### Visualizations
   "ggplot2",
   "ggtext",
   "patchwork",
   "bayesplot",
+  "ggblend",
+  "plotly",
+  "leaflet",
 
   ### Publishing
   "gt",

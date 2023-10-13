@@ -45,17 +45,6 @@ You can check the page's source code by clicking on the **</> Code** button at t
 
 :::
 
-```{r}
-#| echo: false
-#| eval: false
-#| output: false
-
-# TODO:
-## - Better model fit saving:
-### * fit$draws() + try(fit$sampler_diagnostics(), silent = TRUE)
-### * qs::qsave(fit, file = "fit.qs") + fit <- qs::qread("fit.qs")
-### * Make model downloadable
-```
 
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>
@@ -76,15 +65,16 @@ source(here::here("src", "init_min.R"), echo = FALSE)
 
 renv::use(
   "Rdatatable/data.table",
+  "archive@1.1.6",
   "bayesplot@1.10.0",
   "dplyr@1.1.3",
-  "fs@1.6.3",
   "ggplot2@3.4.3",
   "here@1.0.1",
   "lubridate@1.9.2",
   "patchwork@1.1.3",
   "pipebind@0.1.2",
   "posterior@1.4.1",
+  "qs@0.25.5",
   "purrr@1.0.2",
   "readr@2.1.4",
   "stan-dev/cmdstanr",
@@ -99,6 +89,7 @@ renv::use(
 library(here)        # Working directory management
 library(fs)          # File & folder manipulation
 library(pipebind)    # Piping goodies
+library(archive)     # Memory efficient object storage
 
 library(cmdstanr)    # Lightweight R interface for Stan
 library(posterior)   # Wrangling Stan models' output
@@ -137,7 +128,7 @@ setDTthreads(parallel::detectCores(logical = FALSE))
 ```{r}
 #| eval: false
 #| code-fold: true
-#| code-summary: Installing CmdStan
+#| code-summary: "Installing CmdStan"
 
 cmdstanr::check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
 
@@ -156,7 +147,7 @@ cmdstanr::install_cmdstan(cpp_options = cpp_opts, quiet = TRUE)
 
 ```{r}
 #| code-fold: true
-#| code-summary: Loading CmdStan (if already installed)
+#| code-summary: "Loading CmdStan (if already installed)"
 
 highest_cmdstan_version <- dir_ls(config$cmdstan_path) |> 
   path_file() |> 
@@ -169,7 +160,7 @@ set_cmdstan_path(glue::glue("{config$cmdstan_path}cmdstan-{highest_cmdstan_versi
 
 ```{r}
 #| code-fold: true
-#| code-summary: Setting up knitr's engine for CmdStan
+#| code-summary: "Setting up knitr's engine for CmdStan"
 #| file: !expr here("src", "common", "knitr", "knitr_cmdstan_engine.R")
 ```
 
@@ -448,10 +439,11 @@ str(tennis_data_stan)
 #| eval: !expr USE_CACHE
 #| echo: false
 
-tennis_mod_fit <- readRDS(tennis_mod_path)
+tennis_mod_fit <- readRDS(file_read(tennis_mod_path))
 ```
 
 ```{r}
+#| label: "model_fit"
 #| eval: !expr (!USE_CACHE)
 #| output: false
 
@@ -462,7 +454,7 @@ tennis_mod_fit <- tennis_mod_exe$sample(
 )
 ```
 
-:::{.callout-note}
+::: {.callout-note}
 
 ```{r}
 #| echo: false
@@ -485,12 +477,20 @@ fts[, Time := as.character(lubridate::dseconds(Time))][]
 :::
 
 ```{r}
+#| label: "model_save"
 #| eval: !expr (!USE_CACHE)
 #| echo: false
+#| output: false
 
-## Saving the model:
+tennis_mod_fit$draws()
+tennis_mod_fit$sampler_diagnostics()
 
-tennis_mod_fit$save_object(file = tennis_mod_path)
+saveRDS(tennis_mod_fit,
+  file_write(tennis_mod_path,
+    filter = "zstd",
+    options = "compression-level=22"
+  )
+)
 ```
 
 
