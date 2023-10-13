@@ -30,8 +30,20 @@ categories:
 
 {{< include /content/_hr.qmd >}}
 
-:::{.callout-tip}
+::: {.callout-caution}
+
+By design, this post contains very few explanations. 
+
+Its goal was simply to translate [Ethan's blog post](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R, and improve his Stan code with within-chain parallelization and compiler optimizations for faster sampling.
+
+Feel free to read the original blog post to better understand what the code is doing.
+
+:::
+
+::: {.callout-tip}
+
 You can check the page's source code by clicking on the **</> Code** button at the top-right.
+
 :::
 
 ```{r}
@@ -404,7 +416,7 @@ climbs_first <- climbs[
     by = .(user_id, route_id)
   ]
 
-climbs_clean2 <- (
+climbs_clean <- (
   copy(climbs_first)[
     , threshold_ascents_dt(.SD)
   ][

@@ -29,8 +29,20 @@ categories:
 
 {{< include /content/_hr.qmd >}}
 
-:::{.callout-tip}
+::: {.callout-caution}
+
+By design, this post contains very few explanations. 
+
+Its goal was simply to translate [PyMC's blog post](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) to R, and improve their Stan code for a fairer comparison with PyMC.
+
+Feel free to read the original blog post to better understand what the code is doing.
+
+:::
+
+::: {.callout-tip}
+
 You can check the page's source code by clicking on the **</> Code** button at the top-right.
+
 :::
 
 ```{r}
@@ -588,14 +600,4 @@ Plotting the `player_skills` posteriors of the _top 10_ players:
 #| output: asis
 
 head(player_skills, 10) |> ridgeline_plot(player_name)
-```
-
-Plotting the `player_skills` posteriors of the _bottom 10_ players:
-
-```{r}
-#| fig-height: 12
-#| fig-width: 8
-#| output: asis
-
-tail(player_skills, 10) |> ridgeline_plot(player_name)
 ```

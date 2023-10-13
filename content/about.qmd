@@ -17,16 +17,16 @@ website:
 
 ## In a nutshell:
 
-◈ Recovering Academic turned Data Scientist.  
-◈ Identify issues, synthesize theories, engineer solutions, design experiments, wrangle data, and extract insights.  
-◈ Proficient R programmer, decent software engineer.
+◈ Cognitive Neuroscience Researcher turned Data Scientist.  
+◈ Identify issues, conceptualize theories, engineer solutions, design experiments, wrangle data, and extract insights.  
+◈ Proficient R programmer, decent software developer.
 :::
 
 ## {{< fa briefcase >}} Work Experience
 
 - **Data Science Consultant** (2020-Present)  
   [Self-employed]{.about-employer}  
-  ♦ [Creating an R app to automate lead acquisition and management for a leasing company]{.about-missions}  
+  ♦ [Creating an R app combining LLMs and web scraping to automate lead acquisition and management for a leasing company]{.about-missions}  
   ♦ [Statistical modeling of bioinformatics data with R, automatic generation of reports (Quarto) and Dashboards (Shiny)]{.about-missions}  
   
 
