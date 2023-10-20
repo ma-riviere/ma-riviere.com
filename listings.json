@@ -38,12 +38,12 @@
   {
     "listing": "/content/sci-com/index.html",
     "items": [
-      "/content/sci-com/outreach/Exp-JPO/index.html",
-      "/content/sci-com/outreach/Exp/index.html",
       "/content/sci-com/talks/RUNN19/index.html",
       "/content/sci-com/talks/ProbAI19/index.html",
       "/content/sci-com/talks/SKERI/index.html",
-      "/content/sci-com/talks/ICCHP18/index.html"
+      "/content/sci-com/talks/ICCHP18/index.html",
+      "/content/sci-com/outreach/Exp-JPO/index.html",
+      "/content/sci-com/outreach/Exp/index.html"
     ]
   }
 ]

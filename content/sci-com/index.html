@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.420">
+<meta name="generator" content="quarto-1.4.432">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -74,34 +74,6 @@ ul.task-list li input[type="checkbox"] {
 <script>
 
   window.document.addEventListener("DOMContentLoaded", function (_event) {
-    const listingTargetEl = window.document.querySelector('#listing-scicom-outreach .list');
-    if (!listingTargetEl) {
-      // No listing discovered, do not attach.
-      return; 
-    }
-
-    const options = {
-      valueNames: ['listing-title','listing-subtitle','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
-      
-      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
-    };
-
-    window['quarto-listings'] = window['quarto-listings'] || {};
-    window['quarto-listings']['listing-scicom-outreach'] = new List('listing-scicom-outreach', options);
-
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  });
-
-  window.addEventListener('hashchange',() => {
-    if (window['quarto-listing-loaded']) {
-      window['quarto-listing-loaded']();
-    }
-  })
-  
-
-  window.document.addEventListener("DOMContentLoaded", function (_event) {
     const listingTargetEl = window.document.querySelector('#listing-scicom-talks .list');
     if (!listingTargetEl) {
       // No listing discovered, do not attach.
@@ -116,6 +88,34 @@ ul.task-list li input[type="checkbox"] {
 
     window['quarto-listings'] = window['quarto-listings'] || {};
     window['quarto-listings']['listing-scicom-talks'] = new List('listing-scicom-talks', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-scicom-outreach .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-subtitle','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-date","listing-image","listing-description","listing-categories"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-scicom-outreach'] = new List('listing-scicom-outreach', options);
 
     if (window['quarto-listing-loaded']) {
       window['quarto-listing-loaded']();
@@ -265,6 +265,13 @@ cookieconsent.run({
 <!-- sidebar -->
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Type</h2>
+  <ul>
+  <li><a href="#talks" id="toc-talks" class="nav-link active" data-scroll-target="#talks"><iconify-icon inline="" icon="carbon:group-presentation"></iconify-icon> Talks</a></li>
+  <li><a href="#outreach" id="toc-outreach" class="nav-link" data-scroll-target="#outreach"><i class="fa-solid fa-chalkboard-user" aria-label="chalkboard-user"></i> Outreach</a></li>
+  </ul>
+</nav>
     <h5 class="quarto-listing-category-title">Categories</h5><div class="quarto-listing-category category-default"><div class="category" data-category="">All <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Accessibility">Accessibility <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Assistive Devices">Assistive Devices <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Computer Vision">Computer Vision <span class="quarto-category-count">(2)</span></div><div class="category" data-category="Sensory Substitution">Sensory Substitution <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Spatial Cognition">Spatial Cognition <span class="quarto-category-count">(6)</span></div><div class="category" data-category="Virtual Reality">Virtual Reality <span class="quarto-category-count">(1)</span></div></div></div>
 <!-- main -->
 <div class="quarto-about-solana column-body">
@@ -296,72 +303,11 @@ cookieconsent.run({
     bottom: 0;
   }
 </style>
-<section id="outreach" class="level1">
-<h1><i class="fa-solid fa-chalkboard-user" aria-label="chalkboard-user"></i> Outreach</h1>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
-<p>Scientific communication for laymen during outreach events</p>
-</div>
-</div>
-</div>
-<div id="listing-scicom-outreach" class="quarto-listing quarto-listing-container-grid">
-<div class="list grid quarto-listing-cols-3">
-<div class="g-col-1" data-index="0" data-categories="Assistive Devices,Accessibility,Sensory Substitution,Spatial Cognition" data-listing-date-sort="1511391600000" data-listing-file-modified-sort="1678033817165" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36">
-<a href="../../content/sci-com/outreach/Exp-JPO/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title" data-anchor-id="outreach">
-Percieving our world without vision
-</h5>
-<div class="card-subtitle listing-subtitle">
-College Fair of the University of Rouen
-</div>
-<div class="card-text listing-description">
-Presenting my doctoral research project to highschool students during the College Fair of 2017 (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)
-</div>
-</div>
-</div>
-</a>
-</div>
-<div class="g-col-1" data-index="1" data-categories="Assistive Devices,Accessibility,Sensory Substitution,Spatial Cognition" data-listing-date-sort="1493589600000" data-listing-file-modified-sort="1678033104195" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="132">
-<a href="../../content/sci-com/outreach/Exp/index.html" class="quarto-grid-link">
-<div class="quarto-grid-item card h-100 card-left">
-<div class="card-body post-contents">
-<h5 class="no-anchor card-title listing-title">
-Developing assistive decives for VIP: an overview
-</h5>
-<div class="card-subtitle listing-subtitle">
-Expérimentarium Science Fair
-</div>
-<div class="card-text listing-description">
-Presenting my doctoral research projects to a wide-ranging public of all backgrounds (from middle-school students to adults), during a yearly 3-days long science fair…
-</div>
-</div>
-</div>
-</a>
-</div>
-</div>
-<div class="listing-no-matching d-none">
-No matching items
-</div>
-</div>
-</section>
+
 <section id="talks" class="level1">
 <h1><iconify-icon inline="" icon="carbon:group-presentation"></iconify-icon> Talks</h1>
-<div class="callout callout-style-simple callout-note">
-<div class="callout-body d-flex">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-body-container">
+<hr>
 <p>Scientific communication for experts &amp; researchers during conferences, seminars &amp; invited talks</p>
-</div>
-</div>
-</div>
 <div id="listing-scicom-talks" class="quarto-listing quarto-listing-container-default">
 <div class="listing-actions-group">
    <div class="input-group input-group-sm quarto-listing-sort">
@@ -542,6 +488,52 @@ Linz, Austria
 </div>
 </a>
 </div>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
+</section>
+<section id="outreach" class="level1">
+<h1><i class="fa-solid fa-chalkboard-user" aria-label="chalkboard-user"></i> Outreach</h1>
+<hr>
+<p>Scientific communication for laymen during outreach events</p>
+<div id="listing-scicom-outreach" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Assistive Devices,Accessibility,Sensory Substitution,Spatial Cognition" data-listing-date-sort="1511391600000" data-listing-file-modified-sort="1678033817165" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="36">
+<a href="../../content/sci-com/outreach/Exp-JPO/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title" data-anchor-id="outreach">
+Percieving our world without vision
+</h5>
+<div class="card-subtitle listing-subtitle">
+College Fair of the University of Rouen
+</div>
+<div class="card-text listing-description">
+Presenting my doctoral research project to highschool students during the College Fair of 2017 (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Assistive Devices,Accessibility,Sensory Substitution,Spatial Cognition" data-listing-date-sort="1493589600000" data-listing-file-modified-sort="1678033104195" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="132">
+<a href="../../content/sci-com/outreach/Exp/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+Developing assistive decives for VIP: an overview
+</h5>
+<div class="card-subtitle listing-subtitle">
+Expérimentarium Science Fair
+</div>
+<div class="card-text listing-description">
+Presenting my doctoral research projects to a wide-ranging public of all backgrounds (from middle-school students to adults), during a yearly 3-days long science fair…
+</div>
+</div>
+</div>
+</a>
 </div>
 </div>
 <div class="listing-no-matching d-none">
