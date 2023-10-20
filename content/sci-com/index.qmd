@@ -3,6 +3,15 @@ title: "{{< iconify file-icons keynote >}} Communications"
 subtitle: "The talks and outreach activities I've partaken in"
 
 listing:
+  - id: scicom-talks
+    contents: "talks/*/*.{md,qmd,Rmd}"
+    fields: [author, date, title, subtitle, description, categories]
+    categories: numbered
+    date-format: medium
+    sort: [date desc, title]
+    page-size: 5
+    filter-ui: true
+    sort-ui: [date, title]
   - id: scicom-outreach
     type: grid
     contents: "outreach/*/*.{md,qmd,Rmd}"
@@ -15,31 +24,23 @@ listing:
       author: "Location"
       subtitle: "Event"
       description: "Summary"
-  - id: scicom-talks
-    contents: "talks/*/*.{md,qmd,Rmd}"
-    fields: [author, date, title, subtitle, description, categories]
-    categories: numbered
-    date-format: medium
-    sort: [date desc, title]
-    page-size: 5
-    filter-ui: true
-    sort-ui: [date, title]
+
+toc: true
+toc-title: "Type"
 ---
 
-# {{< fa chalkboard-user >}} Outreach
-
-:::{.callout-note appearance="simple"}
-Scientific communication for laymen during outreach events
-:::
-
-:::{#scicom-outreach}
-:::
-
 # {{< iconify carbon group-presentation >}} Talks
+***
 
-:::{.callout-note appearance="simple"}
 Scientific communication for experts & researchers during conferences, seminars & invited talks
-:::
 
 :::{#scicom-talks}
+:::
+
+# {{< fa chalkboard-user >}} Outreach
+***
+
+Scientific communication for laymen during outreach events
+
+:::{#scicom-outreach}
 :::

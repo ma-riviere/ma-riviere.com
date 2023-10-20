@@ -1,6 +1,6 @@
 ---
 title: "{{< fa code >}} Code"
-subtitle: "**R**, **Stats** and **Data Science** code projects"
+subtitle: "**R**, **Stats** and **Data Science** related code projects & blog posts"
 
 license: "CC BY"
 
@@ -11,36 +11,31 @@ listing:
     categories: numbered
     date-format: medium
     sort: [date desc, title]
-    page-size: 5
+    page-size: 3
   - id: code-posts
     contents: "posts/*/*.{md,qmd,Rmd}"
     fields: [date, title, subtitle, description, reading-time, categories] # file-modified 
     categories: numbered
     date-format: medium
     sort: [date desc, title]
-    page-size: 5
+    page-size: 7
     filter-ui: true
     sort-ui: [date, title]
     feed:
       type: partial
 
-# toc: false
+toc: true
+toc-title: "Type"
 ---
 
-# {{< iconify mdi git >}} Code projects
-
-:::{.callout-note appearance="simple"}
-Code projects linked to published articles
-:::
+# {{< iconify mdi git >}} Code Projects
+***
 
 :::{#code-projects}
 :::
 
-# {{< iconify mdi message-cog >}} Blog posts
-
-:::{.callout-note appearance="simple"}
-Miscellaneous blog posts about **R**, **Stats** and **Data Science**
-:::
+# {{< iconify mdi message-cog >}} Blog Posts
+***
 
 :::{#code-posts}
 :::

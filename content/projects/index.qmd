@@ -13,6 +13,5 @@ listing:
   sort: [date desc, title]
   page-size: 10
   filter-ui: true
-  sort-ui: [date, title]
 ---
 
