@@ -50,7 +50,7 @@ ul.task-list li input[type="checkbox"] {
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
-  "collapse-after": 10,
+  "collapse-after": 2,
   "panel-placement": "end",
   "type": "overlay",
   "limit": 50,
@@ -81,7 +81,7 @@ ul.task-list li input[type="checkbox"] {
     }
 
     const options = {
-      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] }],
+      valueNames: ['listing-date','listing-title','listing-author','listing-subtitle','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
       searchColumns: ["listing-date","listing-title","listing-author","listing-subtitle","listing-image","listing-description","listing-categories"],
     };
@@ -271,35 +271,14 @@ cookieconsent.run({
 
 
 <div class="quarto-listing quarto-listing-container-default" id="listing-listing">
-<div class="listing-actions-group">
-   <div class="input-group input-group-sm quarto-listing-sort">
-     <span class="input-group-text"><i class="bi bi-sort-down"></i></span>
-     <select id="listing-listing-sort" class="form-select" aria-label="Order By" onchange="window['quarto-listings']['listing-listing'].sort(this.options[this.selectedIndex].value, { order: this.options[this.selectedIndex].getAttribute('data-direction')})">
-       <option value="" disabled="" selected="" hidden="">Order By</option>
-       <option value="index" data-direction="asc">Default</option>
-         <option value="listing-date-sort" data-direction="asc">
-          Date - Oldest
-        </option>
-         <option value="listing-date-sort" data-direction="desc">
-          Date - Newest
-        </option>
-         <option value="listing-title" data-direction="asc">
-          Title
-        </option>
-         <option value="listing-author" data-direction="asc">
-          Author
-        </option>
-     </select>
-  </div>
-</div>
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="Neuroscience,Molecular Neuroscience,Neurodevelopment,Cerebellum,Apnea of Prematurity,RT-qPCR" data-listing-file-modified-sort="1695569684413" data-listing-reading-time-sort="1" data-listing-word-count-sort="31">
+<div class="quarto-post image-right" data-index="0" data-categories="Neuroscience,Molecular Neuroscience,Neurodevelopment,Cerebellum,Apnea of Prematurity,RT-qPCR" data-listing-date-sort="1697752800000" data-listing-file-modified-sort="1697799769900" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="20">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../content/pubs/CRN23/index.html">Apnea of Prematurity induces short and long-term development-related transcriptional changes in the murine cerebellum</a>
 </h3>
 <div class="listing-subtitle">
-<a href="../../content/pubs/CRN23/index.html"><em>In Press</em></a>
+<a href="../../content/pubs/CRN23/index.html">Current Research in Neurobiology</a>
 </div>
 <div class="listing-categories">
 <div class="listing-category" onclick="window.quartoListingCategory('Neuroscience'); return false;">
@@ -326,14 +305,17 @@ RT-qPCR
 </div>
 </div>
 <div class="metadata">
-<p><a href="../../content/pubs/CRN23/index.html"></a></p><a href="../../content/pubs/CRN23/index.html">
+<a href="../../content/pubs/CRN23/index.html">
+<div class="listing-date">
+Oct 20, 2023
+</div>
 <div class="listing-author">
 Agalic Rodriguez-Duboc, Magali Basille-Duguay, Aurélien Debonne, Marc-Aurèle Rivière, David Vaudry, Delphine Burel
 </div>
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="1" data-categories="Cognitive Psychology,Accessibility,Sensory Substitution,Haptic Interface,Psychophysics" data-listing-date-sort="1662069600000" data-listing-file-modified-sort="1695570006963" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="quarto-post image-right" data-index="1" data-categories="Cognitive Psychology,Accessibility,Sensory Substitution,Haptic Interface,Psychophysics" data-listing-date-sort="1662069600000" data-listing-file-modified-sort="1697799939390" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../content/pubs/JEP22/index.html">Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen</a>
@@ -373,7 +355,7 @@ Elise Faugloire, Laure Lejeune, Marc-Aurèle Rivière, Bruno Mantel
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="2" data-categories="Engineering,Computer Vision,Auditory Interface,Augmented Reality,Cognitive Psychology,Accessibility,Sensory Substitution" data-listing-date-sort="1599861600000" data-listing-file-modified-sort="1695569938653" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="quarto-post image-right" data-index="2" data-categories="Engineering,Computer Vision,Auditory Interface,Augmented Reality,Cognitive Psychology,Accessibility,Sensory Substitution" data-listing-date-sort="1599861600000" data-listing-file-modified-sort="1697799926130" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../content/pubs/ICCHP20/index.html">An Audio-Based 3D Spatial Guidance AR System for Blind Users</a>
@@ -419,7 +401,7 @@ James Coughlan, Brandon Biggs, Marc-Aurèle Rivière, Huiying Shen
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="3" data-categories="Engineering,Computer Vision,Sensory Substitution,Haptic Interface,Accessibility" data-listing-date-sort="1594159200000" data-listing-file-modified-sort="1695569975923" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="quarto-post image-right" data-index="3" data-categories="Engineering,Computer Vision,Sensory Substitution,Haptic Interface,Accessibility" data-listing-date-sort="1594159200000" data-listing-file-modified-sort="1697799933620" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../content/pubs/ICISP20/index.html">Towards the Tactile Discovery of Cultural Heritage with Multi-approach Segmentation</a>
@@ -459,7 +441,7 @@ Ali Souradi, Christele Lecomte, Katerine Romeo, Simon Gay, Marc-Aurèle Rivière
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="4" data-categories="Cognitive Psychology,Sensory Substitution,Accessibility,Engineering,Auditory Interface,Haptic Interface,Augmented Reality" data-listing-date-sort="1558303200000" data-listing-file-modified-sort="1695570074203" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="quarto-post image-right" data-index="4" data-categories="Cognitive Psychology,Sensory Substitution,Accessibility,Engineering,Auditory Interface,Haptic Interface,Augmented Reality" data-listing-date-sort="1558303200000" data-listing-file-modified-sort="1697799946960" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../content/pubs/NER19/index.html">NAV-VIR: an audio-tactile virtual environment to assist visually impaired people</a>
@@ -505,7 +487,7 @@ Marc-Aurèle Rivière, Simon Gay, Katerine Romeo, Edwige Pissaloux, Michal Bujac
 </a>
 </div>
 </div>
-<div class="quarto-post image-right" data-index="5" data-categories="Cognitive Psychology,Sensory Substitution,Accessibility,Neuroscience,Spatial Cognition,Haptic Interface,Augmented Reality" data-listing-date-sort="1531346400000" data-listing-file-modified-sort="1695569884803" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
+<div class="quarto-post image-right" data-index="5" data-categories="Cognitive Psychology,Sensory Substitution,Accessibility,Neuroscience,Spatial Cognition,Haptic Interface,Augmented Reality" data-listing-date-sort="1531346400000" data-listing-file-modified-sort="1697799920500" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="18">
 <div class="body">
 <h3 class="no-anchor listing-title">
 <a href="../../content/pubs/ICCHP18-TactiBelt/index.html">TactiBelt: integrating spatial cognition and mobility theories into the design of a novel orientation and mobility assistive device for the blind</a>
