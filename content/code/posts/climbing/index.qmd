@@ -34,7 +34,7 @@ categories:
 
 By design, this post contains very few explanations. 
 
-Its goal was simply to translate [Ethan's blog post](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R, and improve his Stan code with within-chain parallelization and compiler optimizations for faster sampling.
+Its goal was simply to translate [Ethan's blog post](https://www.ethanrosenthal.com/2022/04/15/bayesian-rock-climbing/) to R, and update his Stan code to use within-chain parallelization and compiler optimizations, for faster sampling.
 
 Feel free to read the original blog post to better understand what the code is doing.
 
@@ -807,7 +807,7 @@ mcmc_neff_hist(neff_ratio(climbing_mod_fit))
 mcmc_rhat_hist(rhat(climbing_mod_fit))
 ```
 
-**Plotting random subsets of the traces**
+**Plotting random subsets of the traces:**
 
 ```{r}
 #| code-fold: true
@@ -845,6 +845,7 @@ hist_trace_plot(
 )
 ```
 
+Everything seems good.
 
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>

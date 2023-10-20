@@ -97,7 +97,7 @@ new Chart(ctx, {
       legend: {display: false}
     },
     scale: {
-      ticks: {stepSize: 20}
+      ticks: {stepSize: 25}
     },
     scales: {
       r: {

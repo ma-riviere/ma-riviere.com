@@ -41,13 +41,14 @@ website:
   search:
     location: navbar
     type: overlay
-    collapse-after: 10
+    collapse-after: 2
     show-item-context: true
   
   ### Navigation ###
   # page-navigation: true
   bread-crumbs: true
   
+  ### Navbar ###
   navbar:
     logo: res/hexabrain.svg
     logo-alt: "Stylized depiction of a brain inside a hexagon"
@@ -86,21 +87,8 @@ website:
             url: https://github.com/ma-riviere/
             aria-label: "My GitHub profile"
   
-  ## Auto-sidebar: https://quarto.org/docs/websites/website-navigation.html#auto-generation
+  ### Sidebar ###
   sidebar: false
-  # sidebar:
-  #   - id: code
-  #     title: "Code" # Will auto-link to page with same title ?
-  #     style: floating
-  #     alignment: left
-  #     collapse-level: 3
-  #     tools: false
-  #     contents:
-  #       - section: "R"
-  #         contents:
-  #           - section: "Data Wrangling"
-  #           - text: "---"
-  #           - section: "Modeling"
   
   ### Footer ###
   page-footer:

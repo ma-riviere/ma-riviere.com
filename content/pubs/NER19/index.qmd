@@ -47,7 +47,6 @@ citation:
   type: paper-conference
   container-title: "Proceedings of the International IEEE/EMBS Conference on Neural Engineering"
   publisher: "IEEE"
-  doi: 10.1109/NER.2019.8717086
   url: https://ieeexplore.ieee.org/document/8717086
   page: "1038-1041"
   isbn: "978-1-5386-7921-0"

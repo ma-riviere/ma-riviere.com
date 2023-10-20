@@ -33,7 +33,7 @@ categories:
 
 By design, this post contains very few explanations. 
 
-Its goal was simply to translate [PyMC's blog post](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) to R, and improve their Stan code for a fairer comparison with PyMC.
+Its goal was simply to translate [PyMC's blog post](https://www.pymc-labs.io/blog-posts/pymc-stan-benchmark/) to R, and update their Stan code to use within-chain parallelization and compiler optimizations, for a fairer comparison with PyMC.
 
 Feel free to read the original blog post to better understand what the code is doing.
 
@@ -537,6 +537,7 @@ hist_trace_plot <- function(mod, vars) {
 hist_trace_plot(tennis_mod_fit, paste0("player_skills[", sample(player_data$player_idx, 5), "]"))
 ```
 
+Everything seems good.
 
 <!------------------------------------------------------------------------------>
 <!------------------------------------------------------------------------------>

@@ -38,7 +38,6 @@ citation:
   editor:
     - "Miesenberger Klaus"
     - "Kouroupetroglou Georgios"
-  doi: 10.1007/978-3-319-94274-2_16
   url: http://link.springer.com/10.1007/978-3-319-94274-2_16
   volume: 10897
   page: "110-113"

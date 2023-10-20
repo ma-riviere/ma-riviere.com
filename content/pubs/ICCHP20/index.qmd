@@ -43,7 +43,6 @@ citation:
     - "Manduchi Roberto"
     - "Covarrubias Rodriguez Mario"
     - "Peňáz Petr"
-  doi: 10.1007/978-3-030-58796-3_55
   url: https://link.springer.com/chapter/10.1007/978-3-030-58796-3_55
   volume: 12376
   page: "475-484"
