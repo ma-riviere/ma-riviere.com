@@ -7,11 +7,10 @@ number-sections: false
 
 listing:
   contents: "*.{md,qmd,Rmd}"
-  fields: [image, title, subtitle, description, categories] # author
+  fields: [image, title, subtitle, description, categories]
   categories: numbered
   date-format: medium
   sort: [date desc, title]
   page-size: 10
   filter-ui: true
 ---
-

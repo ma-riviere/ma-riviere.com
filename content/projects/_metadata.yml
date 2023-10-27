@@ -5,6 +5,7 @@ author-title: "Consortium"
 
 toc: true
 number-sections: true
+page-navigation: true
 
 metadata-files:
   - ../_links.yml

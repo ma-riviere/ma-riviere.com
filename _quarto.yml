@@ -45,7 +45,6 @@ website:
     show-item-context: true
   
   ### Navigation ###
-  # page-navigation: true
   bread-crumbs: true
   
   ### Navbar ###
@@ -102,15 +101,19 @@ website:
         href: https://quarto.org/
         aria-label: "Quarto's website"
 
+## Bibliography ##
 
-from: markdown+emoji
 bibliography: res/refs.bib
 csl: res/apa.csl
 link-citations: true
 
 citation: false
+
+from: markdown+emoji
 comments: false
 toc: false
+
+## Format options ##
 
 format:
   html:
@@ -138,11 +141,11 @@ format:
       dark: libs/highlight-styles/dark.theme
     link-external-newwindow: true
 
-filters:
-  - lightbox
+## Image options ##
 
-lightbox:
-  match: auto
+lightbox: true
+
+## Execution / R options ##
 
 engine: knitr
 
@@ -157,6 +160,8 @@ knitr:
       bg: transparent
     # R.options:
     #   scipen: 999
+  opts_knit:
+    verbose: false
 
 execute:
   warning: false

@@ -12,7 +12,7 @@ author:
     url: https://sciences-techniques.univ-rouen.fr/nordic-neuroendocrine-endocrine-and-germinal-differentiation-communication-umr-1239-679078.kjsp
 
 image: feature.png
-image-alt: "Circular plot illustrating the impact of the multiple genes tested on several key biological pathways"
+image-alt: "Graphical abstract recapitulating the main findings of this project"
 
 description: "This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model."
 
