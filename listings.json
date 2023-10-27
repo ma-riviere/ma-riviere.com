@@ -1,5 +1,16 @@
 [
   {
+    "listing": "/content/sci-com/index.html",
+    "items": [
+      "/content/sci-com/talks/RUNN19/index.html",
+      "/content/sci-com/talks/ProbAI19/index.html",
+      "/content/sci-com/talks/SKERI/index.html",
+      "/content/sci-com/talks/ICCHP18/index.html",
+      "/content/sci-com/outreach/Exp-JPO/index.html",
+      "/content/sci-com/outreach/Exp/index.html"
+    ]
+  },
+  {
     "listing": "/content/code/index.html",
     "items": [
       "/content/code/projects/DE-AoP/index.html",
@@ -8,18 +19,6 @@
       "/content/code/posts/big-bayes/index.html",
       "/content/code/posts/data.table/index.html",
       "/content/code/posts/climbing/index.html"
-    ]
-  },
-  {
-    "listing": "/content/pubs/index.html",
-    "items": [
-      "/content/pubs/CRN23/index.html",
-      "/content/pubs/JEP22/index.html",
-      "/content/pubs/ICCHP20/index.html",
-      "/content/pubs/ICISP20/index.html",
-      "/content/pubs/NER19/index.html",
-      "/content/pubs/ICCHP18-TactiBelt/index.html",
-      "/content/pubs/ICCHP18-F2T/index.html"
     ]
   },
   {
@@ -36,14 +35,15 @@
     ]
   },
   {
-    "listing": "/content/sci-com/index.html",
+    "listing": "/content/pubs/index.html",
     "items": [
-      "/content/sci-com/talks/RUNN19/index.html",
-      "/content/sci-com/talks/ProbAI19/index.html",
-      "/content/sci-com/talks/SKERI/index.html",
-      "/content/sci-com/talks/ICCHP18/index.html",
-      "/content/sci-com/outreach/Exp-JPO/index.html",
-      "/content/sci-com/outreach/Exp/index.html"
+      "/content/pubs/CRN23/index.html",
+      "/content/pubs/JEP22/index.html",
+      "/content/pubs/ICCHP20/index.html",
+      "/content/pubs/ICISP20/index.html",
+      "/content/pubs/NER19/index.html",
+      "/content/pubs/ICCHP18-TactiBelt/index.html",
+      "/content/pubs/ICCHP18-F2T/index.html"
     ]
   }
 ]
