@@ -1,7 +1,5 @@
 # Content
 
-## A default value is required to properly display banners
-## It will be overridden in the SCSS
-title-block-banner: "#4B5B68"
+title-block-banner: true
 
 include-before-body: ../libs/html/progress-bar.html
