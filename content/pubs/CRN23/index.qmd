@@ -95,6 +95,6 @@ about:
 
 <object data="CRN23.pdf" type="application/pdf" width="100%" height="1000">
   <iframe width="100%" height="1000"
-    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.com/raw/main/content/pubs/articles/CRN23/CRN23.pdf&embedded=true">
+    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.com/raw/main/content/pubs/CRN23/CRN23.pdf&embedded=true">
   </iframe>
 </object>
