@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.451">
+<meta name="generator" content="quarto-1.4.502">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -275,7 +275,7 @@ cookieconsent.run({
   <div>
     <div class="abstract">
       <div class="block-title">Description</div>
-      <p>The <a href="../../../../content/projects/DE-AoP/">DE-AoP</a> project included RT-qPCR and immunohistochemistry data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the <a href="https://glmmtmb.github.io/glmmTMB/">glmmTMB</a> package <span class="citation" data-cites="glmmTMB">(<a href="#ref-glmmTMB" role="doc-biblioref">Brooks et al., 2017</a>)</span>. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.</p>
+      <p>The <a href="../../../../content/projects/DE-AoP/">DE-AoP</a> project included RT-qPCR and immunohistochemistry data, which were analysed in <a href="https://www.r-project.org/">R</a> <span class="citation" data-cites="R">(<a href="#ref-R" role="doc-biblioref">R Core Team, 2023</a>)</span>. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the <a href="https://glmmtmb.github.io/glmmTMB/">glmmTMB</a> package <span class="citation" data-cites="glmmTMB">(<a href="#ref-glmmTMB" role="doc-biblioref">Brooks et al., 2017</a>)</span>. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.</p>
       <p>The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake’s Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.</p>
       <p>Model diagnostics were done using the <a href="https://florianhartig.github.io/DHARMa/">DHARMa</a> <span class="citation" data-cites="DHARMa">(<a href="#ref-DHARMa" role="doc-biblioref">Hartig, 2022</a>)</span> &amp; <a href="https://easystats.github.io/performance/">performance</a> <span class="citation" data-cites="performance">(<a href="#ref-performance" role="doc-biblioref">Lüdecke et al., 2021</a>)</span> packages, and estimated marginal means/contrasts were computed with the <a href="https://github.com/rvlenth/emmeans">emmeans</a> package <span class="citation" data-cites="emmeans">(<a href="#ref-emmeans" role="doc-biblioref">Lenth, 2022</a>)</span>.</p>
     </div>
@@ -292,6 +292,9 @@ cookieconsent.run({
   <a href="https://github.com/ma-riviere/DE-AoP-23" class="about-link" rel="" target="">
     <i class="bi bi-github"></i>
      <span class="about-link-text">Code</span>
+  </a>
+  <a href="https://ma-riviere.github.io/DE-AoP-23/" class="about-link" rel="" target="">
+     <span class="about-link-text"><i class="fa-solid fa-arrow-up-right-from-square" aria-label="arrow-up-right-from-square"></i> Documentation</span>
   </a>
   <a href="/content/projects/DE-AoP/" class="about-link" rel="" target="">
      <span class="about-link-text"><i class="fa-solid fa-business-time" aria-label="business-time"></i> Project (DE-AoP)</span>
@@ -322,12 +325,13 @@ cookieconsent.run({
     bottom: 0;
   }
 </style>
-<!-- <hr style="margin-bottom: 30px; margin-top: -12px;" width="1300"> -->
-<!-- <iframe src="https://ma-riviere.github.io/DE-AoP-23/" width="100%" height="1350" allow="fullscreen"></iframe> -->
+<hr style="margin-bottom: 30px; margin-top: -12px;" width="1300">
+<iframe src="https://ma-riviere.github.io/DE-AoP-23/" width="100%" height="1000" allow="fullscreen">
+</iframe>
 
 
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
 <div id="ref-glmmTMB" class="csl-entry" role="listitem">
 Brooks, M. E., Kristensen, K., van Benthem, K. J., Magnusson, A., Berg, C. W., Nielsen, A., Skaug, H. J., Maechler, M., &amp; Bolker, B. M. (2017). <span class="nocase">glmmTMB</span> balances speed and flexibility among packages for zero-inflated generalized linear mixed modeling. <em>The R Journal</em>, <em>9</em>(2), 378–400. <a href="https://journal.r-project.org/archive/2017/RJ-2017-066/index.html">https://journal.r-project.org/archive/2017/RJ-2017-066/index.html</a>
 </div>
@@ -339,6 +343,9 @@ Lenth, R. V. (2022). <em>Emmeans: Estimated marginal means, aka least-squares me
 </div>
 <div id="ref-performance" class="csl-entry" role="listitem">
 Lüdecke, D., Ben-Shachar, M. S., Patil, I., Waggoner, P., &amp; Makowski, D. (2021). <span class="nocase">performance</span>: An <span>R</span> package for assessment, comparison and testing of statistical models. <em>Journal of Open Source Software</em>, <em>6</em>(60), 3139. <a href="https://doi.org/10.21105/joss.03139">https://doi.org/10.21105/joss.03139</a>
+</div>
+<div id="ref-R" class="csl-entry" role="listitem">
+R Core Team. (2023). <em>R: A language and environment for statistical computing</em>. R Foundation for Statistical Computing. <a href="https://www.R-project.org/">https://www.R-project.org/</a>
 </div>
 </div></section></div></main></div>
     </div>
@@ -563,6 +570,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/ma-riviere\.com");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
@@ -637,8 +662,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       // Special case sections, only their first couple elements
       const container = document.createElement("div");
       if (note.children && note.children.length > 2) {
-        for (let i = 0; i < 2; i++) {
-          container.appendChild(note.children[i].cloneNode(true));
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
         }
         typesetMath(container);
         return container.innerHTML
@@ -872,24 +904,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       });
     }
   }
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/ma-riviere\.com");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
-      }
-    }
 });
 </script>
 </div> <!-- /content -->
