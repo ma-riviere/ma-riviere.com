@@ -58,7 +58,6 @@ grid:
   margin-width: 100px
 
 metadata-files: [../../../_affiliations.yml]
-bibliography: refs.bib
 ---
 
 <hr style="margin-bottom: 30px; margin-top: -12px;" width="1300">

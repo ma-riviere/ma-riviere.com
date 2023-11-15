@@ -45,6 +45,8 @@ website:
     show-item-context: true
   
   ### Navigation ###
+  back-to-top-navigation: true
+  page-navigation: true
   bread-crumbs: true
   
   ### Navbar ###
@@ -103,11 +105,17 @@ website:
 
 ## Bibliography ##
 
-bibliography: res/refs.bib
+bibliography: 
+  - res/refs.bib
+  - res/software.bib
 csl: res/apa.csl
 link-citations: true
 
 citation: false
+
+## Image options ##
+
+lightbox: true
 
 from: markdown+emoji
 comments: false
@@ -140,10 +148,6 @@ format:
       light: libs/highlight-styles/light.theme
       dark: libs/highlight-styles/dark.theme
     link-external-newwindow: true
-
-## Image options ##
-
-lightbox: true
 
 ## Execution / R options ##
 

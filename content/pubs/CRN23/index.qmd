@@ -89,6 +89,8 @@ about:
     - text: "{{< fa chart-column >}} Data & Analyses"
       file: content/code/projects/DE-AoP/
       aria-label: "Webpage presenting the data & analyses of this project"
+
+license: "CC BY-NC-ND"
 ---
 
 {{< include /content/_hr.qmd >}}

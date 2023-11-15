@@ -22,7 +22,7 @@ image-alt: "Circular plot illustrating the impact of the multiple genes tested o
 description: "RT-qPCR and immunohistochemistry data for the DE-AoP project were analysed in R, hosted on GitHub, and archived through Zenodo."
 
 abstract: | 
-  The [DE-AoP](/content/projects/DE-AoP/) project included RT-qPCR and immunohistochemistry data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
+  The [DE-AoP](/content/projects/DE-AoP/) project included RT-qPCR and immunohistochemistry data, which were analysed in [R](https://www.r-project.org/) [@R]. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
 
   The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
 
@@ -42,9 +42,9 @@ about:
       icon: github
       url: https://github.com/ma-riviere/DE-AoP-23
       aria-label: "See the GitHub repository hosting the code of the project and related paper"
-    # - text: "{{< fa arrow-up-right-from-square >}} Documentation"
-    #   url: https://ma-riviere.github.io/DE-AoP-23/
-    #   aria-label: "See the website documenting the project's data and code"
+    - text: "{{< fa arrow-up-right-from-square >}} Documentation"
+      url: https://ma-riviere.github.io/DE-AoP-23/
+      aria-label: "See the website documenting the project's data and code"
     - text: "{{< fa business-time >}} Project (DE-AoP)"
       file: content/projects/DE-AoP/
       aria-label: "Link to the project"
@@ -55,9 +55,8 @@ grid:
   margin-width: 100px
 
 metadata-files: [../../../_affiliations.yml]
-bibliography: refs.bib
 ---
 
-<!-- <hr style="margin-bottom: 30px; margin-top: -12px;" width="1300"> -->
+<hr style="margin-bottom: 30px; margin-top: -12px;" width="1300">
 
-<!-- <iframe src="https://ma-riviere.github.io/DE-AoP-23/" width="100%" height="1350" allow="fullscreen"></iframe> -->
+<iframe src="https://ma-riviere.github.io/DE-AoP-23/" width="100%" height="1000" allow="fullscreen"></iframe>
