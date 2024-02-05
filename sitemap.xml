@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://ma-riviere.com/index.html</loc>
-    <lastmod>2023-11-15T19:22:32.850Z</lastmod>
+    <lastmod>2024-02-05T18:26:44.376Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/sci-com/talks/SKERI/index.html</loc>
@@ -57,24 +57,16 @@
     <lastmod>2023-11-14T13:26:33.141Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.com/content/code/posts/spatial/index.html</loc>
-    <lastmod>2023-09-29T18:01:53.816Z</lastmod>
+    <loc>https://ma-riviere.com/content/code/posts/big-bayes/index.html</loc>
+    <lastmod>2023-11-28T13:36:33.435Z</lastmod>
   </url>
   <url>
-    <loc>https://ma-riviere.com/content/code/posts/climbing/index.html</loc>
-    <lastmod>2023-10-13T18:16:21.082Z</lastmod>
+    <loc>https://ma-riviere.com/content/about.html</loc>
+    <lastmod>2023-10-13T14:24:53.779Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/code/index.html</loc>
     <lastmod>2023-10-20T18:20:56.574Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.com/content/code/posts/big-bayes/index.html</loc>
-    <lastmod>2023-10-13T18:18:26.102Z</lastmod>
-  </url>
-  <url>
-    <loc>https://ma-riviere.com/content/code/posts/data.table/index.html</loc>
-    <lastmod>2023-10-09T20:42:30.408Z</lastmod>
   </url>
   <url>
     <loc>https://ma-riviere.com/content/code/projects/DE-AoP/index.html</loc>
