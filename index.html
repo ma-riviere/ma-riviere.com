@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.4.533">
+<meta name="generator" content="quarto-1.5.9">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 <meta name="description" content="R &amp; Shiny Developer Data Champ’">
 <title>Marc-Aurèle Rivière</title>
@@ -223,23 +223,23 @@ Proficient R programmer | Decent software developper<br><iconify-icon inline="" 
 <p>I’m a recovering academic who worked on several research projects at the intersection between <strong>Cognitive Neurosciences</strong> and <strong>Biomedical Engineering</strong>. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of Computer Vision and Augmented Reality, within the <a href="https://en.wikipedia.org/wiki/Sensory_substitution">Sensory Substitution</a> framework.</p>
 <p>I have since retrained as a <strong>Data Scientist</strong> with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.</p>
 <div style="height: 550px; display: flex; justify-content: center; margin-top: 40px;">
-<canvas id="marachinde"></canvas>
+<canvas id="marachnide"></canvas>
 </div>
 <div class="cell" data-layout-align="center">
 <script>
-const ctx = document.getElementById('marachinde');
+const ctx = document.getElementById('marachnide');
 const data = {
   labels: [
     'Cognitive Neuroscience',
     ['Behavioral', 'Research'],
     ['Scientific', 'Communication'],
     'Data Science',
-    ['Software', 'Engineering'],
+    ['Software', 'Development'],
     ['Project', 'Management']
   ],
   datasets: [{
     label: '',
-    data: [90, 90, 80, 85, 70, 75],
+    data: [90, 90, 80, 85, 80, 75],
     fill: true,
     backgroundColor: 'rgba(82, 0, 252, 0.2)',
     borderColor: 'rgb(82, 0, 252)',
@@ -617,7 +617,12 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       if (window.Quarto?.typesetMath) {
         window.Quarto.typesetMath(note);
       }
-      return note.innerHTML;
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
     }
   }
   for (var i=0; i<xrefs.length; i++) {
