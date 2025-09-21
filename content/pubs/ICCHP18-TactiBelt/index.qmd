@@ -23,12 +23,11 @@ abstract: |
   The aim of this paper is to introduce a novel functional design for an indoor and outdoor mobility assistive device for the visually impaired, based on the theoretical frameworks of mobility and spatial cognition. The originality of the proposed approach comes from the integration of two main aspects of navigation, locomotion and wayfinding. The cognitive theories which underpin the design of the proposed sensory substitution device, called TactiBelt, are identified and discussed in the framework of spatial knowledge acquisition. The paper is organized as follows: section 1 gives a brief overview of the sensory substitution framework, while sections 2 & 3 introduce the importance of navigation and spatial cognition models for the design of mobility aids. Section 4 details the functional design of the TactiBelt.
 
 categories:
-  - "Cognitive Psychology"
-  - "Sensory Substitution"
-  - "Accessibility"
-  - "Neuroscience"
+  - "Proceedings"
+  - "Cognitive Neuroscience"
   - "Spatial Cognition"
   - "Haptic Interface"
+  - "Sensory Substitution"
   - "Augmented Reality"
 
 citation:
@@ -47,6 +46,7 @@ metadata-files: [../../_affiliations.yml]
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "{{< ai hal >}} Article (online)"
       url: https://hal.archives-ouvertes.fr/hal-02353413/document
@@ -59,7 +59,7 @@ about:
 {{< include /content/_hr.qmd >}}
 
 <object data="https://hal.archives-ouvertes.fr/hal-02353413/document" type="application/pdf" width="100%" height="1200">
-  <iframe width="100%" height="1200"
-    src="https://docs.google.com/viewer?url=https://hal.archives-ouvertes.fr/hal-02353413/document&embedded=true">
+  <iframe width="100%" height="100%" style="border:none;"
+    src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://ma-riviere.com/content/pubs/ICCHP18-TactiBelt/TactiBelt.pdf">
   </iframe>
 </object>

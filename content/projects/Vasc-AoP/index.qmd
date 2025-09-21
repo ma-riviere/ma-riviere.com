@@ -1,0 +1,229 @@
+---
+title: "Vasc-AoP"
+subtitle: "Vascular effects of Apnea of Prematurity"
+date: 2022-08
+
+author:
+  - name: Neural and Neuroencodrine Differenciation & Communication (DC2N)
+    url: http://dc2n.labos.univ-rouen.fr/
+  - name: Cancer and Brain Genomics (CBG)
+    url: https://recherche.univ-rouen.fr/cbg-cancer-and-brain-genomics-umr-1245-679263.kjsp
+  - name: Neuroendocrine, Endocrine and Germinal Differentiation Communication (NorDic)
+    url: https://sciences-techniques.univ-rouen.fr/nordic-neuroendocrine-endocrine-and-germinal-differentiation-communication-umr-1239-679078.kjsp
+
+image: graphical-abstract.png
+image-alt: "Graphical abstract recapitulating the main findings of this project"
+
+description: "TBA"
+
+abstract: "TBA"
+
+website:
+  open-graph:
+    description: "Changes of cerebellar vascularization in a murine model of apnea of prematurity"
+  twitter-card:
+    description: "Changes of cerebellar vascularization in a murine model of apnea of prematurity"
+
+categories:
+  - R
+  - Bioinformatics
+  - Biostatistics
+  - Immunohistochemistry
+  - Imaging
+
+# Dirty trick to get some links/buttons
+about:
+  template: solana
+  links:
+    # - text: "Article"
+    #   icon: file-pdf
+    #   url: https://agalic-rd.com/content/pubs/articles/BM25/
+    #   aria-label: "See the article published on this project"
+    - text: "Code"
+      icon: github
+      url: https://github.com/agalic-rd/Vasc-AoP/
+      aria-label: "See the code used for this project"
+---
+
+{{< include /content/_hr.qmd >}}
+
+:::{.callout-note appearance="simple"}
+
+## My role in this project
+
+**1)** Managed the data processing, modeling, and hypothesis testing.
+
+**2)** Helped write the methodology/statistics part of the paper (in press).
+
+**3)** Open-sourced the resulting reproducible R code on [GitHub](https://github.com/agalic-rd/Vasc-AoP/) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.15319300).
+
+:::
+
+# Summary
+
+![](graphical-abstract.png){fig-alt="Graphical abstract recapitulating the main findings of this project"}
+
+TODO:
+- Types of data: PCR (transcriptomics) and IHC (immunohistochemistry)
+  * PCR: measure gene expression of angiogenesis-related pathways
+  * IHC: morphological appearance of the 3D vascular network of the cerebellum (volume, segments, endpoints, radius, area, ...) using a clearing protocol
+- Data processing: TODO
+- Modelling: TODO
+- Hypotheses: whether/how IH protocol affected the formation of the vascular network of the cerebellum
+  * Morhphological appearance
+  * Explain/link morphological appearance to transcriptomics/gene expression
+
+# Data
+
+TODO
+
+
+# Models
+
+Optical Density (OD) data was modeled using a Gamma distribution to account for the data's strict positivity and positive skewness, with a log link function.
+
+Generalized Linear Mixed Models (GLMMs) were used to model the data, using random effects to account for pseudo-replication and the hierarchical nature of the data. For all models, categorical predictors were dummy-coded with a reference level: genotype (Wild-Type) and age (3 months). Models were fitted using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package. 
+
+
+Model fit was assessed using a combination of plots (normality, homoscedasticity, normality of residuals, collinearity), statistical tests (Levenne, KS, dispersion), and posterior predictive checks on simple statistics (min, max, mean, sd) using simulated residuals. Model fit was assessed using the [DHARMa](https://florianhartig.github.io/DHARMa/) and [performance](https://easystats.github.io/performance/) packages.
+
+Two models were fitted on the OD data, one for the **soma** and one for the **molecular layer** (terminal fields):
+
+::: {.panel-tabset}
+
+## 'Soma' model
+
+We modeled the OD of individual neuronal somata ($Y_{ijk}$) using genotype, age, and brain area (LEC vs. MEC) as fixed effects, along with all their interactions. Random intercepts were included for each rat (j) and for each tissue section (k) nested within each rat.
+
+### Model equation
+
+$$
+
+$$
+
+:::: {.callout-note appearance="simple" collapse="true"}
+
+### Equivalent R model
+
+```{r}
+glmmTMB::glmmTMB(
+  od_corrected ~ genotype * age * area + (1 | rat / section),
+  family = Gamma("log"),
+  data = od_data$soma,
+  REML = TRUE
+)
+```
+
+::::
+
+### Model fit
+
+:::: {.panel-tabset}
+
+#### Plots
+
+![](mod_soma_diag.png){fig-alt="Performance plots for the 'Soma' model" fig-align="center"}
+
+#### Tests
+
+![](mod_soma_dharma.png){fig-alt="DHARMa plots for the 'Soma' model" fig-align="center"}
+
+#### Posterior Predictive Checks
+
+![](mod_soma_age_ppc_stats.png){fig-alt="Posterior Predictive Checks on simple stats for the 'Soma' model" fig-align="center"}
+
+::::
+
+## 'Molecular Layer' model
+
+To model the OD of the terminal fields ($Y_{ij}$), the fixed effects included genotype, age, and their interaction. A random intercept for each rat (j) was included to account for inter-animal variability.
+
+### Model equation
+
+$$
+
+$$
+
+:::: {.callout-note appearance="simple" collapse="true"}
+
+#### Equivalent R model
+
+```{r}
+glmmTMB(
+  od_corrected ~ genotype * age + (1 | rat),
+  family = Gamma("log"),
+  data = od_data$ml,
+  REML = TRUE
+)
+```
+
+::::
+
+### Model fit
+
+:::: {.panel-tabset}
+
+#### Plots
+
+![](mod_ml_diag.png){fig-alt="Performance plots for the 'Molecular Layer' model" fig-align="center"}
+
+#### Tests
+
+![](mod_ml_dharma.png){fig-alt="DHARMa plots for the 'Molecular Layer' model" fig-align="center"}
+
+#### Posterior Predictive Checks
+
+![](mod_ml_age_ppc_stats.png){fig-alt="Posterior Predictive Checks on simple stats for the 'Molecular Layer' model" fig-align="center"}
+
+::::
+
+:::
+
+
+# Hypotheses
+
+Contrasts for hypotheses of interest were tested with [emmeans](https://rvlenth.github.io/emmeans/).
+
+::: {.panel-tabset}
+
+## [TODO] Soma
+
+We hypothesized that ...
+
+:::: {.panel-tabset}
+
+#### Condition (hypoxia vs normoxia)
+
+![](todo.png){fig-alt="TODO" fig-align="center"}
+
+#### Condition | Age
+
+![](todo.png){fig-alt="TODO" fig-align="center"}
+
+#### Condition : Age
+
+![](todo.png){fig-alt="TODO" fig-align="center"}
+
+::::
+
+
+## [TODO] Molecular Layer
+
+We hypothesized that ...
+
+:::: {.panel-tabset}
+
+### Condition (hypoxia vs normoxia)
+
+![](todo.png){fig-alt="TODO" fig-align="center"}
+
+### Condition | Y
+
+![](todo.png){fig-alt="TODO" fig-align="center"}
+
+### Condition : Y
+
+![](todo.png){fig-alt="TODO" fig-align="center"}
+
+::::
+:::

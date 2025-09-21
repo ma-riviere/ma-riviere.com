@@ -18,7 +18,7 @@ project:
 
 website:
   title: "Marc-Aurèle Rivière"
-  description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+  description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
   image: res/avatar.jpg
   favicon: res/hexabrain.svg
   site-url: 'https://ma-riviere.com'
@@ -58,25 +58,25 @@ website:
     collapse-below: md
     toggle-position: left
     left:
-      - text: "{{< fa business-time >}} Projects"
+      - text: "Projects"
+        icon: journal-code
         file: content/projects/index.qmd
-        aria-label: "A list of the projects I was or am involved in"
-      - text: "{{< fa book >}} Publications"
+        aria-label: "A curated list of code-related projects I was or am involved in"
+      - text: "Publications"
+        icon: file-text
         file: content/pubs/index.qmd
-        aria-label: "A list of my scientific writings"
-      - text: "{{< iconify file-icons keynote height=20px >}} Communications"
-        file: content/sci-com/index.qmd
-        aria-label: "A list of my talks and outreach activities"
-      - text: "Code"
-        icon: code-slash
-        file: content/code/index.qmd
-        aria-label: "A list of my R and stats projects"
+        aria-label: "A list of my peer-reviewed scientific publications"
+      - text: "Blog"
+        icon: braces
+        file: content/blog/index.qmd
+        aria-label: "A list of blog posts related to R, stats, and data science"
     right:
-      - text: "{{< fa user-tie >}} About Me"
+      - text: "About Me"
+        icon: person-vcard
         file: content/about.qmd
         aria-label: "About Me"
       - icon: rss
-        file: content/code/index.xml
+        file: content/blog/index.xml
         aria-label: "My blog's RSS feed"
     tools:
       - icon: github
@@ -95,7 +95,7 @@ website:
   page-footer:
     border: true
     left: 
-      - text: "© 2021-2023, Marc-Aurèle Rivière"
+      - text: "© 2021-{{< now year >}}, Marc-Aurèle Rivière"
         href: LICENSE.md
         aria-label: "Website's license"
     right:
@@ -148,6 +148,8 @@ format:
       light: libs/highlight-styles/light.theme
       dark: libs/highlight-styles/dark.theme
     link-external-newwindow: true
+    link-external-icon: true
+    html-math-method: webtex
 
 ## Execution / R options ##
 

@@ -1,6 +1,6 @@
 ---
-title: "{{< fa user-tie >}} About Me"
-subtitle: 'Researcher & Data Scientist'
+title: "<i class='bi bi-person-vcard'></i> About Me"
+subtitle: 'Research Software Engineer'
 description: '<a href="../res/cv.pdf" class="btn btn-outline-info btn-sm">{{< fa file >}} Check my CV</a>'
 
 image: ../res/avatar.jpg
@@ -8,52 +8,77 @@ image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 website:
   open-graph:
-    description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+    description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
   twitter-card:
-    description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+    description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
 ---
 
-:::{.callout-note}
+:::{.callout-note appearance="simple"}
 
 ## In a nutshell:
 
-◈ Cognitive Neuroscience Researcher turned Data Scientist.  
-◈ Identify issues, conceptualize theories, engineer solutions, design experiments, wrangle data, and extract insights.  
-◈ Proficient R programmer, decent software developer.
+◈ Building software and analyzing data for 7 years, with a focus on R and Shiny.  
+
+◈ Designing, building, and deploying Web apps, APIs, packages, websites, and interactive dashboards.  
+
+◈ Published Neuroscientist, involved in multiple interdisciplinary projects working with a wide range of data, mostly biological, but also behavioral, surveys, energy, geography/spatial, and sales/marketing.
+
 :::
 
 ## {{< fa briefcase >}} Work Experience
 
-- **Data Science Consultant** (2020-Present)  
-  [Self-employed]{.about-employer}  
-  ♦ [Creating an R app combining LLMs and web scraping to automate lead acquisition and management for a leasing company]{.about-missions}  
-  ♦ [Statistical modeling of bioinformatics data with R, automatic generation of reports (Quarto) and Dashboards (Shiny)]{.about-missions}  
-  
+- **R/Shiny Developer** (2024-Present)  
+  [Data Champ', Remote]{.about-employer}  
+  [Designed, coded & deployed Shiny apps and APIs for a dozen different projects, including:]{.about-missions}
+
+  ♦ [A comprehensive HR management system for France's development agency (AFD) to track thousands of employees across multiple branches, featuring recruitment campaign management, predictive workforce analytics, and role-based approval workflows.]{.about-missions} 
+
+  ♦ [An investment analytics platform for the AFD, to visualize and track their portfolio of billions in international development funding across thousands of projects in multiple developing countries, with cross-platform data integration, interactive geospatial visualizations, and automated impact reporting to support sustainable development decision-making.]{.about-missions} 
+
+  ♦ [A modular package for a branch of the French government, to integrate multiple sources of heterogeneous geo-spatial data, process them into multiple spatio-temporal indicators computed at various levels of spatial granularity, and archive them in a specially-designed DB, to be displayed in a public interactive web app.]{.about-missions} 
+
+  ♦ [An integrated construction site management system with tree-based cost estimation, multi-format document parsing using LLMs, bidirectional integration with the Odoo ERP, automated quote generation, and smart project scheduling.]{.about-missions} 
+
+  ♦ [An enterprise-scale energy Measurement & Verification API for the Belgian Government, automating standard and IPMVP methods for energy consumption modeling, statistical analyses at multiple levels of granularity, multi-platform data integration, and estimating the impact of renovations on energy consumption with comprehensive report generation.]{.about-missions} 
+
+- **R/Data Science Consultant** (2022-2024)  
+  [Self-employed, Remote]{.about-employer}  
+  **_Sales/Marketing:_**  
+  ♦ [Developed a sales automation tool featuring automated web/social media scraping for lead enrichment, agentic AI workflows for prospect discovery and personalized email generation, and multi-CRM API integration]{.about-missions}
+
+  **_Bioinformatics:_**  
+  ♦ [Conducted the statistical analyses for 4 published papers in Biology (imaging, IHC, qPCR, and behavioral data) using generalized multilevel models]{.about-missions}  
+  ♦ [Automated pipelines to pull/enrich genetic data from entrez/NCBI]{.about-missions}  
+  ♦ [Created a Shiny app to allow team members to import, visualize and analyze their data]{.about-missions}  
+  ♦ [Built interactive dashboards to showcase results for select publications (R, Quarto, JS)]{.about-missions}  
 
 - **Research Engineer** (2021-2023)  
-  [LITIS Lab]{.about-employer}  
-  ♦ [Designed & developed an AR platform in Unity (C#), and wearable haptic interfaces for Visually Impaired People (Java/Arduino)]{.about-missions}  
+  [LITIS Lab, Rouen, France (Hybrid)]{.about-employer}  
+  ♦ [Designed & developed an Augmented Reality platform in with motion tracking and spatialized sound feedback, to evaluate and train non-visual navigation (Unity/C#)]{.about-missions}  
+  ♦ [Designed a wearable vibrotactile belt for haptic-based navigation for blind people, and participated in the design of an interactive haptic tablet to display images (Java/Arduino)]{.about-missions}  
+  ♦ [Designed psychophysics experiments to evaluate the impact of spatial cues on navigation]{.about-missions}  
   ♦ [Developed and tested camera-based solutions for indoor localization (Python/C++)]{.about-missions}  
+  ♦ [Formulated & wrote a 600k€ research grant proposal (ANR project "SAM-Guide", 2021)]{.about-missions}  
+  ♦ [Co-organized an international (IHAW'20) and a regional (JED'17) scientific conference]{.about-missions}  
 
 - **Graduate Teaching Fellow** (2017-2020)  
   [University of Rouen-Normandy]{.about-employer}  
   ♦ [Gave university classes on Web Development (JS), Image Processing (Python), GUI design (Java), and ML/DL for Computer Vision]{.about-missions}
 
-## {{< fa graduation-cap >}} Education
+- **Research & Engineering Intern** (Nov 2018 – Jan 2019)  
+  [The Smith-Kettlewell Eye Research Institute, San Francisco, CA, USA]{.about-employer}  
+  ♦ [Worked on an indoor localization solution using Visual Inertial Odometry, particle filtering, object detection, and real-time video streaming (Python/Husk, Swift, OpenCV)]{.about-missions}  
 
-- **PhD in Cognitive Neurosciences** (2017-2020)  
-  [*Unfinished - COVID*]{.small style="color: #eac019"}  
-  [University of Rouen-Normandy]{.about-employer}
+- **Research & Engineering Intern** (Feb 2016 – Sep 2016)  
+  [Grenoble INP GIPSA-lab, Grenoble, France]{.about-employer}  
+  ♦ [Developed an image-to-sound conversion app for blind shape exploration on a tablet (C++)]{.about-missions}  
+  ♦ [Iteratively improved the app based on statistical analysis of users' performance]{.about-missions} 
 
-- **MSc in Cognitive Neurosciences** (2015-2016)  
-  [Grenoble INP - Phelma]{.about-employer}
 
-- **MSc in Organisational Psychology** (2013-2015)  
-  [University of Strasbourg]{.about-employer}
 
 ## {{< fa address-book >}} Contact Me
 
-You can send me an [email](mailto:marc.aurele.riviere@gmail.com), or directly message me on [twitter](https://twitter.com/mariviere1). <!-- or [Mastodon](https://fediscience.org/web/@mariviere). -->
+You can send me an [email](mailto:marc.aurele.riviere@gmail.com), or directly message me on [twitter](https://twitter.com/mariviere1).
 
 <!--
 

@@ -1,7 +1,7 @@
 ---
 title: "SAM-Guide"
 subtitle: "Spatial Awareness for Multimodal Guidance"
-date: 2021-11
+date: 2021-05
 
 author:
   - name: "LPNC"
@@ -34,49 +34,42 @@ abstract: |
   SAM-Guide is a inter-disciplinary collaboration project (ANR 2021 PRC) between three sites: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University, (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
 
 categories:
-  - "Research"
-  - "Software Engineering"
-  - "Data Science"
-  - "Human-Computer Interaction"
-  - "Augmented Reality"
-  - "Sensory Substitution"
-  - "Auditory Interface"
-  - "Haptic Interface"
+  - Research
+  - Software Engineering
+  - C#
+  - Unity
+  - Human-Computer Interaction
+  - Augmented Reality
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "Official homepage"
       icon: globe
-      url: https://sam-guide.github.io/
+      url: https://sam-guide.univ-rouen.fr/index.html
       aria-label: "See the project's official website"
+    - text: "ANR Grant"
+      icon: globe
+      url: https://anr.fr/Project-ANR-21-CE33-0011
+      aria-label: "See the ANR grant official summary"
+    - text: "Code"
+      icon: code
+      url: https://github.com/sam-guide/exp-plat
+      aria-label: "See the project's code"
 ---
 
 {{< include /content/_hr.qmd >}}
 
 ![](feature.png){fig-alt="Banner illustrating the project"}
 
-# Introduction
-***
+The SAM-Guide project aims to help visually impaired people interact with the world around them by creating smart devices that convert visual information into sounds and vibrations they can feel and hear. Instead of trying to replace vision entirely, the project focuses on giving people the specific spatial information they need for everyday tasks like finding objects, navigating spaces, and even participating in sports activities. The team of researchers from multiple French universities is developing wearable devices like vibrating belts and audio systems that can guide users toward targets or help them understand their surroundings. They're testing these technologies through virtual reality games and real-world activities, including a new sport called laser-run designed for people with visual impairments. The ultimate goal is to create a common "language" of sounds and vibrations that can help visually impaired people gain more independence in various activities, from simple daily tasks to recreational sports.
 
-<!-- # TODO: summarizes this -->
-
-Interacting with space is a constant challenge for Visually Impaired People (VIP) since spatial information in Humans is typically provided by vision. Sensory Substitution Devices (SSDs) have been promising Human-Machine Interfaces (HMI) to assist VIP. They re-code missing visual information as stimuli for other sensory channels. Our project redirects somehow from SSD’s initial ambition for a single universal integrated device that would replace the whole sense organ, towards common encoding schemes for multiple applications.
-
-SAM-Guide will search for the most natural way to give online access to geometric variables that are necessary to achieve a range of tasks without eyes. Defining such encoding schemes requires selecting a crucial set of geometrical variables, and building efficient and comfortable auditory and/or tactile signals to represent them. We propose to concentrate on action-perception loops representing target-reaching affordances, where spatial properties are defined as ego-centered deviations from selected beacons.
-
-The same grammar of cues could better help VIP to get autonomy along with a range of vital or leisure activities. Among such activities, the consortium has advances in orienting and navigating, object locating and reaching, laser shooting. Based on current neurocognitive models of human action-perception and spatial cognition, the design of the encoding schemes will lay on common theoretical principles: parsimony (minimum yet sufficient information for a task), congruency (leverage existing sensorimotor control laws), and multimodality (redundant or complementary signals across modalities). To ensure an efficient collaboration all partners will develop and evaluate their transcoding schemes based on common principles, methodology, and tools. An inclusive user-centered “living-lab” approach will ensure constant adequacy of our solutions with VIP’s needs.
-
-Five labs (three campuses) comprising ergonomists, neuroscientists, engineers, and mathematicians, united by their interest and experience with designing assistive devices for VIP, will duplicate, combine and share their pre-existing SSDs prototypes: a vibrotactile navigation belt, an audio-spatialized virtual guide for jogging, and an object-reaching sonic pointer. Using those prototypes, they will iteratively evaluate and improve their transcoding schemes in a 3-phase approach: First, in controlled experimental settings through augmented-reality serious games in motion capture (virtual prototyping indeed facilitates the creation of ad-hoc environments, and gaming eases the participants’ engagement). Next, spatial interaction subtasks will be progressively combined and tested in wider and more ecological indoor and outdoor environments. Finally, SAM-Guide’s system will be fully transitioned to real-world conditions through a friendly sporting event of laser-run, a novel handi-sport, which will involve each subtask.
-
-SAM-Guide will develop action-perception and spatial cognition theories relevant to non-visual interfaces. It will provide guidelines for the efficient representation of spatial interactions to facilitate the emergence of spatial awareness in a task-oriented perspective. Our portable modular transcoding libraries are independent of hardware consideration. The principled experimental platform offered by AR games will be a tool for evaluating VIP spatial cognition, and novel strategies for mobility training.
-
-<!-- This project builds upon the [ACCESSPACE]() and [AdViS]() projects, in addition to the X-Audio project from the CMAP, bringing together each site's prototypes. -->
+::: {.callout-note appearance="simple"}
 
 # My role in this project
-***
 
-**1)** I was a major actor behind the birth of this project, by connecting the consortium members together and writing most of the grant proposal (ANR AAPG 2021, funding of 609k€). This project will last 4 years and allow the recruitment of 2 PhD students, one post-doc, and one Research Engineer.
+**1)** I was a major actor behind the birth of this project, by connecting the consortium members together and writing most of the grant proposal (ANR AAPG 2021, funding of 609k€).
 
 **2)** I designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication (thanks to an ESP32 module) and amovible vibrators:
 
@@ -84,7 +77,7 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 
 **3)** I lead the design and development of the project's experimental platform. The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation and [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling, and communicates with the consortium's non-visual interfaces wirelessly.
 
-:::{#fig-unity layout='[503,-5,492]'}
+::::{#fig-unity layout='[503,-5,492]'}
 
 ![Testing environment with a PureData audio beacon](Unity.png){#fig-unity-testenv fig-alt="Screenshot of the testing environment of the experimental platform of SAM-Guide"}
 
@@ -92,11 +85,11 @@ SAM-Guide will develop action-perception and spatial cognition theories relevant
 
 Screenshots from SAM-Guide's experimental platform *(in development)*
 
-:::
+::::
 
 This platform allows one to **easily spin up experimental trials** by specifying the desired characteristics in a JSON file (based on the [OpenMaze](https://openmaze.duncanlab.org/documentation) project). Unity will automatically generate the trial's environment according to those specifications and populate it with the relevant items (e.g. a tactile-signal emitting beacon signalling a target to reach in a maze), handle the transition between successive trials and blocks of trials, and log all the relevant user metrics into a data file.
 
-:::{#fig-specs layout='[505,-5,490]'}
+::::{#fig-specs layout='[505,-5,490]'}
 
 ![Specifying the avatar and the experimental blocks' characteristics](Unity-protocol 1.png){#fig-unity-protocol1 fig-alt="Screenshot of the experimental protocol file specifying the avatar and the experimental blocks' characteristics"}
 
@@ -104,8 +97,10 @@ This platform allows one to **easily spin up experimental trials** by specifying
 
 Examples of settings used to generate experimental trials on the fly.
 
-:::
+::::
 
 **4)** Handled the experimental design of the first wave of experiments using the TactiBelt for "blind" navigation.
 
-**5)** Designed the project's [website](https://sam-guide.github.io/) using Quarto.
+**5)** Built the first version of the SAM-Guide's website, using Quarto and hosted on GitHub Pages ([code](https://github.com/sam-guide/sam-guide.github.io)).
+
+:::

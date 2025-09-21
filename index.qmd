@@ -1,8 +1,8 @@
 ---
 title: "Marc-Aurèle Rivière"
-subtitle: "**Data Scientist & Cognitive Neuroscientist**  \n Perception, Spatial Cognition, Augmented Reality, and Human-Machine Interfaces  \n Proficient R programmer | Decent software developper  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-united-states >}} ▪ {{< iconify twemoji flag-norway >}}"
+subtitle: "**Research Software Engineer**  \n R Programmer | Data Scientist | Cognitive Neuroscientist  \n {{< iconify twemoji flag-french-polynesia >}} ▪️ {{< iconify twemoji flag-france >}} ▪️ {{< iconify twemoji flag-norway >}}"
 
-description: "Research Engineer  \n [University of Rouen-Normandy](https://www.univ-rouen.fr/)"
+description: "R & Shiny Developer  \n [Data Champ'](https://datachamp.fr/en/)"
 
 image: /res/avatar.jpg
 image-alt: "Profile picture of Marc-Aurèle Rivière"
@@ -16,11 +16,6 @@ about:
       url: https://github.com/ma-riviere/
       rel: "me"
       aria-label: "GitHub"
-    - text: "Twitter"
-      icon: twitter
-      url: https://twitter.com/mariviere1
-      rel: "me"
-      aria-label: "Twitter"
     - text: LinkedIn
       icon: linkedin
       url: https://linkedin.com/in/ma-riviere
@@ -40,9 +35,9 @@ about:
 
 website:
   open-graph:
-    description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+    description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
   twitter-card:
-    description: "Cognitive & Data Scientist: Perception, HMI, VR ◈ R, Stats, Bayes"
+    description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
 
 engine: knitr
 
@@ -52,32 +47,36 @@ include-before-body:
 
 ::: {.column-page}
 
-I'm a recovering academic who worked on several research projects at the intersection between **Cognitive Neurosciences** and **Biomedical Engineering**. Those projects aimed to develop and evaluate wearable assistive devices for Visually Impaired People (VIP), providing them with a non-visual experience of their surroundings through the use of Computer Vision and Augmented Reality, within the [Sensory Substitution](https://en.wikipedia.org/wiki/Sensory_substitution) framework. 
+Published **scientist**, now retrained as a **Data Scientist** and **Software Engineer**. 
 
-I have since retrained as a **Data Scientist** with a fondness for statistical modeling (especially of the Bayesian sort), and an unhealthy obsession with the R ecosystem and its community. I also dabble in more generic programming languages such as Java, C# (Unity), and Javascript.
+I specialize in **R programming**, which I use both to build web apps (Shiny), APIs (plumber), packages, websites and interactive dashboards (Quarto), as well as to analyze a variety of data types.
+
+I was involved in several research projects at the intersection between **Neuroscience** and **Biomedical Engineering**. I have worked with biology/medical data, but also behavioral, surveys, energy, geography/spatial, and sales/marketing data.
+
+I am very fond of **statistical modeling** (especially of the Bayesian sort), and have an (unhealthy) obsession with the R ecosystem and its community.
 
 <div style="height: 550px; display: flex; justify-content: center; margin-top: 40px;">
-  <canvas id="marachinde"></canvas>
+  <canvas id="marachnide"></canvas>
 </div>
 
 ```{js}
 //| echo: false
 //| output: false
 
-const ctx = document.getElementById('marachinde');
+const ctx = document.getElementById('marachnide');
 
 const data = {
   labels: [
-    'Cognitive Neuroscience',
+    'R Programming',
+    ['Software', 'Development'],
+    ['Cognitive', 'Neuroscience'],
     ['Behavioral', 'Research'],
-    ['Scientific', 'Communication'],
     'Data Science',
-    ['Software', 'Engineering'],
     ['Project', 'Management']
   ],
   datasets: [{
     label: '',
-    data: [90, 90, 80, 85, 70, 75],
+    data: [95, 90, 90, 85, 85, 80],
     fill: true,
     backgroundColor: 'rgba(82, 0, 252, 0.2)',
     borderColor: 'rgb(82, 0, 252)',

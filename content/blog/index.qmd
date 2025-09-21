@@ -1,0 +1,18 @@
+---
+title: "<i class='bi bi-braces'></i> Blog"
+subtitle: "**R**, **Stats** and **Data Science** related blog posts"
+
+license: "CC BY"
+
+listing:
+    contents: "/posts/*/*.{md,qmd,Rmd}"
+    fields: [date, title, subtitle, description, reading-time, categories] # file-modified 
+    categories: numbered
+    date-format: medium
+    sort: [date desc, title]
+    page-size: 7
+    filter-ui: true
+    sort-ui: [date, title]
+    feed:
+        type: partial
+---

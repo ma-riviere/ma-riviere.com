@@ -26,12 +26,11 @@ abstract: |
   Augmented reality (AR) has great potential for blind users because it enables a range of applications that provide audio information about specific locations or directions in the user’s environment. For instance, the [CamIO](/content/projects/CamIO) (“Camera Input-Output”) AR app makes physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons by providing real-time audio feedback in response to the location on an object that the user is touching (using an inexpensive stylus). An important feature needed by blind users of AR apps such as CamIO is a 3D spatial guidance feature that provides real-time audio feedback to help the user find a desired location on an object. We have devised a simple audio interface to provide verbal guidance towards a target of interest in 3D. The experiment we report with blind participants using this guidance interface demonstrates the feasibility of the approach and its benefit for helping users find locations of interest.
 
 categories:
+  - "Proceedings"
   - "Engineering"
   - "Computer Vision"
   - "Auditory Interface"
   - "Augmented Reality"
-  - "Cognitive Psychology"
-  - "Accessibility"
   - "Sensory Substitution"
 
 citation:
@@ -52,11 +51,8 @@ metadata-files: [../../_affiliations.yml]
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
-    - text: "Article (PDF)"
-      icon: file-pdf
-      url: https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf
-      aria-label: "See the preprint's PDF"
     - text: "Code"
       icon: github
       url: https://github.com/ma-riviere/ICCHP20-CamIO
@@ -68,8 +64,8 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-<object data="https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf" type="application/pdf" width="100%" height="1200">
-  <iframe width="100%" height="1200"
-    src="https://docs.google.com/viewer?url=https://www.ski.org/sites/default/files/publications/icchp20_camio_preprint.pdf&embedded=true">
+<object data="CamIO.pdf" type="application/pdf" width="100%" height="1200">
+  <iframe width="100%" height="100%" style="border:none;"
+    src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://ma-riviere.com/content/pubs/ICCHP20/CamIO.pdf">
   </iframe>
 </object>

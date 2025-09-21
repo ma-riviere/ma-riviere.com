@@ -1,5 +1,5 @@
 ---
-title: "{{< fa book >}} Scientific Publications"
+title: "<i class='bi bi-file-text'></i> Scientific Publications"
 subtitle: "A list of my publications"
 
 listing:

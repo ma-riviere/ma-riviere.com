@@ -1,14 +1,14 @@
 ---
-title: "TETMOST"
+title: TETMOST
 subtitle: "Making Art more accessible to Visually Impaired People"
 date: 2017-09
 
 author:
-  - name: "LITIS"
+  - name: LITIS
     url: "https://www.litislab.fr/"
-  - name: "LIR3S"
+  - name: LIR3S
     url: "http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm"
-  - name: "IHRIM"
+  - name: IHRIM
     url: "https://ihrim.ens-lyon.fr/"
 
 image: feature.png
@@ -28,15 +28,16 @@ website:
     description: "Developping a haptic interface to intuitively represent images and Art to VIP"
 
 categories:
-  - "Research"
-  - "Software Engineering"
-  - "Human-Computer Interaction"
-  - "Virtual Reality"
-  - "Sensory Substitution"
-  - "Haptic Interface"
+  - Research
+  - Software Engineering
+  - Java
+  - Arduino
+  - Human-Computer Interaction
+  - Virtual Reality
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "Article (ICCHP'18)"
       icon: file-pdf

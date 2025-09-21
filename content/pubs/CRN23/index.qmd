@@ -60,6 +60,7 @@ funding: "Agalic Rodriguez-Duboc was the recipient of a doctoral fellowship from
 # acknowledgements: "We would like to thank François Chadelaud and Dr. Sarah Leroux from Rouen University for the development of the hypoxia chamber. We are grateful to Dr. Hélène Lacaille for the development of the oxidative stress panel during her PhD."
 
 categories:
+  - "Journal"
   - "Neuroscience"
   - "Molecular Neuroscience"
   - "Neurodevelopment"
@@ -79,6 +80,7 @@ citation:
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "{{< ai elsevier >}} Article (online)"
       url: https://www.sciencedirect.com/science/article/pii/S2665945X23000414
@@ -86,9 +88,6 @@ about:
     - text: "{{< fa business-time >}} Project (DE-AoP)"
       file: /content/projects/DE-AoP/
       aria-label: "Link to the project"
-    - text: "{{< fa chart-column >}} Data & Analyses"
-      file: content/code/projects/DE-AoP/
-      aria-label: "Webpage presenting the data & analyses of this project"
 
 license: "CC BY-NC-ND"
 ---
@@ -96,7 +95,7 @@ license: "CC BY-NC-ND"
 {{< include /content/_hr.qmd >}}
 
 <object data="CRN23.pdf" type="application/pdf" width="100%" height="1000">
-  <iframe width="100%" height="1000"
-    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.com/raw/main/content/pubs/CRN23/CRN23.pdf&embedded=true">
+  <iframe width="100%" height="100%" style="border:none;"
+    src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://ma-riviere.com/content/pubs/CRN23/CRN23.pdf">
   </iframe>
 </object>

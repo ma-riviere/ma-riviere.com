@@ -1,0 +1,68 @@
+packages:
+  ## ===[ Core ]=== ##
+  - renv
+  - here
+  - cli
+  - rlang
+  - yaml
+  - pipebind
+  - fs
+  - magrittr
+  
+  ## ===[ Data Ingestion ]=== ##
+  - readxl
+  - openxlsx2
+  - janitor
+  
+  ## ===[ Data Wrangling ]=== ##
+  - data.table
+  - tibble
+  - dplyr
+  - tidyr
+  - purrr
+  - stringr
+  - dbplyr
+
+  ## ===[ Model Fitting ]=== ##
+  - car
+  - cmdstanr
+  - posterior
+  
+  ## ===[ Model Analysis ]=== ##
+  - broom
+  - emmeans
+  - insight
+  - performance
+  - qqplotr       # Required by performance
+  - parameters
+  - correlation
+  - psych         # For categorical correlations
+  
+  ## ===[ Plots & Tables ]=== ##
+  - ggplot2
+  - ggtext
+  - ggdist
+  - patchwork
+  - see
+  - ggdist
+  - bayesplot
+  
+  ## ===[ Reporting ]=== ##
+  - knitr
+  
+  ## ===[ Misc ]=== ##
+  - gtools
+
+repos:
+  - PPM: https://packagemanager.posit.co/cran/linux/jammy/latest
+  - CRAN: https://cloud.r-project.org/
+  - Stan: https://stan-dev.r-universe.dev/
+
+# renv::install(deps$packages, repos = unlist(deps$repos))
+
+## Updating R (Ubuntu 22, WSL2)
+# sudo apt remove r-base r-base-core
+# sudo apt autoremove
+
+# sudo apt update
+# sudo apt install --no-install-recommends r-base pandoc-citeproc libnode-dev gdal-bin libarchive-dev

@@ -4,7 +4,11 @@ published-title: "Began Around"
 author-title: "Consortium"
 
 toc: true
-number-sections: true
+number-sections: false
+
+execute:
+  eval: false
+  output: false
 
 metadata-files:
   - ../_links.yml

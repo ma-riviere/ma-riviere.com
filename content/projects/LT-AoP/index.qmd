@@ -15,8 +15,6 @@ description: "This project studied the impact of apnea of prematurity on cerebel
 abstract: |
   This study aimed to identify the effects of AoP on cerebellar development, and to demonstrate that the cerebellum is vulnerable to AoP. This was shown via enzymatic assay studies and RT-qPCR. Results confirmed the presence of alterations of cellular mechanisms, such as oxidative stress, leading to a delay in cerebellar maturation. This was further assessed through visible changes in cellular phenotype and histology via immunocytochemistry. Furthermore, behavioral studies showed that functional and behavioral alterations persisted in adulthood.
 
-# funding: "TODO"
-
 website:
   open-graph:
     description: "Impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it"
@@ -24,33 +22,54 @@ website:
     description: "Impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it"
 
 categories:
-  - "Research"
-  - "Software Engineering"
-  - "Data Science"
-  - "Biostatistics"
-  - "Transcriptomics"
-  - "Cerebellum"
-  - "Hypoxia"
-  - "RT-qPCR"
+  - R
+  - Software Engineering
+  - Bioinformatics
+  - Biostatistics
+  - Transcriptomics
+  - RT-qPCR
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
-    - text: "{{< fa arrow-up-right-from-square >}} Article"
+    - text: "Article"
+      icon: file-pdf
       url: https://agalic-rd.com/content/pubs/articles/CB22/
-      aria-label: "See the article illustrating the project"
-    - text: "{{< fa chart-column >}} Data & Analyses"
-      file: /content/code/projects/LT-AoP/
-      aria-label: "Webpage presenting the data & analyses made for this project"
+      aria-label: "See the article published on this project"
+    - text: "Code"
+      icon: github
+      url: https://github.com/ma-riviere/LT-AoP-22
+      aria-label: "See the GitHub repository hosting the code of the project and related paper"
+    - text: "{{< iconify simple-icons quarto >}} Documentation"
+      url: https://ma-riviere.github.io/LT-AoP-22/
+      aria-label: "See the website documenting the project's data and code"
 ---
 
 {{< include /content/_hr.qmd >}}
 
 ![](feature.png){fig-alt="Image illustrating the project"}
 
-# My role in this project
-***
+:::{.callout-note appearance="simple"}
 
-**1)** Handled the [data processing and analysis](/content/code/projects/LT-AoP/), for both immunohistochemistry and RT-qPCR data. The code for those analyses was made open-source and registered on [Zenodo](https://doi.org/10.5281/zenodo.6480947), while the results of the project were published in [Cell & Bioscience](https://cellandbioscience.biomedcentral.com/articles/10.1186/s13578-022-00869-5).
+### My role in this project
 
-**2)** Made [a website](https://ma-riviere.github.io/LT-AoP-22/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.
+**1)** Handled the data processing and analysis, for both immunohistochemistry and RT-qPCR data.
+
+**2)** Helped write the methodoly/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/CB22/).
+
+**3)** Open-source the [code](https://github.com/ma-riviere/LT-AoP-22) and registered on [Zenodo](https://doi.org/10.5281/zenodo.6480947).
+
+**4)** Made [a website](https://ma-riviere.github.io/LT-AoP-22/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.
+
+:::
+
+# Summary
+
+The LT-AoP project included behavioral, immunohistochemistry and RT-qPCR data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
+
+The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
+
+Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
+
+A website documenting the analyses and their results was generated using Quarto, to allow interested readers to explore our data & models' outputs without having to run the code themselves.

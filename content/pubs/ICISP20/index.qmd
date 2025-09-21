@@ -35,11 +35,11 @@ abstract: |
   This paper presents a new way to access visual information in museums through tactile exploration, and related techniques to efficiently transform visual data into tactile objects. Accessibility to cultural heritage and artworks for people with visual impairments requires the segmentation of images and paintings to extract and classify their contents into meaningful elements which can then be presented through a tactile medium. In this paper, we investigate the feasibility and how to optimize the tactile discovery of an image. First, we study the emergence of image comprehension through tactile discovery, using 3D-printed objects extracted from paintings. Later, we present a dynamic Force Feedback Tablet (F2T) used to convey the 2D shape and texture information of objects through haptic feedback. We then explore several image segmentation methods to automate the extraction of meaningful objects from selected artworks, to be presented to visually impaired people through the F2T. Finally, we evaluate how to best combine the F2T’s haptic effects in order to convey the extracted objects and features to the users, with the aim of facilitating the comprehension of the represented objects and their affordances.
 
 categories:
+  - "Proceedings"
   - "Engineering"
   - "Computer Vision"
-  - "Sensory Substitution"
   - "Haptic Interface"
-  - "Accessibility"
+  - "Sensory Substitution"
 
 citation:
   type: paper-conference
@@ -59,9 +59,10 @@ metadata-files: [../../_affiliations.yml]
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "{{< ai springer >}} Article (online)"
-      url: https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf
+      url: https://link.springer.com/content/pdf/10.1007/978-3-030-51935-3_2.pdf
       aria-label: "See the article's PDF online"
     - text: "{{< fa business-time >}} Project (TETMOST)"
       file: /content/projects/TETMOST/
@@ -70,8 +71,8 @@ about:
 
 {{< include /content/_hr.qmd >}}
 
-<object data="https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf" type="application/pdf" width="100%" height="1200">
-  <iframe width="100%" height="1200"
-    src="https://docs.google.com/viewer?url=https://link.springer.com/content/pdf/10.1007%2F978-3-030-51935-3_2.pdf&embedded=true">
+<object data="ICISP20.pdf" type="application/pdf" width="100%" height="1200">
+  <iframe width="100%" height="100%" style="border:none;"
+    src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://ma-riviere.com/content/pubs/ICISP20/ICISP20.pdf">
   </iframe>
 </object>

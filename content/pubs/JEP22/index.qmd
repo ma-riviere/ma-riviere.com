@@ -34,11 +34,10 @@ abstract: |
   Spatial and temporal factors are known to highly influence tactile perception, but their role has been largely unexplored in the case of two-dimensional (2D) pattern recognition. We investigated whether recognition is facilitated by the spatial and/or temporal separation of pattern elements, or by conditions known to favor perceptual integration, such as the ones eliciting apparent movement. 2D vibrotactile patterns were presented to the abdomen of novice participants. In Experiment 1, we manipulated the spatial (inter-tactor distance) and temporal (burst duration and inter-burst interval) parameters applied to the tracing mode (sequential activation of pattern elements). In Experiment 2, we compared display modes differing in their level of temporal overlap in the presentation of pattern elements: the static mode (simultaneous activation of pattern elements), the slit-scan mode (pattern revealed line by line), and the tracing mode. The results of both experiments reveal that (a) recognition performance increases with the isolation of pattern elements in space and/or in time, (b) spatial and temporal factors interact in pattern recognition, and (c) conditions leading to apparent movement tend to be associated with lower recognition accuracy. These results further our understanding of tactile perception and provide guidance for the design of future vibrotactile communication systems.
 
 categories:
-  - "Cognitive Psychology"
-  - "Accessibility"
+  - "Journal"
+  - "Psychophysics"
   - "Sensory Substitution"
   - "Haptic Interface"
-  - "Psychophysics"
 
 citation:
   type: article-journal
@@ -52,6 +51,7 @@ citation:
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "Article (PDF)"
       icon: file-pdf
@@ -65,7 +65,7 @@ about:
 {{< include /content/_hr.qmd >}}
 
 <object data="JEP22.pdf" type="application/pdf" width="100%" height="1200">
-  <iframe width="100%" height="1200"
-    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.com/raw/main/content/pubs/JEP22/JEP22.pdf&embedded=true">
+  <iframe width="100%" height="100%" style="border:none;"
+    src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://ma-riviere.com/content/pubs/JEP22/JEP22.pdf">
   </iframe>
 </object>

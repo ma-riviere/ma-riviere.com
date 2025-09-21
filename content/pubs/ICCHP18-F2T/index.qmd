@@ -23,12 +23,11 @@ abstract: |
   This paper presents a new haptic surface tablet that can provide force feedback to the user. Force feedback means that the device can react to the user's movements and apply a force against or in-line with these movements, according to the tactile properties of a displayed image. The device consists of a frame attached to a tactile tablet that generates a force feedback to user's finger when exploring the surface, providing haptic informations about the displayed image. The experimental results suggest the relevance of this tablet as an assistive device for visually impaired people in perceiving and understanding the content of a displayed image. Several potential applications are briefly presented.
 
 categories:
-  - "Cognitive Psychology"
-  - "Sensory Substitution"
-  - "Accessibility"
+  - "Proceedings"
   - "Engineering"
   - "Haptic Interface"
   - "Augmented Reality"
+  - "Sensory Substitution"
 
 citation:
   type: paper-conference
@@ -46,6 +45,7 @@ metadata-files: [../../_affiliations.yml]
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "Article (PDF)"
       icon: file-pdf
@@ -59,7 +59,7 @@ about:
 {{< include /content/_hr.qmd >}}
 
 <object data="F2T.pdf" type="application/pdf" width="100%" height="1200">
-  <iframe width="100%" height="1200"
-    src="https://docs.google.com/viewer?url=https://github.com/ma-riviere/ma-riviere.com/raw/main/content/pubs/ICCHP18-F2T/F2T.pdf&embedded=true">
+  <iframe width="100%" height="100%" style="border:none;"
+    src="https://mozilla.github.io/pdf.js/web/viewer.html?file=https://ma-riviere.com/content/pubs/ICCHP18-F2T/F2T.pdf">
   </iframe>
 </object>

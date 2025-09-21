@@ -12,10 +12,19 @@ author:
 image: feature.png
 image-alt: "Schema illustrating the AdViS project"
 
-description: "Developing a wearable visuo-auditive substitution system to assist Visually Impaired People in navigation and object-reaching tasks."
+description: "Developing a wearable device converting spatial information into auditory cues to assist visually impaired people with navigation and object-reaching through sensory substitution."
 
 abstract: |
   The AdViS project aims to develop a wearable device that will assist Visually Impaired People during **spatial interaction tasks** (such as **indoor navigation** and **object-reaching**), using an audio-based Human-Machine Interface which converts relevant spatial metrics into ergonomic auditory cues.
+  
+  AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role:
+  
+  -   Navigating a small maze using a depth-map-to-auditory-cues transcoding  
+  -   Finger-guided image exploration (on a touch screen)  
+  -   Eye-movement guided image exploration (on a turned off computer screen)  
+  -   Pointing towards and reaching a virtual target in 3D space using a motion capture environment
+  
+  The AdViS system is coded in C++, uses [PureData](https://puredata.info/) for complex sound generation, and relies on the [VICON](https://www.vicon.com/) system to track participant's movements in an augmented reality environment.
 
 website:
   open-graph:
@@ -26,17 +35,17 @@ website:
     description: "Wearable visuo-auditive substitution system for blind navigation and object-reaching"
 
 categories:
-  - "Research"
-  - "Software Engineering"
-  - "Data Science"
-  - "Human-Computer Interaction"
-  - "Augmented Reality"
-  - "Auditory Interface"
-  - "Sensory Substitution"
-  - "Computer Vision"
+  - Research
+  - Software Engineering
+  - C++
+  - Statistics
+  - Human-Computer Interaction
+  - Augmented Reality
+  - Computer Vision
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "Official homepage [{{< iconify twemoji flag-france >}}]"
       icon: globe
@@ -52,23 +61,15 @@ about:
       icon: file-image
       file: /content/projects/AdViS/ADVIS.pdf
       aria-label: "See the PDF of a poster illustrating the project"
+
+toc: false
 ---
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){fig-alt="Image illustrating the project"}
+# Summary
 
-# Introduction
-***
-
-AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role:
-
--   Navigating a small maze using a depth-map-to-auditory-cues transcoding  
--   Finger-guided image exploration (on a touch screen)  
--   Eye-movement guided image exploration (on a turned off computer screen)  
--   Pointing towards and reaching a virtual target in 3D space using a motion capture environment
-
-:::{layout="[47,53]"}
+::: {layout="[47,53]"}
 
 ![AdViS - Depth Map navigation](advis-diagram.png){alt="AdViS system's operating diagram"}
 
@@ -76,11 +77,10 @@ AdViS aims to explore various ways to provide visuo-spatial information through 
 
 :::
 
-The AdViS system is coded in C++, uses [PureData](https://puredata.info/) for complex sound generation, and relies on the [VICON](https://www.vicon.com/) system to track participant's movements in an augmented reality environment.
 
+::: {.callout-note appearance="simple"}
 
 # My role in this project
-***
 
 **1)**  Proposed a new model for image exploration relying on a touch-mediated visuo-auditive feedback loop, where a VIP explores an image by moving its finger across a screen and gets audio feedback based on the contents of the explored region.
 
@@ -93,3 +93,5 @@ The AdViS system is coded in C++, uses [PureData](https://puredata.info/) for co
 **4)**  Participated in implementing an occular-motion-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).
 
 ![](geom-eye.jpg){alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"}
+
+:::

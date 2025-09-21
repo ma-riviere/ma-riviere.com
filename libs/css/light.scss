@@ -32,7 +32,7 @@ $link-color:    $col3 !default;
 
 // Code
 
-$code-block-border-left:          $gray-500 !default;
+// $code-block-border-left:          $gray-500 !default;
 
 /*-- scss:rules --*/
 
@@ -67,7 +67,7 @@ h5.quarto-listing-category-title { color: $col2; }
 
 .navbar .nav-item > a.nav-link.active { border-top: 2px solid; } // #b4c5e9
 
-.quarto-listing-category > div[data-category='Research'],
+/* .quarto-listing-category > div[data-category='Research'],
 .quarto-listing-category > div[data-category='Software Engineering'],
 .quarto-listing-category > div[data-category='Data Science'],
 .listing-categories > div[onClick*="('Research')"],
@@ -85,4 +85,4 @@ h5.quarto-listing-category-title { color: $col2; }
 .listing-categories > div[onClick*="('Neuroscience')"]
 {
     font-weight: bold;
-}
+} */

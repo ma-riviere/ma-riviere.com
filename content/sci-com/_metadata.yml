@@ -1,8 +1,0 @@
-# Sci-com
-
-# Field names
-published-title: "Date"
-author-title: "Location"
-
-metadata-files: 
-  - ../_links.yml

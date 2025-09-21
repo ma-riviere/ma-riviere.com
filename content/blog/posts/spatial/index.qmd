@@ -1,0 +1,2315 @@
+---
+title: "Fast spatial data matching in R"
+subtitle: "Exploring different solutions to match locations based on their geographical distance"
+
+date: 2022-06-18
+
+abstract: |
+  This post showcases various solutions to efficiently match unknown locations to known ones by their geographical proximity (using lat/long coordinates), on a dataset with millions of entries.
+
+website:
+  open-graph:
+    description: "Exploring various solutions to quickly match locations by their geographical proximity in R"
+  twitter-card:
+    description: "Exploring various solutions to quickly match locations by their geographical proximity in R"
+
+aliases:
+  - /content/posts/spatial/
+
+categories:
+  - R
+  - DuckDB
+  - Spatial
+  - GIS
+  - Big Data
+  - SQL
+
+toc-depth: 2
+---
+
+{{< include /content/_hr.qmd >}}
+
+```{r}
+#| echo: false
+#| output: false
+#| eval: false
+
+# TODO:
+## - ST_DistanceSphere (excepts their input to be in lat/lon EPSG:4326 (WGS84) --> see https://github.com/duckdb/duckdb-spatial/issues/450)
+#### always_xy = TRUE ??
+```
+
+:::{.callout-tip}
+
+You can check the source code by clicking on the **</> Code** button at the top-right.
+
+The data is a list of bike rides from the [Divvy](https://www.divvybikes.com/) bike-sharing service in Chicago, and the stations are the bike stations where the bikes can be picked up and dropped off. This post was prompted by a question on Reddit: how could one identify the many unknown stations within the rides data (i.e. rides' start or end stations missing their id and name) to known stations, by their geographical proximity. 
+
+This post is related to a case study of **Google's Data Analytics certificate**, and the data can be found [here](https://divvy-tripdata.s3.amazonaws.com/index.html) (June 2021 to May 2022).
+
+:::
+
+:::{.callout-tip collapse="true"}
+
+# 🆕 Expand for Version History
+
+**v1:** 2022-06-18  
+
+**v2:** 2022-10-29  
+
+- Added a `DuckDB` + `arrow` example for the data loading.  
+- Added data cleaning section (removing implausible rides).  
+- Added `sf`, `dbplyr` and `data.table` (manual) examples for the spatial join.  
+
+**v3:** 2023-03-12  
+
+- Updated code to newest tidyverse version (`.by`, `reframe`, `list_rbind`, `join_by`, ...)  
+
+**v4:** 2023-09-27  
+
+- Updated the SQL/`dbplyr` examples with DuckDB v0.8.1:  
+    * Using the new `PIVOT/UNPIVOT` SQL statements  
+    * Using the new [`spatial`](https://duckdb.org/docs/extensions/spatial.html) DuckDB extension for spatial operations  
+- Updates the `data.table` examples:  
+    * Using both `sf` and manual distances calculations (haversine) for spatial operations    
+    * Removed the `dtplyr` examples  
+- Improved the document's structure & explanations
+:::
+
+<!------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------>
+# Setup {.unnumbered}
+***
+
+```{r}
+#| echo: false
+#| output: false
+
+source(here::here("src", "init_min.R"), echo = FALSE)
+```
+
+```{r lockfile}
+#| echo: false
+#| eval: false
+#| output: false
+
+renv::use(
+  "data.table@1.17.8",
+  "dbplyr@2.5.1", 
+  "arrow@21.0.0.1",
+  "dplyr@1.1.4",
+  "duckdb@1.4.0",
+  "fs@1.6.6",
+  "fuzzyjoin@0.1.6.1",
+  "ggplot2@4.0.0",
+  "here@1.0.2",
+  "leaflet@2.2.3",
+  "lubridate@1.9.4",
+  "pipebind@0.1.2",
+  "purrr@1.1.0",
+  "readr@2.1.5",
+  "sf@1.0-21",
+  "stringr@1.5.2",
+  "tidyr@1.3.1",
+  verbose = FALSE
+)
+```
+
+```{r}
+#| output: false
+
+library(here)        # Working directory management
+library(fs)          # File & folder manipulation
+library(pipebind)    # Piping goodies
+
+library(readr)       # Reading data from files           (Tidyverse)
+library(dplyr)       # Manipulating data.frames - core   (Tidyverse)
+library(tidyr)       # Manipulating data.frames - extras (Tidyverse)
+library(stringr)     # Manipulating strings              (Tidyverse)
+library(purrr)       # Manipulating lists                (Tidyverse)
+library(lubridate)   # Manipulating date/time            (Tidyverse)
+library(ggplot2)     # Best plotting library             (Tidyverse)
+
+library(dbplyr)      # SQL back-end for dplyr            (Tidyverse)
+library(duckdb)      # Quack Stack
+
+library(arrow)       # Fast and efficient data reading
+library(data.table)  # Fast data manipulation (in-RAM)
+
+library(sf)          # Spatial data manipulation
+library(fuzzyjoin)   # Non-equi joins & coordinates-based joins
+
+library(leaflet)     # Interative map plots
+
+options(
+  dplyr.strict_sql = FALSE,
+  scipen = 999L, 
+  digits = 4L
+)
+
+nrows_print <- 10
+
+data.table::setDTthreads(parallel::detectCores(logical = FALSE))
+```
+
+::: {.callout-note appearance="simple" collapse="true"}
+
+## Quarto/knitr setup
+
+```{css, echo=FALSE}
+.panel-tabset > .tab-content {
+  display: flex;
+}
+
+.panel-tabset > .tab-content > .tab-pane {
+  display: block !important;
+  visibility: hidden;
+  margin-right: -100%;
+  width: 100%;
+}
+
+.panel-tabset > .tab-content > .active {
+  visibility: visible;
+}
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Adding custom `knitr` hooks"
+#| file: !expr here("src", "common", "knitr", "knitr_hooks.R")
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Applying a custom theme to all `gt` tables"
+#| file: !expr here("src", "common", "knitr", "knit_print_gt_mono.R")
+```
+
+:::
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# Loading the data
+***
+
+```{r}
+#| echo: !expr 1:4
+
+data_path <- here("res", "data", "stations")
+
+files <- dir_ls(data_path, glob = "*.csv")
+
+duckdb_path <- here(data_path, "stations.db")
+```
+
+
+:::{.panel-tabset}
+
+### data.table
+
+```{r}
+#| label: "dt_loading"
+#| time_it: true
+#| output: false
+
+rides <- lapply(files, \(f) fread(f, na.strings = "")) |> rbindlist()
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_loading
+```
+
+
+### Tidyverse
+
+```{r}
+#| label: "tidy_loading"
+#| time_it: true
+#| output: false
+
+rides_tidy <- read_csv(files, show_col_types = FALSE)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$tidy_loading
+```
+
+<!-- ALTERNATIVES -->
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Alternatives"
+
+map(files, \(f) read_csv(f, show_col_types = FALSE)) |> list_rbind()
+
+map_dfr(files, \(f) read_csv(f, show_col_types = FALSE))
+```
+
+
+### DuckDB
+
+```{r}
+con <- duckdb::dbConnect(
+  duckdb(), 
+  dbdir = ":memory:", 
+  config = list(memory_limit = "30GB", temp_directory = here("_temp"), threads = 16L)
+)
+```
+
+```{r}
+#| label: "duck_loading"
+#| output: false
+#| time_it: true
+
+duckdb_read_csv(con, "rides", files)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$duck_loading
+```
+
+<!-- ALTERNATIVES -->
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Importing an existing `df` from the R env"
+
+dbWriteTable(con, "rides", rides_tidy) # As a TABLE
+
+copy_to(con, rides_tidy, "rides", indexes = "ride_id")
+
+duckdb_register(con, "rides", rides_tidy) # As a VIEW
+```
+
+```{r}
+#| eval: false
+#| code-fold: true
+#| code-summary: "Importing while including the file names in the data"
+
+## Courtesy of Tristan Mahr (@tjmahr)
+
+withr::with_dir(
+  data_path, 
+  dbSendQuery(con,"CREATE TABLE rides AS SELECT * FROM read_csv_auto('*.csv', FILENAME = TRUE)")
+)
+```
+
+
+### arrow + DuckDB
+
+```{r}
+#| label: "arrow_duck_loading"
+#| output: false
+#| time_it: true
+
+open_csv_dataset(data_path, convert_options = CsvConvertOptions$create(strings_can_be_null = TRUE)) |> 
+  to_duckdb(con, "rides_arrow")
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$arrow_duck_loading
+```
+
+
+:::
+
+<!-- RESULTS --->
+
+**Output:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| column: screen-inset
+
+rides
+```
+
+<!-- CLEANING --->
+
+```{r}
+#| echo: false
+#| output: false
+
+rm(rides_tidy)
+gc()
+```
+
+
+::: {.callout-important}
+
+# ✦ For each step of the process, there will be two solutions:
+
+1) An *In-RAM* solution using `data.table` to manipulate the data. Spatial operations will be done with both precise (using the `sf` package) and approximate (e.g. the `haversine` distance) methods.
+
+2) An *Out-of-RAM* solution using [`DuckDB`](https://duckdb.org/) to manipulate the data. Spatial operations will be shown using both precise (using the [`spatial`](https://duckdb.org/docs/extensions/spatial.html) DuckDB extension) and approximate (e.g. `haversine` distance) methods. Code examples will be provided in both SQL and [`dbplyr`](https://dbplyr.tidyverse.org/) (which translates Tidyverse code to SQL behind the scenes).
+
+:::
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# Cleaning & reshaping the data
+***
+
+<!-------------------------------------------------------->
+## Removing rides with missing coordinates
+
+First, since our ultimate goal is to use geographic information (lat/lng coordinates) to identify stations, we'll get rid of rides that have missing geographic information:
+
+::: {.panel-tabset group="framework"}
+
+### In-RAM
+
+```{r}
+#| output: false
+
+rides <- rides[!is.na(start_lat) & !is.na(start_lng) & !is.na(end_lat) & !is.na(end_lng), ]
+```
+
+
+### Out-of-RAM
+
+```{r}
+#| output: false
+
+(tbl(con, "rides")
+  |> mutate(across(ends_with("_at"), \(x) strptime(x, "%Y-%m-%d %H:%M:%S"))) # String -> Date object
+  |> filter(if_all(matches("_lat$|_lng$"), \(x) !is.na(x)))
+  |> copy_to(con, df = _, "rides", overwrite = TRUE)
+)
+```
+
+:::
+
+
+<!-------------------------------------------------------->
+## Removing implausible rides
+
+Then, we are going to filter out rides that are implausible (i.e. too short, too long, made too quickly, etc). We will compute distances (and speeds), which we can do in one of two ways:   
+
+1) An accurate way where we turn our lat/lng coordinates into two 2D points on a projected coordinate system, which is a small version of the globe (flattened and corrected for distortion) that can be used for area and distance calculations.  
+
+2) A quick and dirty way using the `haversine` function to compute the "distance on a sphere" between the two sets of coordinates.  
+
+*N.B.: The distances/time/speed thresholds I use here are arbitrary. Choose what makes sense depending on your domain knowledge.*
+
+
+::: {.panel-tabset group="framework"}
+
+### In-RAM
+
+**Precise distance with `sf::st_distance`:**
+
+First, let's create a new dataset with a POINT geometry for both start and end stations' positions:
+
+```{r}
+#| label: "dt_clean_geom_1"
+#| time_it: true
+#| output: false
+
+rides_geom <- (
+  rides
+  |> st_as_sf(coords = c("start_lng", "start_lat"), remove = FALSE, crs = 4326)
+  |> st_set_geometry("start_pos")
+  |> mutate(end_pos = map2(end_lng, end_lat, \(x, y) st_point(c(x, y))) |> st_sfc(crs = 4326))
+  |> as.data.table()
+)
+```
+
+Then, use those two points to compute an accurate distance between each rides' `start_pos` and `end_pos`, and use that distance to filter implausible rides:
+
+```{r}
+#| label: "dt_clean_geom_2"
+#| time_it: true
+#| output: false
+
+rides_clean_geom <- (
+  rides_geom[
+    , ride_dist_m := st_distance(st_transform(start_pos, 5069), st_transform(end_pos, 5069), by_element = TRUE)
+  ## Remove rides that loop on themselves, are too short (<= 100 m), or too long (>= 30 km)
+  ][start_station_id != end_station_id | as.numeric(ride_dist_m) %between% c(100, 30000)
+  ## Add ride duration and speed info
+  ][, ride_dur_min := difftime(ended_at, started_at, units = "mins") |> abs() |> as.numeric()
+  ][, ride_speed_km_h := fifelse(ride_dur_min == 0, NA, (as.numeric(ride_dist_m) / 1000) / (ride_dur_min / 60))
+  ## Remove rides that are too fast (< 5 min) or too long (> 1 day)
+  ][ride_dur_min %between% c(5, 1440)
+  ## Remove rides that have implausible speeds (> 40 km/h for regular bikes, and 60 km/h for electric ones)
+  ][ (rideable_type == "classic_bike" & ride_speed_km_h <= 40)
+     | (rideable_type == "electric_bike" & ride_speed_km_h <= 60)
+  ## Removing the new columns now that the cleaning is done
+  ][, let(ride_dist_m = NULL, ride_dur_min = NULL, ride_speed_km_h = NULL)]
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_clean_geom_1 + TIMES$dt_clean_geom_2
+```
+
+**Approximate distance with the haversine:**
+
+The `haversine` function computes the distance between two points on a sphere, based on their coordinates. But the Earth isn't a sphere, so the estimated distance will only be approximate. However, for small distances, it's accurate enough for our goals. And it's much faster !
+
+```{r}
+#| label: "dt_clean_haversine"
+#| time_it: true
+#| output: false
+
+rides_clean_haversine <- (
+  rides[
+    , ride_dist_m := geosphere::distHaversine(.SD[, .(start_lng, start_lat)], .SD[, .(end_lng, end_lat)])
+  ## Remove rides that loop on themselves, are too short (<= 100 m), or too long (>= 30 km)
+  ][start_station_id != end_station_id | ride_dist_m %between% c(100, 30000)
+  ## Add ride duration and speed info
+  ][, ride_dur_min := difftime(ended_at, started_at, units = "mins") |> abs() |> as.numeric()
+  ][, ride_speed_km_h := fifelse(ride_dur_min == 0, NA, (ride_dist_m / 1000) / (ride_dur_min / 60))
+  ## Remove rides that are too fast (< 5 min) or too long (> 1 day)
+  ][ride_dur_min %between% c(5, 1440)
+  ## Remove rides that have implausible speeds (> 40 km/h for regular bikes, and 60 km/h for electric ones)
+  ][ (rideable_type == "classic_bike" & ride_speed_km_h <= 40)
+     | (rideable_type == "electric_bike" & ride_speed_km_h <= 60)
+  ## Removing the new columns now that the cleaning is done
+  ][, let(ride_dist_m = NULL, ride_dur_min = NULL, ride_speed_km_h = NULL)]
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_clean_haversine
+```
+
+*The haversine solution is `r round(as.numeric(TIMES$dt_clean_geom_1 + TIMES$dt_clean_geom_2, units = "secs") / as.numeric(TIMES$dt_clean_haversine, units = "secs"), 0)` times faster !*
+
+
+### Out-of-RAM
+
+**Precise distance with `st_distance` of the `spatial` extension:**
+
+```{sql connection = "con", output = FALSE, output.var = "void"}
+INSTALL spatial;
+LOAD spatial;
+```
+
+```{r}
+#| label: "dbp_clean"
+#| time_it: true
+#| output: false
+
+(tbl(con, "rides")
+  |> mutate(
+    start_pos = st_point(start_lat, start_lng) |> st_transform("EPSG:4326", "EPSG:5069"), 
+    end_pos = st_point(end_lat, end_lng) |> st_transform("EPSG:4326", "EPSG:5069"),
+    ride_dist_m = st_distance(start_pos, end_pos)
+  )
+  ## Remove rides that loop on themselves, are too short (<= 100 m), or too long (>= 30 km)
+  |> filter(between(ride_dist_m, 100, 30000))
+  ## Add ride duration and speed info
+  |> mutate(
+    ride_dur_min = abs(date_sub("second", started_at, ended_at) / 60),
+    ride_speed_km_h = if_else(ride_dur_min == 0, NA, (ride_dist_m / 1000) / (ride_dur_min / 60))
+  )
+  ## Remove rides that are too fast (< 5 min) or too long (> 1 day)
+  |> filter(between(ride_dur_min, 5, 1440))
+  ## Rides with implausible speeds
+  |> filter(
+    (rideable_type == "classic_bike" & ride_speed_km_h <= 40)
+    | (rideable_type == "electric_bike" & ride_speed_km_h <= 60)
+  )
+  ## Removing the new columns now that the cleaning is done
+  |> select(-ride_dist_m, -ride_dur_min, -ride_speed_km_h)
+  ## Generating a new table from the result of the cleaning
+  |> compute("rides_clean_geom", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_clean
+```
+
+
+**Approximate distance with the haversine:**
+
+```{sql connection = "con"}
+CREATE OR REPLACE FUNCTION haversine(lng1, lat1, lng2, lat2) 
+  AS 6378137 * acos( 
+    GREATEST(-1, LEAST(1, 
+      cos(radians(lat1)) * cos(radians(lat2)) * cos(radians(lng2) - radians(lng1)) +
+      sin(radians(lat1)) * sin(radians(lat2))
+    ))
+  );
+```
+
+```{r}
+#| label: "dbp_clean_haversine"
+#| time_it: true
+#| output: false
+
+(tbl(con, "rides")
+  |> mutate(ride_dist_m = haversine(start_lng, start_lat, end_lng, end_lat))
+  ## Remove rides that loop on themselves, are too short (<= 100 m), or too long (>= 30 km)
+  |> filter(between(ride_dist_m, 100, 30000))
+  ## Add ride duration and speed info
+  |> mutate(
+    ride_dur_min = abs(date_sub("second", started_at, ended_at) / 60),
+    ride_speed_km_h = if_else(ride_dur_min == 0, NA, (ride_dist_m / 1000) / (ride_dur_min / 60))
+  )
+  ## Remove rides that are too fast (< 5 min) or too long (> 1 day)
+  |> filter(between(ride_dur_min, 5, 1440))
+  ## Rides with implausible speeds
+  |> filter(
+    (rideable_type == "classic_bike" & ride_speed_km_h <= 40)
+    | (rideable_type == "electric_bike" & ride_speed_km_h <= 60)
+  )
+  ## Removing the new columns now that the cleaning is done
+  |> select(-ride_dist_m, -ride_dur_min, -ride_speed_km_h)
+  ## Generating a new table from the result of the cleaning
+  |> compute("rides_clean_haversine", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_clean_haversine
+```
+
+*The haversine solution is `r round(as.numeric(TIMES$dbp_clean, units = "secs") / as.numeric(TIMES$dbp_clean_haversine, units = "secs"), 0)` times faster !*
+
+:::
+
+<!-- RESULTS --->
+
+**Output:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| column: screen-inset
+
+rides_clean_geom
+```
+
+Our cleaning removed `r scales::label_comma()(nrow(rides) - nrow(rides_clean_geom))` entries !
+
+
+::: {.callout-caution appearance="simple" collapse=true}
+
+### 🔍 How much do distances from `haversine` & `st_distance` differ ?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+#| fig-width: 10 
+
+(rides_clean_haversine[
+    , .(ride_id, dist_haversine = geosphere::distHaversine(.SD[, .(start_lng, start_lat)], .SD[, .(end_lng, end_lat)]))
+  ][rides_clean_geom[
+    , .(ride_id, dist_geom = st_distance(st_transform(start_pos, st_crs(5069)), st_transform(end_pos, st_crs(5069)), by_element = TRUE))]
+    , on = "ride_id"
+  ][, .(distance_diff = abs(dist_haversine - as.numeric(dist_geom))), by = ride_id]
+  |> ggplot(aes(x = distance_diff))
+      + geom_histogram(bins = 100, color = NA, fill = "lightblue")
+      + labs(
+        title = "Distribution of the differences in distance",
+        subtitle = "Between **sf::st_distance** and **haversine**",
+        x = "Difference in distance (in meters)", y = ""
+      )
+      + theme(axis.text.y = element_blank())
+)
+```
+
+:::
+
+<!-- CLEANING --->
+
+```{r}
+#| echo: false
+#| output: false
+#| label: "cleaning_post_clean"
+
+## We'll use the cleaned data for the rest of the document
+
+dbRemoveTable(con, "rides")
+rm(rides_clean_haversine)
+rm(rides_geom)
+gc()
+```
+
+
+<!-------------------------------------------------------->
+## Pivoting/melting the data
+
+Since we are interested in filling missing station information, we will first pivot the data in order to only have one station per row, to facilitate subsequent operations based on their coordinates.
+
+::: {.panel-tabset group="framework"}
+
+### In-RAM
+
+```{r}
+#| label: "dt_longer"
+#| time_it: true
+#| output: false
+
+rides_clean_geom_long <- (
+  rides_clean_geom
+  |> melt(measure = measure(way, value.name, pattern = "(end|start).*_(at|name|id|lat|lng|pos)"))
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_longer
+```
+
+
+### Out-of-RAM
+
+```{r}
+#| label: "dbp_longer"
+#| time_it: true
+#| output: false
+
+(tbl(con, "rides_clean_geom")
+  |> pivot_longer(
+    cols = matches("^end|^start"), names_pattern = "(end|start).*_(at|name|id|lat|lng|pos)", 
+    names_to = c("way", ".value")
+  )
+  |> compute("rides_clean_geom_long", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_longer
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+#### ┕ SQL
+
+```{sql, connection = "con", time_it = TRUE, label = "sql_longer"}
+CREATE OR REPLACE TABLE rides_clean_geom_long AS 
+SELECT * FROM (
+  UNPIVOT rides_clean_geom
+  ON (started_at, start_station_name, start_station_id, start_lat, start_lng, start_pos) as 'start', 
+     (ended_at, end_station_name, end_station_id, end_lat, end_lng, end_pos) as 'end'
+  INTO
+    NAME way
+    VALUE 'at', 'name', 'id', 'lat', 'lng', 'pos'
+);
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_longer
+```
+
+::::
+
+:::
+
+**Output:**
+
+<!-- RESULTS --->
+
+```{r}
+#| echo: false
+#| column: page
+#| output: asis
+#| total_rows: !expr tbl(con, "rides_clean_geom_long") |> count() |> pull(n)
+
+tbl(con, "rides_clean_geom_long") |> head(nrows_print) |> collect()
+```
+
+
+<!-- CLEANING --->
+
+```{r}
+#| echo: false
+#| output: false
+
+## We'll use the long format data for the rest of the document
+
+rm(rides_clean_geom)
+dbRemoveTable(con, "rides_clean_geom")
+gc()
+```
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# Which stations are unidentified ?
+***
+
+Our ultimate goal is to fill missing stations' `name` and `id` properties based on their geographical proximity to other know stations.
+
+So let's see which stations miss either their `name` or `id` after the cleaning we've done:
+
+:::{.panel-tabset group="framework"}
+
+### In-RAM
+
+```{r}
+#| output: false
+
+rides_clean_geom_long_unk <- rides_clean_geom_long[is.na(id) | is.na(name), ]
+```
+
+
+### Out-of-RAM
+
+```{r}
+#| output: false
+
+(tbl(con, "rides_clean_geom_long") 
+  |> filter(if_any(matches("id$|name$"), is.na))
+  |> compute("rides_clean_geom_long_unk", overwrite = TRUE)
+)
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+#### ┕ SQL
+
+```{sql connection = "con", eval = FALSE}
+CREATE OR REPLACE TABLE rides_clean_geom_long_unk AS
+SELECT * FROM rides_clean_geom_long
+WHERE ('name' IS NULL) OR ('id' IS NULL) 
+```
+
+::::
+
+:::
+
+**Output:**
+
+<!-- RESULTS --->
+
+```{r}
+#| echo: false
+#| output: asis
+#| column: page
+#| total_rows: !expr nrow(rides_clean_geom_long_unk)
+
+dbGetQuery(con, "SELECT * FROM rides_clean_geom_long_unk ORDER BY ride_id", n = nrows_print)
+```
+
+There are `r scales::label_comma()(nrow(rides_clean_geom_long_unk))` stations missing an `id` or `name` in the original data !
+
+::: {.callout-important appearance="simple"}
+
+But **why** are so many stations unknown/unidentified ?
+
+Could it be an issue of location accuracy ? I.e. the GPS information was too bad for the ride app to properly locate where the user was when arriving or leaving a station ?
+
+
+If this is the case, then most of the unknown stations should have poor coordinate accuracy (i.e. their `lat`/`lng` values should have too few decimal points).
+
+Let's find out !
+
+:::
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# A question of location accuracy ?
+***
+
+First, a quick recap on how `lat`/`lng` coordinates precision (i.e. the number of decimals) relates to positioning accuracy:
+
+| **Decimal** | **Distance at the equator (m)** | **Distance at the 45th (N or S) parallel (m)** |
+|-------------|---------------------------------|------------------------------------------------|
+| 0           | 111,120                         | 78,710                                         |
+| 1           | 11,112                          | 7,871                                          |
+| 2           | 1,111.2                         | 787.1                                          |
+| 3           | 111.12                          | 78.71                                          |
+| 4           | 11.112                          | 7.871                                          |
+| 5           | 1.1112                          | 0.7871                                         |
+
+*See [this thread](https://gis.stackexchange.com/questions/8650/measuring-accuracy-of-latitude-and-longitude) for more details.*
+
+Roughly a 100 meters radius of uncertainty to locate a station when you only have 3 decimal points in your coordinates is quite large. It seems like a good threshold for us, so let's remove entries where either `lat` or `lng` have 3 or less decimals, since those entries would not have sufficient precision to be reliably matched to a known station by their position alone.
+
+Let's define a function to only keep stations with 4 or more decimals in their `lat` or `lng` coordinate (which we will call the *accuracy-4* or *filtered* data henceforth):
+
+```{r}
+has_acc4 <- function(x) str_length(str_remove(as.character(abs(x)), ".*\\.")) >= 4
+```
+
+```{sql connection = "con"}
+CREATE FUNCTION has_acc4(x) AS length(str_split(CAST(abs(x) AS VARCHAR(16)), '.')[2]) >= 4
+```
+
+And now, let's apply it to our table of unknown stations (`rides_clean_geom_long_unk`), and see how many remain afterwards:
+
+
+::: {.panel-tabset group="framework"}
+
+### In-RAM
+
+```{r}
+#| label: "dt_acc4_unk"
+#| time_it: true
+
+rides_clean_geom_long_unk_acc4 <- rides_clean_geom_long_unk[has_acc4(lat) & has_acc4(lng), ]
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_acc4_unk
+```
+
+
+### Out-of-RAM
+
+```{r}
+#| label: "dbp_acc4_unk"
+#| output: false
+#| time_it: true
+
+(tbl(con, "rides_clean_geom_long_unk") 
+  |> filter(if_all(c(lat, lng), has_acc4))
+  |> compute("rides_clean_geom_long_unk_acc4", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_acc4_unk
+```
+
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+#### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_acc4_unk"}
+CREATE OR REPLACE TABLE rides_clean_geom_long_unk_acc4 AS
+SELECT * FROM rides_clean_geom_long_unk
+WHERE has_acc4(lat) AND has_acc4(lng)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_acc4_unk
+```
+
+::::
+
+:::
+
+**Output:**
+
+<!-- RESULTS --->
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+
+rides_clean_geom_long_unk_acc4
+```
+
+After filtering imprecise coordinates, there are only `r scales::label_comma()(nrow(rides_clean_geom_long_unk_acc4))` stations missing either their `id` or `name` ! 
+
+The fact that most of the unknown stations got removed by the coordinate-accuracy filtering gives credence to our previous hypothesis: most of the previous `r scales::label_comma()(nrow(rides_clean_geom_long_unk))` unidentified stations were missing their `id`/`name` *because* their location was too imprecise to be matched to any known station by the ride app. 
+
+Which means that attempting to do such matching ourselves would be an exercise in futility ... 
+
+But let's attempt it anyway, since it is the purpose of this blog post !
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# Location-based station identification
+***
+
+First, we'll need to assemble a reference/look-up table for stations. This table will link each station (identified by a unique combination of `id` and `name`) to a unique set of coordinates (i.e. the location of that station). This will allow us to later match unknown stations from the rides data to those in this reference table, by comparing their locations.
+
+
+<!-------------------------------------------------------->
+## Station reference table
+
+Our `rides` data contains a small number of stations that each appear multiple times, either as the start or end of a ride. For each unique station, we will aggregate all the rides that start or end at that station, and set the station's coordinates at the center of all the existing coordinates for that station. We have to way to go about this aggregation:
+
+1) An accurate method such as `st_centroid` to find out the "center" of this set coordinates (using `sf` / the `spatial` extension).  
+
+2) An approximate method such as taking the average of all the `lat`/`lng` values we have in our rides data, for each station. This solution can be imprecise since it does not take the precision of each coordinate into account (e.g. giving more weight to more accurate coordinates), and the result will have a misleading level of accuracy due to the averaging process.  
+
+Let's do both and see how they compare !
+
+<!-------------------------------------------------------->
+### Using the accuracy-4 data
+
+Here, since we want to establish our "stations" lookup table from the "accuracy-4" data, we need to apply our `has_acc4` function to `rides_clean_geom_long` to only keep entries (i.e. rides) with 4 or more decimals in their `lat` or `lng` coordinate:
+
+::: {.panel-tabset group="framework"}
+
+#### In-RAM
+
+```{r}
+#| label: "dt_acc4"
+#| time_it: true
+#| output: false
+
+rides_clean_geom_long_acc4 <- rides_clean_geom_long[has_acc4(lat) & has_acc4(lng), ]
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_acc4
+```
+
+
+#### Out-of-RAM
+
+```{r}
+#| label: "dbp_acc4"
+#| time_it: true
+#| output: false
+
+(tbl(con, "rides_clean_geom_long") 
+  |> filter(if_all(c(lat, lng), has_acc4))
+  |> compute("rides_clean_geom_long_acc4", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_acc4
+```
+
+:::
+
+***
+
+Now, let's use the resulting table (`rides_clean_geom_long_acc4`) to build our stations lookup table:
+
+
+::: {.panel-tabset group="framework"}
+
+#### In-RAM
+
+**Precise location with `sf::st_centroid`:**
+
+```{r}
+#| label: "dt_stations_acc4_geom"
+#| time_it: true
+#| output: false
+
+stations_clean_acc4_geom <- (
+  rides_clean_geom_long_acc4
+  ## Remove unknown stations
+  |> na.omit(cols = c("id", "name"))
+  ## For each id + name unique combination, find the centroid of the "pos" POINT
+  |> _[, .(pos = st_centroid(st_combine(pos))), by = .(id, name)]
+  ## Order the result by station id
+  |> setorder(id)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_stations_acc4_geom
+```
+
+
+**Approximate location by averaging the coordinates:**
+
+```{r}
+#| label: "dt_stations_acc4_mean"
+#| time_it: true
+#| output: false
+
+stations_clean_acc4_mean <- (
+  rides_clean_geom_long_acc4
+  ## Remove unknown stations
+  |> na.omit(cols = c("id", "name"))
+  ## For each id + name unique combination, average lat and lng values
+  |> dcast(id + name ~ ., fun.aggregate = mean, value.var = c("lat", "lng"))
+  ## Order the result by station id
+  |> setorder(id)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_stations_acc4_mean
+```
+
+
+#### Out-of-RAM
+
+**Precise location using st_centroid from the `spatial` extension:**
+
+```{r}
+#| output: false
+#| label: "dbp_stations_acc4_geom"
+#| time_it: true
+
+(tbl(con, "rides_clean_geom_long_acc4")
+  |> filter(!is.na(id), !is.na(name))
+  |> summarize(
+      .by = c(id, name),
+      pos = list(pos) |> st_collect() |> st_centroid()
+  )
+  |> arrange(id)
+  |> compute("stations_clean_acc4_geom", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_stations_acc4_geom
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+##### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_stations_acc4_geom"}
+CREATE OR REPLACE TABLE stations_clean_acc4_geom AS
+FROM rides_clean_geom_long_acc4
+SELECT id, 'name', st_centroid(st_collect(list(pos))) AS pos_centroid 
+WHERE (id IS NOT NULL) AND ('name' IS NOT NULL)
+GROUP BY id, 'name'
+ORDER BY id;
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_stations_acc4_geom
+```
+
+::::
+
+**Approximate location by averaging the coordinates:**
+
+```{r}
+#| output: false
+#| label: "dbp_stations_acc4_mean"
+#| time_it: true
+
+(tbl(con, "rides_clean_geom_long_acc4")
+  |> filter(!is.na(id), !is.na(name))
+  |> summarize(
+      .by = c(id, name),
+      across(c(lat, lng), mean)
+  )
+  |> arrange(id)
+  |> compute("stations_clean_acc4_mean", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_stations_acc4_mean
+```
+
+:::
+
+<!-- RESULTS --->
+
+::: {.callout-note collapse=true icon=false}
+
+#### 👀 Output
+
+:::: {.columns}
+
+::::: {.column width="49%"}
+
+<br>
+**Geometry**
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+
+stations_clean_acc4_geom[, lapply(.SD, as.character)]
+```
+
+:::::
+
+::::: {.column width="1%"}
+:::::
+
+::::: {.column width="49%"}
+
+<br>
+**Average**
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+
+stations_clean_acc4_mean[, lapply(.SD, as.character)]
+```
+
+:::::
+::::
+:::
+
+
+<!-------------------------------------------------------->
+### Using the unfiltered data
+
+
+::: {.panel-tabset group="framework"}
+
+#### In-RAM
+
+**Precise location with `sf::st_centroid`:**
+
+```{r}
+#| label: "dt_stations_geom"
+#| time_it: true
+#| output: false
+
+stations_clean_geom <- (
+  rides_clean_geom_long
+  ## Remove unknown stations
+  |> na.omit(cols = c("id", "name"))
+  ## For each id + name unique combination, find the centroid of the "pos" POINT
+  |> _[, .(pos = st_centroid(st_combine(pos))), by = .(id, name)]
+  ## Order the result by station id
+  |> setorder(id)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_stations_geom
+```
+
+**Approximate location by averaging the coordinates:**
+
+```{r}
+#| label: "dt_stations_mean"
+#| time_it: true
+#| output: false
+
+stations_clean_mean <- (
+  rides_clean_geom_long
+  ## Remove unknown stations
+  |> na.omit(cols = c("id", "name"))
+  ## For each id + name unique combination, average lat and lng values
+  |> dcast(id + name ~ ., fun.agg = mean, value.var = c("lat", "lng"))
+  ## Order the result by station id
+  |> setorder(id)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_stations_mean
+```
+
+
+#### Out-of-RAM
+
+**Precise location using st_centroid from the `spatial` extension:**
+
+```{r}
+#| output: false
+#| label: "dbp_stations_geom"
+#| time_it: true
+
+(tbl(con, "rides_clean_geom_long")
+  |> filter(!is.na(id), !is.na(name))
+  |> summarize(
+      .by = c(id, name),
+      pos = list(pos) |> st_collect() |> st_centroid()
+  )
+  |> arrange(id)
+  |> compute("stations_clean_geom", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_stations_geom
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+##### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_stations_geom"}
+CREATE OR REPLACE TABLE stations_clean_geom AS
+FROM rides_clean_geom_long
+SELECT id, 'name', st_centroid(st_collect(list(pos))) AS pos_centroid 
+WHERE (id IS NOT NULL) AND ('name' IS NOT NULL)
+GROUP BY id, 'name'
+ORDER BY id;
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_stations_geom
+```
+
+::::
+
+**Approximate location by averaging the coordinates:**
+
+```{r}
+#| output: false
+#| label: "dbp_stations_mean"
+#| time_it: true
+
+(tbl(con, "rides_clean_geom_long")
+  |> filter(!is.na(id), !is.na(name))
+  |> summarize(
+      .by = c(id, name),
+      across(c(lat, lng), mean)
+  )
+  |> arrange(id)
+  |> compute("stations_clean_mean", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_stations_mean
+```
+
+:::
+
+<!-- RESULTS --->
+
+::: {.callout-note collapse=true icon=false}
+
+#### 👀 Output
+
+:::: {.columns}
+
+::::: {.column width="49%"}
+
+<br>
+**Geometry**
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+
+stations_clean_geom[, lapply(.SD, as.character)]
+```
+
+:::::
+
+::::: {.column width="1%"}
+:::::
+
+::::: {.column width="49%"}
+
+<br>
+**Average**
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+
+stations_clean_mean[, lapply(.SD, as.character)]
+```
+
+:::::
+::::
+:::
+
+It would seem that keeping the unfiltered data yields more stations in the lookup table. 
+
+But is this additional data any good ? Or did it lower the overall accuracy of the stations' locations by introducing lower-precision coordinates in the mix ?
+
+::: {.callout-caution appearance="simple" collapse=true}
+
+### 🔍 Comparing the location of each unique station
+
+Let's compare both sources of data (filtered or not) and methods of combining locations (i.e. `st_centroid` vs simple average of lat/lng coordinates) by visualizing where they place the stations on a map:
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+#| fig-width: 9
+#| fig-height: 6
+
+stations_locs <- (
+  left_join(
+    ## Combining the results of geom & haversine stations from the unfiltered data
+    inner_join(tbl(con, "stations_clean_geom"), tbl(con, "stations_clean_mean"), join_by(id, name))
+    |> mutate(
+      lat_unfiltered_mean = lat, lng_unfiltered_mean = lng,
+      lat_unfiltered_centroid = st_x(st_transform(pos, "EPSG:5069", "EPSG:4326")),
+      lng_unfiltered_centroid = st_y(st_transform(pos, "EPSG:5069", "EPSG:4326"))
+    )
+    |> select(id, name, lat_unfiltered_mean, lng_unfiltered_mean, lat_unfiltered_centroid, lng_unfiltered_centroid),
+    ## Combining the results of geom & haversine stations from the filtered data
+    inner_join(tbl(con, "stations_clean_acc4_geom"), tbl(con, "stations_clean_acc4_mean"), join_by(id, name)) 
+    |> mutate(
+      lat_filtered_mean = lat, lng_filtered_mean = lng,
+      lat_filtered_centroid = st_x(st_transform(pos, "EPSG:5069", "EPSG:4326")), 
+      lng_filtered_centroid = st_y(st_transform(pos, "EPSG:5069", "EPSG:4326"))
+    )
+    |> select(id, name, lat_filtered_mean, lng_filtered_mean, lat_filtered_centroid, lng_filtered_centroid),
+    join_by(id, name)
+  )
+  |> pivot_longer(cols = -c(id, name), names_sep = "_", names_to = c(".value", "data_source", "method"))
+  |> collect()
+  |> filter(!is.na(lat) & !is.na(lng))
+  |> mutate(group = str_c(data_source, method, sep = "_"))
+)
+
+my_markers <- iconList(
+  filtered_centroid = makeIcon("C_green.png", iconWidth = 45, iconHeight = 50),
+  filtered_mean = makeIcon("M_green.png", iconWidth = 45, iconHeight = 50),
+  unfiltered_centroid = makeIcon("C_orange.png", iconWidth = 45, iconHeight = 50),
+  unfiltered_mean = makeIcon("M_orange.png", iconWidth = 45, iconHeight = 50)
+)
+
+(stations_locs
+  |> st_as_sf(coords = c("lng", "lat"), crs = 4326)
+  |> leaflet()
+  |> addTiles()
+  |> fitBounds(-88.6, 41.8, -87, 42.1)
+  |> addMarkers(
+    popup = ~sprintf("%s (id: %s)", name, id),
+    icon = ~my_markers[group],
+    clusterOptions = markerClusterOptions()
+  )
+)
+```
+
+If you zoom on a specific station and click on its marker, you'll see either 2 or 4 pins displayed. A station having only 2 pins is a station that was only present in the unfiltered data (i.e. only orange markers). For stations having 4 pins, they should have 2 orange and 2 green markers. In orange are the coordinates from the unfiltered data, while the filtered ones are in green. The *M* marker is for the *mean* method (average of lat/lng), while the *C* marker is for the *centroid* method.  
+
+First, we can see that many of the stations with 4 pins line up pretty closely with a bike icon on the map, which should share the same name as the station closest to it. However, stations with only 2 orange pins are often much further away from any identifiable bike icon, or sometimes in the middle of a housing block. This suggest that stations only present in the unfiltered stations lookup table have unreliable locations.
+
+As for stations present in both lookup tables, there seems to be virtually no differences in the 4 pins' position. If we look at the `lat`/`lng` coordinates themselves, they only start differing at around the 8th or 9th digit after the decimal point, which is a difference in the range of a millimeter.
+
+Taken together, this means we should only use the filtered (accuracy-4) stations lookup table going forwards, but we use the average of lat/lng instead of the `st_centroid` if we want to save time on computations.
+
+*PS: Abetter solution here would have been to query OpenStreetMap or Google Maps for the coordinates of each station, and build our lookup table with those.*
+
+:::
+
+
+<!-------------------------------------------------------->
+## Distance-based join
+
+Now that we have our station lookup table, let's try matching the unknown stations from the rides data to the closest (by proximity) station in our reference table, using a *distance-based join*. Here, we will set the distance threshold to 11 meters, meaning that the match will only happen if both stations are within 11 meters of each other.
+
+*N.B.: This is an arbitrary distance threshold, feel free to use one that makes sense to you.*
+
+<!-------------------------------------------------------->
+### On the accuracy-4 data
+
+There are `r scales::label_comma()(nrow(rides_clean_geom_long_unk_acc4))` entries from `rides_clean` that could potentially be proximity-matched to a known station from our lookup table.
+
+
+::: {.panel-tabset group="framework"}
+
+#### In-RAM
+
+**Precise geom-distance join using `sf` geometries:**
+
+```{r}
+#| label: "sf_match_acc4"
+#| time_it: true
+#| output: false
+
+matched_clean_acc4_geom <- (
+   st_join(
+    st_sf(rides_clean_geom_long_unk_acc4) |> mutate(pos = st_transform(pos, 5069)),
+    st_sf(stations_clean_acc4_geom) |> mutate(pos = st_transform(pos, 5069)),
+    join = st_is_within_distance,
+    dist = 11, # In meters
+    left = FALSE # Does an inner_join
+  )
+  |> as.data.frame()
+  |> mutate(
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y)
+  )
+  ## Getting the distance info between each unknown station and the known ones matched to it
+  |> left_join(stations_clean_acc4_geom, join_by(id, name))
+  |> mutate(
+    dist = st_distance(
+      st_transform(pos.x, 5069), 
+      st_transform(pos.y, 5069), 
+      by_element = TRUE
+    ) |> as.numeric(),
+    pos = pos.x
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> select(colnames(rides_clean_geom_long_unk_acc4))
+  |> arrange(ride_id)
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sf_match_acc4
+```
+
+
+**Approximate haversine-distance join using `fuzzyjoin`:**
+
+```{r}
+#| label: "fuzzy_match_acc4"
+#| time_it: true
+#| output: false
+
+matched_clean_acc4_haversine <- (
+   fuzzyjoin::geo_inner_join(
+    rides_clean_geom_long_unk_acc4,
+    stations_clean_acc4_mean,
+    by = c("lng", "lat"),
+    method = "haversine",
+    unit = "km",
+    max_dist = 0.011, # 11 meters
+    distance_col = "dist"
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> mutate(
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y), 
+    lat = lat.x, lng = lng.x
+  )
+  |> select(colnames(rides_clean_geom_long_unk_acc4))
+  |> arrange(ride_id)
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$fuzzy_match_acc4
+```
+
+
+#### Out-of-RAM
+
+**Precise geom-distance join using `spatial` geometries:**
+
+```{r}
+#| label: "dbp_match_acc4_geom"
+#| time_it: true
+#| output: false
+
+(inner_join(
+    tbl(con, "rides_clean_geom_long_unk_acc4"),
+    tbl(con, "stations_clean_acc4_geom"),
+    sql_on = "st_dwithin(RHS.pos, LHS.pos, 11)"
+  )
+  ## Getting the distance info between each unknown station and the known ones matched to it
+  |> mutate(
+    name = coalesce(name.x, name.y),
+    id = coalesce(id.x, id.y),
+    dist = st_distance(pos.x, pos.y) |> as.numeric(),
+    pos = pos.x
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> select(any_of(colnames(tbl(con, "rides_clean_geom_long_unk_acc4"))))
+  |> arrange(ride_id)
+  |> compute("matched_clean_acc4_geom", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_match_acc4_geom
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+##### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_match_acc4_geom"}
+CREATE OR REPLACE TABLE matched_clean_acc4_geom AS
+SELECT COLUMNS(c -> c NOT SIMILAR TO '(.*\.x|.*\.y|dist.*)')
+FROM (
+  SELECT *, ROW_NUMBER() OVER (PARTITION BY ride_id, way ORDER BY dist) AS dist_rank
+  FROM (
+    SELECT
+      *
+      , COALESCE("name.x", "name.y") AS "name"
+      , COALESCE("id.x", "id.y") AS id
+      , CAST(st_distance("pos.x", "pos.y") AS NUMERIC) AS dist
+      , "pos.x" AS pos
+    FROM (
+      SELECT
+        ride_id, rideable_type, member_casual, way
+        , r.name AS "name.x"
+        , r.id AS "id.x"
+        , 'at'
+        , lat
+        , lng
+        , r.pos AS "pos.x"
+        , s.id AS "id.y"
+        , s.name AS "name.y"
+        , s.pos AS "pos.y"
+      FROM (
+        SELECT *, st_transform(pos, 'EPSG:4326', 'EPSG:5069') AS pos
+        FROM rides_clean_geom_long_unk_acc4
+      ) r
+      INNER JOIN (
+        SELECT *, st_transform(pos, 'EPSG:4326', 'EPSG:5069') AS pos
+        FROM stations_clean_acc4_geom
+      ) s
+      ON st_dwithin(s.pos, r.pos, 11)
+    )
+  )
+)
+WHERE (dist_rank <= 1)
+ORDER BY ride_id;
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_match_acc4_geom
+```
+
+::::
+
+
+**Approximate haversine-distance join:**
+
+```{r}
+#| label: "dbp_match_acc4_haversine"
+#| time_it: true
+#| output: false
+
+(inner_join(
+    tbl(con, "rides_clean_geom_long_unk_acc4") |> select(-pos),
+    tbl(con, "stations_clean_acc4_mean"),
+    sql_on = "haversine(LHS.lng, LHS.lat, RHS.lng, RHS.lat) <= 11"
+  )
+  ## Getting the distance info between each unknown station and the known ones matched to it
+  |> mutate(
+    dist = haversine(lng.x, lat.x, lng.y, lat.y),
+    name = coalesce(name.x, name.y),
+    id = coalesce(id.x, id.y),
+    lat = lat.x, lng = lng.x
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> select(any_of(colnames(tbl(con, "rides_clean_geom_long_unk_acc4"))))
+  |> arrange(ride_id)
+  |> compute("matched_clean_acc4_haversine", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_match_acc4_haversine
+```
+
+:::
+
+<!-- RESULTS --->
+
+::: {.callout-note collapse=true icon=false}
+
+#### 👀 Output
+
+<br>
+From our `r nrow(rides_clean_geom_long_unk_acc4)` rows missing an `id` or `name`, `r nrow(matched_clean_acc4_geom)` got matched !
+
+**Geometry join:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+#| total_rows: !expr tbl(con, "matched_clean_acc4_geom") |> count() |> pull(n)
+
+tbl(con, "matched_clean_acc4_geom") |> head(nrows_print) |> collect()
+```
+
+<br>
+**Haversine join:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+#| total_rows: !expr tbl(con, "matched_clean_acc4_haversine") |> count() |> pull(n)
+
+tbl(con, "matched_clean_acc4_haversine") |> head(nrows_print) |> collect()
+```
+
+And it seems both solution agree on the names of the `r nrow(rides_clean_geom_long_unk_acc4)` unidentified stations !
+
+:::
+
+
+::: {.callout-caution appearance="simple" collapse=true}
+
+#### 🔍 But did we really need a proximity join here ?
+
+<br>
+If we look at the unidentified stations before the join (i.e. `rides_clean_geom_long_unk_acc4`), we can see that the two unknown stations had an id but no name:
+
+```{r}
+#| echo: false
+#| output: asis
+#| details-open: true
+
+rides_clean_geom_long_unk_acc4
+```
+
+Since they were only missing one of the two identifiers, we could have filled the other missing information with a regular join to `stations_clean_acc4_geom`, instead of a proximity-based join, which is more resource intensive and less accurate.
+
+Let's check that both methods yield the same results:
+
+```{r}
+#| output: asis
+#| details-open: true
+
+stations_clean_acc4_mean[
+    matched_clean_acc4_haversine, on = .(id)
+  ][, .(id, name_from_id = name, name_from_distance = i.name, lat, lng)]
+```
+
+At least, we can see that the proximity-matched name and the id-matched one are the same, meaning our proximity-matching method works well !
+
+:::
+
+
+<!-------------------------------------------------------->
+### On the unfiltered data
+
+There are `r scales::label_comma()(nrow(rides_clean_geom_long_unk))` entries from `rides_clean` that could potentially be proximity-matched to a known station from our lookup table.
+
+
+::: {.panel-tabset group="framework"}
+
+#### In-RAM
+
+**Precise geom-distance join using `sf` geometries:**
+
+```{r}
+#| label: "sf_match"
+#| time_it: true
+#| output: false
+
+matched_clean_geom <- (
+   st_join(
+    st_sf(rides_clean_geom_long_unk) |> mutate(pos = st_transform(pos, 5069)),
+    st_sf(stations_clean_acc4_geom) |> mutate(pos = st_transform(pos, 5069)),
+    join = st_is_within_distance,
+    dist = 11, # In meters
+    left = FALSE # Does an inner_join
+  )
+  |> as.data.frame()
+  |> mutate(
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y)
+  )
+  ## Getting the distance info between each unknown station and the known ones matched to it
+  |> left_join(stations_clean_acc4_geom, join_by(id, name))
+  |> mutate(
+    dist = st_distance(
+      st_transform(pos.x, 5069), 
+      st_transform(pos.y, 5069), 
+      by_element = TRUE
+    ) |> as.numeric(),
+    pos = pos.x
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> select(colnames(rides_clean_geom_long_unk))
+  |> arrange(ride_id)
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sf_match
+```
+
+
+**Approximate haversine-distance join using `fuzzyjoin`:**
+
+```{r}
+#| label: "fuzzy_match"
+#| time_it: true
+#| output: false
+
+matched_clean_haversine <- (
+   fuzzyjoin::geo_inner_join(
+    rides_clean_geom_long_unk,
+    stations_clean_acc4_mean,
+    by = c("lng", "lat"),
+    method = "haversine",
+    unit = "km",
+    max_dist = 0.011, # 11 meters
+    distance_col = "dist"
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> mutate(
+    name = coalesce(name.x, name.y), 
+    id = coalesce(id.x, id.y), 
+    lat = lat.x, lng = lng.x
+  )
+  |> select(colnames(rides_clean_geom_long_unk))
+  |> arrange(ride_id)
+  |> as.data.table()
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$fuzzy_match
+```
+
+*The haversine solution is `r round(as.numeric(TIMES$sf_match, units = "secs") / as.numeric(TIMES$fuzzy_match, units = "secs"), 0)` times faster !*
+
+
+#### Out-of-RAM
+
+**Precise geom-distance join using `spatial` geometries:**
+
+```{r}
+#| label: "dbp_match_geom"
+#| time_it: true
+#| output: false
+
+(inner_join(
+    tbl(con, "rides_clean_geom_long_unk"),
+    tbl(con, "stations_clean_acc4_geom"),
+    sql_on = "st_dwithin(RHS.pos, LHS.pos, 11)"
+  )
+  ## Getting the distance info between each unknown station and the known ones matched to it
+  |> mutate(
+    name = coalesce(name.x, name.y),
+    id = coalesce(id.x, id.y),
+    dist = st_distance(pos.x, pos.y) |> as.numeric(),
+    pos = pos.x
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> select(any_of(colnames(tbl(con, "rides_clean_geom_long_unk"))))
+  |> arrange(ride_id)
+  |> compute("matched_clean_geom", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_match_geom
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+##### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_match_geom"}
+CREATE OR REPLACE TABLE matched_clean_geom AS
+SELECT COLUMNS(c -> c NOT SIMILAR TO '(.*\.x|.*\.y|dist.*)')
+FROM (
+  SELECT *, ROW_NUMBER() OVER (PARTITION BY ride_id, way ORDER BY dist) AS dist_rank
+  FROM (
+    SELECT
+      *
+      , COALESCE("name.x", "name.y") AS "name"
+      , COALESCE("id.x", "id.y") AS id
+      , CAST(st_distance("pos.x", "pos.y") AS NUMERIC) AS dist
+      , "pos.x" AS pos
+    FROM (
+      SELECT
+        ride_id, rideable_type, member_casual, way
+        , r.name AS "name.x"
+        , r.id AS "id.x"
+        , 'at'
+        , lat
+        , lng
+        , r.pos AS "pos.x"
+        , s.id AS "id.y"
+        , s.name AS "name.y"
+        , s.pos AS "pos.y"
+      FROM (
+        SELECT *, st_transform(pos, 'EPSG:4326', 'EPSG:5069') AS pos
+        FROM rides_clean_geom_long_unk
+      ) r
+      INNER JOIN (
+        SELECT *, st_transform(pos, 'EPSG:4326', 'EPSG:5069') AS pos
+        FROM stations_clean_acc4_geom
+      ) s
+      ON st_dwithin(s.pos, r.pos, 11)
+    )
+  )
+)
+WHERE (dist_rank <= 1)
+ORDER BY ride_id;
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_match_geom
+```
+
+::::
+
+**Approximate haversine-distance join:**
+
+```{r}
+#| label: "dbp_match_haversine"
+#| time_it: true
+#| output: false
+
+(inner_join(
+    tbl(con, "rides_clean_geom_long_unk"),
+    tbl(con, "stations_clean_acc4_mean"),
+    sql_on = "haversine(LHS.lng, LHS.lat, RHS.lng, RHS.lat) <= 11"
+  )
+  ## Getting the distance info between each unknown station and the known ones matched to it
+  |> mutate(
+    dist = haversine(lng.x, lat.x, lng.y, lat.y),
+    name = coalesce(name.x, name.y),
+    id = coalesce(id.x, id.y),
+    lat = lat.x, lng = lng.x
+  )
+  ## If multiple stations from the lookup table match a given unknown station, 
+  ##  only keep the match with the shortest distance
+  |> slice_min(dist, by = c(ride_id, way), with_ties = FALSE)
+  |> select(any_of(colnames(tbl(con, "rides_clean_geom_long_unk"))))
+  |> arrange(ride_id)
+  |> compute("matched_clean_haversine", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_match_haversine
+```
+
+*The haversine solution is `r round(as.numeric(TIMES$sql_match_geom, units = "secs") / as.numeric(TIMES$dbp_match_haversine, units = "secs"), 0)` times faster !*
+
+:::
+
+<!-- RESULTS --->
+
+::: {.callout-note collapse=true icon=false}
+
+#### 👀 Output
+
+<br>
+From our `r scales::label_comma()(nrow(rides_clean_geom_long_unk))` unknown entries from `rides_clean` unfiltered table, `r scales::label_comma()(nrow(matched_clean_geom))` got matched to a station in the unfiltered lookup table.
+
+<br>
+**Geometry join:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| total_rows: !expr tbl(con, "matched_clean_geom") |> count() |> pull(n)
+
+tbl(con, "matched_clean_geom") |> head(nrows_print) |> collect()
+```
+
+<br>
+**Haversine join:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| total_rows: !expr tbl(con, "matched_clean_haversine") |> count() |> pull(n)
+
+tbl(con, "matched_clean_haversine") |> head(nrows_print) |> collect()
+```
+
+:::
+
+We have filled many more rides here, but surprisingly, all those rides only correspond to 3 stations:
+
+```{r}
+#| output: asis
+
+(tbl(con, "matched_clean_haversine")
+  |> select(name, id, lat, lng)
+  |> distinct()
+  |> collect()
+)
+```
+
+And 2 of those are the same as the ones matched from the accuracy-4 data.
+
+
+::: {.callout-caution appearance="simple" collapse=true}
+
+### 🔍 Comparing the results of both types of joins:
+
+Are some stations identified differently between the haversine and geom-based join ?
+
+```{r}
+#| code-fold: true
+#| code-summary: "Code"
+#| output: asis
+
+bind_rows(
+  anti_join(
+    tbl(con, "matched_clean_haversine"),
+    tbl(con, "matched_clean_geom"),
+    by = tbl(con, "matched_clean_haversine") |> select(-pos, -name, -id) |> colnames()
+  )
+  |> rename(any_of(c(
+        name_from_geom = "name.x", id_from_geom = "id.x", 
+        name_from_haversine = "name.y", id_from_haversine = "id.y"
+      )
+    )
+  )
+  |> collect(),
+  anti_join(
+    tbl(con, "matched_clean_geom"),
+    tbl(con, "matched_clean_haversine"),
+    by = tbl(con, "matched_clean_haversine") |> select(-pos, -name, -id) |> colnames()
+  )
+  |> rename(any_of(c(
+        name_from_geom = "name.y", id_from_geom = "id.y", 
+        name_from_haversine = "name.x", id_from_haversine = "id.x"
+      )
+    )
+  )
+  |> collect()
+)
+```
+
+The resulting table is empty, meaning that both solutions give the exact same matches here. But if you look at the distances both solutions compute (not shown here), you'll notice they are slightly different. However, that difference is so small it does not impact the identification of the unknown stations at all.
+
+:::
+
+<!-- CLEANING --->
+
+```{r}
+#| echo: false
+#| output: false
+
+tables_to_remove <- c(
+  "stations_clean_acc4_geom", "stations_clean_acc4_mean", 'stations_clean_acc4_diff', 
+  "stations_clean_geom", "stations_clean_mean", "stations_clean_diff",
+  "rides_clean_geom_long_unk", 
+  "rides_clean_geom_long_unk_acc4", 
+  "matched_clean_geom", "matched_clean_haversine",
+  "matched_clean_acc4_haversine"
+)
+
+walk(tables_to_remove, \(x) dbRemoveTable(con, x, fail_if_missing = FALSE))
+walk(tables_to_remove, \(x) rm(x))
+gc()
+```
+
+
+<!-------------------------------------------------------->
+<!-------------------------------------------------------->
+# Updating the original dataset
+***
+
+Finally, we can update the original dataset with the entries that were position-matched (i.e. replace the missing station `name`/`id`).
+
+**We will do it in two steps:**  
+
+1) Updating the clean dataset in its long format (i.e. updating `rides_acc4_clean_geom_long` with `matched_acc4_clean_geom`)   
+
+2) Pivoting it back to the original wide format  
+
+
+<!-------------------------------------------------------->
+## Merging the two datasets
+
+:::{.panel-tabset group="framework"}
+
+### In-RAM
+
+```{r}
+#| label: "dt_merge"
+#| time_it: true
+#| output: false
+
+rides_clean_geom_long_filled <- (
+  matched_clean_acc4_geom[
+    rides_clean_geom_long, on = setdiff(colnames(rides_clean_geom_long), c("id", "name", "pos"))
+  ][, let(name = fcoalesce(name, i.name), id = fcoalesce(id, i.id))
+  ][, nms, env = list(nms = I(setdiff(colnames(rides_clean_geom_long), c("pos"))))]
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dt_merge
+```
+
+```{r}
+#| echo: false
+#| output: false
+
+rm(rides_clean_geom_long)
+gc()
+```
+
+
+### Out-of-RAM
+
+```{r}
+#| label: "dbp_merge"
+#| output: false
+#| time_it: true
+
+(right_join(
+    tbl(con, "matched_clean_acc4_geom"),
+    tbl(con, "rides_clean_geom_long"),
+    by = tbl(con, "rides_clean_geom_long") |> select(-name, -id, -pos) |> colnames()
+  ) 
+  |> mutate(name = coalesce(name.x, name.y), id = coalesce(id.x, id.y))
+  |> select(-matches("\\.x|\\.y"))
+  |> compute("rides_clean_geom_long_filled", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_merge
+```
+
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+##### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_merge"}
+CREATE OR REPLACE TABLE rides_clean_geom_long_filled AS
+SELECT
+  COLUMNS(c -> c NOT SIMILAR TO '(.*\.x|.*\.y)'),
+  COALESCE("name.x", "name.y") AS "name",
+  COALESCE("id.x", "id.y") AS id
+FROM (
+  SELECT
+    r.ride_id AS ride_id
+    , r.rideable_type AS rideable_type
+    , r.at AS 'at'
+    , r.member_casual AS member_casual
+    , r.way AS way
+    , m.name AS "name.x"
+    , m.id AS "id.x"
+    , r.lat AS lat
+    , r.lng AS lng
+    , r.name AS "name.y"
+    , r.id AS "id.y"
+  FROM matched_clean_acc4_geom m
+  RIGHT JOIN rides_clean_geom_long r
+    ON m.ride_id = r.ride_id AND m.way = r.way
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_merge
+```
+
+::::
+
+:::
+
+<!-- RESULTS --->
+
+**Output:**
+
+```{r}
+#| echo: false
+#| output: asis
+
+rides_clean_geom_long_filled
+```
+
+
+<!-------------------------------------------------------->
+## Validating the merge
+
+```{r}
+#| output: asis
+
+rides_clean_geom_long_filled[has_acc4(lat) & has_acc4(lng) & (is.na(id) | is.na(name)),]
+```
+
+We can see that the resulting dataset no longer has any entries that miss either their `name` or `id` (at least among the entries that have 4 or more decimals on their coordinates), whereas there were `r nrow(rides_clean_geom_long_unk_acc4)` before. We have successfully updated them !
+
+*A lot of effort for very little gains in data if you ask me ...*
+
+
+<!-------------------------------------------------------->
+## Pivoting back to the original (wide) format
+
+To finish, let's pivot the resulting data back into the wider format it was originally in:
+
+:::{.panel-tabset group="framework"}
+
+### In-RAM
+
+```{r}
+#| label: "dt_wider"
+#| time_it: true
+
+rides_clean_geom_filled <- (
+  rides_clean_geom_long_filled
+  |> dcast(... ~ way, sep = "_station_", value.var = c("at", "name", "id", "lat", "lng"))
+)
+```
+
+```{r}
+#| echo: false
+
+rm(rides_clean_geom_long_filled)
+
+if (!interactive()) TIMES$dt_wider
+```
+
+
+### Out-of-RAM
+
+```{r}
+#| label: "dbp_wider"
+#| output: false
+#| time_it: true
+
+(tbl(con, "rides_clean_geom_long_filled")
+  |> pivot_wider(names_from = "way", names_glue = "{way}_station_{.value}", values_from = c("at", "name", "id", "lat", "lng"))
+  |> compute("rides_clean_geom_filled", overwrite = TRUE)
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$dbp_wider
+```
+
+:::: {.callout-tip appearance="simple" collapse=true}
+
+##### ┕ SQL
+
+```{sql connection = "con", time_it = TRUE, label = "sql_wider"}
+CREATE OR REPLACE TABLE rides_clean_geom_filled AS
+SELECT ride_id, rideable_type, member_casual, * LIKE 'start_%', * LIKE 'end_%'
+FROM (
+  PIVOT rides_clean_geom_long_filled
+  ON way || '_station' 
+  USING MAX('at') as 'at', MAX('name') as 'name', MAX(id) as 'id', MAX(lat) as lat, MAX(lng) as lng
+  GROUP BY ride_id, rideable_type, member_casual
+)
+```
+
+```{r}
+#| echo: false
+
+if (!interactive()) TIMES$sql_wider
+```
+
+::::
+
+:::
+
+<!-- RESULTS --->
+
+**Output:**
+
+```{r}
+#| echo: false
+#| output: asis
+#| column: screen-inset
+
+rides_clean_geom_filled
+```
+
+<!-- ENDING SESSION -->
+
+```{r}
+#| echo: false
+
+dbDisconnect(con, shutdown = TRUE)
+
+if (exists("duckdb_path") & file_exists(duckdb_path)) file_delete(duckdb_path)
+```
+
+
+<!--------------------------------->
+***
+
+:::{.callout-tip collapse="true"}
+
+# 💻 Expand for Session Info
+
+```{r}
+#| echo: false
+#| results: markup
+
+si <- sessioninfo::session_info(pkgs = "attached")
+
+si$platform$Quarto <- system("quarto --version", intern = TRUE)
+
+si$platform$pandoc <- strsplit(si$platform$pandoc, "@")[[1]][1]
+
+si
+```
+
+:::

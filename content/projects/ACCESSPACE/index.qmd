@@ -26,17 +26,17 @@ abstract: |
   The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user's location & surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.
 
 categories:
-  - "Research"
-  - "Software Engineering"
-  - "Data Science"
-  - "Human-Computer Interaction"
-  - "Augmented Reality"
-  - "Haptic Interface"
-  - "Sensory Substitution"
-  - "Computer Vision"
+  - Research
+  - Software Engineering
+  - Java
+  - Arduino
+  - Human-Computer Interaction
+  - Augmented Reality
+  - Computer Vision
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
     - text: "Official homepage [{{< iconify twemoji flag-france >}}]"
       icon: globe
@@ -46,8 +46,8 @@ about:
       file: content/pubs/ICCHP18-TactiBelt/
       icon: file-pdf
       aria-label: "See a conference article about the TactiBelt"
-    - text: "{{< iconify file-icons keynote >}} Talk [{{< iconify twemoji flag-france >}}]"
-      file: content/sci-com/talks/RUNN19/
+    - text: "{{< iconify file-icons keynote >}} Slides [{{< iconify twemoji flag-france >}}]"
+      file: content/projects/ACCESSPACE/RUNN19.pdf
       aria-label: "See a presentation illustrating the project (in French)"
     - text: "Poster [{{< iconify twemoji flag-france >}}]"
       icon: file-image
@@ -145,4 +145,4 @@ The ACCESSPACE project was promoted in various mainstream and technical media, s
 
 **4)** Handled the preliminary experimental evaluations of the TactiBelt, and the analyses of said data.
 
-**5)** Presenting the project with a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an [international conference](/content/sci-com/talks/ICCHP18/), and various outreach events (see the *dissemination section* above for more details).
+**5)** Presenting the project with a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an international conference, and various outreach events.

@@ -12,14 +12,12 @@ author:
     url: https://sciences-techniques.univ-rouen.fr/nordic-neuroendocrine-endocrine-and-germinal-differentiation-communication-umr-1239-679078.kjsp
 
 image: feature.png
-image-alt: "Graphical abstract recapitulating the main findings of this project"
+image-alt: "Circular plot illustrating the impact of the multiple genes tested on several key biological pathways"
 
 description: "This project studies the underlying molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development, using intermittent hypoxia in a mouse model."
 
 abstract: |
   This work aims at shedding light on the mechanisms underlying cerebellar hypoxic injury. To this end, a transcriptomic study (by RT-qPCR) of genes involved in oxydative stress, cell differentiation, and migration was performed. We analyzed the expression of these genes in different developmental stages (P4, P8, P12, P21 and adults), and in different cell types, using laser capture microdissection to separate cerebellar layers. This project provides cues to better understand the cellular and molecular aspects of AoP-induced cerebellar injury.
-
-# funding: "TODO"
 
 website:
   open-graph:
@@ -28,37 +26,56 @@ website:
     description: "Molecular and cellular mechanisms of apnea of prematurity at play during cerebellar development"
 
 categories:
-  - "Research"
-  - "Data Science"
-  - "Software Engineering"
-  - "Biostatistics"
-  - "Transcriptomics"
-  - "Cerebellum"
-  - "Hypoxia"
-  - "RT-qPCR"
+  - R
+  - Bioinformatics
+  - Biostatistics
+  - Software Engineering
+  - Immunohistochemistry
+  - Transcriptomics
+  - RT-qPCR
 
 # Dirty trick to get some links/buttons
 about:
+  template: solana
   links:
-    - text: "Article (in press)"
+    - text: "Article"
       icon: file-pdf
       file: /content/pubs/CRN23/
       aria-label: "See the article illustrating the project"
-    - text: "{{< fa chart-column >}} Data & Analyses"
-      file: /content/code/projects/DE-AoP/
-      aria-label: "Webpage presenting the data & analyses made for this project"
+    - text: "Code"
+      icon: github
+      url: https://github.com/ma-riviere/DE-AoP-23
+      aria-label: "See the GitHub repository hosting the code of the project and related paper"
+    - text: "{{< iconify simple-icons quarto >}} Documentation"
+      url: https://ma-riviere.github.io/DE-AoP-23/
+      aria-label: "See the website documenting the project's data and code"
 ---
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){fig-alt="Image illustrating the project"}
+![](graphical-abstract.png){fig-alt="Graphical abstract recapitulating the main findings of this project"}
 
-# My role in this project
-***
+:::{.callout-note appearance="simple"}
+
+### My role in this project
 
 **1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [
 Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process.
 
-**2)** Handled the RT-qPCR & IHC data processing and analysis, as well as documenting & open-sourcing the resulting code.
+**2)** Handled the data processing and analysis for both RT-qPCR and immunohistochemistry data.
 
 **3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project.
+
+**4)** Open-sourced the resulting code on [GitHub](https://github.com/ma-riviere/DE-AoP-23) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.10198569).
+
+**5)** Made [a website](https://ma-riviere.github.io/DE-AoP-23/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and Javascript to provide an interactive dashboard to explore the data.
+
+:::
+
+# Summary
+
+The DE-AoP project included RT-qPCR and immunohistochemistry data, which were analysed in [R](https://www.r-project.org/) [@R]. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
+
+The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
+
+Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
