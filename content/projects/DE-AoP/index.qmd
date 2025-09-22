@@ -64,7 +64,7 @@ Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the d
 
 **2)** Handled the data processing and analysis for both RT-qPCR and immunohistochemistry data.
 
-**3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project.
+**3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project [@rodriguez-dubocApneaPrematurityInduces2023a].
 
 **4)** Open-sourced the resulting code on [GitHub](https://github.com/ma-riviere/DE-AoP-23) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.10198569).
 

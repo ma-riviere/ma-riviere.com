@@ -61,7 +61,6 @@ funding: "Agalic Rodriguez-Duboc was the recipient of a doctoral fellowship from
 
 categories:
   - "Journal"
-  - "Neuroscience"
   - "Molecular Neuroscience"
   - "Neurodevelopment"
   - "Cerebellum"

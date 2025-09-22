@@ -135,3 +135,29 @@ new Chart(ctx, {
 ```
 
 :::
+
+<br>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center;">
+  <img src="https://img.shields.io/badge/R-276DC3?logo=r&logoColor=fff&style=flat" alt="R">
+  <img src="https://img.shields.io/badge/Shiny-02569B?logo=r&logoColor=white" alt="RShiny">
+  <img src="https://img.shields.io/badge/Quarto-39729E?logo=quarto&logoColor=white" alt="Quarto">
+  <span style="width: 50px;"></span> <!-- Blank spacer -->
+  <img src="https://img.shields.io/badge/JavaScript-F7DF1E?logo=javascript&logoColor=000&style=flat" alt="JavaScript">
+  <img src="https://img.shields.io/badge/HTMX-36C?logo=htmx&logoColor=white" alt="HTMX">
+  <span style="width: 50px;"></span> <!-- Blank spacer -->
+  <img src="https://img.shields.io/badge/DuckDB-FFF000?logo=duckdb&logoColor=000&style=flat" alt="DuckDB">
+  <img src="https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=fff&style=flat" alt="PostgreSQL">
+  <span style="width: 50px;"></span> <!-- Blank spacer -->
+  <img src="https://img.shields.io/badge/Docker-2496ED?logo=docker&logoColor=fff&style=flat" alt="Docker">
+  <img src="https://img.shields.io/badge/Terraform-844FBA?logo=terraform&logoColor=fff&style=flat" alt="Terraform">
+  <img src="https://img.shields.io/badge/Ansible-E00?logo=ansible&logoColor=fff&style=flat" alt="Ansible">
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px; align-items: center; justify-content: center;">
+  <img src="https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=fff&style=flat" alt="Python">
+  <img src="https://img.shields.io/badge/OpenCV-5C3EE8?logo=opencv&logoColor=fff&style=flat" alt="OpenCV">
+  <img src="https://img.shields.io/badge/Java-007396?logo=openjdk&logoColor=fff&style=flat" alt="Java">
+  <img src="https://custom-icon-badges.demolab.com/badge/C%23-%23239120.svg?logo=cshrp&logoColor=fff&style=flat" alt="C#">
+  <img src="https://img.shields.io/badge/Unity-FFF?logo=unity&logoColor=000&style=flat" alt="Unity">
+</div>

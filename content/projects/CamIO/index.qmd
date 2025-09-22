@@ -35,13 +35,13 @@ categories:
 about:
   template: solana
   links:
-    - text: "Project homepage"
+    - text: "Homepage"
       icon: globe
       url: https://www.ski.org/project/camio
       aria-label: "See the project's official website"
-    - text: "Article (conference)"
+    - text: "Article"
       icon: file-pdf
-      file: content/pubs/ICCHP20/
+      file: /content/pubs/ICCHP20/
       aria-label: "See a conference article illustrating the project"
     - text: "Code"
       icon: github
@@ -52,10 +52,6 @@ toc: false
 ---
 
 {{< include /content/_hr.qmd >}}
-
-# Summary
-
-{{< youtube GmD1GbNI9Jw >}}
 
 :::{.callout-note appearance="simple"}
 
@@ -83,6 +79,10 @@ The goal of the application was to facilitate the exploration of new Computer Vi
 
 **3)** Assisted in analyzing the data from the first human experiments using CamIO ([code](https://github.com/ma-riviere/ICCHP20-CamIO)).
 
-**4)** Helped write a [scientific paper](/content/pubs/ICCHP20/) presenting the project.
+**4)** Helped write a [scientific paper](/content/pubs/ICCHP20/) on this project [@coughlanAudioBased3DSpatial2020].
 
 :::
+
+# Summary
+
+{{< youtube GmD1GbNI9Jw >}}

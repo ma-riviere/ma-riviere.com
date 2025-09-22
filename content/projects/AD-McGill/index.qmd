@@ -21,9 +21,9 @@ abstract: |
 
 website:
   open-graph:
-    description: "Bnip3 expression in the brain of an Alzheimer's disease rat model"
+    description: "Analyzing BNIP3 expression in the brain of an Alzheimer's disease rat model"
   twitter-card:
-    description: "Bnip3 expression in the brain of an Alzheimer's disease rat model"
+    description: "Analyzing BNIP3 expression in the brain of an Alzheimer's disease rat model"
 
 categories:
   - R
@@ -58,7 +58,7 @@ about:
 
 **1)** Managed the code for data processing, modeling, and hypothesis testing.
 
-**2)** Helped write the methodoly/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/BM25/).
+**2)** Helped write the methodology/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/BM25/) [@rodriguez-dubocBnip3ExpressionBrain2025].
 
 **3)** Open-sourced the resulting code on [GitHub](https://github.com/agalic-rd/Bnip3_McGill_AD) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.15199696).
 

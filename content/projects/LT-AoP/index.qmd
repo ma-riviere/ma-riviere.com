@@ -44,11 +44,11 @@ about:
     - text: "{{< iconify simple-icons quarto >}} Documentation"
       url: https://ma-riviere.github.io/LT-AoP-22/
       aria-label: "See the website documenting the project's data and code"
+
+toc: false
 ---
 
 {{< include /content/_hr.qmd >}}
-
-![](feature.png){fig-alt="Image illustrating the project"}
 
 :::{.callout-note appearance="simple"}
 
@@ -56,7 +56,7 @@ about:
 
 **1)** Handled the data processing and analysis, for both immunohistochemistry and RT-qPCR data.
 
-**2)** Helped write the methodoly/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/CB22/).
+**2)** Helped write the methodology/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/CB22/) [@lerouxIntermittentHypoxiaMouse2022].
 
 **3)** Open-source the [code](https://github.com/ma-riviere/LT-AoP-22) and registered on [Zenodo](https://doi.org/10.5281/zenodo.6480947).
 

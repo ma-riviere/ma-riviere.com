@@ -17,12 +17,7 @@ description: "Developing a wearable device converting spatial information into a
 abstract: |
   The AdViS project aims to develop a wearable device that will assist Visually Impaired People during **spatial interaction tasks** (such as **indoor navigation** and **object-reaching**), using an audio-based Human-Machine Interface which converts relevant spatial metrics into ergonomic auditory cues.
   
-  AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role:
-  
-  -   Navigating a small maze using a depth-map-to-auditory-cues transcoding  
-  -   Finger-guided image exploration (on a touch screen)  
-  -   Eye-movement guided image exploration (on a turned off computer screen)  
-  -   Pointing towards and reaching a virtual target in 3D space using a motion capture environment
+  AdViS aims to explore various ways to provide visuo-spatial information through auditory feedback, based on the Sensory Substitution framework. Since its inception, the project investigated visuo-auditive substitution possibilities for multiple tasks in which vision plays a crucial role, such as (1) navigating a small maze using a depth-map-to-auditory-cues transcoding, (2) finger-guided image exploration (on a touch screen), (3) eye-movement guided image exploration (on a turned off computer screen), and (4) pointing towards and reaching a virtual target in 3D space using a motion capture environment.
   
   The AdViS system is coded in C++, uses [PureData](https://puredata.info/) for complex sound generation, and relies on the [VICON](https://www.vicon.com/) system to track participant's movements in an augmented reality environment.
 
@@ -84,14 +79,14 @@ toc: false
 
 **1)**  Proposed a new model for image exploration relying on a touch-mediated visuo-auditive feedback loop, where a VIP explores an image by moving its finger across a screen and gets audio feedback based on the contents of the explored region.
 
-**2)**  Modified the existing AdViS system to include the ability to transcode grey-scale images into soundscapes, based on captured finger-motion information on a touchscreen.
+**2)**  Modified the existing AdViS system to include the ability to transcode grey-scale images into soundscapes, based on captured finger-motion information on a touchscreen (C++/PureData).
 
-**3)**  Organized experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyzed the results.
+**3)**  Organized experimental evaluations with blindfolded students, tasked with recognizing geometrical shapes on a touchscreen, and analyzed the results (R).
 
-![](geom-finger.jpg){alt="Participant exploring a geometrical shape by moving their finger on a touchscreen"}
+![](geom-finger.jpg){alt="Participant exploring a geometrical shape by moving their finger on a touchscreen" width=50% fig-align="center"}
 
-**4)**  Participated in implementing an occular-motion-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP).
+**4)**  Participated in implementing an occular-motion-to-audio-feedback loop in order to evaluate the possibility of exploring images (on a turned off screen) with eye-movements (which are still controllable by most of the non-congenital VIP) (C++/OpenCV).
 
-![](geom-eye.jpg){alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen"}
+![](geom-eye.jpg){alt="Participant exploring a geometrical shape by moving their eyes across a black computer screen" width=50% fig-align="center"}
 
 :::

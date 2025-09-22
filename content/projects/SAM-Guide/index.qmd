@@ -29,9 +29,11 @@ website:
     description: "An efficient multi-modal interface to help VIP during spatial interactions and sports"
 
 abstract: |
-  SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g. laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements.
+  SAM-Guide's high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g. laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user's movements.
   
-  SAM-Guide is a inter-disciplinary collaboration project (ANR 2021 PRC) between three sites: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University, (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
+  This project relied on (1) a wireless vibro-tactile belt with detachable and adjustable vibrators, (2) an experimental platform using Unity integrating multi-system motion capture (Polhemus, VICON, pozyx), complex sound-wave generation (PureData), and 3D audio modeling (Steam Audio), with automated trial generation from JSON specifications based on OpenMaze protocols, and (3) orientation-aware HRTF-based 3D audio headphones.
+  
+  SAM-Guide is a inter-disciplinary French research project (ANR 2021 PRC) between three sites: (1) the [LPNC](https://lpnc.univ-grenoble-alpes.fr/) and [GIPSA](http://www.gipsa-lab.fr/en/about-gipsa-lab.php) laboratories from the Grenoble-Alpes University, (2) the [CMAP](https://portail.polytechnique.edu/cmap/en) from Ecole Polytechnique in Paris-Saclay, and the [LITIS](https://www.litislab.fr/en/) and [CERREV](http://ufrhss.unicaen.fr/recherche/cerrev/) from Normandy University.
 
 categories:
   - Research
@@ -54,28 +56,32 @@ about:
       url: https://anr.fr/Project-ANR-21-CE33-0011
       aria-label: "See the ANR grant official summary"
     - text: "Code"
-      icon: code
+      icon: github
       url: https://github.com/sam-guide/exp-plat
       aria-label: "See the project's code"
+
+toc: false
 ---
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){fig-alt="Banner illustrating the project"}
+![](feature.png){fig-alt="Banner illustrating the project" fig-align="center" width=70%}
 
-The SAM-Guide project aims to help visually impaired people interact with the world around them by creating smart devices that convert visual information into sounds and vibrations they can feel and hear. Instead of trying to replace vision entirely, the project focuses on giving people the specific spatial information they need for everyday tasks like finding objects, navigating spaces, and even participating in sports activities. The team of researchers from multiple French universities is developing wearable devices like vibrating belts and audio systems that can guide users toward targets or help them understand their surroundings. They're testing these technologies through virtual reality games and real-world activities, including a new sport called laser-run designed for people with visual impairments. The ultimate goal is to create a common "language" of sounds and vibrations that can help visually impaired people gain more independence in various activities, from simple daily tasks to recreational sports.
+# Summary
+
+The SAM-Guide project aims to help visually impaired people (VIP) interact with the world around them by creating smart devices that convert visuo-spatial information into sounds and vibrations they can feel and hear. Instead of trying to replace vision entirely, the project focuses on giving people the specific spatial information they need for everyday tasks like finding objects, navigating spaces, and even participating in sports activities. Teams of researchers from multiple French universities are developing wearable devices like vibrating belts and audio systems that can guide users toward targets or help them understand their surroundings. They're testing these technologies through virtual reality games and real-world activities, including a new sport called laser-run designed for VIP. The project's ultimate goal is to create a common "language" of sounds and vibrations that can help VIP gain more independence in various activities, from simple daily tasks to recreational sports.
 
 ::: {.callout-note appearance="simple"}
 
-# My role in this project
+## My role in this project
 
 **1)** I was a major actor behind the birth of this project, by connecting the consortium members together and writing most of the grant proposal (ANR AAPG 2021, funding of 609k€).
 
-**2)** I designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication (thanks to an ESP32 module) and amovible vibrators:
+**2)** I designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication and detachable vibrators (C++/Arduino/ESP32):
 
 ![Second prototype of the TactiBelt](TactiBelt-v2.jpg "Photography of the second iteration of the TactiBelt"){#fig-tactibelt-v2 fig-alt="Photography of the second iteration of the TactiBelt"}
 
-**3)** I lead the design and development of the project's experimental platform. The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation and [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling, and communicates with the consortium's non-visual interfaces wirelessly.
+**3)** I lead the design and development of the project's [experimental platform](https://github.com/sam-guide/exp-plat) (C#/Unity). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses [PureData](https://puredata.info/) for sound-wave generation and [Steam Audio](https://valvesoftware.github.io/steam-audio/) for 3D audio modeling, and communicates with the consortium's non-visual interfaces wirelessly.
 
 ::::{#fig-unity layout='[503,-5,492]'}
 

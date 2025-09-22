@@ -12,18 +12,18 @@ author:
 image: feature.png
 image-alt: "Logo of the ACCESSPACE project"
 
-description: "Developing a wearable vibro-tactile electronic Orientation & Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models."
+description: "Developing a wearable vibro-tactile electronic wearable system for the autonomous navigation of visually impaired people through neuroscience-inspired spatial feedback."
 
 website:
   open-graph:
     image: feature.png
-    description: "Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP"
+    description: "Neuroscience-inspired vibro-tactile wearable for autonomous navigation by visually impaired people"
   twitter-card:
     image: feature.png
-    description: "Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP"
+    description: "Neuroscience-inspired vibro-tactile wearable for autonomous navigation by visually impaired people"
 
 abstract: |
-  The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user's location & surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.
+  The ACCESSPACE project developed an innovative electronic Orientation and Travel Aid (ETA) that enables Visually Impaired People (VIP) to navigate autonomously through intuitive vibro-tactile feedback. Drawing inspiration from neuroscientific understanding of spatial cognition, the project created the TactiBelt, a wearable device with 46 vibro-tactile motors arranged in three layers around the waist. Unlike traditional ETAs that attempt to substitute vision entirely, ACCESSPACE directly provides the spatial properties that the brain's navigation system requires: destination orientation and distance, available path options, and obstacle locations. The system integrates advanced computer vision algorithms including ORB-SLAM for indoor localization, MonoDepth for depth estimation, and reinforcement learning for dynamic navigation graph generation. Preliminary evaluations demonstrated users' ability to form mental maps and navigate virtual environments using only tactile feedback. This award-winning research (CCAH Applied Research on Disability Award 2017) represents a paradigm shift from sensory substitution to spatial cognition augmentation, offering a more intuitive approach to assistive navigation technology.
 
 categories:
   - Research
@@ -59,8 +59,7 @@ about:
 
 ![](header.jpg){fig-alt="Banner illustrating the project"}
 
-# Introduction
-***
+# Summary
 
 ACCESSPACE's high-level goal was to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way. 
 
@@ -69,21 +68,42 @@ ACCESSPACE's high-level goal was to allow VIP to navigate indoors or outdoors in
 **2)** Design a haptic interface that allows to communicate said spatial representation easily to the user  
 **3)** Implement the software require to support the various functions of this interface (e.g. Indoor Localisation, Obstacle Detection, Mapping, ...)   
 
-The guiding theoretical principle of this project was to use the brain's navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) **navigation system** combine and distills information from multiple senses into a set of key **spatial properties** (e.g. where the center of the current room is located). This **spatial representation** allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system's heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.
+The guiding theoretical principle of this project was to use the brain's navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) **navigation system** combines and distills information from multiple senses into a set of key **spatial properties** (e.g. where the center of the current room is located). This **spatial representation** allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system's heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.
 
-![ACCESSPACE guiding principle](neuro.png){#fig-neuro fig-alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"}
+![ACCESSPACE guiding principle](neuro.png){#fig-neuro fig-alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles" width=80% fig-align="center"}
 
-Using those principles, we devised an **encoding scheme** that provides the user with 3 types of information through egocentered tactile feedback:
-
-- The orientation and distance to the destination of the journey (as the crow flies)  
-- The available path possibilities around the user (i.e. the various branching streets they could take, the current room's center), which form a navigation graph, and will allow the VIP to mentally visualize the layout of its immediate environment  
-- The closest obstacles
+Thus, we devised an **encoding scheme** that provides the user with 3 types of information through egocentered tactile feedback:  
+**1)** The orientation and distance to the destination of the journey (as the crow flies)  
+**2)** The available path possibilities around the user (i.e. the various branching streets they could take, the current room's center)  
+**3)** The closest obstacles
 
 ![Illustration of the navigation graph idea](nav.png "An illustration showcasing the navigation graph used with the TactiBelt"){fig-alt="An illustration showcasing the navigation graph used with the TactiBelt" fig-align="center" width=60%}
 
+::: {.callout-note appearance="simple"}
 
-# Outcomes
-***
+# My role in this project
+
+**1)** Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, ...).
+
+**2)** Designed the TactiBelt and participated in its conception (Arduino).
+
+**3)** Participated in the development of a [Java application](https://github.com/ma-riviere/BeltControl) to control and evaluate the TactiBelt in a pacman-like game.
+
+**4)** Handled the preliminary experimental evaluations of the TactiBelt, and the analyses of the collected data.
+
+**5)** Was involved in writing a [journal paper](/content/pubs/JEP22/) [@faugloire2022] and a [conference paper](/content/pubs/ICCHP18-TactiBelt/) [@rivière2018]
+
+**6)** Disseminated the project through a talk at an international conference, and various outreach events.
+
+:::
+
+::: {.column-margin}
+:::: {.callout-note appearance="simple"}
+### Was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇
+::::
+:::
+
+# Details
 
 ## Our interface: the TactiBelt
 
@@ -118,7 +138,7 @@ Applied to a real agent (human pushing a cart with a camera and the computer run
 
 ![](VR.png){fig-alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"}
 
-## Project dissemination
+# Project dissemination
 
 The ACCESSPACE project was promoted in various mainstream and technical media, such as:  
 - On [RTL](https://www.rtl.fr/actu/sciences-tech/tactbelt-la-ceinture-qui-aide-les-non-voyants-a-se-diriger-7797538766), a French national radio station  ({{< iconify twemoji flag-france >}})  
@@ -127,22 +147,3 @@ The ACCESSPACE project was promoted in various mainstream and technical media, s
 - On [Acuité](https://www.acuite.fr/actualite/sante/157415/un-nouveau-dispositif-ad-hoc-pour-les-malvoyants), a specialized website dedicated to Opticians and news around visual impairment ({{< iconify twemoji flag-france >}})  
 - On [Oxytude](https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/), a weekly podcast reviewing news related to visual impairment ({{< iconify twemoji flag-france >}})  
 - On [FIRAH](https://www.firah.org/fr/accesspace.html), the French Foundation on Applied Research for Handicap ({{< iconify twemoji flag-france >}})
-
-:::{.callout-tip appearance="simple"}
-## This project has been warmly welcomed by the VIP community and was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇
-:::
-
-# My role in this project
-***
-
-**ACCESSPACE was my main PhD project:**
-
-**1)** Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, ...).
-
-**2)** Designed the TactiBelt and participated in its conception (Arduino).
-
-**3)** Participated in the development of a [Java application](https://github.com/ma-riviere/BeltControl) to control and test the TactiBelt.
-
-**4)** Handled the preliminary experimental evaluations of the TactiBelt, and the analyses of said data.
-
-**5)** Presenting the project with a [journal paper](/content/pubs/JEP22/), a [conference paper](/content/pubs/ICCHP18-TactiBelt/), a talk at an international conference, and various outreach events.

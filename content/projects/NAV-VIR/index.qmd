@@ -1,67 +1,112 @@
 ---
-title: "NAV-VIR"
-subtitle: "Virtual Map exploration for Visually Impaired People"
+title: "NAV-VIR / TETMOST"
+subtitle: "Virtual Image exploration for Visually Impaired People"
 date: 2018-09
 
 author:
-  - name: "LITIS"
+  - name: LITIS
     url: "https://www.litislab.fr/"
-  - name: "Institute of Electronics"
+  - name: Institute of Electronics
     url: "http://www.eletel.p.lodz.pl/eng/"
+  - name: LIR3S
+    url: "http://tristan.u-bourgogne.fr/CGC/accueil/CGCAccueil.htm"
+  - name: IHRIM
+    url: "https://ihrim.ens-lyon.fr/"
 
 image: feature.png
 image-alt: "3D rendering of the F2T, the main device used during the NAV-VIR project"
 
-description: "Developing a multi-modal interface for Visually Impaired People to virtually explore a map in order to prepare for a journey."
+description: "Development of the Force Feedback Tablet (F2T) and multimodal audio-tactile interfaces for virtual exploration of images and maps by Visually Impaired People."
 
 abstract: |
-  The goal of the NAV-VIR project was to develop a multimodal interface to allow Visually Impaired People in virtually discovering and exploring unknown areas from the safety of their home. It relies on an interactive Force-Feedback Tablet, the F2T, and an immersive HRTF-based 3D audio simulation relying on binaural recordings of real environments.
+  The NAV-VIR and TETMOST projects developed innovative multimodal interfaces to make visual content accessible to Visually Impaired People through virtual exploration. The core innovation is the Force Feedback Tablet (F2T), a novel haptic interface providing force feedback to convey digital images and maps into tactile representations. The system integrates haptic feedback with HRTF-based 3D audio simulation to create immersive spatial experiences for two key applications: virtual map exploration for journey preparation and Art accessibility.
+  
+  To accompany the F2T, we developed an application to assist in the creation of simplified tactile representations from images (Java/Arduino), implemented algorithms for real-time conversion of visual content into haptic representations (Python/OpenCV) by combining computer vision techniques (image segmentation, edge detection), and designed experimental protocols to validate the system's effectiveness. The research was documented through multiple peer-reviewed publications.
 
 website:
   open-graph:
     image: feature.png
-    description: "An audio-tactile interface for virtually exploring maps and preparing journeys"
+    description: "Development of the Force Feedback Tablet (F2T) and multimodal audio-tactile interfaces for virtual exploration of images and maps by Visually Impaired People"
   twitter-card:
     image: feature.png
-    description: "An audio-tactile interface for virtually exploring maps and preparing journeys"
+    description: "Development of the Force Feedback Tablet (F2T) and multimodal audio-tactile interfaces for virtual exploration of images and maps by Visually Impaired People"
 
 categories:
   - Research
   - Software Engineering
   - Java
+  - Python
   - Human-Computer Interaction
-  - Virtual Reality
+  - Computer Vision
 
 # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
-    - text: "Article"
+    - text: "Article (ICCHP'18)"
+      icon: file-pdf
+      file: /content/pubs/ICCHP18-F2T/
+      aria-label: "See an article about the F2T"
+    - text: "Article (NER'19)"
       icon: file-pdf
       file: /content/pubs/NER19/
-      aria-label: "See an article about the project"
+      aria-label: "See an article about NAV-VIR"
+    - text: "Article (ICISP'20)"
+      icon: file-pdf
+      file: /content/pubs/ICISP20/
+      aria-label: "See an article about the Art segmentation"
     - text: "Poster"
       icon: file-image
       url: /content/projects/NAV-VIR/poster.pdf
       aria-label: "See a poster about the project"
+    - text: "Code"
+      icon: github
+      url: https://github.com/ma-riviere/F2T-interface
+      aria-label: "GitHub repository with the code to control the F2T"
+
+toc: false
 ---
 
 {{< include /content/_hr.qmd >}}
 
-![](feature.png){fig-alt="Image illustrating the project"}
+# Summary
 
-# Introduction
-***
+The NAV-VIR and TETMOST projects developed a multimodal interface to help Visually Impaired People virtually explore images. The system combines the **Force Feedback Tablet (F2T)** for tactile map exploration with **HRTF-based 3D audio simulation** to create immersive spatial experiences.
 
-<!--# TODO: summary -->
+The project's high-level objectives was to allow users to build mental representations of images through a neuroscience-inspired combinations of haptic feedback and spatially accurate sound cues. A key aspect of the project involved experimenting to find the most intuitive way to transcode an image into haptic sensations whilst retaining its original meaning and peculiarities.
 
-*To Be Filled*
+The system was validated through experimental evaluations where participants successfully recognized geometric shapes and navigated virtual apartment layouts, demonstrating the effectiveness of the audio-tactile approach. The project focused on two practical applications: **(1)** virtual exploration of **maps** to prepare for a journey, and **(2)** virtual exploration of images to make **Art** more accessible to Visually Impaired People (VIP).
 
-## Our interface: F2T (v2)
+![](schema.png){fig-alt="Schema illustrating the objectives of the NAV-VIR and TETMOST projects"}
 
-During this project, we improved upon the first iteration of the **Force Feedback Tablet (F2T)** from the [TETMOST project](/content/projects/TETMOST/) to design the finalized prototype of this interface:
+::: {.callout-note appearance="simple"}
 
-:::{layout='[46,54]'}
+## My role in this project
+
+**1)** **Software Development**:  
+- Development of an [application](https://github.com/ma-riviere/F2T-interface) to control the F2T device (Java/Arduino),  
+- Implementation of algorithms for real-time conversion of digital maps and images into haptic representations (Python/OpenCV).
+
+**2)** **Experimental Design & Validation**: Co-designed and implemented the experimental protocol to test the effectiveness of the system, including the development of standardized tasks for geometric shape recognition and spatial layout comprehension.
+
+**3)** **Research Communication**:  
+- Co-authored a [conference paper](/content/pubs/ICCHP18-F2T/) detailing the workins of the F2T [@gay2018],  
+- Authored a [conference paper](/content/pubs/NER19/) showing its use for virtual exploration of maps [@riviereNAVVIRAudiotactileVirtual2019],  
+- Co-authored a [conference paper](/content/pubs/ICISP20/) on the image segmentation technique used to simplify the images for the F2T [@souradiTactileDiscoveryCultural2020],  
+- Authored a [poster](poster.pdf){target="_blank"}, documenting the technical implementation, experimental methodology, and validation results.
+
+:::
+
+# Details
+
+## The Force Feedback Tablet (F2T)
+
+The Force Feedback Tablet (F2T) is a novel haptic interface designed to make visual content accessible to Visually Impaired People through touch. The F2T allows users to explore digital images and maps by feeling varying levels of resistance and texture through a stylus-based interaction system.
+
+The device provides **force feedback with up to 1000Hz refresh rate**, combining precise haptic mechanisms with real-time image processing to convert visual information into tactile sensations. Users navigate the tablet surface with an integrated joystick that provides haptic feedback corresponding to different visual elements (e.g. walls feel solid and resistant, pathways offer smooth movement, and key landmarks are marked with distinct tactile signatures). The interface supports **natural gesture recognition** for common exploration behaviors like wall-following and systematic scanning, with **adaptive feedback** that adjusts haptic intensity based on user preferences.
+
+
+:::{layout="[46,54]"}
 
 ![](F2T-v2.jpg){fig-alt="Photo of the F2T interface"}
 
@@ -69,32 +114,32 @@ During this project, we improved upon the first iteration of the **Force Feedbac
 
 :::
 
+## From images to tactile representations
 
-# Outcomes
-***
+### Manual
 
-**1)** We developed a Java application to create or convert images into simplified tactile representations, which can then be explored using the F2T:
+We developed a GUI application to assist in **creating simplified tactile representations from images**, to explore using the F2T:
+
+:::{layout="[60,40]" layout-valign="center"}
 
 ![](F2T-interface.png){fig-alt="Screenshot of the F2T control interface"}
 
-**2)** We investigated and developed tools to automatically generate a navigation graph from a floor plan, which can then be converted into a tactile image and explored with the F2T:
-
-![](map-graph.png){fig-alt="Illustrations of the navigation graph generation"}
-
-
-# My role in this project
-***
-
-**1)** Participated in the development of a [Java app](https://github.com/ma-riviere/F2T-interface) to control the F2T and display tactile "images".
-
-**2)** Helped design the first round of experimental evaluations, where participants where tasked with recognizing and re-drawing simple geometrical shapes, as well as the layout of a simple mock apartment.
-
-:::{layout='[40,60]' layout-valign="center"}
-
-![](exp-setup.png){fig-alt="A drawing illustrating the experimental setup of NAV-VIR"}
-
-![](rooms.png){fig-alt="A drawing illustrating the experimental setup of NAV-VIR"}
+![](feature.png){fig-alt="Image illustrating the F2T used to read a pre-processed map"}
 
 :::
 
-**3)** Wrote a first-author [conference article](/content/pubs/NER19/) and a [poster](poster.pdf).
+### Automated
+
+We developed a **complete processing pipeline** for converting visual content into accessible tactile formats. This includes **intelligent reduction of visual complexity** while preserving essential spatial information, and **automatic extraction** of key features from architectural plans and artwork. The system combines various Computer Vision techniques such as image segmentation and edge detection:
+
+:::{layout="[48,52]"}
+
+![](art.png){fig-alt="Antique drawing of a horse passed through an edge-detection algorithm to remove unneeded details"}
+
+![](art2.png){fig-alt="Antique painting of a woman carrying a milk jug, passed through another type of edge-detection algorithm to remove unneeded details"}
+
+:::
+
+## Audio-Tactile Integration
+
+For the NAV-VIR application specifically, the system integrates **HRTF-based 3D audio simulation** with the haptic feedback to create immersive spatial experiences. The **binaural audio** provides spatially accurate sound cues that correspond to tactile exploration, with **audio mapping** that associates spatial locations with environmental sounds and landmarks. This multimodal approach supports **multi-scale navigation**, allowing both detailed local exploration and broader spatial overview modes.
