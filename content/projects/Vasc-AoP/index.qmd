@@ -691,16 +691,15 @@ Analysis of total vascular volume tested whether IH exposure affected overall va
 
 ::::: {.panel-tabset}
 
-### Condition
+#### Condition
 
 ```{r}
 #| echo: true
-#| output: true
+#| output: asis
 
 emmeans(mod_vol, specs = "condition", type = "response") |> 
   contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame() |> 
-  gt()
+  as.data.frame()
 ```
 
 ```{r}
@@ -711,16 +710,15 @@ emmeans(mod_vol, specs = "condition", type = "response") |>
 make_signif_boxplot(mod_vol, xaxis = "condition")
 ```
 
-### Condition | Stage
+#### Condition | Stage
 
 ```{r}
 #| echo: true
-#| output: true
+#| output: asis
 
 emmeans(mod_vol, specs = ~ condition | stage, type = "response") |> 
   contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame() |> 
-  gt()
+  as.data.frame()
 ```
 
 ```{r}
@@ -731,22 +729,21 @@ emmeans(mod_vol, specs = ~ condition | stage, type = "response") |>
 make_signif_boxplot(mod_vol, xaxis = "condition", facet = "stage", ncol = 4)
 ```
 
-### Condition:Level | Stage
+#### Condition:Level | Stage
 
 ```{r}
 #| echo: true
-#| output: true
+#| output: asis
 
 emmeans(mod_vol, specs = ~ condition | level, by = "stage", type = "response") |> 
   contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame() |> 
-  gt()
+  as.data.frame()
 ```
 
 ```{r}
 #| output: true
-#| fig-width: 18
-#| fig-height: 6
+#| fig-width: 15
+#| fig-height: 7
 
 make_signif_boxplot_inter(mod_vol, pred1 = "condition", pred2 = "level", facet = "stage", ncol = 5, only_signif = FALSE)
 ```
@@ -759,14 +756,15 @@ The branchpoint analysis examined whether IH affected vascular network complexit
 
 ::::: {.panel-tabset}
 
+#### Condition
+
 ```{r}
 #| echo: true
-#| output: true
+#| output: asis
 
 emmeans(mod_branchpoints, specs = "condition", type = "response") |> 
   contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame() |> 
-  gt()
+  as.data.frame()
 ```
 
 ```{r}
@@ -777,16 +775,15 @@ emmeans(mod_branchpoints, specs = "condition", type = "response") |>
 make_signif_boxplot(mod_branchpoints, xaxis = "condition")
 ```
 
-### Condition | Stage
+#### Condition | Stage
 
 ```{r}
 #| echo: true
-#| output: true
+#| output: asis
 
 emmeans(mod_branchpoints, specs = ~ condition | stage, type = "response") |> 
   contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame() |> 
-  gt()
+  as.data.frame()
 ```
 
 ```{r}
@@ -797,22 +794,21 @@ emmeans(mod_branchpoints, specs = ~ condition | stage, type = "response") |>
 make_signif_boxplot(mod_branchpoints, xaxis = "condition", facet = "stage", ncol = 4)
 ```
 
-### Condition:Level | Stage
+#### Condition:Level | Stage
 
 ```{r}
 #| echo: true
-#| output: true
+#| output: asis
 
 emmeans(mod_branchpoints, specs = ~ condition | level, by = "stage", type = "response") |> 
   contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame() |> 
-  gt()
+  as.data.frame()
 ```
 
 ```{r}
 #| output: true
-#| fig-width: 18
-#| fig-height: 6
+#| fig-width: 15
+#| fig-height: 7
 
 make_signif_boxplot_inter(mod_branchpoints, pred1 = "condition", pred2 = "level", facet = "stage", ncol = 5, only_signif = FALSE)
 ```

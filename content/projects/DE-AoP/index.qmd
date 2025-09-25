@@ -49,27 +49,13 @@ about:
     - text: "{{< iconify simple-icons quarto >}} Documentation"
       url: https://ma-riviere.github.io/DE-AoP-23/
       aria-label: "See the website documenting the project's data and code"
+
+toc: false
 ---
 
 {{< include /content/_hr.qmd >}}
 
 ![](graphical-abstract.png){fig-alt="Graphical abstract recapitulating the main findings of this project"}
-
-:::{.callout-note appearance="simple"}
-
-### My role in this project
-
-**1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process (R/Shiny).
-
-**2)** Handled the data processing and analysis for both RT-qPCR and immunohistochemistry data (R/Markdown).
-
-**3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project [@rodriguez-dubocApneaPrematurityInduces2023a].
-
-**4)** Open-sourced the resulting code on [GitHub](https://github.com/ma-riviere/DE-AoP-23) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.10198569).
-
-**5)** Made [a website](https://ma-riviere.github.io/DE-AoP-23/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and Javascript to provide an interactive dashboard to explore the data.
-
-:::
 
 # Summary
 
@@ -79,4 +65,26 @@ The optimal likelihood families were selected based on our theoretical understan
 
 Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
 
-![](feature.png){fig-alt="Circlize plot illustrating the impact of the multiple genes tested on several key biological pathways" fig-align="center"}
+:::{.callout-note appearance="simple"}
+
+### My role in this project
+
+**1)** Handled the data processing, modeling, and analysis for both RT-qPCR and immunohistochemistry data (R/Markdown).
+
+**1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process (R/Shiny).
+
+**3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project [@rodriguez-dubocApneaPrematurityInduces2023a].
+
+**4)** Open-sourced the resulting code on [GitHub](https://github.com/ma-riviere/DE-AoP-23) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.10198569).
+
+**5)** Made [a website](https://ma-riviere.github.io/DE-AoP-23/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and Javascript to provide an interactive dashboard to explore the data.
+
+:::
+
+# Quarto website
+
+We made a **Quarto website** to showcase the project's data, analyses, and results with interactive plots and tables:
+
+<a href="https://ma-riviere.github.io/DE-AoP-23/" target="_blank" style="display: block; text-decoration: none;">
+    <iframe src="https://ma-riviere.github.io/DE-AoP-23/" width="100%" height="1200px" style="pointer-events: none;"></iframe>
+</a>
