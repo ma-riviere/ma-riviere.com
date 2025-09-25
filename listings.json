@@ -1,13 +1,25 @@
 [
   {
-    "listing": "/content/code/index.html",
+    "listing": "/content/blog/index.html",
     "items": [
-      "/content/code/projects/DE-AoP/index.html",
-      "/content/code/projects/LT-AoP/index.html",
-      "/content/code/posts/spatial/index.html",
-      "/content/code/posts/big-bayes/index.html",
-      "/content/code/posts/data.table/index.html",
-      "/content/code/posts/climbing/index.html"
+      "/content/blog/posts/spatial/index.html",
+      "/content/blog/posts/big-bayes/index.html",
+      "/content/blog/posts/data.table/index.html",
+      "/content/blog/posts/climbing/index.html"
+    ]
+  },
+  {
+    "listing": "/content/projects/index.html",
+    "items": [
+      "/content/projects/AD-McGill/index.html",
+      "/content/projects/Vasc-AoP/index.html",
+      "/content/projects/SAM-Guide/index.html",
+      "/content/projects/DE-AoP/index.html",
+      "/content/projects/NAV-VIR/index.html",
+      "/content/projects/CamIO/index.html",
+      "/content/projects/ACCESSPACE/index.html",
+      "/content/projects/LT-AoP/index.html",
+      "/content/projects/AdViS/index.html"
     ]
   },
   {
@@ -20,30 +32,6 @@
       "/content/pubs/NER19/index.html",
       "/content/pubs/ICCHP18-TactiBelt/index.html",
       "/content/pubs/ICCHP18-F2T/index.html"
-    ]
-  },
-  {
-    "listing": "/content/projects/index.html",
-    "items": [
-      "/content/projects/SAM-Guide/index.html",
-      "/content/projects/DE-AoP/index.html",
-      "/content/projects/NAV-VIR/index.html",
-      "/content/projects/CamIO/index.html",
-      "/content/projects/TETMOST/index.html",
-      "/content/projects/ACCESSPACE/index.html",
-      "/content/projects/LT-AoP/index.html",
-      "/content/projects/AdViS/index.html"
-    ]
-  },
-  {
-    "listing": "/content/sci-com/index.html",
-    "items": [
-      "/content/sci-com/talks/RUNN19/index.html",
-      "/content/sci-com/talks/ProbAI19/index.html",
-      "/content/sci-com/talks/SKERI/index.html",
-      "/content/sci-com/talks/ICCHP18/index.html",
-      "/content/sci-com/outreach/Exp-JPO/index.html",
-      "/content/sci-com/outreach/Exp/index.html"
     ]
   }
 ]

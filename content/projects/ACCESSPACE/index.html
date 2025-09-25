@@ -2,16 +2,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.5.9">
+<meta name="generator" content="quarto-1.8.17">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 <meta name="author" content="LITIS">
 <meta name="author" content="CERREV">
 <meta name="dcterms.date" content="2017-01-01">
-<meta name="description" content="Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.">
+<meta name="description" content="Developing a wearable vibro-tactile electronic wearable system for the autonomous navigation of visually impaired people through neuroscience-inspired spatial feedback.">
 
-<title>Marc-Aurèle Rivière – ACCESSPACE</title>
+<title>ACCESSPACE – Marc-Aurèle Rivière</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -24,7 +24,28 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-</style>
+.display.math{display: block; text-align: center; margin: 0.5rem auto;}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+  margin-bottom: 0em;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
 
 
 <script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
@@ -36,19 +57,21 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../res/hexabrain.svg" rel="icon" type="image/svg+xml">
 <script src="../../../site_libs/cookie-consent/cookie-consent.js"></script>
 <link href="../../../site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
-<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="../../../site_libs/quarto-html/popper.min.js"></script>
 <script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e408f6448c0c13359207e36bd9eb5760.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-bc2db561b05f2aaf21fd5844861d6efb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-e408f6448c0c13359207e36bd9eb5760.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark-65e140c3775b7d11d64f3c410de22ea9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="../../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script>
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -109,16 +132,16 @@ cookieconsent.run({
 
 
 <link rel="stylesheet" href="../../../libs/css/style.css">
-<meta property="og:title" content="Marc-Aurèle Rivière - ACCESSPACE">
-<meta property="og:description" content="Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP">
+<meta property="og:title" content="ACCESSPACE – Marc-Aurèle Rivière">
+<meta property="og:description" content="Neuroscience-inspired vibro-tactile wearable for autonomous navigation by visually impaired people">
 <meta property="og:image" content="https://ma-riviere.com/content/projects/ACCESSPACE/feature.png">
 <meta property="og:site_name" content="Marc-Aurèle Rivière">
 <meta property="og:locale" content="en_US">
 <meta property="og:image:height" content="352">
 <meta property="og:image:width" content="336">
 <meta property="og:image:alt" content="Logo of the ACCESSPACE project">
-<meta name="twitter:title" content="Marc-Aurèle Rivière - ACCESSPACE">
-<meta name="twitter:description" content="Wearable vibro-tactile Electronic Travel Aid for the autonomous navigation of VIP">
+<meta name="twitter:title" content="ACCESSPACE – Marc-Aurèle Rivière">
+<meta name="twitter:description" content="Neuroscience-inspired vibro-tactile wearable for autonomous navigation by visually impaired people">
 <meta name="twitter:image" content="https://ma-riviere.com/content/projects/ACCESSPACE/feature.png">
 <meta name="twitter:creator" content="@mariviere1">
 <meta name="twitter:card" content="summary">
@@ -127,7 +150,169 @@ cookieconsent.run({
 <meta name="twitter:image:alt" content="Logo of the ACCESSPACE project">
 </head>
 
-<body class="nav-fixed">
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top quarto-banner">
@@ -135,52 +320,52 @@ cookieconsent.run({
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container mx-auto">
     <a href="../../../index.html" class="navbar-brand navbar-brand-logo">
-    <img src="../../../res/hexabrain.svg" alt="Stylized depiction of a brain inside a hexagon" class="navbar-logo">
+    <img src="../../../res/hexabrain.svg" alt="Stylized depiction of a brain inside a hexagon" class="navbar-logo light-content">
+    <img src="../../../res/hexabrain.svg" alt="Stylized depiction of a brain inside a hexagon" class="navbar-logo dark-content">
     </a>
     <a class="navbar-brand" href="../../../index.html">
     <span class="navbar-title">Marc-Aurèle Rivière</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/projects/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-business-time" aria-label="business-time"></i> Projects</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/pubs/index.html"> 
-<span class="menu-text"><i class="fa-solid fa-book" aria-label="book"></i> Publications</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/sci-com/index.html"> 
-<span class="menu-text"><iconify-icon inline="" icon="file-icons:keynote" height="20px"></iconify-icon> Communications</span></a>
-  </li>  
-  <li class="nav-item">
-    <a class="nav-link" href="../../../content/code/index.html"> <i class="bi bi-code-slash" role="img" aria-label="A list of my R and stats projects">
+    <a class="nav-link" href="../../../content/projects/index.html"> <i class="bi bi-journal-code" role="img" aria-label="A curated list of code-related projects I was or am involved in">
 </i> 
-<span class="menu-text">Code</span></a>
+<span class="menu-text">Projects</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/pubs/index.html"> <i class="bi bi-file-text" role="img" aria-label="A list of my peer-reviewed scientific publications">
+</i> 
+<span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../content/blog/index.html"> <i class="bi bi-braces" role="img" aria-label="A list of blog posts related to R, stats, and data science">
+</i> 
+<span class="menu-text">Blog</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../../content/about.html"> 
-<span class="menu-text"><i class="fa-solid fa-user-tie" aria-label="user-tie"></i> About Me</span></a>
+    <a class="nav-link" href="../../../content/about.html"> <i class="bi bi-person-vcard" role="img" aria-label="About Me">
+</i> 
+<span class="menu-text">About Me</span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="../../../content/code/index.xml"> <i class="bi bi-rss" role="img" aria-label="My blog's RSS feed">
+    <a class="nav-link" href="../../../content/blog/index.xml"> <i class="bi bi-rss" role="img" aria-label="My blog's RSS feed">
 </i> 
 <span class="menu-text"></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
-          <div class="quarto-navbar-tools">
+            <div class="quarto-navbar-tools">
     <div class="dropdown">
-      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" aria-label=""><i class="bi bi-github"></i></a>
-      <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="quarto-navigation-tool-dropdown-0">
+      <a href="" title="" id="quarto-navigation-tool-dropdown-0" class="quarto-navigation-tool dropdown-toggle px-1" data-bs-toggle="dropdown" aria-expanded="false" role="link" aria-label=""><i class="bi bi-github"></i></a>
+      <ul class="dropdown-menu" aria-labelledby="quarto-navigation-tool-dropdown-0">
           <li>
             <a class="dropdown-item quarto-navbar-tools-item" href="https://github.com/ma-riviere/ma-riviere.com/">
             Source Code
@@ -206,17 +391,16 @@ cookieconsent.run({
             <p class="subtitle lead">Helping Visually Impaired People travel autonomously</p>
                   <div>
         <div class="description">
-          Developing a wearable vibro-tactile electronic Orientation &amp; Travel Aid for the autonomous navigation of VIP, based on Spatial Cognition models.
+          Developing a wearable vibro-tactile electronic wearable system for the autonomous navigation of visually impaired people through neuroscience-inspired spatial feedback.
         </div>
       </div>
                           <div class="quarto-categories">
                 <div class="quarto-category">Research</div>
                 <div class="quarto-category">Software Engineering</div>
-                <div class="quarto-category">Data Science</div>
+                <div class="quarto-category">Java</div>
+                <div class="quarto-category">Arduino</div>
                 <div class="quarto-category">Human-Computer Interaction</div>
                 <div class="quarto-category">Augmented Reality</div>
-                <div class="quarto-category">Haptic Interface</div>
-                <div class="quarto-category">Sensory Substitution</div>
                 <div class="quarto-category">Computer Vision</div>
               </div>
                   </div>
@@ -239,7 +423,7 @@ cookieconsent.run({
   <div>
     <div class="abstract">
       <div class="block-title">Abstract</div>
-      <p>The ACCESSPACE project aims to develop an electronic Orientation and Travel Aid that will provide Visually Impaired People (VIP) with a dynamic and specialized representation of their environment’s spatial topography, through egocentric vibrotactile feedback. Information on the user’s location &amp; surroundings will be acquired using their smartphone, processed, and communicated back to them through a waist belt fitted with vibrators. With some training, this substituted spatial information will allow VIP to intuitively form mental maps of their surroundings, and navigate autonomously towards their destination.</p>
+      <p>The ACCESSPACE project developed an innovative electronic Orientation and Travel Aid (ETA) that enables Visually Impaired People (VIP) to navigate autonomously through intuitive vibro-tactile feedback. Drawing inspiration from neuroscientific understanding of spatial cognition, the project created the TactiBelt, a wearable device with 46 vibro-tactile motors arranged in three layers around the waist. Unlike traditional ETAs that attempt to substitute vision entirely, ACCESSPACE directly provides the spatial properties that the brain’s navigation system requires: destination orientation and distance, available path options, and obstacle locations. The system integrates advanced computer vision algorithms including ORB-SLAM for indoor localization, MonoDepth for depth estimation, and reinforcement learning for dynamic navigation graph generation. Preliminary evaluations demonstrated users’ ability to form mental maps and navigate virtual environments using only tactile feedback. This award-winning research (CCAH Applied Research on Disability Award 2017) represents a paradigm shift from sensory substitution to spatial cognition augmentation, offering a more intuitive approach to assistive navigation technology.</p>
     </div>
   </div>
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -250,19 +434,19 @@ cookieconsent.run({
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
-  <li><a href="#outcomes" id="toc-outcomes" class="nav-link" data-scroll-target="#outcomes"><span class="header-section-number">2</span> Outcomes</a>
+  <li><a href="#summary" id="toc-summary" class="nav-link active" data-scroll-target="#summary">Summary</a></li>
+  <li><a href="#details" id="toc-details" class="nav-link" data-scroll-target="#details">Details</a>
   <ul class="collapse">
-  <li><a href="#our-interface-the-tactibelt" id="toc-our-interface-the-tactibelt" class="nav-link" data-scroll-target="#our-interface-the-tactibelt"><span class="header-section-number">2.1</span> Our interface: the TactiBelt</a></li>
-  <li><a href="#software-tools" id="toc-software-tools" class="nav-link" data-scroll-target="#software-tools"><span class="header-section-number">2.2</span> Software tools</a></li>
-  <li><a href="#project-dissemination" id="toc-project-dissemination" class="nav-link" data-scroll-target="#project-dissemination"><span class="header-section-number">2.3</span> Project dissemination</a></li>
+  <li><a href="#our-interface-the-tactibelt" id="toc-our-interface-the-tactibelt" class="nav-link" data-scroll-target="#our-interface-the-tactibelt">Our interface: the TactiBelt</a></li>
+  <li><a href="#software-tools" id="toc-software-tools" class="nav-link" data-scroll-target="#software-tools">Software tools</a></li>
   </ul></li>
-  <li><a href="#my-role-in-this-project" id="toc-my-role-in-this-project" class="nav-link" data-scroll-target="#my-role-in-this-project"><span class="header-section-number">3</span> My role in this project</a></li>
+  <li><a href="#project-dissemination" id="toc-project-dissemination" class="nav-link" data-scroll-target="#project-dissemination">Project dissemination</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content quarto-banner-title-block page-columns page-full" id="quarto-document-content">
+
 <script>
   let processScroll = () => {
     let docElem = document.documentElement, 
@@ -305,12 +489,16 @@ cookieconsent.run({
     <i class="bi bi-globe"></i>
      <span class="about-link-text">Official homepage [<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>]</span>
   </a>
+  <a href="/content/pubs/JEP22/" class="about-link" rel="" target="">
+    <i class="bi bi-file-pdf"></i>
+     <span class="about-link-text">Article (journal)</span>
+  </a>
   <a href="/content/pubs/ICCHP18-TactiBelt/" class="about-link" rel="" target="">
     <i class="bi bi-file-pdf"></i>
-     <span class="about-link-text">Article</span>
+     <span class="about-link-text">Article (conference)</span>
   </a>
-  <a href="/content/sci-com/talks/RUNN19/" class="about-link" rel="" target="">
-     <span class="about-link-text"><iconify-icon inline="" icon="file-icons:keynote"></iconify-icon> Talk [<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>]</span>
+  <a href="/content/projects/ACCESSPACE/RUNN19.pdf" class="about-link" rel="" target="">
+     <span class="about-link-text"><iconify-icon inline="" icon="file-icons:keynote"></iconify-icon> Slides [<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>]</span>
   </a>
   <a href="/content/projects/ACCESSPACE/poster.pdf" class="about-link" rel="" target="">
     <i class="bi bi-file-image"></i>
@@ -327,47 +515,78 @@ cookieconsent.run({
 
 <hr style="margin-bottom: 0px; margin-top: -12px;" width="1000px">
 <p><a href="header.jpg" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="header.jpg" class="img-fluid" alt="Banner illustrating the project"></a></p>
-<section id="introduction" class="level1" data-number="1">
-<h1 data-number="1"><span class="header-section-number">1</span> Introduction</h1>
-<hr>
+<section id="summary" class="level1 page-columns page-full">
+<h1>Summary</h1>
 <p>ACCESSPACE’s high-level goal was to allow VIP to navigate indoors or outdoors in autonomy, helping them intuitively perceive where they are, where they want to go, to choose how to get there, and avoid the incoming obstacles on their way.</p>
 <p><strong>ACCESSPACE had three main axes of research:</strong><br>
 <strong>1)</strong> Devise an intuitive and efficient way to provide real-time spatial cues through tactile signals<br>
 <strong>2)</strong> Design a haptic interface that allows to communicate said spatial representation easily to the user<br>
 <strong>3)</strong> Implement the software require to support the various functions of this interface (e.g.&nbsp;Indoor Localisation, Obstacle Detection, Mapping, …)</p>
-<p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combine and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
-<div id="fig-neuro" class="quarto-figure quarto-figure-center quarto-float" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles">
+<p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combines and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
+<div id="fig-neuro" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: ACCESSPACE guiding principle"><img src="neuro.png" class="img-fluid figure-img" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a>
+<a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: ACCESSPACE guiding principle"><img src="neuro.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a>
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: ACCESSPACE guiding principle
 </figcaption>
 </figure>
 </div>
-<p>Using those principles, we devised an <strong>encoding scheme</strong> that provides the user with 3 types of information through egocentered tactile feedback:</p>
-<ul>
-<li>The orientation and distance to the destination of the journey (as the crow flies)<br>
-</li>
-<li>The available path possibilities around the user (i.e.&nbsp;the various branching streets they could take, the current room’s center), which form a navigation graph, and will allow the VIP to mentally visualize the layout of its immediate environment<br>
-</li>
-<li>The closest obstacles</li>
-</ul>
+<p>Thus, we devised an <strong>encoding scheme</strong> that provides the user with 3 types of information through egocentered tactile feedback:<br>
+<strong>1)</strong> The orientation and distance to the destination of the journey (as the crow flies)<br>
+<strong>2)</strong> The available path possibilities around the user (i.e.&nbsp;the various branching streets they could take, the current room’s center)<br>
+<strong>3)</strong> The closest obstacles</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><a href="nav.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3" title="Illustration of the navigation graph idea"><img src="nav.png" title="An illustration showcasing the navigation graph used with the TactiBelt" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:60.0%" alt="An illustration showcasing the navigation graph used with the TactiBelt"></a></p>
+</figure>
+</div>
 <figcaption>Illustration of the navigation graph idea</figcaption>
 </figure>
 </div>
-</section>
-<section id="outcomes" class="level1" data-number="2">
-<h1 data-number="2"><span class="header-section-number">2</span> Outcomes</h1>
-<hr>
-<section id="our-interface-the-tactibelt" class="level2" data-number="2.1">
-<h2 data-number="2.1" data-anchor-id="our-interface-the-tactibelt"><span class="header-section-number">2.1</span> Our interface: the TactiBelt</h2>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>My role in this project
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>1)</strong> Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, …).</p>
+<p><strong>2)</strong> Designed the TactiBelt and participated in its conception (Arduino).</p>
+<p><strong>3)</strong> Participated in the development of a <a href="https://github.com/ma-riviere/BeltControl">Java application</a> to control and evaluate the TactiBelt in a pacman-like game.</p>
+<p><strong>4)</strong> Handled the preliminary experimental evaluations of the TactiBelt, and the analyses of the collected data.</p>
+<p><strong>5)</strong> Was involved in writing a <a href="../../../content/pubs/JEP22/">journal paper</a> <span class="citation" data-cites="faugloire2022">(<a href="#ref-faugloire2022" role="doc-biblioref">Faugloire et al., 2022</a>)</span> and a <a href="../../../content/pubs/ICCHP18-TactiBelt/">conference paper</a> <span class="citation" data-cites="rivière2018">(<a href="#ref-rivière2018" role="doc-biblioref">Rivière et al., 2018</a>)</span></p>
+<p><strong>6)</strong> Disseminated the project through a talk at an international conference, and various outreach events.</p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<div class="callout callout-style-simple callout-note callout-empty-content callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Was awarded the <strong>“Applied research on disability” award from the CCAH</strong> in 2017 🥇
+</div>
+</div>
+<div class="callout-body-container callout-body">
+
+</div>
+</div>
+</div></div></section>
+<section id="details" class="level1">
+<h1>Details</h1>
+<section id="our-interface-the-tactibelt" class="level2">
+<h2 data-anchor-id="our-interface-the-tactibelt">Our interface: the TactiBelt</h2>
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
-<div id="fig-tactibelt-v1" class="quarto-figure quarto-figure-center quarto-float" alt="A photography showing the first version of the TactiBelt" data-fig-align="center">
+<div id="fig-tactibelt-v1" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" alt="A photography showing the first version of the TactiBelt">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tactibelt-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: First prototype of the TactiBelt"><img src="TactiBelt.png" title="A photography showing the first version of the TactiBelt" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A photography showing the first version of the TactiBelt"></a>
@@ -378,8 +597,8 @@ Figure&nbsp;2: First prototype of the TactiBelt
 </figure>
 </div>
 </section>
-<section id="software-tools" class="level2" data-number="2.2">
-<h2 data-number="2.2" data-anchor-id="software-tools"><span class="header-section-number">2.2</span> Software tools</h2>
+<section id="software-tools" class="level2">
+<h2 data-anchor-id="software-tools">Software tools</h2>
 <p>To capture and extract the information we need from the VIP’s environment, we devised a series of software tools relying mostly on Computer Vision:</p>
 <p><strong>1)</strong> Obstacle detection and indoor localisation using the <a href="https://github.com/raulmur/ORB_SLAM2">ORB-SLAM</a> algorithm:</p>
 <div class="quarto-figure quarto-figure-center">
@@ -405,8 +624,9 @@ Figure&nbsp;2: First prototype of the TactiBelt
 <p><strong>4)</strong> A virtual environment to test the TactiBelt and our candidate spatial encoding schemes:</p>
 <p><a href="VR.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="VR.png" class="img-fluid" alt="A screenshot of our virtual environment where the player has to find a virtual target solely relying on tactile feedback"></a></p>
 </section>
-<section id="project-dissemination" class="level2" data-number="2.3">
-<h2 data-number="2.3" data-anchor-id="project-dissemination"><span class="header-section-number">2.3</span> Project dissemination</h2>
+</section>
+<section id="project-dissemination" class="level1">
+<h1>Project dissemination</h1>
 <p>The ACCESSPACE project was promoted in various mainstream and technical media, such as:<br>
 - On <a href="https://www.rtl.fr/actu/sciences-tech/tactbelt-la-ceinture-qui-aide-les-non-voyants-a-se-diriger-7797538766">RTL</a>, a French national radio station (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
 - On <a href="https://app.phdtalent.fr/publication/accesspace-un-outil-pour-ce-deplacer-sans-la-vue_3/details">PhDTalent</a>, a platform and network for PhD Students who wish to transition to industry (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
@@ -414,392 +634,270 @@ Figure&nbsp;2: First prototype of the TactiBelt
 - On <a href="https://www.acuite.fr/actualite/sante/157415/un-nouveau-dispositif-ad-hoc-pour-les-malvoyants">Acuité</a>, a specialized website dedicated to Opticians and news around visual impairment (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
 - On <a href="https://www.oxytude.org/hebdoxytude-129-lactualite-de-la-semaine-en-technologies-et-accessibilite/">Oxytude</a>, a weekly podcast reviewing news related to visual impairment (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)<br>
 - On <a href="https://www.firah.org/fr/accesspace.html">FIRAH</a>, the French Foundation on Applied Research for Handicap (<iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon>)</p>
-<div class="callout callout-style-simple callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-This project has been warmly welcomed by the VIP community and was awarded the <strong>“Applied research on disability” award from the CCAH</strong> in 2017 🥇
-</div>
-</div>
-<div class="callout-body-container callout-body">
 
-</div>
-</div>
-</section>
-</section>
-<section id="my-role-in-this-project" class="level1" data-number="3">
-<h1 data-number="3"><span class="header-section-number">3</span> My role in this project</h1>
-<hr>
-<p><strong>ACCESSPACE was my main PhD project:</strong></p>
-<p><strong>1)</strong> Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, …).</p>
-<p><strong>2)</strong> Designed the TactiBelt and participated in its conception (Arduino).</p>
-<p><strong>3)</strong> Participated in the development of a <a href="https://github.com/ma-riviere/BeltControl">Java application</a> to control and test the TactiBelt.</p>
-<p><strong>4)</strong> Handled the preliminary experimental evaluations of the TactiBelt, and the analyses of said data.</p>
-<p><strong>5)</strong> Presenting the project with a <a href="../../../content/pubs/JEP22/">journal paper</a>, a <a href="../../../content/pubs/ICCHP18-TactiBelt/">conference paper</a>, a talk at an <a href="../../../content/sci-com/talks/ICCHP18/">international conference</a>, and various outreach events (see the <em>dissemination section</em> above for more details).</p>
 
 
 
 </section>
 
-<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
+<a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" data-entry-spacing="0" data-line-spacing="2" role="list">
+<div id="ref-faugloire2022" class="csl-entry" role="listitem">
+Faugloire, E., Lejeune, L., Rivière, M.-A., &amp; Mantel, B. (2022). Spatiotemporal influences on the recognition of two-dimensional vibrotactile patterns on the abdomen. <em>Journal of Experimental Psychology: Applied</em>, <em>28</em>(3), 606–628. <a href="https://doi.org/10.1037/xap0000404">https://doi.org/10.1037/xap0000404</a>
+</div>
+<div id="ref-rivière2018" class="csl-entry" role="listitem">
+Rivière, M.-A., Gay, S., &amp; Pissaloux, E. (2018). <em>TactiBelt: Integrating spatial cognition and mobility theories into the design of a novel orientation and mobility assistive device for the blind</em> (K. Miesenberger &amp; G. Kouroupetroglou, Eds.; Vol. 10897, pp. 110–113). Springer International Publishing. <a href="https://doi.org/10.1007/978-3-319-94274-2_16">https://doi.org/10.1007/978-3-319-94274-2_16</a>
+</div>
+</div></section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
-window.document.addEventListener("DOMContentLoaded", function (event) {
-  const toggleBodyColorMode = (bsSheetEl) => {
-    const mode = bsSheetEl.getAttribute("data-mode");
-    const bodyEl = window.document.querySelector("body");
-    if (mode === "dark") {
-      bodyEl.classList.add("quarto-dark");
-      bodyEl.classList.remove("quarto-light");
-    } else {
-      bodyEl.classList.add("quarto-light");
-      bodyEl.classList.remove("quarto-dark");
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
     }
-  }
-  const toggleBodyColorPrimary = () => {
-    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
-    if (bsSheetEl) {
-      toggleBodyColorMode(bsSheetEl);
-    }
-  }
-  toggleBodyColorPrimary();  
-  const disableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'prefetch';
-    }
-  }
-  const enableStylesheet = (stylesheets) => {
-    for (let i=0; i < stylesheets.length; i++) {
-      const stylesheet = stylesheets[i];
-      stylesheet.rel = 'stylesheet';
-    }
-  }
-  const manageTransitions = (selector, allowTransitions) => {
-    const els = window.document.querySelectorAll(selector);
-    for (let i=0; i < els.length; i++) {
-      const el = els[i];
-      if (allowTransitions) {
-        el.classList.remove('notransition');
-      } else {
-        el.classList.add('notransition');
+    setColorSchemeToggle(hasAlternateSentinel())
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
       }
+      return false;
     }
-  }
-  const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
-    const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
-    const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
-    let newTheme = '';
-    if(darkModeDefault) {
-      newTheme = isAlternate ? baseTheme : alternateTheme;
-    } else {
-      newTheme = isAlternate ? alternateTheme : baseTheme;
-    }
-    const changeGiscusTheme = () => {
-      // From: https://github.com/giscus/giscus/issues/336
-      const sendMessage = (message) => {
-        const iframe = document.querySelector('iframe.giscus-frame');
-        if (!iframe) return;
-        iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
       }
-      sendMessage({
-        setConfig: {
-          theme: newTheme
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/ma-riviere\.com");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
         }
       });
     }
-    const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
-    if (isGiscussLoaded) {
-      changeGiscusTheme();
-    }
-  }
-  const toggleColorMode = (alternate) => {
-    // Switch the stylesheets
-    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
-    manageTransitions('#quarto-margin-sidebar .nav-link', false);
-    if (alternate) {
-      enableStylesheet(alternateStylesheets);
-      for (const sheetNode of alternateStylesheets) {
-        if (sheetNode.id === "quarto-bootstrap") {
-          toggleBodyColorMode(sheetNode);
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
         }
       }
-    } else {
-      disableStylesheet(alternateStylesheets);
-      toggleBodyColorPrimary();
-    }
-    manageTransitions('#quarto-margin-sidebar .nav-link', true);
-    // Switch the toggles
-    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
-    for (let i=0; i < toggles.length; i++) {
-      const toggle = toggles[i];
-      if (toggle) {
-        if (alternate) {
-          toggle.classList.add("alternate");     
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
         } else {
-          toggle.classList.remove("alternate");
-        }
-      }
-    }
-    // Hack to workaround the fact that safari doesn't
-    // properly recolor the scrollbar when toggling (#1455)
-    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
-      manageTransitions("body", false);
-      window.scrollTo(0, 1);
-      setTimeout(() => {
-        window.scrollTo(0, 0);
-        manageTransitions("body", true);
-      }, 40);  
-    }
-  }
-  const isFileUrl = () => { 
-    return window.location.protocol === 'file:';
-  }
-  const hasAlternateSentinel = () => {  
-    let styleSentinel = getColorSchemeSentinel();
-    if (styleSentinel !== null) {
-      return styleSentinel === "alternate";
-    } else {
-      return false;
-    }
-  }
-  const setStyleSentinel = (alternate) => {
-    const value = alternate ? "alternate" : "default";
-    if (!isFileUrl()) {
-      window.localStorage.setItem("quarto-color-scheme", value);
-    } else {
-      localAlternateSentinel = value;
-    }
-  }
-  const getColorSchemeSentinel = () => {
-    if (!isFileUrl()) {
-      const storageValue = window.localStorage.getItem("quarto-color-scheme");
-      return storageValue != null ? storageValue : localAlternateSentinel;
-    } else {
-      return localAlternateSentinel;
-    }
-  }
-  const darkModeDefault = false;
-  let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
-  // Dark / light mode switch
-  window.quartoToggleColorScheme = () => {
-    // Read the current dark / light value 
-    let toAlternate = !hasAlternateSentinel();
-    toggleColorMode(toAlternate);
-    setStyleSentinel(toAlternate);
-    toggleGiscusIfUsed(toAlternate, darkModeDefault);
-  };
-  // Ensure there is a toggle, if there isn't float one in the top right
-  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
-    const a = window.document.createElement('a');
-    a.classList.add('top-right');
-    a.classList.add('quarto-color-scheme-toggle');
-    a.href = "";
-    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
-    const i = window.document.createElement("i");
-    i.classList.add('bi');
-    a.appendChild(i);
-    window.document.body.appendChild(a);
-  }
-  // Switch to dark mode if need be
-  if (hasAlternateSentinel()) {
-    toggleColorMode(true);
-  } else {
-    toggleColorMode(false);
-  }
-  const isCodeAnnotation = (el) => {
-    for (const clz of el.classList) {
-      if (clz.startsWith('code-annotation-')) {                     
-        return true;
-      }
-    }
-    return false;
-  }
-  const clipboard = new window.ClipboardJS('.code-copy-button', {
-    text: function(trigger) {
-      const codeEl = trigger.previousElementSibling.cloneNode(true);
-      for (const childEl of codeEl.children) {
-        if (isCodeAnnotation(childEl)) {
-          childEl.remove();
-        }
-      }
-      return codeEl.innerText;
-    }
-  });
-  clipboard.on('success', function(e) {
-    // button target
-    const button = e.trigger;
-    // don't keep focus
-    button.blur();
-    // flash "checked"
-    button.classList.add('code-copy-button-checked');
-    var currentTitle = button.getAttribute("title");
-    button.setAttribute("title", "Copied!");
-    let tooltip;
-    if (window.bootstrap) {
-      button.setAttribute("data-bs-toggle", "tooltip");
-      button.setAttribute("data-bs-placement", "left");
-      button.setAttribute("data-bs-title", "Copied!");
-      tooltip = new bootstrap.Tooltip(button, 
-        { trigger: "manual", 
-          customClass: "code-copy-button-tooltip",
-          offset: [0, -8]});
-      tooltip.show();    
-    }
-    setTimeout(function() {
-      if (tooltip) {
-        tooltip.hide();
-        button.removeAttribute("data-bs-title");
-        button.removeAttribute("data-bs-toggle");
-        button.removeAttribute("data-bs-placement");
-      }
-      button.setAttribute("title", currentTitle);
-      button.classList.remove('code-copy-button-checked');
-    }, 1000);
-    // clear code selection
-    e.clearSelection();
-  });
-    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
-    var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/ma-riviere\.com");
-    var isInternal = (href) => {
-        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
-    }
-    // Inspect non-navigation links and adorn them if external
- 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
-    for (var i=0; i<links.length; i++) {
-      const link = links[i];
-      if (!isInternal(link.href)) {
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
           }
-      }
-    }
-  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
-    const config = {
-      allowHTML: true,
-      maxWidth: 500,
-      delay: 100,
-      arrow: false,
-      appendTo: function(el) {
-          return el.parentElement;
-      },
-      interactive: true,
-      interactiveBorder: 10,
-      theme: 'quarto',
-      placement: 'bottom-start',
-    };
-    if (contentFn) {
-      config.content = contentFn;
-    }
-    if (onTriggerFn) {
-      config.onTrigger = onTriggerFn;
-    }
-    if (onUntriggerFn) {
-      config.onUntrigger = onUntriggerFn;
-    }
-    window.tippy(el, config); 
-  }
-  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
-  for (var i=0; i<noterefs.length; i++) {
-    const ref = noterefs[i];
-    tippyHover(ref, function() {
-      // use id or data attribute instead here
-      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
-      try { href = new URL(href).hash; } catch {}
-      const id = href.replace(/^#\/?/, "");
-      const note = window.document.getElementById(id);
-      return note.innerHTML;
-    });
-  }
-  const xrefs = window.document.querySelectorAll('a.quarto-xref');
-  const processXRef = (id, note) => {
-    // Strip column container classes
-    const stripColumnClz = (el) => {
-      el.classList.remove("page-full", "page-columns");
-      if (el.children) {
-        for (const child of el.children) {
-          stripColumnClz(child);
+          return note.innerHTML;
         }
-      }
-    }
-    stripColumnClz(note)
-    if (id === null || id.startsWith('sec-')) {
-      // Special case sections, only their first couple elements
-      const container = document.createElement("div");
-      if (note.children && note.children.length > 2) {
-        container.appendChild(note.children[0].cloneNode(true));
-        for (let i = 1; i < note.children.length; i++) {
-          const child = note.children[i];
-          if (child.tagName === "P" && child.innerText === "") {
-            continue;
-          } else {
-            container.appendChild(child.cloneNode(true));
-            break;
-          }
-        }
-        if (window.Quarto?.typesetMath) {
-          window.Quarto.typesetMath(container);
-        }
-        return container.innerHTML
       } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
         if (window.Quarto?.typesetMath) {
           window.Quarto.typesetMath(note);
         }
-        return note.innerHTML;
-      }
-    } else {
-      // Remove any anchor links if they are present
-      const anchorLink = note.querySelector('a.anchorjs-link');
-      if (anchorLink) {
-        anchorLink.remove();
-      }
-      if (window.Quarto?.typesetMath) {
-        window.Quarto.typesetMath(note);
-      }
-      // TODO in 1.5, we should make sure this works without a callout special case
-      if (note.classList.contains("callout")) {
-        return note.outerHTML;
-      } else {
-        return note.innerHTML;
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
       }
     }
-  }
-  for (var i=0; i<xrefs.length; i++) {
-    const xref = xrefs[i];
-    tippyHover(xref, undefined, function(instance) {
-      instance.disable();
-      let url = xref.getAttribute('href');
-      let hash = undefined; 
-      if (url.startsWith('#')) {
-        hash = url;
-      } else {
-        try { hash = new URL(url).hash; } catch {}
-      }
-      if (hash) {
-        const id = hash.replace(/^#\/?/, "");
-        const note = window.document.getElementById(id);
-        if (note !== null) {
-          try {
-            const html = processXRef(id, note.cloneNode(true));
-            instance.setContent(html);
-          } finally {
-            instance.enable();
-            instance.show();
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
           }
         } else {
-          // See if we can fetch this
-          fetch(url.split('#')[0])
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
           .then(res => res.text())
           .then(html => {
             const parser = new DOMParser();
             const htmlDoc = parser.parseFromString(html, "text/html");
-            const note = htmlDoc.getElementById(id);
+            const note = htmlDoc.querySelector('main.content');
             if (note !== null) {
-              const html = processXRef(id, note);
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
               instance.setContent(html);
             } 
           }).finally(() => {
@@ -807,185 +905,161 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             instance.show();
           });
         }
-      } else {
-        // See if we can fetch a full url (with no hash to target)
-        // This is a special case and we should probably do some content thinning / targeting
-        fetch(url)
-        .then(res => res.text())
-        .then(html => {
-          const parser = new DOMParser();
-          const htmlDoc = parser.parseFromString(html, "text/html");
-          const note = htmlDoc.querySelector('main.content');
-          if (note !== null) {
-            // This should only happen for chapter cross references
-            // (since there is no id in the URL)
-            // remove the first header
-            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
-              note.children[0].remove();
-            }
-            const html = processXRef(null, note);
-            instance.setContent(html);
-          } 
-        }).finally(() => {
-          instance.enable();
-          instance.show();
-        });
-      }
-    }, function(instance) {
-    });
-  }
-      let selectedAnnoteEl;
-      const selectorForAnnotation = ( cell, annotation) => {
-        let cellAttr = 'data-code-cell="' + cell + '"';
-        let lineAttr = 'data-code-annotation="' +  annotation + '"';
-        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
-        return selector;
-      }
-      const selectCodeLines = (annoteEl) => {
-        const doc = window.document;
-        const targetCell = annoteEl.getAttribute("data-target-cell");
-        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
-        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
-        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
-        const lineIds = lines.map((line) => {
-          return targetCell + "-" + line;
-        })
-        let top = null;
-        let height = null;
-        let parent = null;
-        if (lineIds.length > 0) {
-            //compute the position of the single el (top and bottom and make a div)
-            const el = window.document.getElementById(lineIds[0]);
-            top = el.offsetTop;
-            height = el.offsetHeight;
-            parent = el.parentElement.parentElement;
-          if (lineIds.length > 1) {
-            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
-            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
-            height = bottom - top;
-          }
-          if (top !== null && height !== null && parent !== null) {
-            // cook up a div (if necessary) and position it 
-            let div = window.document.getElementById("code-annotation-line-highlight");
-            if (div === null) {
-              div = window.document.createElement("div");
-              div.setAttribute("id", "code-annotation-line-highlight");
-              div.style.position = 'absolute';
-              parent.appendChild(div);
-            }
-            div.style.top = top - 2 + "px";
-            div.style.height = height + 4 + "px";
-            div.style.left = 0;
-            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
-            if (gutterDiv === null) {
-              gutterDiv = window.document.createElement("div");
-              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
-              gutterDiv.style.position = 'absolute';
-              const codeCell = window.document.getElementById(targetCell);
-              const gutter = codeCell.querySelector('.code-annotation-gutter');
-              gutter.appendChild(gutterDiv);
-            }
-            gutterDiv.style.top = top - 2 + "px";
-            gutterDiv.style.height = height + 4 + "px";
-          }
-          selectedAnnoteEl = annoteEl;
-        }
-      };
-      const unselectCodeLines = () => {
-        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
-        elementsIds.forEach((elId) => {
-          const div = window.document.getElementById(elId);
-          if (div) {
-            div.remove();
-          }
-        });
-        selectedAnnoteEl = undefined;
-      };
-        // Handle positioning of the toggle
-    window.addEventListener(
-      "resize",
-      throttle(() => {
-        elRect = undefined;
-        if (selectedAnnoteEl) {
-          selectCodeLines(selectedAnnoteEl);
-        }
-      }, 10)
-    );
-    function throttle(fn, ms) {
-    let throttle = false;
-    let timer;
-      return (...args) => {
-        if(!throttle) { // first call gets through
-            fn.apply(this, args);
-            throttle = true;
-        } else { // all the others get throttled
-            if(timer) clearTimeout(timer); // cancel #2
-            timer = setTimeout(() => {
-              fn.apply(this, args);
-              timer = throttle = false;
-            }, ms);
-        }
-      };
-    }
-      // Attach click handler to the DT
-      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
-      for (const annoteDlNode of annoteDls) {
-        annoteDlNode.addEventListener('click', (event) => {
-          const clickedEl = event.target;
-          if (clickedEl !== selectedAnnoteEl) {
-            unselectCodeLines();
-            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
-            if (activeEl) {
-              activeEl.classList.remove('code-annotation-active');
-            }
-            selectCodeLines(clickedEl);
-            clickedEl.classList.add('code-annotation-active');
-          } else {
-            // Unselect the line
-            unselectCodeLines();
-            clickedEl.classList.remove('code-annotation-active');
-          }
-        });
-      }
-  const findCites = (el) => {
-    const parentEl = el.parentElement;
-    if (parentEl) {
-      const cites = parentEl.dataset.cites;
-      if (cites) {
-        return {
-          el,
-          cites: cites.split(' ')
-        };
-      } else {
-        return findCites(el.parentElement)
-      }
-    } else {
-      return undefined;
-    }
-  };
-  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
-  for (var i=0; i<bibliorefs.length; i++) {
-    const ref = bibliorefs[i];
-    const citeInfo = findCites(ref);
-    if (citeInfo) {
-      tippyHover(citeInfo.el, function() {
-        var popup = window.document.createElement('div');
-        citeInfo.cites.forEach(function(cite) {
-          var citeDiv = window.document.createElement('div');
-          citeDiv.classList.add('hanging-indent');
-          citeDiv.classList.add('csl-entry');
-          var biblioDiv = window.document.getElementById('ref-' + cite);
-          if (biblioDiv) {
-            citeDiv.innerHTML = biblioDiv.innerHTML;
-          }
-          popup.appendChild(citeDiv);
-        });
-        return popup.innerHTML;
+      }, function(instance) {
       });
     }
-  }
-});
-</script>
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
@@ -993,7 +1067,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
     <a class="nav-link" href="../../../LICENSE.md">
-<p>© 2021-2023, Marc-Aurèle Rivière</p>
+<p>© 2021-2025, Marc-Aurèle Rivière</p>
 </a>
   </li>  
 </ul>
@@ -1012,30 +1086,37 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     </div>
   </div>
 </footer>
-<script>var lightboxQuarto = GLightbox({"openEffect":"zoom","closeEffect":"zoom","selector":".lightbox","descPosition":"bottom","loop":false});
-window.onload = () => {
-  lightboxQuarto.on('slide_before_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    const href = trigger.getAttribute('href');
-    if (href !== null) {
-      const imgEl = window.document.querySelector(`a[href="${href}"] img`);
-      if (imgEl !== null) {
-        const srcAttr = imgEl.getAttribute("src");
-        if (srcAttr && srcAttr.startsWith("data:")) {
-          slideConfig.href = srcAttr;
-        }
-      }
-    } 
-  });
-
-  lightboxQuarto.on('slide_after_load', (data) => {
-    const { slideIndex, slideNode, slideConfig, player, trigger } = data;
-    if (window.Quarto?.typesetMath) {
-      window.Quarto.typesetMath(slideNode);
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
     }
-  });
-
-};
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
           </script>
 
 

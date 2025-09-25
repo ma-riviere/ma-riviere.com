@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss  xmlns:atom="http://www.w3.org/2005/Atom" 
+      xmlns:media="http://search.yahoo.com/mrss/" 
+      xmlns:content="http://purl.org/rss/1.0/modules/content/" 
+      xmlns:dc="http://purl.org/dc/elements/1.1/" 
+      version="2.0">
+<channel>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.com/content/blog/</link>
+<atom:link href="https://ma-riviere.com/content/blog/index.xml" rel="self" type="application/rss+xml"/>
+<description>R Programmer | Data Scientist | Cognitive Neuroscientist</description>
+<image>
+<url>https://ma-riviere.com/res/avatar.jpg</url>
+<title>Marc-Aurèle Rivière</title>
+<link>https://ma-riviere.com/content/blog/</link>
+</image>
+<generator>quarto-1.8.17</generator>
+<lastBuildDate>Fri, 17 Jun 2022 22:00:00 GMT</lastBuildDate>
+<item>
+  <title>Fast spatial data matching in R</title>
+  <link>https://ma-riviere.com/content/blog/posts/spatial/</link>
+  <description><![CDATA[ You can check the source code by clicking on the <strong>&lt;/&gt; Code</strong> button at the top-right. ]]></description>
+  <category>R</category>
+  <category>DuckDB</category>
+  <category>Spatial</category>
+  <category>GIS</category>
+  <category>Big Data</category>
+  <category>SQL</category>
+  <guid>https://ma-riviere.com/content/blog/posts/spatial/</guid>
+  <pubDate>Fri, 17 Jun 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>MCMC for ‘Big Data’ with Stan</title>
+  <link>https://ma-riviere.com/content/blog/posts/big-bayes/</link>
+  <description><![CDATA[ By design, this post contains very few explanations. ]]></description>
+  <category>R</category>
+  <category>Statistics</category>
+  <category>ML</category>
+  <category>Bayesian Modeling</category>
+  <category>Stan</category>
+  <category>Big Data</category>
+  <guid>https://ma-riviere.com/content/blog/posts/big-bayes/</guid>
+  <pubDate>Sat, 04 Jun 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Data wrangling with data.table and the Tidyverse</title>
+  <link>https://ma-riviere.com/content/blog/posts/data.table/</link>
+  <description><![CDATA[ <strong>v1:</strong> 2022-05-19 ]]></description>
+  <category>R</category>
+  <category>Tidyverse</category>
+  <category>data.table</category>
+  <guid>https://ma-riviere.com/content/blog/posts/data.table/</guid>
+  <pubDate>Wed, 18 May 2022 22:00:00 GMT</pubDate>
+</item>
+<item>
+  <title>Bayesian Rock Climbing Rankings</title>
+  <link>https://ma-riviere.com/content/blog/posts/climbing/</link>
+  <description><![CDATA[ By design, this post contains very few explanations. ]]></description>
+  <category>R</category>
+  <category>Statistics</category>
+  <category>ML</category>
+  <category>Bayesian Modeling</category>
+  <category>Stan</category>
+  <guid>https://ma-riviere.com/content/blog/posts/climbing/</guid>
+  <pubDate>Mon, 18 Apr 2022 22:00:00 GMT</pubDate>
+</item>
+</channel>
+</rss>
