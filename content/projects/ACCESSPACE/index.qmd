@@ -42,7 +42,11 @@ about:
       icon: globe
       url: http://accesspace.univ-rouen.fr/index.php
       aria-label: "See the project's official website (in French)"
-    - text: "Article"
+    - text: "Article (journal)"
+      file: content/pubs/JEP22/
+      icon: file-pdf
+      aria-label: "See a journal article about the TactiBelt"
+    - text: "Article (conference)"
       file: content/pubs/ICCHP18-TactiBelt/
       icon: file-pdf
       aria-label: "See a conference article about the TactiBelt"

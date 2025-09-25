@@ -99,7 +99,7 @@ website:
         href: LICENSE.md
         aria-label: "Website's license"
     right:
-      - text: "Made with Quarto ♥️"
+      - text: "Made with {{< fa brands r-project >}}, {{< fa brands js >}}, and [Quarto](https://quarto.org/) ♥️"
         href: https://quarto.org/
         aria-label: "Quarto's website"
 

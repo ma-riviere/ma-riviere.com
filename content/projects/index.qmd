@@ -1,6 +1,6 @@
 ---
 title: "<i class='bi bi-journal-code'></i> Past & Current Projects"
-subtitle: "A sample of non-proprietary **Research**, **software engineering**, and **data science** projects I was involved in"
+subtitle: "A sample of non-proprietary **research**, **software engineering**, and **data science** projects I was involved in"
 
 toc: false
 number-sections: false

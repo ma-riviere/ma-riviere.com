@@ -59,10 +59,9 @@ about:
 
 ### My role in this project
 
-**1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [
-Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process.
+**1)** Developed tools to assist the project's researchers in exploring their data. Among those tools, I coded and hosted a modular [Shiny dashboard](https://mar-studio.shinyapps.io/ShinyQPCR2/) to assist in the data exploration process (R/Shiny).
 
-**2)** Handled the data processing and analysis for both RT-qPCR and immunohistochemistry data.
+**2)** Handled the data processing and analysis for both RT-qPCR and immunohistochemistry data (R/Markdown).
 
 **3)** Participated in writing the [journal article](/content/pubs/CRN23/) summarizing the results of this project [@rodriguez-dubocApneaPrematurityInduces2023a].
 
@@ -79,3 +78,5 @@ The DE-AoP project included RT-qPCR and immunohistochemistry data, which were an
 The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
 
 Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
+
+![](feature.png){fig-alt="Circlize plot illustrating the impact of the multiple genes tested on several key biological pathways" fig-align="center"}

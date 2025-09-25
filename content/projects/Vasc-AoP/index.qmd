@@ -14,9 +14,14 @@ author:
 image: graphical-abstract.png
 image-alt: "Graphical abstract recapitulating the main findings of this project"
 
-description: "TBA"
+description: "Reproducible R analysis investigating the effects of intermittent hypoxia on cerebellar vascular development using 3D imaging and transcriptomics in a murine model of apnea of prematurity."
 
-abstract: "TBA"
+abstract: |
+  Apnea of prematurity is a common condition in premature infants that can lead to intermittent hypoxia (IH) episodes, potentially affecting brain development. This study investigated how IH affects cerebellar vascular development using a murine model. We collected and analyzed two complementary datasets: RT-qPCR data measuring expression of angiogenesis-related genes, and 3D immunohistochemistry data quantifying morphological features of the cerebellar vascular network obtained through tissue clearing protocols.
+  
+  The data was analyzed using generalized linear mixed-effects models. PCR data was modeled using Gaussian distributions, while vascular morphology data used Gamma distributions for continuous measures and negative binomial distributions for count data. All models included random effects to account for pseudo-replication and inter-animal variability.
+  
+  The repository provides open data, reproducible R code, and key figures used in the associated article. All analyses were conducted in a version-controlled environment using R & {renv}, ensuring full reproducibility of results.
 
 website:
   open-graph:
@@ -29,7 +34,8 @@ categories:
   - Bioinformatics
   - Biostatistics
   - Immunohistochemistry
-  - Imaging
+  - Transcriptomics
+  - RT-qPCR
 
 # Dirty trick to get some links/buttons
 about:
@@ -42,7 +48,11 @@ about:
     - text: "Code"
       icon: github
       url: https://github.com/agalic-rd/Vasc-AoP/
-      aria-label: "See the code used for this project"
+      aria-label: "See the R code for this project"
+
+execute:
+    eval: true
+    echo: false
 ---
 
 {{< include /content/_hr.qmd >}}
@@ -51,7 +61,7 @@ about:
 
 ## My role in this project
 
-**1)** Managed the data processing, modeling, and hypothesis testing.
+**1)** Managed the data processing, modeling, and hypothesis testing (R/Markdown).
 
 **2)** Helped write the methodology/statistics part of the paper (in press).
 
@@ -63,42 +73,284 @@ about:
 
 ![](graphical-abstract.png){fig-alt="Graphical abstract recapitulating the main findings of this project"}
 
-TODO:
-- Types of data: PCR (transcriptomics) and IHC (immunohistochemistry)
-  * PCR: measure gene expression of angiogenesis-related pathways
-  * IHC: morphological appearance of the 3D vascular network of the cerebellum (volume, segments, endpoints, radius, area, ...) using a clearing protocol
-- Data processing: TODO
-- Modelling: TODO
-- Hypotheses: whether/how IH protocol affected the formation of the vascular network of the cerebellum
-  * Morhphological appearance
-  * Explain/link morphological appearance to transcriptomics/gene expression
+This study used a murine model to investigate how **Intermittent Hypoxia (IH)**, which mimics apnea of prematurity, affects **cerebellar vascular development**, combining **transcriptomic** analysis of angiogenesis-related genes with innovative **3D morphological** analysis of the cerebellar vascular network. Data was collected across multiple developmental stages (P4, P8, P12, P21, P70), with multiple mice per stage and condition (Normoxia vs IH).
 
 # Data
 
-TODO
+```{r}
+source(here::here("src", "init_min.R"), echo = FALSE)
 
+library(openxlsx2)
+library(dplyr)
+library(purrr)
+library(stringr)
+library(pipebind)
+library(cli)
 
-# Models
+library(glmmTMB)
 
-Optical Density (OD) data was modeled using a Gamma distribution to account for the data's strict positivity and positive skewness, with a log link function.
+library(performance)
+library(DHARMa)
 
-Generalized Linear Mixed Models (GLMMs) were used to model the data, using random effects to account for pseudo-replication and the hierarchical nature of the data. For all models, categorical predictors were dummy-coded with a reference level: genotype (Wild-Type) and age (3 months). Models were fitted using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package. 
+library(emmeans)
 
+library(ggplot2)
+library(ggtext)
+library(ggiraph)
+library(ggnewscale)
+library(reactable)
+library(DT)
+library(patchwork)
+library(gtools)
 
-Model fit was assessed using a combination of plots (normality, homoscedasticity, normality of residuals, collinearity), statistical tests (Levenne, KS, dispersion), and posterior predictive checks on simple statistics (min, max, mean, sd) using simulated residuals. Model fit was assessed using the [DHARMa](https://florianhartig.github.io/DHARMa/) and [performance](https://easystats.github.io/performance/) packages.
+source2("https://raw.githubusercontent.com/ma-riviere/DE-AoP-23/gh-pages/src/scripts/viz.R", NA, include.only = c("make_suburst_plot"))
 
-Two models were fitted on the OD data, one for the **soma** and one for the **molecular layer** (terminal fields):
+source("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/src/scripts/data.R")
+source("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/src/scripts/viz.R")
+source("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/src/scripts/utils.R")
+
+colors_cond <- c("#cf4040", "#4053cf")   # Condition: N, IH
+colors_fold <- c("#f02b00", "#01944b")   # Expression: Downregulated, Upregulated
+colors_effect <- c("#b625bb", "#0264cc") # Effect: Bad, Good
+
+data_url_pcr <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/pcr_processed.rds"
+data_url_ihc <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/clearing_processed.rds"
+data_dict_url <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/__data_dictionary.xlsx"
+gene_data_url <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/__gene_data.xlsx"
+
+## Main
+
+pcr_data <- readRDS(url(data_url_pcr))
+
+ihc_data <- readRDS(url(data_url_ihc))
+ihc_data <- ihc_data$normal
+
+## Supplementary
+
+data_dict_wb <- openxlsx2::wb_load(data_dict_url)
+data_dict <- purrr::map(
+    purrr::set_names(data_dict_wb$sheet_names),
+    \(sheet) openxlsx2::wb_to_df(data_dict_wb, sheet = sheet)
+)
+
+gene_data_wb <- openxlsx2::wb_load(gene_data_url)
+gene_data <- list(
+    ref = openxlsx2::wb_to_df(gene_data_wb, sheet = 1) |> 
+        janitor::clean_names() |> 
+        filter(!is.na(gene)),
+    fx = openxlsx2::wb_to_df(gene_data_wb, sheet = 2) |> 
+        janitor::clean_names() |> 
+        tidyr::pivot_longer(ends_with("_effect"), names_pattern = "(.+)_effect", names_to = "effect", values_to = "gene") |> 
+        tidyr::separate_longer_delim(gene, delim = "; ")
+)
+```
+
+```{r}
+#| code-fold: true
+#| code-summary: "Applying a custom theme to all `gt` tables"
+#| file: !expr here("src", "common", "knitr", "knit_print_gt_mono.R")
+```
+
+The project analyzed two complementary datasets from a murine model of intermittent hypoxia (IH):
 
 ::: {.panel-tabset}
 
-## 'Soma' model
+### PCR
 
-We modeled the OD of individual neuronal somata ($Y_{ijk}$) using genotype, age, and brain area (LEC vs. MEC) as fixed effects, along with all their interactions. Random intercepts were included for each rat (j) and for each tissue section (k) nested within each rat.
+**RT-qPCR** targeted an angiogenesis-focused gene panel curated via network and pathway analysis using Cytoscape with STRING-DB and ClueGO to prioritize regulators of vascular development. Primers were designed in Primer Express from NCBI sequences, validated by linear regression on serial dilutions, and checked for specificity by NCBI BLAST. Expression was quantified as $\Delta Cq$.
+
+:::: {layout="[64,36]" layout-valign="center"}
+
+```{r}
+#| output: true
+
+make_suburst_plot(gene_data$ref, layers = c("pathway", "gene"), colors = NULL)
+```
+
+```{r}
+#| output: true
+
+DT::datatable(
+    pcr_data$clean |> 
+        select(-experiment, -id, -mean_cq) |> 
+        mutate(across(where(is.numeric), \(x) round(x, 3))) |>
+        arrange(stage, gene, condition),
+    rownames = FALSE,
+    class = "cell-border stripe compact",
+    extensions = c("RowGroup", "Responsive"),
+    filter = "none",
+    options = list(
+        pageLength = 15, 
+        autoWidth = TRUE, 
+        rowGroup = list(dataSrc = 2),
+        columnDefs = list(list(visible = FALSE, targets = 2)),
+        searching = FALSE
+    ),
+    escape = FALSE
+)
+```
+
+::::
+
+### IHC
+
+3D morphological data was obtained from **immunohistochemically-stained cerebellar vasculature** using innovative tissue clearing protocols. The clearing technique enabled quantification of multiple vascular parameters including total volume, network length, surface area, segment characteristics, and branching patterns, analyzed at both total cerebellar level and stratified by depth (superficial vs deep layers).
+
+```{r}
+#| output: true
+
+DT::datatable(
+    ihc_data |>
+        mutate(across(where(is.numeric), \(x) ifelse(x > 99999, formatC(x, format = "e", digits = 1), round(x, 2)))),
+    rownames = FALSE,
+    class = "cell-border stripe compact",
+    extensions = c("Responsive"),
+    filter = "none",
+    options = list(
+        pageLength = 20, 
+        autoWidth = TRUE,
+        searching = FALSE
+    ),
+    escape = FALSE
+)
+```
+
+:::
+
+## Supplementary data
+
+::: {.panel-tabset}
+
+### Data Dictionary
+
+Data preprocessing involved standardizing variable names and metadata using a **data dictionary** to ensure consistency:
+
+```{r}
+#| output: true
+
+make_data_dict_reactable <- function(data, data_dict) {
+
+    data_dict_main <- data_dict[[1]]
+  
+    get_var_details <- function(idx) {
+        sheet <- pluck(data_dict_main[idx, ], 1)
+
+        if (sheet %in% names(data_dict)) {
+            reactable(data_dict[[sheet]], fullWidth = TRUE, compact = TRUE)
+        }
+    }
+  
+    reactable(
+        data_dict_main
+        , defaultColDef = colDef(sortNALast = TRUE, vAlign = "center", headerVAlign = "center", align = "center")
+        , columns = list(Description = colDef(html = TRUE), Label = colDef(html = TRUE))
+        , details = \(idx) get_var_details(idx)
+        , outlined = TRUE
+        , striped = TRUE
+        , highlight = TRUE
+        , compact = TRUE
+        , fullWidth = TRUE
+        , defaultPageSize = 20
+    )
+}
+
+make_data_dict_reactable(pcr_data$clean, data_dict)
+```
+
+### Gene Data
+
+The 'gene data' file provides detailed information about the genes analyzed in this study, organized by biological pathways (and how they affect those pathways), and including gene functions, NCBI references, and supporting literature.
+
+```{r}
+#| output: true
+
+link_papers <- function(refs) {
+    if (is.na(refs)) return(NA)
+
+    refs <- str_split_1(refs, ";|,")
+    res <- purrr::map_chr(
+        refs, 
+        function(ref) {
+            ref <- str_trim(ref)
+            str_glue("<a target=_blank href='https://doi.org/{ref}'>{ref}</a>")
+        }
+    )
+    
+    return(paste(res, collapse = "; "))
+}
+
+link_ncbi <- function(ref) {
+    str_glue("<a target=_blank href='https://www.ncbi.nlm.nih.gov/gene/?term={ref}'>{ref}</a>")
+}
+
+gene_data$ref |> 
+    mutate(
+        Papers = purrr::map_chr(ref, link_papers), 
+        NCBI_reference = purrr::map_chr(ncbi_reference, link_ncbi),
+        .keep = "unused"
+    ) |>
+    arrange(pathway, gene) |>
+    rename(
+        `Gene Name` = gene_name,
+        `Putative Function` = putative_function,
+        `NCBI Reference` = NCBI_reference
+    ) |> 
+    DT::datatable(
+        rownames = FALSE,
+        class = "cell-border stripe compact",
+        extensions = c("RowGroup", "Responsive"),
+        filter = "none",
+        options = list(
+            pageLength = 5, 
+            autoWidth = TRUE, 
+            rowGroup = list(dataSrc = 0),
+            columnDefs = list(list(visible = FALSE, targets = 0)),
+            searching = FALSE
+        ),
+        escape = FALSE
+    )
+```
+
+### Gene Functions
+
+```{r}
+#| output: true
+
+DT::datatable(
+    openxlsx2::wb_to_df(gene_data_wb, sheet = 2) |> rename(`Putative function` = Fx),
+    rownames = FALSE,
+    class = "cell-border stripe compact",
+    extensions = c("Responsive"),
+    filter = "none",
+    options = list(
+        pageLength = 10, 
+        autoWidth = TRUE,
+        searching = FALSE,
+        paging = FALSE,
+        info = FALSE
+    ),
+    escape = FALSE
+)
+```
+
+:::
+
+# Models
+
+Models were fitted using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB], and model fit was assessed using a combination of diagnostic plots, statistical tests, and posterior predictive checks using simulated residuals. Model validation employed the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] and [performance](https://easystats.github.io/performance/) [@performance] packages.
+
+::: {.panel-tabset}
+
+## PCR
+
+Gene expression data ($\Delta Cq$ values) were modeled using simple linear models per gene (Gaussian likelihood with identity link function), with the condition (IH vs control) as the single fixed effect.
 
 ### Model equation
 
 $$
-
+\begin{aligned}
+  \Delta Cq  &\sim N \left(\alpha + \beta_{1} Condition, \sigma^2 \right)
+\end{aligned}
 $$
 
 :::: {.callout-note appearance="simple" collapse="true"}
@@ -106,124 +358,465 @@ $$
 ### Equivalent R model
 
 ```{r}
-glmmTMB::glmmTMB(
-  od_corrected ~ genotype * age * area + (1 | rat / section),
-  family = Gamma("log"),
-  data = od_data$soma,
-  REML = TRUE
-)
+#| eval: false
+#| echo: true
+
+glmmTMB(dcq ~ condition, family = gaussian("identity"))
 ```
 
 ::::
 
 ### Model fit
-
-:::: {.panel-tabset}
-
-#### Plots
-
-![](mod_soma_diag.png){fig-alt="Performance plots for the 'Soma' model" fig-align="center"}
-
-#### Tests
-
-![](mod_soma_dharma.png){fig-alt="DHARMa plots for the 'Soma' model" fig-align="center"}
-
-#### Posterior Predictive Checks
-
-![](mod_soma_age_ppc_stats.png){fig-alt="Posterior Predictive Checks on simple stats for the 'Soma' model" fig-align="center"}
-
-::::
-
-## 'Molecular Layer' model
-
-To model the OD of the terminal fields ($Y_{ij}$), the fixed effects included genotype, age, and their interaction. A random intercept for each rat (j) was included to account for inter-animal variability.
-
-### Model equation
-
-$$
-
-$$
-
-:::: {.callout-note appearance="simple" collapse="true"}
-
-#### Equivalent R model
 
 ```{r}
-glmmTMB(
-  od_corrected ~ genotype * age + (1 | rat),
+n_samp <- 10
+```
+
+Random sample of `r n_samp` models checked for quality of fit using `performance::check_model()`:
+
+```{r}
+#| output: true
+
+make_diagnostic_plots <- function(mod) {
+    
+    diag_list <- c("normality", "pp_check") # "qq" & "homogeneity" -> buggy on 1.1.12 & 0.15.1 -> TODO
+
+    return(
+        purrr::map(diag_list, \(x) plot(check_model(mod, check = x, panel = FALSE))[[1]])
+        |> patchwork::wrap_plots(ncol = 2)
+        |> ggiraph::girafe(ggobj = _)
+    )
+}
+
+mods_sample <- pcr_data$models |> slice_sample(n = n_samp)
+
+diagnostic_plot_list <- purrr::map(mods_sample$mod, make_diagnostic_plots)
+
+reactable(
+    mods_sample
+    , defaultColDef = colDef(sortNALast = TRUE, vAlign = "center", headerVAlign = "center", align = "center")
+    , columns = list(
+        mod = colDef(
+            details = \(idx) diagnostic_plot_list[[idx]],
+            cell = \(x, idx) "Click for diagnostics"
+        ),
+        fold = colDef(format = colFormat(digits = 3))
+    )
+    , outlined = TRUE
+    , striped = TRUE
+    , highlight = TRUE
+    , compact = TRUE
+    , fullWidth = TRUE
+    , defaultPageSize = 5
+)
+```
+
+## IHC
+
+Vascular morphology responses were modeled using **generalized linear mixed-effects models (GLMMs)**, with condition, stage, and level (superficial vs deep) as fixed effects. Gamma likelihoods were used for continuous measures, and negative binomial for count data, both with log link functions. Each animal contributed multiple measurements, requiring random-effects to account for pseudo-replication. Cerebellar volume was used as an offset to account for differences in overall brain size between animals and developmental stages. Variance was assumed to vary by developmental stage, and was modeled using a dispersion parameter.
+
+Here is a sample of two of the models we fitted to study changes in cerebellar vascular morphology:
+
+:::: {.panel-tabset}
+
+### 'Vascular Volume'
+
+Vascular volume data was modeled using a Gamma distribution to account for strict positivity and positive skewness.
+
+#### Model equation
+
+$$
+\begin{aligned}
+Y_{ij} &\sim \mathrm{Gamma}\bigl(\mu_{ij},\phi_{ij}\bigr),\quad
+  \mathrm{Var}(Y_{ij}) = \phi_{ij}\,\mu_{ij}^2,\\
+\log(\mu_{ij})
+    &= \beta_0\\
+    &\quad + \beta_{\mathrm{condition}}\bigl(\text{condition}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{stage}}\bigl(\text{stage}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{level}}\bigl(\text{level}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{condition}\times\mathrm{stage}}
+        \bigl(\text{condition}_{ij},\text{stage}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{condition}\times\mathrm{level}}
+        \bigl(\text{condition}_{ij},\text{level}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{stage}\times\mathrm{level}}
+        \bigl(\text{stage}_{ij},\text{level}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{condition}\times\mathrm{stage}\times\mathrm{level}}
+        \bigl(\text{condition}_{ij},\text{stage}_{ij},\text{level}_{ij}\bigr)\\
+    &\quad + \log\!\bigl(\text{cerebellar\_volume}_{ij}\bigr)
+    + b_{\mathrm{mouse}[j]},\\
+b_{\mathrm{mouse}[j]} &\sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{mouse}}\bigr),\\
+\log(\phi_{ij})
+    &= \alpha_0 + \alpha_{\mathrm{stage}}\bigl(\text{stage}_{ij}\bigr).
+\end{aligned}
+$$
+
+::::: {.callout-note appearance="simple" collapse="true"}
+
+### Equivalent R model
+
+```{r}
+#| echo: true
+
+mod_vol <- glmmTMB(
+  volume ~ condition * stage * level + offset(log(cerebellar_volume)) + (1 | mouse),
+  dispformula = ~ stage,
   family = Gamma("log"),
-  data = od_data$ml,
+  data = ihc_data |> filter(level != "Total"),
   REML = TRUE
 )
 ```
 
-::::
+:::::
 
-### Model fit
+#### Model fit
 
-:::: {.panel-tabset}
+::::: {.panel-tabset}
 
 #### Plots
 
-![](mod_ml_diag.png){fig-alt="Performance plots for the 'Molecular Layer' model" fig-align="center"}
+```{r}
+#| output: true
+#| fig-width: 14
+#| fig-height: 10
+
+performance::check_model(mod_vol, check = c("homogeneity", "qq", "reqq", "pp_check", "vif"))
+```
 
 #### Tests
 
-![](mod_ml_dharma.png){fig-alt="DHARMa plots for the 'Molecular Layer' model" fig-align="center"}
+```{r}
+mod_vol_dharma <- DHARMa::simulateResiduals(mod_vol, plot = FALSE, n = 300, seed = getOption("seed"))
+mod_vol_dharma_t <- t(mod_vol_dharma$simulatedResponse)
+```
+
+```{r}
+#| output: true
+#| fig-width: 11
+#| fig-height: 8
+
+plot(mod_vol_dharma)
+```
 
 #### Posterior Predictive Checks
 
-![](mod_ml_age_ppc_stats.png){fig-alt="Posterior Predictive Checks on simple stats for the 'Molecular Layer' model" fig-align="center"}
+```{r}
+#| output: true
+#| fig-width: 14
+#| fig-height: 10
 
+ppc_stat_plots(mod_vol, simulations = mod_vol_dharma_t, term = "condition")
+```
+
+:::::
+
+
+### 'Branchpoints'
+
+The number of vascular branchpoints was modeled using a negative binomial distribution to handle overdispersion in count data. The model structure paralleled the volume model, with cerebellar volume as an offset.
+
+#### Model equation
+
+$$
+\begin{aligned}
+Y_{ij} &\sim \mathrm{NegBin}_1\bigl(\mu_{ij},\phi_{ij}\bigr),\quad
+  \mathrm{Var}(Y_{ij}) = \mu_{ij}\bigl(1+\phi_{ij}\bigr),\\
+\log(\mu_{ij})
+    &= \beta_0\\
+    &\quad + \beta_{\mathrm{condition}}\bigl(\text{condition}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{stage}}\bigl(\text{stage}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{level}}\bigl(\text{level}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{condition}\times\mathrm{stage}}
+        \bigl(\text{condition}_{ij},\text{stage}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{condition}\times\mathrm{level}}
+        \bigl(\text{condition}_{ij},\text{level}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{stage}\times\mathrm{level}}
+        \bigl(\text{stage}_{ij},\text{level}_{ij}\bigr)\\
+    &\quad + \beta_{\mathrm{condition}\times\mathrm{stage}\times\mathrm{level}}
+        \bigl(\text{condition}_{ij},\text{stage}_{ij},\text{level}_{ij}\bigr)\\
+    &\quad + \log\!\bigl(\text{cerebellar\_volume}_{ij}\bigr)
+    + b_{\mathrm{mouse}[j]},\\
+b_{\mathrm{mouse}[j]} &\sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{mouse}}\bigr),\\
+\log(\phi_{ij})
+    &= \alpha_0 + \alpha_{\mathrm{stage}}\bigl(\text{stage}_{ij}\bigr).
+\end{aligned}
+$$
+
+::::: {.callout-note appearance="simple" collapse="true"}
+
+### Equivalent R model
+
+```{r}
+#| echo: true
+
+mod_branchpoints <- glmmTMB(
+  branchpoints ~ condition * stage * level + offset(log(cerebellar_volume)) + (1 | mouse),
+  dispformula = ~ stage,
+  family = nbinom1("log"),
+  data = ihc_data |> filter(level != "Total"),
+  REML = TRUE
+)
+```
+
+:::::
+
+#### Model fit
+
+::::: {.panel-tabset}
+
+#### Plots
+
+```{r}
+#| output: true
+#| fig-width: 14
+#| fig-height: 10
+
+performance::check_model(mod_branchpoints, check = c("homogeneity", "qq", "reqq", "pp_check", "vif"))
+```
+
+#### Tests
+
+```{r}
+mod_branchpoints_dharma <- DHARMa::simulateResiduals(mod_branchpoints, plot = FALSE, n = 300, seed = getOption("seed"))
+mod_branchpoints_dharma_t <- t(mod_branchpoints_dharma$simulatedResponse)
+```
+
+```{r}
+#| output: true
+#| fig-width: 11
+#| fig-height: 8
+
+plot(mod_branchpoints_dharma)
+```
+
+#### Posterior Predictive Checks
+
+```{r}
+#| output: true
+#| fig-width: 14
+#| fig-height: 10
+
+ppc_stat_plots(mod_branchpoints, simulations = mod_branchpoints_dharma_t, term = "condition")
+```
+
+:::::
 ::::
-
 :::
 
 
 # Hypotheses
 
-Contrasts for hypotheses of interest were tested with [emmeans](https://rvlenth.github.io/emmeans/).
+The central research question investigated whether intermittent hypoxia (IH) exposure, mimicking apnea of prematurity, affects cerebellar vascular development through both transcriptomic changes in angiogenesis-related genes and morphological alterations in the cerebellar vascular network.
+
+Contrasts for hypotheses of interest were tested with [emmeans](https://rvlenth.github.io/emmeans/) [@emmeans].
 
 ::: {.panel-tabset}
 
-## [TODO] Soma
+## PCR
 
-We hypothesized that ...
+We hypothesized that intermittent hypoxia would alter expression of genes involved in angiogenesis pathways, potentially showing both pro- and anti-angiogenic responses depending on the specific gene and developmental stage.
+
+The analysis focused on identifying genes that showed significant differential expression between IH and control conditions across developmental stages. Fold changes were calculated and significance was assessed using the fitted linear models, with genes classified as upregulated, downregulated, or unchanged based on p-values and effect sizes.
 
 :::: {.panel-tabset}
 
-#### Condition (hypoxia vs normoxia)
+### Overview
 
-![](todo.png){fig-alt="TODO" fig-align="center"}
+Here's a general overview of the gene expression changes between IH and control, across developmental stages:
 
-#### Condition | Age
+```{r}
+#| output: true
 
-![](todo.png){fig-alt="TODO" fig-align="center"}
+pcr_data$predictions |>
+  filter(expression != regulation_type$NOT_REG) |>
+  left_join(gene_data$ref, join_by(gene)) |>
+  make_suburst_plot(
+    layers = c("stage", "expression", "gene"),
+    tooltips = c("gene", "pathway", "fold", "p_value"),
+    plot_options = list(insidetextorientation = "radial")
+  )
+```
 
-#### Condition : Age
+### Regulation
 
-![](todo.png){fig-alt="TODO" fig-align="center"}
+Timeline of gene expression changes across developmental stages, providing insights into the temporal dynamics of the transcriptomic response to intermittent hypoxia:
+
+```{r}
+#| output: true
+#| fig-width: 15
+#| fig-height: 8
+
+heatmap_data <- pcr_data$predictions |>
+    dplyr::filter(p_value <= .05) |>
+    dplyr::left_join(gene_data$fx, by = "gene", relationship = "many-to-many") |>
+    dplyr::select(stage, gene, fold, p_value, fx, effect, abb) |> 
+    dplyr::mutate(tile_label = paste(round(fold, 2), stars.pval(p_value), sep = " "))
+
+make_heatmap(heatmap_data, xaxis = "gene", yaxis = "abb", facet = "stage") + 
+    labs(x = "Gene", y = "Function") + 
+    facet_grid(rows = vars(stage), scales = "free_y", space = "free_y")
+```
+
+### Effects
+
+Timeline of the gene's putative effects (anti- vs pro-angiogenic) across developmental stages (based on existing literature):
+
+```{r}
+#| output: true
+#| fig-width: 12
+#| fig-height: 8
+
+pcr_data$predictions |> 
+    dplyr::left_join(gene_data$ref, join_by(gene)) |> 
+    dplyr::filter(p_value <= .05) |> 
+    dplyr::select(stage, gene, fold, p_value, expression, pathway, effect) |> 
+    dplyr::mutate(effect = case_when(
+        stringr::str_detect(expression, "Downregulated") & effect == "Pro" ~ "Anti",
+        stringr::str_detect(expression, "Downregulated") & effect == "Anti" ~ "Pro",
+        .default = effect
+    )) |> 
+    make_fold_timeline_plot(facet_rows = "pathway", color_by = "effect", size_boost = 1.5)
+```
 
 ::::
 
+## IHC
 
-## [TODO] Molecular Layer
-
-We hypothesized that ...
+We hypothesized that intermittent hypoxia would affect the morphological development of the cerebellar vascular network, potentially altering vascular density, complexity, and branching patterns.
 
 :::: {.panel-tabset}
 
-### Condition (hypoxia vs normoxia)
+### Vascular Volume
 
-![](todo.png){fig-alt="TODO" fig-align="center"}
+Analysis of total vascular volume tested whether IH exposure affected overall vascularization of the cerebellum, accounting for developmental stage differences and normalizing for brain size using cerebellar volume as an offset.
 
-### Condition | Y
+::::: {.panel-tabset}
 
-![](todo.png){fig-alt="TODO" fig-align="center"}
+### Condition
 
-### Condition : Y
+```{r}
+#| echo: true
+#| output: true
 
-![](todo.png){fig-alt="TODO" fig-align="center"}
+emmeans(mod_vol, specs = "condition", type = "response") |> 
+  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
+  as.data.frame() |> 
+  gt()
+```
 
+```{r}
+#| output: true
+#| fig-width: 4
+#| fig-height: 6
+
+make_signif_boxplot(mod_vol, xaxis = "condition")
+```
+
+### Condition | Stage
+
+```{r}
+#| echo: true
+#| output: true
+
+emmeans(mod_vol, specs = ~ condition | stage, type = "response") |> 
+  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
+  as.data.frame() |> 
+  gt()
+```
+
+```{r}
+#| output: true
+#| fig-width: 14
+#| fig-height: 7
+
+make_signif_boxplot(mod_vol, xaxis = "condition", facet = "stage", ncol = 4)
+```
+
+### Condition:Level | Stage
+
+```{r}
+#| echo: true
+#| output: true
+
+emmeans(mod_vol, specs = ~ condition | level, by = "stage", type = "response") |> 
+  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
+  as.data.frame() |> 
+  gt()
+```
+
+```{r}
+#| output: true
+#| fig-width: 18
+#| fig-height: 6
+
+make_signif_boxplot_inter(mod_vol, pred1 = "condition", pred2 = "level", facet = "stage", ncol = 5, only_signif = FALSE)
+```
+
+:::::
+
+### Branchpoints
+
+The branchpoint analysis examined whether IH affected vascular network complexity and branching architecture, testing for condition effects across developmental stages while controlling for overall brain size.
+
+::::: {.panel-tabset}
+
+```{r}
+#| echo: true
+#| output: true
+
+emmeans(mod_branchpoints, specs = "condition", type = "response") |> 
+  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
+  as.data.frame() |> 
+  gt()
+```
+
+```{r}
+#| output: true
+#| fig-width: 4
+#| fig-height: 6
+
+make_signif_boxplot(mod_branchpoints, xaxis = "condition")
+```
+
+### Condition | Stage
+
+```{r}
+#| echo: true
+#| output: true
+
+emmeans(mod_branchpoints, specs = ~ condition | stage, type = "response") |> 
+  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
+  as.data.frame() |> 
+  gt()
+```
+
+```{r}
+#| output: true
+#| fig-width: 14
+#| fig-height: 7
+
+make_signif_boxplot(mod_branchpoints, xaxis = "condition", facet = "stage", ncol = 4)
+```
+
+### Condition:Level | Stage
+
+```{r}
+#| echo: true
+#| output: true
+
+emmeans(mod_branchpoints, specs = ~ condition | level, by = "stage", type = "response") |> 
+  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
+  as.data.frame() |> 
+  gt()
+```
+
+```{r}
+#| output: true
+#| fig-width: 18
+#| fig-height: 6
+
+make_signif_boxplot_inter(mod_branchpoints, pred1 = "condition", pred2 = "level", facet = "stage", ncol = 5, only_signif = FALSE)
+```
+
+:::::
 ::::
 :::

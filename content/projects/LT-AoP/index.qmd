@@ -54,7 +54,7 @@ toc: false
 
 ### My role in this project
 
-**1)** Handled the data processing and analysis, for both immunohistochemistry and RT-qPCR data.
+**1)** Handled the data processing and analysis, for both immunohistochemistry and RT-qPCR data (R/Markdown).
 
 **2)** Helped write the methodology/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/CB22/) [@lerouxIntermittentHypoxiaMouse2022].
 

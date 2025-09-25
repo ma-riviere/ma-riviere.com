@@ -7,8 +7,8 @@ author:
   - name: Kavli Institute for Systems Neuroscience
     url: https://www.ntnu.edu/kavli/
 
-image: mod_soma_genotype_age.png
-image-alt: "Annotated boxplots comparing BNIP3 expression in AD and control rats across age groups"
+image: graphical-abstract.png
+image-alt: "Graphical abstract recapitulating the main findings of this project"
 
 description: "Reproducible R analysis of immunohistochemistry data from an Alzheimer's disease rat model, using mixed-effects models to test AD-control contrasts across brain regions and age-groups."
 
@@ -66,7 +66,9 @@ about:
 
 # Data
 
-The project analyzed brightfield immunohistochemistry (IHC) data quantified as optical density (OD) measurements from brain tissue sections. Data was collected from 24 rats (12 AD model, 12 controls) across three age groups (3, 12, 18 months) to measure BNIP3 protein expression in neuronal soma and axonal projections. Each animal contributed 7-8 tissue sections covering specific brain regions (entorhinal cortex, CA3, dentate gyrus), with background correction applied by subtracting deep layer measurements from raw OD values. The dataset included hierarchical structure with measurements nested within sections, sections within animals, creating pseudo-replication that required mixed-effects modeling approaches. Data preprocessing involved standardizing variable names and metadata using a data dictionary to ensure consistent analysis workflows. The final dataset captured both cellular (soma) and projection field (molecular layer) measurements across genotype, age, and brain region factors.
+The project analyzed brightfield immunohistochemistry (IHC) data quantified as optical density (OD) measurements from brain tissue sections. Data was collected from 24 rats (12 AD model, 12 controls) across three age groups (3, 12, 18 months) to measure BNIP3 protein expression in neuronal soma and axonal projections. Each animal contributed 7-8 tissue sections covering specific brain regions (entorhinal cortex, CA3, dentate gyrus), with background correction applied by subtracting deep layer measurements from raw OD values. The dataset included hierarchical structure with measurements nested within sections, sections within animals, creating pseudo-replication that required mixed-effects modeling approaches. 
+
+Data preprocessing involved standardizing variable names and metadata using a data dictionary to ensure consistent analysis workflows. The final dataset captured both cellular (soma) and projection field (molecular layer) measurements across genotype, age, and brain region factors.
 
 # Models
 

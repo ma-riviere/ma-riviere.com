@@ -25,3 +25,9 @@ sapply(theme_scripts, \(f) source(here::here(com_path, "theme", f), verbose = FA
 
 ## Load configs ##
 config <- config::get(file = here("_config.yml"))
+
+options(bitmapType = "cairo")
+
+if (nzchar(Sys.getenv("DISPLAY")) && capabilities("cairo")) {
+  options(device = function(...) x11(type = "cairo", ...))
+}
