@@ -41,10 +41,10 @@ categories:
 about:
   template: solana
   links:
-    # - text: "Article"
-    #   icon: file-pdf
-    #   url: https://agalic-rd.com/content/pubs/articles/BM25/
-    #   aria-label: "See the article published on this project"
+    - text: "Article"
+      icon: file-pdf
+      url: https://agalic-rd.com/content/pubs/articles/CER25/
+      aria-label: "See the article published on this project"
     - text: "Code"
       icon: github
       url: https://github.com/agalic-rd/Vasc-AoP/
