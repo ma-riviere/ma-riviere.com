@@ -10,7 +10,7 @@ author:
 image: feature.png
 image-alt: "Immunohistochemistry marking of a mouse cerebellum"
 
-description: "This project studied the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, using intermittent hypoxia in a mouse model."
+description: "Studying the impact of apnea of prematurity on cerebellar development and the long-term functional deficits resulting from it, using intermittent hypoxia in a mouse model."
 
 abstract: |
   This study aimed to identify the effects of AoP on cerebellar development, and to demonstrate that the cerebellum is vulnerable to AoP. This was shown via enzymatic assay studies and RT-qPCR. Results confirmed the presence of alterations of cellular mechanisms, such as oxidative stress, leading to a delay in cerebellar maturation. This was further assessed through visible changes in cellular phenotype and histology via immunocytochemistry. Furthermore, behavioral studies showed that functional and behavioral alterations persisted in adulthood.

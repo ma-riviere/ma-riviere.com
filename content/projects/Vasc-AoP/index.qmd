@@ -63,7 +63,7 @@ execute:
 
 **1)** Managed the data processing, modeling, and hypothesis testing (R/Markdown).
 
-**2)** Helped write the methodology/statistics part of the paper (in press).
+**2)** Helped write the methodology/statistics part of the paper ([preprint](https://www.biorxiv.org/content/10.1101/2025.10.17.683055v1)).
 
 **3)** Open-sourced the resulting reproducible R code on [GitHub](https://github.com/agalic-rd/Vasc-AoP/) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.15319300).
 

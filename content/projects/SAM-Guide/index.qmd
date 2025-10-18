@@ -18,7 +18,7 @@ author:
 image: feature.png
 image-alt: "Image illustrating the SAM-Guide project"
 
-description: "Designing an efficient multi-modal interface to help VIP during spatial interactions and sports."
+description: "Designing an efficient multi-modal wearable device and accompanying software to help VIP during spatial interactions and sports."
 
 website:
   open-graph:
