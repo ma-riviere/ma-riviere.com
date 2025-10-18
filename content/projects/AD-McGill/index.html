@@ -580,7 +580,7 @@ b_{\mathrm{rat:section}[j,k]} \sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{rat:sect
 <div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell" data-layout-align="center">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glmmTMB</span><span class="fu">::</span><span class="fu">glmmTMB</span><span class="op">(</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="downlit sourceCode r code-with-copy"><code class="sourceCode R"><span><span class="fu">glmmTMB</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/glmmTMB/man/glmmTMB.html">glmmTMB</a></span><span class="op">(</span></span>
 <span>  <span class="va">od_corrected</span> <span class="op">~</span> <span class="va">genotype</span> <span class="op">*</span> <span class="va">age</span> <span class="op">*</span> <span class="va">area</span> <span class="op">+</span> <span class="op">(</span><span class="fl">1</span> <span class="op">|</span> <span class="va">rat</span> <span class="op">/</span> <span class="va">section</span><span class="op">)</span>,</span>
 <span>  family <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/stats/family.html">Gamma</a></span><span class="op">(</span><span class="st">"log"</span><span class="op">)</span>,</span>
 <span>  data <span class="op">=</span> <span class="va">od_data</span><span class="op">$</span><span class="va">soma</span>,</span>

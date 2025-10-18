@@ -54,6 +54,8 @@ ul.task-list li input[type="checkbox"] {
 <link href="../../../site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark-65e140c3775b7d11d64f3c410de22ea9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../../site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
 <link href="../../../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
@@ -408,7 +410,8 @@ cookieconsent.run({
     <div class="abstract">
       <div class="block-title">Abstract</div>
       <p>SAM-Guide’s high level objective is to efficiently assist Visually Impaired People (VIP) in tasks that require interactions with space. It aims to develop a multimodal interface to assist VIP during different types of spatial interactions, from object reaching, large-scale navigation (indoor and outdoor) to outdoor sports activities (e.g.&nbsp;laser-run). It also aims to study and model how to optimally supplement vision with both auditory and tactile feedback, reframing spatial interactions as target-reaching affordances, and symbolizing spatial properties by 3D ego-centered beacons. Candidate encoding schemes will be evaluated through Augmented Reality (AR) serious games relying on motion capture platforms and indoor localisation solutions to track the user’s movements.</p>
-      <p>SAM-Guide is a inter-disciplinary collaboration project (ANR 2021 PRC) between three sites: (1) the <a href="https://lpnc.univ-grenoble-alpes.fr/">LPNC</a> and <a href="http://www.gipsa-lab.fr/en/about-gipsa-lab.php">GIPSA</a> laboratories from the Grenoble-Alpes University, (2) the <a href="https://portail.polytechnique.edu/cmap/en">CMAP</a> from Ecole Polytechnique in Paris-Saclay, and the <a href="https://www.litislab.fr/en/">LITIS</a> and <a href="http://ufrhss.unicaen.fr/recherche/cerrev/">CERREV</a> from Normandy University.</p>
+      <p>This project relied on (1) a wireless vibro-tactile belt with detachable and adjustable vibrators, (2) an experimental platform using Unity integrating multi-system motion capture (Polhemus, VICON, pozyx), complex sound-wave generation (PureData), and 3D audio modeling (Steam Audio), with automated trial generation from JSON specifications based on OpenMaze protocols, and (3) orientation-aware HRTF-based 3D audio headphones.</p>
+      <p>SAM-Guide is a inter-disciplinary French research project (ANR 2021 PRC) between three sites: (1) the <a href="https://lpnc.univ-grenoble-alpes.fr/">LPNC</a> and <a href="http://www.gipsa-lab.fr/en/about-gipsa-lab.php">GIPSA</a> laboratories from the Grenoble-Alpes University, (2) the <a href="https://portail.polytechnique.edu/cmap/en">CMAP</a> from Ecole Polytechnique in Paris-Saclay, and the <a href="https://www.litislab.fr/en/">LITIS</a> and <a href="http://ufrhss.unicaen.fr/recherche/cerrev/">CERREV</a> from Normandy University.</p>
     </div>
   </div>
   </header><div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
@@ -465,7 +468,7 @@ cookieconsent.run({
      <span class="about-link-text">ANR Grant</span>
   </a>
   <a href="https://github.com/sam-guide/exp-plat" class="about-link" rel="" target="">
-    <i class="bi bi-code"></i>
+    <i class="bi bi-github"></i>
      <span class="about-link-text">Code</span>
   </a>
 </div>
@@ -478,8 +481,14 @@ cookieconsent.run({
 </div>
 
 <hr style="margin-bottom: 0px; margin-top: -12px;" width="1000px">
-<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid" alt="Banner illustrating the project"></a></p>
-<p>The SAM-Guide project aims to help visually impaired people interact with the world around them by creating smart devices that convert visual information into sounds and vibrations they can feel and hear. Instead of trying to replace vision entirely, the project focuses on giving people the specific spatial information they need for everyday tasks like finding objects, navigating spaces, and even participating in sports activities. The team of researchers from multiple French universities is developing wearable devices like vibrating belts and audio systems that can guide users toward targets or help them understand their surroundings. They’re testing these technologies through virtual reality games and real-world activities, including a new sport called laser-run designed for people with visual impairments. The ultimate goal is to create a common “language” of sounds and vibrations that can help visually impaired people gain more independence in various activities, from simple daily tasks to recreational sports.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><a href="feature.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="feature.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:70.0%" alt="Banner illustrating the project"></a></p>
+</figure>
+</div>
+<section id="summary" class="level1">
+<h1>Summary</h1>
+<p>The SAM-Guide project aims to help visually impaired people (VIP) interact with the world around them by creating smart devices that convert visuo-spatial information into sounds and vibrations they can feel and hear. Instead of trying to replace vision entirely, the project focuses on giving people the specific spatial information they need for everyday tasks like finding objects, navigating spaces, and even participating in sports activities. Teams of researchers from multiple French universities are developing wearable devices like vibrating belts and audio systems that can guide users toward targets or help them understand their surroundings. They’re testing these technologies through virtual reality games and real-world activities, including a new sport called laser-run designed for VIP. The project’s ultimate goal is to create a common “language” of sounds and vibrations that can help VIP gain more independence in various activities, from simple daily tasks to recreational sports.</p>
 <div class="callout callout-style-simple callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -491,7 +500,7 @@ cookieconsent.run({
 </div>
 <div class="callout-body-container callout-body">
 <p><strong>1)</strong> I was a major actor behind the birth of this project, by connecting the consortium members together and writing most of the grant proposal (ANR AAPG 2021, funding of 609k€).</p>
-<p><strong>2)</strong> I designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication (thanks to an ESP32 module) and amovible vibrators:</p>
+<p><strong>2)</strong> I designed and participated in the development of the second prototype of our vibro-tactile belt, which features wireless communication and detachable vibrators (C++/Arduino/ESP32):</p>
 <div id="fig-tactibelt-v2" class="quarto-float quarto-figure quarto-figure-center" alt="Photography of the second iteration of the TactiBelt">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tactibelt-v2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -502,7 +511,7 @@ Figure&nbsp;1: Second prototype of the TactiBelt
 </figcaption>
 </figure>
 </div>
-<p><strong>3)</strong> I lead the design and development of the project’s experimental platform. The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses <a href="https://puredata.info/">PureData</a> for sound-wave generation and <a href="https://valvesoftware.github.io/steam-audio/">Steam Audio</a> for 3D audio modeling, and communicates with the consortium’s non-visual interfaces wirelessly.</p>
+<p><strong>3)</strong> I lead the design and development of the project’s <a href="https://github.com/sam-guide/exp-plat">experimental platform</a> (C#/Unity). The platform uses Unity, connects to various motion tracking devices used by the consortium (Polhemus, VICON, pozyx), uses <a href="https://puredata.info/">PureData</a> for sound-wave generation and <a href="https://valvesoftware.github.io/steam-audio/">Steam Audio</a> for 3D audio modeling, and communicates with the consortium’s non-visual interfaces wirelessly.</p>
 <div id="fig-unity" class="quarto-layout-panel">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-unity-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
@@ -587,6 +596,7 @@ Figure&nbsp;3: Examples of settings used to generate experimental trials on the 
 
 
 
+</section>
 
 <a onclick="window.scrollTo(0, 0); return false;" role="button" id="quarto-back-to-top"><i class="bi bi-arrow-up"></i> Back to top</a></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -1020,7 +1030,7 @@ Figure&nbsp;3: Examples of settings used to generate experimental trials on the 
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
     <a class="nav-link" href="https://quarto.org/">
-<p>Made with Quarto ♥️</p>
+<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i>, <i class="fa-brands fa-js" aria-label="js"></i>, and <a href="https://quarto.org/">Quarto</a> ♥️</p>
 </a>
   </li>  
 </ul>

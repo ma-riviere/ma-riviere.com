@@ -71,6 +71,8 @@ div.csl-indent {
 <link href="../../../site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../../../site_libs/bootstrap/bootstrap-dark-65e140c3775b7d11d64f3c410de22ea9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <link href="../../../site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
 <script src="../../../site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script>
 <script src="../../../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
 <link href="../../../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
@@ -523,7 +525,7 @@ cookieconsent.run({
 <strong>2)</strong> Design a haptic interface that allows to communicate said spatial representation easily to the user<br>
 <strong>3)</strong> Implement the software require to support the various functions of this interface (e.g.&nbsp;Indoor Localisation, Obstacle Detection, Mapping, …)</p>
 <p>The guiding theoretical principle of this project was to use the brain’s navigation system as an inspiration source for what information to provide VIP to make navigation the most intuitive. The gist of the idea is that our (biological) <strong>navigation system</strong> combines and distills information from multiple senses into a set of key <strong>spatial properties</strong> (e.g.&nbsp;where the center of the current room is located). This <strong>spatial representation</strong> allows us to reason on the structure of our environment, and to navigate it efficiently. For VIP, this process is impaired due to our navigation system’s heavy reliance on visual information. To make our assistive device more intuitive, instead of substituing vision in its entirety, we focus on directly providing the information that our navigation system would extract from vision.</p>
-<div id="fig-neuro" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles">
+<div id="fig-neuro" class="quarto-float quarto-figure quarto-figure-center" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-neuro-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="neuro.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2" title="Figure&nbsp;1: ACCESSPACE guiding principle"><img src="neuro.png" class="img-fluid quarto-figure quarto-figure-center figure-img" style="width:80.0%" alt="Illustration showing the general theoretical principles behind ACCESSPACE transcoding principles"></a>
@@ -586,7 +588,7 @@ Figure&nbsp;1: ACCESSPACE guiding principle
 <section id="our-interface-the-tactibelt" class="level2">
 <h2 data-anchor-id="our-interface-the-tactibelt">Our interface: the TactiBelt</h2>
 <p>To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the <strong>TactiBelt</strong>: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:</p>
-<div id="fig-tactibelt-v1" class="quarto-float quarto-figure quarto-figure-center" data-fig-align="center" alt="A photography showing the first version of the TactiBelt">
+<div id="fig-tactibelt-v1" class="quarto-float quarto-figure quarto-figure-center" alt="A photography showing the first version of the TactiBelt" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-tactibelt-v1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <a href="TactiBelt.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4" title="Figure&nbsp;2: First prototype of the TactiBelt"><img src="TactiBelt.png" title="A photography showing the first version of the TactiBelt" class="img-fluid quarto-figure quarto-figure-center figure-img" alt="A photography showing the first version of the TactiBelt"></a>
@@ -1079,7 +1081,7 @@ Rivière, M.-A., Gay, S., &amp; Pissaloux, E. (2018). <em>TactiBelt: Integrating
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
     <a class="nav-link" href="https://quarto.org/">
-<p>Made with Quarto ♥️</p>
+<p>Made with <i class="fa-brands fa-r-project" aria-label="r-project"></i>, <i class="fa-brands fa-js" aria-label="js"></i>, and <a href="https://quarto.org/">Quarto</a> ♥️</p>
 </a>
   </li>  
 </ul>
