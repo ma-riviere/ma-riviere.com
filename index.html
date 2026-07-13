@@ -2,11 +2,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.8.17">
+<meta name="generator" content="quarto-1.10.14">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
-<meta name="description" content="R &amp; Shiny Developer Data Champ’">
 <title>Marc-Aurèle Rivière</title>
 <style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
 div.columns{display: flex; gap: min(4vw, 1.5em);}
@@ -32,23 +34,22 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/cookie-consent/cookie-consent.css" rel="stylesheet">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
-<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e408f6448c0c13359207e36bd9eb5760.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-bc2db561b05f2aaf21fd5844861d6efb.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-e408f6448c0c13359207e36bd9eb5760.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-30de95407b9bc05bcfbdc357f6cad77d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-c3a64db0a6e8eb22acc677bb4ad7af6d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-30de95407b9bc05bcfbdc357f6cad77d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-65e140c3775b7d11d64f3c410de22ea9.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-e6b6e6864f9235aa4fe375da35a2f717.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/fontawesome6-0.1.0/latex-fontsize.css" rel="stylesheet">
-<script src="site_libs/quarto-contrib/iconify-1.0.7/iconify-icon.min.js"></script>
-<link href="site_libs/quarto-contrib/academicons-1.9.2/all.css" rel="stylesheet">
-<link href="site_libs/quarto-contrib/academicons-1.9.2/size.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
+<link href="site_libs/bootstrap/bootstrap-ca9c5d8b7f3aaeff09b75612b8dd70ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-60beace5d3a0fe273887fce405b71b48.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-ca9c5d8b7f3aaeff09b75612b8dd70ab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script src="site_libs/quarto-contrib/iconify-3.0.0/iconify-icon.min.js"></script>
+<link href="site_libs/quarto-contrib/academicons-1.9.4/all.css" rel="stylesheet">
+<link href="site_libs/quarto-contrib/academicons-1.9.4/size.css" rel="stylesheet"><script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
   "collapse-after": 2,
@@ -349,12 +350,7 @@ cookieconsent.run({
 <header id="title-block-header" class="quarto-title-block default"><div class="quarto-title">
 <h1 class="title">Marc-Aurèle Rivière</h1>
 <p class="subtitle lead"><strong>Research Software Engineer</strong><br>
-R Programmer | Data Scientist | Cognitive Neuroscientist<br><iconify-icon inline="" icon="twemoji:flag-french-polynesia"></iconify-icon> ▪️ <iconify-icon inline="" icon="twemoji:flag-france"></iconify-icon> ▪️ <iconify-icon inline="" icon="twemoji:flag-norway"></iconify-icon></p>
-</div>
-<div>
-  <div class="description">
-    R &amp; Shiny Developer<br><a href="https://datachamp.fr/en/">Data Champ’</a>
-  </div>
+R Programmer | Data Scientist | Cognitive Neuroscientist<br><iconify-icon role="img" inline="" icon="twemoji:flag-french-polynesia" aria-label="Icon flag-french-polynesia from twemoji Iconify.design set." title="Icon flag-french-polynesia from twemoji Iconify.design set."></iconify-icon> ▪️ <iconify-icon role="img" inline="" icon="twemoji:flag-france" aria-label="Icon flag-france from twemoji Iconify.design set." title="Icon flag-france from twemoji Iconify.design set."></iconify-icon> ▪️ <iconify-icon role="img" inline="" icon="twemoji:flag-norway" aria-label="Icon flag-norway from twemoji Iconify.design set." title="Icon flag-norway from twemoji Iconify.design set."></iconify-icon></p>
 </div>
 <div class="quarto-title-meta">
   </div>
@@ -369,7 +365,7 @@ R Programmer | Data Scientist | Cognitive Neuroscientist<br><iconify-icon inline
      <span class="about-link-text">LinkedIn</span>
   </a>
   <a href="https://orcid.org/0000-0002-5108-3382" class="about-link" rel="me" target="">
-     <span class="about-link-text"><i class="ai  ai-orcid"></i> ORCID</span>
+     <span class="about-link-text"><i class="ai  ai-orcid" aria-label="orcid"></i> ORCID</span>
   </a>
   <a href="mailto:marc.aurele.riviere+site@gmail.com" class="about-link" rel="" target="">
     <i class="bi bi-envelope"></i>
@@ -390,72 +386,74 @@ R Programmer | Data Scientist | Cognitive Neuroscientist<br><iconify-icon inline
 </div>
 <div class="cell" data-layout-align="center">
 <script>
-const ctx = document.getElementById('marachnide');
+const ctx = document.getElementById("marachnide");
 const data = {
-  labels: [
-    'R Programming',
-    ['Software', 'Development'],
-    ['Cognitive', 'Neuroscience'],
-    ['Behavioral', 'Research'],
-    'Data Science',
-    ['Project', 'Management']
-  ],
-  datasets: [{
-    label: '',
-    data: [95, 90, 90, 85, 85, 80],
-    fill: true,
-    backgroundColor: 'rgba(82, 0, 252, 0.2)',
-    borderColor: 'rgb(82, 0, 252)',
-    pointBackgroundColor: 'rgb(82, 0, 252)',
-    pointBorderColor: '#fff',
-    pointHoverBackgroundColor: '#fff',
-    pointHoverBorderColor: 'rgb(82, 0, 252)'
-  }]
+    labels: [
+        "R Programming",
+        ["Software", "Development"],
+        ["Cognitive", "Neuroscience"],
+        ["Behavioral", "Research"],
+        "Data Science",
+        ["Project", "Management"],
+    ],
+    datasets: [
+        {
+            label: "",
+            data: [95, 90, 90, 85, 85, 80],
+            fill: true,
+            backgroundColor: "rgba(82, 0, 252, 0.2)",
+            borderColor: "rgb(82, 0, 252)",
+            pointBackgroundColor: "rgb(82, 0, 252)",
+            pointBorderColor: "#fff",
+            pointHoverBackgroundColor: "#fff",
+            pointHoverBorderColor: "rgb(82, 0, 252)",
+        },
+    ],
 };
 new Chart(ctx, {
-  type: 'radar',
-  data: data,
-  options: {
-    plugins: {
-      // title: {display: true, text: "My profile", font: {size: 20}},
-      legend: {display: false}
-    },
-    scale: {
-      ticks: {stepSize: 25}
-    },
-    scales: {
-      r: {
-        angleLines: {
-          color: '#666666'
-          // display: false
+    type: "radar",
+    data: data,
+    options: {
+        plugins: {
+            // title: {display: true, text: "My profile", font: {size: 20}},
+            legend: { display: false },
         },
-        grid: {
-          color: '#a8a6a6'
+        scale: {
+            ticks: { stepSize: 25 },
         },
-        pointLabels: {
-          // color: 'darkgrey',
-          font: {
-            size: 14,
-            // style: 'italic',
-            weight: 'bold'
-          }
+        scales: {
+            r: {
+                angleLines: {
+                    color: "#666666",
+                    // display: false
+                },
+                grid: {
+                    color: "#a8a6a6",
+                },
+                pointLabels: {
+                    // color: 'darkgrey',
+                    font: {
+                        size: 14,
+                        // style: 'italic',
+                        weight: "bold",
+                    },
+                },
+                ticks: { display: false },
+                suggestedMin: 0,
+                suggestedMax: 100,
+            },
         },
-        ticks: {display: false},
-        suggestedMin: 0,
-        suggestedMax: 100
-      }
+        maintainAspectRatio: false,
+        responsive: true,
+        layout: {
+            padding: 0,
+        },
+        elements: {
+            line: {
+                borderWidth: 3,
+            },
+        },
     },
-    maintainAspectRatio: false,
-    responsive: true,
-    layout: {
-      padding: 0,
-    },
-    elements: {
-      line: {
-        borderWidth: 3
-      }
-    }
-  },
 });
 </script>
 </div>
@@ -528,13 +526,14 @@ new Chart(ctx, {
       e.clearSelection();
     }
     const getTextToCopy = function(trigger) {
-        const codeEl = trigger.previousElementSibling.cloneNode(true);
-        for (const childEl of codeEl.children) {
-          if (isCodeAnnotation(childEl)) {
-            childEl.remove();
-          }
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
         }
-        return codeEl.innerText;
+      }
+      return codeEl.innerText;
     }
     const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
       text: getTextToCopy
@@ -889,7 +888,7 @@ new Chart(ctx, {
       <ul class="footer-items list-unstyled">
 <li class="nav-item">
     <a class="nav-link" href="./LICENSE.md">
-<p>© 2021-2025, Marc-Aurèle Rivière</p>
+<p>© 2021-2026, Marc-Aurèle Rivière</p>
 </a>
   </li>  
 </ul>
