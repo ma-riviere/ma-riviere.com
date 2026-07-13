@@ -20,6 +20,13 @@ categories:
 aliases:
   - /content/posts/data.table/
 
+# code-link (downlit) is disabled for this post: its rendered HTML exceeds 10MB, and
+# xml2::read_html() on files that large silently truncates whatever token sits at the
+# ~10MB mark (libxml2 buffer bug), which can shatter the page's DOM.
+format:
+  html:
+    code-link: false
+
 execute:
   output: asis
 ---
