@@ -34,7 +34,7 @@ categories:
   - Transcriptomics
   - RT-qPCR
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -61,12 +61,11 @@ toc: false
 
 The DE-AoP project included RT-qPCR and immunohistochemistry data, which were analysed in [R](https://www.r-project.org/) [@R]. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
 
-The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
+The optimal likelihood families were selected based on our theoretical understanding of the variable's properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, ...) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, ...) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
 
 Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
 
-:::{.callout-note appearance="simple"}
-
+::: {.callout-note appearance="simple"}
 ### My role in this project
 
 **1)** Handled the data processing, modeling, and analysis for both RT-qPCR and immunohistochemistry data (R/Markdown).
@@ -78,7 +77,6 @@ Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/D
 **4)** Open-sourced the resulting code on [GitHub](https://github.com/ma-riviere/DE-AoP-23) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.10198569).
 
 **5)** Made [a website](https://ma-riviere.github.io/DE-AoP-23/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and Javascript to provide an interactive dashboard to explore the data.
-
 :::
 
 # Quarto website

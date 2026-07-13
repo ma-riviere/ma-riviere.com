@@ -1,6 +1,6 @@
 ---
 title: "<i class='bi bi-person-vcard'></i> About Me"
-subtitle: 'Research Software Engineer'
+subtitle: "Data Scientist | Software Engineer | AI"
 description: '<a href="../res/cv.pdf" class="btn btn-outline-info btn-sm">{{< fa file >}} Check my CV</a>'
 
 image: ../res/avatar.jpg
@@ -8,77 +8,63 @@ image-alt: "Profile picture of Marc-Aurèle Rivière"
 
 website:
   open-graph:
-    description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
+    description: "Data Scientist | R Developer | Cognitive Neuroscientist"
   twitter-card:
-    description: "R Programmer | Data Scientist | Cognitive Neuroscientist"
+    description: "Data Scientist | R Developer | Cognitive Neuroscientist"
 ---
 
-:::{.callout-note appearance="simple"}
-
+::: {.callout-note appearance="simple"}
 ## In a nutshell:
 
-◈ Building software and analyzing data for 7 years, with a focus on R and Shiny.  
+◈ Building software and analyzing data for 7 years, with a focus on statistical modeling, R & Shiny.\
 
-◈ Designing, building, and deploying Web apps, APIs, packages, websites, and interactive dashboards.  
+◈ Delivering production-grade analytics platforms end-to-end: Web apps, APIs, packages, dashboards, and the DB/cloud infrastructure behind them (IaC).\
+
+◈ Building AI-powered tools: agentic pipelines, MCP servers, RAG, and LLM API integrations.\
 
 ◈ Published Neuroscientist, involved in multiple interdisciplinary projects working with a wide range of data, mostly biological, but also behavioral, surveys, energy, geography/spatial, and sales/marketing.
-
 :::
 
 ## {{< fa briefcase >}} Work Experience
 
-- **R/Shiny Developer** (2024-Present)  
-  [Data Champ', Remote]{.about-employer}  
-  [Designed, coded & deployed Shiny apps and APIs for a dozen different projects, including:]{.about-missions}
+- **Data Scientist / R Developer** (2024-2025) [Data Champ', Remote]{.about-employer}  
+  Delivered data products end-to-end for clients across multiple industries, from requirements and architecture through deployment and iteration, interfacing with both technical and non-technical stakeholders. Projects included:  
+  ♦ [An investment analytics platform for France's development agency (AFD), to monitor their portfolio of billions in international development funding, with multi-database integration, interactive geospatial visualizations, and automated impact reporting.]{.about-missions}  
+  ♦ [An enterprise-scale energy Measurement & Verification API for the Belgian Government, modeling energy consumption to predict the impact of renovations, with multi-platform data integration pipelines and automated report generation.]{.about-missions}  
+  ♦ [A comprehensive HR management platform for the AFD to track thousands of employees across multiple branches.]{.about-missions}
+  ♦ [An integrated construction site management platform with cost and labor estimation, multi-format document parsing using LLMs, bidirectional ERP integration, automated quote generation, and smart project scheduling.]{.about-missions}  
+  ♦ [A modular package for a branch of the French government, to integrate multiple sources of heterogeneous geo-spatial data, process them into spatio-temporal indicators at various levels of spatial granularity, and archive them in a specially-designed DB.]{.about-missions}
 
-  ♦ [A comprehensive HR management system for France's development agency (AFD) to track thousands of employees across multiple branches, featuring recruitment campaign management, predictive workforce analytics, and role-based approval workflows.]{.about-missions} 
+- **Data Science Consultant** (2023-2024) [Freelance, Remote]{.about-employer}  
+  *Sales/Marketing:*  
+  ♦ [Built end-to-end agentic pipelines for prospect discovery, enrichment, and personalized outreach, with custom ETL pipelines and MCP servers to integrate multiple CRMs, intent/signals providers, and social media platforms (R/Python/JS/LLM APIs)]{.about-missions}  
+  ♦ [Designed and ran A/B tests comparing outreach strategies across prospect segments, to iterate on targeting and messaging]{.about-missions}
 
-  ♦ [An investment analytics platform for the AFD, to visualize and track their portfolio of billions in international development funding across thousands of projects in multiple developing countries, with cross-platform data integration, interactive geospatial visualizations, and automated impact reporting to support sustainable development decision-making.]{.about-missions} 
+  *Bioinformatics:*  
+  ♦ [Data analysis for 4 published neuroscience papers: hierarchical GLMMs across heterogeneous data types (IHC, imaging, qPCR, behavioral); AR1 structures for time-varying repeated measures; multiple candidate models with PPC & AIC-based selection]{.about-missions}  
+  ♦ [Created apps to allow researchers to visualize and analyze their data, with automatic enrichment from NCBI (R/Shiny)]{.about-missions}  
+  ♦ [Designed automated pipelines to monitor new publications, protocols, and funded projects across multiple sources (LLM APIs)]{.about-missions}  
+  ♦ [Built interactive dashboards to showcase results for select publications (R, Quarto, JS)]{.about-missions}
 
-  ♦ [A modular package for a branch of the French government, to integrate multiple sources of heterogeneous geo-spatial data, process them into multiple spatio-temporal indicators computed at various levels of spatial granularity, and archive them in a specially-designed DB, to be displayed in a public interactive web app.]{.about-missions} 
-
-  ♦ [An integrated construction site management system with tree-based cost estimation, multi-format document parsing using LLMs, bidirectional integration with the Odoo ERP, automated quote generation, and smart project scheduling.]{.about-missions} 
-
-  ♦ [An enterprise-scale energy Measurement & Verification API for the Belgian Government, automating standard and IPMVP methods for energy consumption modeling, statistical analyses at multiple levels of granularity, multi-platform data integration, and estimating the impact of renovations on energy consumption with comprehensive report generation.]{.about-missions} 
-
-- **R/Data Science Consultant** (2022-2024)  
-  [Self-employed, Remote]{.about-employer}  
-  **_Sales/Marketing:_**  
-  ♦ [Developed a sales automation tool featuring automated web/social media scraping for lead enrichment, agentic AI workflows for prospect discovery and personalized email generation, and multi-CRM API integration]{.about-missions}
-
-  **_Bioinformatics:_**  
-  ♦ [Conducted the statistical analyses for 4 published papers in Biology (imaging, IHC, qPCR, and behavioral data) using generalized multilevel models]{.about-missions}  
-  ♦ [Automated pipelines to pull/enrich genetic data from entrez/NCBI]{.about-missions}  
-  ♦ [Created a Shiny app to allow team members to import, visualize and analyze their data]{.about-missions}  
-  ♦ [Built interactive dashboards to showcase results for select publications (R, Quarto, JS)]{.about-missions}  
-
-- **Research Engineer** (2021-2023)  
-  [LITIS Lab, Rouen, France (Hybrid)]{.about-employer}  
-  ♦ [Designed & developed an Augmented Reality platform in with motion tracking and spatialized sound feedback, to evaluate and train non-visual navigation (Unity/C#)]{.about-missions}  
-  ♦ [Designed a wearable vibrotactile belt for haptic-based navigation for blind people, and participated in the design of an interactive haptic tablet to display images (Java/Arduino)]{.about-missions}  
-  ♦ [Designed psychophysics experiments to evaluate the impact of spatial cues on navigation]{.about-missions}  
+- **Research Engineer** (2021-2023) [LITIS, Rouen, France]{.about-employer}  
+  ♦ [Designed & developed an Augmented Reality platform with motion tracking to evaluate and train non-visual navigation (Unity/C#)]{.about-missions}  
+  ♦ [Designed a wearable vibrotactile belt and an interactive haptic tablet for haptic-based navigation for blind people (Java/Arduino)]{.about-missions}  
+  ♦ [Designed psychophysics experiments to evaluate the impact of spatial cues on navigation and analyzed the resulting data (R)]{.about-missions}  
   ♦ [Developed and tested camera-based solutions for indoor localization (Python/C++)]{.about-missions}  
-  ♦ [Formulated & wrote a 600k€ research grant proposal (ANR project "SAM-Guide", 2021)]{.about-missions}  
-  ♦ [Co-organized an international (IHAW'20) and a regional (JED'17) scientific conference]{.about-missions}  
+  ♦ [Formulated & wrote a 600k€ research grant proposal (ANR project "SAM-Guide", 2021)]{.about-missions}
 
-- **Graduate Teaching Fellow** (2017-2020)  
-  [University of Rouen-Normandy]{.about-employer}  
-  ♦ [Gave university classes on Web Development (JS), Image Processing (Python), GUI design (Java), and ML/DL for Computer Vision]{.about-missions}
+- **Graduate Teaching Fellow** (2017-2020) [University of Rouen, Rouen, France]{.about-employer}  
+  ♦ [Gave university lectures & practicals on Web Development (JS), GUI design (Java), Image Processing/Computer Vision (Python)]{.about-missions}
 
-- **Research & Engineering Intern** (Nov 2018 – Jan 2019)  
-  [The Smith-Kettlewell Eye Research Institute, San Francisco, CA, USA]{.about-employer}  
-  ♦ [Worked on an indoor localization solution using Visual Inertial Odometry, particle filtering, object detection, and real-time video streaming (Python/Husk, Swift, OpenCV)]{.about-missions}  
+- **Research Engineer Intern** (2018) [SKERI, San Francisco, USA]{.about-employer}  
+  ♦ [Worked on an indoor localization tool using Visual Inertial Odometry, particle filtering, and object detection (Python, Swift, OpenCV)]{.about-missions}
 
-- **Research & Engineering Intern** (Feb 2016 – Sep 2016)  
-  [Grenoble INP GIPSA-lab, Grenoble, France]{.about-employer}  
-  ♦ [Developed an image-to-sound conversion app for blind shape exploration on a tablet (C++)]{.about-missions}  
-  ♦ [Iteratively improved the app based on statistical analysis of users' performance]{.about-missions} 
-
-
+- **Research Engineer Intern** (2016) [LPNC & GIPSA-Lab, Grenoble, France]{.about-employer}  
+  ♦ [Worked on an image-to-sound conversion app for blind image exploration (C++), iteratively improved based on users' performance]{.about-missions}
 
 ## {{< fa address-book >}} Contact Me
 
-You can send me an [email](mailto:marc.aurele.riviere@gmail.com), or directly message me on [twitter](https://twitter.com/mariviere1).
+You can send me an [email](mailto:marc.aurele.riviere@gmail.com).
 
 <!--
 
@@ -94,15 +80,15 @@ You can send me an [email](mailto:marc.aurele.riviere@gmail.com), or directly me
 
 This website was made with [Quarto](https://quarto.org/) and R.
 
-:::{.callout-tip collapse="true"}
-
+::: {.callout-tip collapse="true"}
 # Expand for Session Info
 
 ```{r}
 #| echo: false
 #| output: false
 
-source(here::here("src", "init.R"), echo = FALSE)
+source(here::here("R", "init.R"), echo = FALSE)
+load_packages(read_package_file(here::here("packages.txt")))
 ```
 
 ```{r}
@@ -116,5 +102,4 @@ si$platform$pandoc <- strsplit(si$platform$pandoc, "@")[[1]][1]
 
 si
 ```
-
 :::

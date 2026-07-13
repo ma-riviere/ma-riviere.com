@@ -34,7 +34,7 @@ categories:
   - Augmented Reality
   - Computer Vision
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -84,7 +84,6 @@ Thus, we devised an **encoding scheme** that provides the user with 3 types of i
 ![Illustration of the navigation graph idea](nav.png "An illustration showcasing the navigation graph used with the TactiBelt"){fig-alt="An illustration showcasing the navigation graph used with the TactiBelt" fig-align="center" width=60%}
 
 ::: {.callout-note appearance="simple"}
-
 # My role in this project
 
 **1)** Managed the literature review for all axes of the project (spatial cognition, assistive devices, sensory substitution, computer vision, ...).
@@ -98,13 +97,12 @@ Thus, we devised an **encoding scheme** that provides the user with 3 types of i
 **5)** Was involved in writing a [journal paper](/content/pubs/JEP22/) [@faugloire2022] and a [conference paper](/content/pubs/ICCHP18-TactiBelt/) [@rivière2018]
 
 **6)** Disseminated the project through a talk at an international conference, and various outreach events.
-
 :::
 
 ::: {.column-margin}
-:::: {.callout-note appearance="simple"}
+::::: {.callout-note appearance="simple"}
 ### Was awarded the **“Applied research on disability” award from the CCAH** in 2017 🥇
-::::
+:::::
 :::
 
 # Details
@@ -114,7 +112,6 @@ Thus, we devised an **encoding scheme** that provides the user with 3 types of i
 To provide the proposed egocentric encoding scheme to the user, we designed a vibro-tactile belt, the **TactiBelt**: it comprises of 46 ERM motors spread into three layers, controlled by an Arduino Mega, through a specialized software written in Java:
 
 ![First prototype of the TactiBelt](TactiBelt.png "A photography showing the first version of the TactiBelt"){#fig-tactibelt-v1 fig-alt="A photography showing the first version of the TactiBelt" fig-align="center"}
-
 
 ## Software tools
 

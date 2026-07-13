@@ -2,3 +2,4 @@ quarto-ext/fontawesome
 mcanouil/quarto-iconify
 schochastics/academicons
 sellorm/quarto-social-embeds
+gadenbuie/quarto-now

@@ -13,7 +13,7 @@ description: "Smart assitive devices providing real-time audio-feedback on objec
 
 abstract: |
   CamIO is a system to make physical objects (such as documents, maps, devices and 3D models) accessible to blind and visually impaired persons, by providing real-time audio feedback in response to the location on an object that the user is touching. CamIO currently works on iOS using the built-in camera and an inexpensive hand-held stylus made out of paper and cardboard or wood.
-  
+
 website:
   open-graph:
     image: feature.png
@@ -31,7 +31,7 @@ categories:
   - Augmented Reality
   - Computer Vision
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -53,8 +53,7 @@ toc: false
 
 {{< include /content/_hr.qmd >}}
 
-:::{.callout-note appearance="simple"}
-
+::: {.callout-note appearance="simple"}
 # My role in this project
 
 **1)** Explore new solutions to improve the localisation & tracking capabilities of CamIO:
@@ -65,14 +64,13 @@ Their existing solution, iLocalize [@fusco2018] (Swift / iOS), used a combinatio
 
 I explored existing 3rd-party services for indoor localization, such as [Indoor Atlas](https://www.indooratlas.com/platform/) (which combines VIO, GPS data, WiFi & geomagnetic fingerprinting, dead-reckoning, and barometric readings for altitude changes), for which I made a small demo.
 
-::: {#fig-IA layout-ncol=2}
-![Indoor Atlas' localization](IA-loc.png){#fig-IA-loc fig-alt="Illustration of the Indoor Atlas service at work"}  
+::::: {#fig-IA layout-ncol=2}
+![Indoor Atlas' localization](IA-loc.png){#fig-IA-loc fig-alt="Illustration of the Indoor Atlas service at work"}
 
-![Indoor Atlas' navigation graph](IA-graph.png){#fig-IA-graph fig-alt="Illustration of the Indoor Atlas navigation graph" fig-align="center"}  
+![Indoor Atlas' navigation graph](IA-graph.png){#fig-IA-graph fig-alt="Illustration of the Indoor Atlas navigation graph" fig-align="center"}
 
 Indoor Atlas
-
-:::
+:::::
 
 **2)** Developed a [web app](https://github.com/ma-riviere/redast) to send the live camera stream from a mobile phone (JavaScript / socket.io) to a backend server (Python / Flask).
 The goal of the application was to facilitate the exploration of new Computer Vision algorithms to process the captured video and IMU data, which would send back location or navigational information.
@@ -80,7 +78,6 @@ The goal of the application was to facilitate the exploration of new Computer Vi
 **3)** Assisted in analyzing the data from the first human experiments using CamIO ([code](https://github.com/ma-riviere/ICCHP20-CamIO)).
 
 **4)** Helped write a [scientific paper](/content/pubs/ICCHP20/) on this project [@coughlanAudioBased3DSpatial2020].
-
 :::
 
 # Summary

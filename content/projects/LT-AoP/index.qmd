@@ -29,7 +29,7 @@ categories:
   - Transcriptomics
   - RT-qPCR
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -54,14 +54,13 @@ toc: false
 
 The LT-AoP project included behavioral, immunohistochemistry and RT-qPCR data, which were analysed in R, hosted on GitHub, and archived with Zenodo. Data were modeled through the Generalized Linear Mixed Model (GLMM) framework, using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. Random intercepts were added to account for the correlation between pseudo-replicates. Temporally-dependent repeated measures were modeled using auto-regressive (AR1) terms.
 
-The optimal likelihood families were selected based on our theoretical understanding of the variable’s properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, …) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, …) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
+The optimal likelihood families were selected based on our theoretical understanding of the variable's properties, and to minimize Aikake's Information Criterion (AIC). Count data (e.g., cell counts, number of maze entries, ...) were modeled using a Generalized Poisson likelihood, measures bound at 0 (e.g., cell density, volumes, weights, ...) were modeled using a Gamma likelihood, and proportions (e.g., ratios of areas) with a Beta likelihood.
 
 Model diagnostics were done using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] & [performance](https://easystats.github.io/performance/) [@performance] packages, and estimated marginal means/contrasts were computed with the [emmeans](https://github.com/rvlenth/emmeans) package [@emmeans].
 
 A website documenting the analyses and their results was generated using Quarto, to allow interested readers to explore our data & models' outputs without having to run the code themselves.
 
-:::{.callout-note appearance="simple"}
-
+::: {.callout-note appearance="simple"}
 ### My role in this project
 
 **1)** Handled the data processing and analysis, for both immunohistochemistry and RT-qPCR data (R/Markdown).
@@ -71,7 +70,6 @@ A website documenting the analyses and their results was generated using Quarto,
 **3)** Open-source the [code](https://github.com/ma-riviere/LT-AoP-22) and registered on [Zenodo](https://doi.org/10.5281/zenodo.6480947).
 
 **4)** Made [a website](https://ma-riviere.github.io/LT-AoP-22/) documenting and showcasing the project's data, analyses, and results. The website uses Quarto and relies on templates to automatically generates documentation for each of the ~70 variables analyzed during the project.
-
 :::
 
 # Quarto website

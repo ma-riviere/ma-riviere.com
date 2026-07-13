@@ -9,34 +9,72 @@ author:
     url: https://agalic-rd.com
     affiliations:
       - ref: cbg
-    roles: ["investigation", "methodology", "project administration", "data curation", "formal analysis", "visualization", "illustration", "validation", "writing - original draft", "writing - review & editing"]
-    
+    roles: [
+      "investigation",
+      "methodology",
+      "project administration",
+      "data curation",
+      "formal analysis",
+      "visualization",
+      "illustration",
+      "validation",
+      "writing - original draft",
+      "writing - review & editing",
+    ]
+
   - name: "Magali Basille-Duguay"
     affiliations:
       - ref: nordic
-    roles: ["supervision", "investigation", "resources", "writing - review & editing"]
-    
+    roles: [
+      "supervision",
+      "investigation",
+      "resources",
+      "writing - review & editing",
+    ]
+
   - name: "Aurélien Debonne"
     affiliations:
       - ref: cbg
     roles: ["investigation", "writing - review & editing"]
-    
+
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
     affiliations:
       - ref: litis
-    roles: ["methodology", "software", "data curation", "formal analysis", "visualization", "validation", "writing - review & editing"]
-    
+    roles: [
+      "methodology",
+      "software",
+      "data curation",
+      "formal analysis",
+      "visualization",
+      "validation",
+      "writing - review & editing",
+    ]
+
   - name: "David Vaudry"
     affiliations:
       - ref: cbg
-    roles: ["funding acquisition", "resources", "conceptualization", "writing - review & editing"]
-    
+    roles: [
+      "funding acquisition",
+      "resources",
+      "conceptualization",
+      "writing - review & editing",
+    ]
+
   - name: "Delphine Burel"
     email: "delphine.burel@univ-rouen.fr"
     affiliations:
       - ref: cbg
-    roles: ["conceptualization", "methodology", "funding acquisition", "project administration", "supervision", "resources", "writing - original draft", "writing - review & editing"]
+    roles: [
+      "conceptualization",
+      "methodology",
+      "funding acquisition",
+      "project administration",
+      "supervision",
+      "resources",
+      "writing - original draft",
+      "writing - review & editing",
+    ]
     attributes:
       corresponding: true
 
@@ -47,8 +85,8 @@ doi: 10.1016/j.crneur.2023.100113
 description: "This paper aims to present transcriptomic data that participates in understanding the molecular basis for the histological and behavioral abnormalities caused by intermittent hypoxia."
 
 abstract: |
-  Apnea of prematurity (AOP) occurs in over 50% of preterm infants and induces a perinatal intermittent hypoxia (IH) which represents a leading cause of morbimortality worldwide. At birth, the human cerebellar cortex is still immature, making it vulnerable to perinatal events. Moreover, a correlation between cerebellar functions and the deficits observed in children having suffered from AOP has been demonstrated. Yet, the cerebellar alterations underpinning this link remain poorly understood. 
-  
+  Apnea of prematurity (AOP) occurs in over 50% of preterm infants and induces a perinatal intermittent hypoxia (IH) which represents a leading cause of morbimortality worldwide. At birth, the human cerebellar cortex is still immature, making it vulnerable to perinatal events. Moreover, a correlation between cerebellar functions and the deficits observed in children having suffered from AOP has been demonstrated. Yet, the cerebellar alterations underpinning this link remain poorly understood.
+
   To shed light on the involvement of the cerebellum in perinatal hypoxia-related sequelae, we developed a mouse model of AOP. In previous works, we found that IH induces oxidative stress in the developing cerebellum as shown by the overexpression of genes involved in reactive oxygen species production, and the under-expression of genes encoding antioxidant enzymes. These alterations suggest a failure of the defense system against oxidative stress and could be responsible for neuronal death in the cerebellum.
 
   Based on these results, we performed a transcriptomic study of the genes involved in the processes that occur during cerebellar development. We analyzed the expression of these genes at various developmental stages and in different cell types, by real time PCR. This enabled us to pinpoint a timeframe of vulnerability at P8, which represents the age with the highest number of downregulated genes in the cerebellum. Moreover, we identified several molecular pathways that are impacted by our IH protocol, such as proliferation, migration, and differentiation. This suggests that IH can  modify  the development of various cells, and then  contribute to the histological and behavioral deficits already observed in this model.
@@ -67,7 +105,7 @@ categories:
   - "Apnea of Prematurity"
   - "RT-qPCR"
 
-## See: https://docs.citationstyles.org/en/stable/specification.html
+  ## See: https://docs.citationstyles.org/en/stable/specification.html
 citation:
   type: article-journal
   container-title: "Current Research in Neurobiology"
@@ -77,7 +115,7 @@ citation:
   volume: 5
   issn: "2665-945X"
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:

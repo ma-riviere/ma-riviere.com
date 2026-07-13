@@ -20,7 +20,7 @@ description: "Development of the Force Feedback Tablet (F2T) and multimodal audi
 
 abstract: |
   The NAV-VIR and TETMOST projects developed innovative multimodal interfaces to make visual content accessible to Visually Impaired People through virtual exploration. The core innovation is the Force Feedback Tablet (F2T), a novel haptic interface providing force feedback to convey digital images and maps into tactile representations. The system integrates haptic feedback with HRTF-based 3D audio simulation to create immersive spatial experiences for two key applications: virtual map exploration for journey preparation and Art accessibility.
-  
+
   To accompany the F2T, we developed an application to assist in the creation of simplified tactile representations from images (Java/Arduino), implemented algorithms for real-time conversion of visual content into haptic representations (Python/OpenCV) by combining computer vision techniques (image segmentation, edge detection), and designed experimental protocols to validate the system's effectiveness. The research was documented through multiple peer-reviewed publications.
 
 website:
@@ -39,7 +39,7 @@ categories:
   - Human-Computer Interaction
   - Computer Vision
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -80,7 +80,6 @@ The system was validated through experimental evaluations where participants suc
 ![](schema.png){fig-alt="Schema illustrating the objectives of the NAV-VIR and TETMOST projects"}
 
 ::: {.callout-note appearance="simple"}
-
 ## My role in this project
 
 **1)** **Software Development**:  
@@ -94,7 +93,6 @@ The system was validated through experimental evaluations where participants suc
 - Authored a [conference paper](/content/pubs/NER19/) showing its use for virtual exploration of maps [@riviereNAVVIRAudiotactileVirtual2019],  
 - Co-authored a [conference paper](/content/pubs/ICISP20/) on the image segmentation technique used to simplify the images for the F2T [@souradiTactileDiscoveryCultural2020],  
 - Authored a [poster](poster.pdf){target="_blank"}, documenting the technical implementation, experimental methodology, and validation results.
-
 :::
 
 # Details
@@ -105,13 +103,10 @@ The Force Feedback Tablet (F2T) is a novel haptic interface designed to make vis
 
 The device provides **force feedback with up to 1000Hz refresh rate**, combining precise haptic mechanisms with real-time image processing to convert visual information into tactile sensations. Users navigate the tablet surface with an integrated joystick that provides haptic feedback corresponding to different visual elements (e.g. walls feel solid and resistant, pathways offer smooth movement, and key landmarks are marked with distinct tactile signatures). The interface supports **natural gesture recognition** for common exploration behaviors like wall-following and systematic scanning, with **adaptive feedback** that adjusts haptic intensity based on user preferences.
 
-
-:::{layout="[46,54]"}
-
+::: {layout="[46,54]"}
 ![](F2T-v2.jpg){fig-alt="Photo of the F2T interface"}
 
 ![](F2T-explanation.png){fig-alt="Schema explaining the F2T interface"}
-
 :::
 
 ## From images to tactile representations
@@ -120,24 +115,20 @@ The device provides **force feedback with up to 1000Hz refresh rate**, combining
 
 We developed a GUI application to assist in **creating simplified tactile representations from images**, to explore using the F2T:
 
-:::{layout="[60,40]" layout-valign="center"}
-
+::: {layout="[60,40]" layout-valign="center"}
 ![](F2T-interface.png){fig-alt="Screenshot of the F2T control interface"}
 
 ![](feature.png){fig-alt="Image illustrating the F2T used to read a pre-processed map"}
-
 :::
 
 ### Automated
 
 We developed a **complete processing pipeline** for converting visual content into accessible tactile formats. This includes **intelligent reduction of visual complexity** while preserving essential spatial information, and **automatic extraction** of key features from architectural plans and artwork. The system combines various Computer Vision techniques such as image segmentation and edge detection:
 
-:::{layout="[48,52]"}
-
+::: {layout="[48,52]"}
 ![](art.png){fig-alt="Antique drawing of a horse passed through an edge-detection algorithm to remove unneeded details"}
 
 ![](art2.png){fig-alt="Antique painting of a woman carrying a milk jug, passed through another type of edge-detection algorithm to remove unneeded details"}
-
 :::
 
 ## Audio-Tactile Integration

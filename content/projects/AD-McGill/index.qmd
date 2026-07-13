@@ -13,11 +13,11 @@ image-alt: "Graphical abstract recapitulating the main findings of this project"
 description: "Reproducible R analysis of immunohistochemistry data from an Alzheimer's disease rat model, using mixed-effects models to test AD-control contrasts across brain regions and age-groups."
 
 abstract: |
-  Alzheimer's disease (AD) is associated with mitochondrial dysfunction and hypoxia-like signaling that can induce BNIP3, a key mediator of mitophagy and cell death. This study quantified BNIP3 immunoreactivity in neuronal soma and axonal projections across multiple brain regions (entorhinal cortex, CA3, dentate gyrus) in an established AD rat model compared to matched controls. We analyzed brightfield immunohistochemistry data from 24 rats (12 AD model, 12 controls) across three age groups (3, 12, 18 months), measuring optical density with background correction. 
-  
+  Alzheimer's disease (AD) is associated with mitochondrial dysfunction and hypoxia-like signaling that can induce BNIP3, a key mediator of mitophagy and cell death. This study quantified BNIP3 immunoreactivity in neuronal soma and axonal projections across multiple brain regions (entorhinal cortex, CA3, dentate gyrus) in an established AD rat model compared to matched controls. We analyzed brightfield immunohistochemistry data from 24 rats (12 AD model, 12 controls) across three age groups (3, 12, 18 months), measuring optical density with background correction.
+
   The data was analyzed using generalized linear mixed-effects models with Gamma likelihoods and random effects captured animal-level and section-level variability, while fixed effects tested genotype, age, and brain region effects, and their interactions. Model fit was rigorously assessed using diagnostic plots, statistical tests, and posterior predictive checks.
-  
-  The repository provides open data, code, and key figures used in the associated article. All figures and tables were generated reproducibly from R Markdown in a version-controlled environment. 
+
+  The repository provides open data, code, and key figures used in the associated article. All figures and tables were generated reproducibly from R Markdown in a version-controlled environment.
 
 website:
   open-graph:
@@ -32,7 +32,7 @@ categories:
   - Immunohistochemistry
   - Imaging
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -52,8 +52,7 @@ about:
 
 ![](graphical-abstract.png){fig-alt="Graphical abstract recapitulating the main findings of this project"}
 
-:::{.callout-note appearance="simple"}
-
+::: {.callout-note appearance="simple"}
 ## My role in this project
 
 **1)** Managed the code for data processing, modeling, and hypothesis testing.
@@ -61,7 +60,6 @@ about:
 **2)** Helped write the methodology/statistics part of the [paper](https://agalic-rd.com/content/pubs/articles/BM25/) [@rodriguez-dubocBnip3ExpressionBrain2025].
 
 **3)** Open-sourced the resulting code on [GitHub](https://github.com/agalic-rd/Bnip3_McGill_AD) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.15199696).
-
 :::
 
 # Data
@@ -76,13 +74,11 @@ Optical Density (OD) data was modeled using a Gamma distribution to account for 
 
 Generalized Linear Mixed Models (GLMMs) were used to model the data, using random effects to account for pseudo-replication and the hierarchical nature of the data. For all models, categorical predictors were dummy-coded with a reference level: genotype (Wild-Type) and age (3 months). Models were fitted using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB]. 
 
-
 Model fit was assessed using a combination of plots (normality, homoscedasticity, normality of residuals, collinearity), statistical tests (Levenne, KS, dispersion), and posterior predictive checks on simple statistics (min, max, mean, sd) using simulated residuals. Model fit was assessed using the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] and [performance](https://easystats.github.io/performance/) [@performance] packages.
 
 Two models were fitted on the OD data, one for the **soma** and one for the **molecular layer** (terminal fields):
 
 ::: {.panel-tabset}
-
 ## 'Soma' model
 
 We modeled the OD of individual neuronal somata ($Y_{ijk}$) using genotype, age, and brain area (LEC vs. MEC) as fixed effects, along with all their interactions. Random intercepts were included for each rat (j) and for each tissue section (k) nested within each rat.
@@ -108,25 +104,22 @@ b_{\mathrm{rat:section}[j,k]} \sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{rat:sect
 \end{aligned}
 $$
 
-:::: {.callout-note appearance="simple" collapse="true"}
-
+::::: {.callout-note appearance="simple" collapse="true"}
 ### Equivalent R model
 
 ```{r}
 glmmTMB::glmmTMB(
-  od_corrected ~ genotype * age * area + (1 | rat / section),
-  family = Gamma("log"),
-  data = od_data$soma,
-  REML = TRUE
+    od_corrected ~ genotype * age * area + (1 | rat / section),
+    family = Gamma("log"),
+    data = od_data$soma,
+    REML = TRUE
 )
 ```
-
-::::
+:::::
 
 ### Model fit
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 #### Plots
 
 ![](mod_soma_diag.png){fig-alt="Performance plots for the 'Soma' model" fig-align="center"}
@@ -138,8 +131,7 @@ glmmTMB::glmmTMB(
 #### Posterior Predictive Checks
 
 ![](mod_soma_age_ppc_stats.png){fig-alt="Posterior Predictive Checks on simple stats for the 'Soma' model" fig-align="center"}
-
-::::
+:::::
 
 ## 'Molecular Layer' model
 
@@ -161,8 +153,7 @@ b_{\mathrm{rat}[j]} &\sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{rat}}\bigr).
 \end{aligned}
 $$
 
-:::: {.callout-note appearance="simple" collapse="true"}
-
+::::: {.callout-note appearance="simple" collapse="true"}
 #### Equivalent R model
 
 ```{r}
@@ -173,13 +164,11 @@ glmmTMB(
     REML = TRUE
 )
 ```
-
-::::
+:::::
 
 ### Model fit
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 #### Plots
 
 ![](mod_ml_diag.png){fig-alt="Performance plots for the 'Molecular Layer' model" fig-align="center"}
@@ -191,28 +180,23 @@ glmmTMB(
 #### Posterior Predictive Checks
 
 ![](mod_ml_age_ppc_stats.png){fig-alt="Posterior Predictive Checks on simple stats for the 'Molecular Layer' model" fig-align="center"}
-
-::::
-
+:::::
 :::
-
 
 # Hypotheses
 
 Contrasts for hypotheses of interest were tested with [emmeans](https://rvlenth.github.io/emmeans/) [@emmeans], with the Holm method to adjust for multiple comparisons.
 
 ::: {.panel-tabset}
-
 ## Soma
 
 Since Reelin neurons have high metabolism, we hypothesized a higher Bnip3 expression in the soma of LEC/MEC neurons in AD rats, and the difference should be higher in older rats. We used the 'Soma' model to test these hypotheses.
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 #### Genotype (AD vs control)
 
 ```{r}
-emmeans(mod_soma, specs = "genotype", type = "response") |> 
+emmeans(mod_soma, specs = "genotype", type = "response") |>
     contrast(method = "pairwise", adjust = "holm", infer = TRUE)
 ```
 
@@ -231,9 +215,9 @@ Tests are performed on the log scale
 #### Genotype | Age
 
 ```{r}
-emmeans(mod_soma, specs = ~ genotype | age, type = "response") |> 
-    contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-    as.data.frame() |> 
+emmeans(mod_soma, specs = ~ genotype | age, type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame() |>
     modify_at("p.value", \(x) p.adjust(x, method = "holm"))
 ```
 
@@ -262,8 +246,8 @@ Tests are performed on the log scale
 
 ```{r}
 emmeans(mod_soma, specs = ~ genotype | age, type = "response") |>
-    contrast(interaction = "pairwise", by = NULL, adjust = "none", infer = TRUE) |> 
-    as.data.frame() |> 
+    contrast(interaction = "pairwise", by = NULL, adjust = "none", infer = TRUE) |>
+    as.data.frame() |>
     modify_at("p.value", \(x) p.adjust(x, method = "holm"))
 ```
 
@@ -280,20 +264,17 @@ Tests are performed on the log scale
 ```
 
 ![](mod_soma_genotype_age_inter.png){fig-alt="Annotated boxplots comparing BNIP3 expression in AD and control rats between age groups" fig-align="center"}
-
-::::
-
+:::::
 
 ## Molecular Layer
 
 We hypothesized that BNIP3 expression would be relatively low in other areas, but may be high in the projection areas of those neurons (CA3 & dentate gyrus). We used the 'Molecular Layer' model to test these hypotheses.
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 ### Genotype (AD vs control)
 
-```{r}	
-emmeans(mod_ml, specs = "genotype", type = "response") |> 
+```{r}
+emmeans(mod_ml, specs = "genotype", type = "response") |>
     contrast(method = "pairwise", adjust = "holm", infer = TRUE)
 ```
 
@@ -312,9 +293,9 @@ Tests are performed on the log scale
 ### Genotype | Age
 
 ```{r}
-emmeans(mod_ml, specs = ~ genotype | age, type = "response") |> 
-    contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-    as.data.frame() |> 
+emmeans(mod_ml, specs = ~ genotype | age, type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame() |>
     modify_at("p.value", \(x) p.adjust(x, method = "holm"))
 ```
 
@@ -342,8 +323,8 @@ Tests are performed on the log scale
 
 ```{r}
 emmeans(mod_ml, specs = ~ genotype | age, type = "response") |>
-    contrast(interaction = "pairwise", by = NULL, adjust = "none", infer = TRUE) |> 
-    as.data.frame() |> 
+    contrast(interaction = "pairwise", by = NULL, adjust = "none", infer = TRUE) |>
+    as.data.frame() |>
     modify_at("p.value", \(x) p.adjust(x, method = "holm"))
 ```
 
@@ -359,7 +340,5 @@ Tests are performed on the log scale
 ```
 
 ![](mod_ml_genotype_age_inter.png){fig-alt="Annotated boxplots comparing Optical Density in AD vs control rats between age groups"}
-
-::::
+:::::
 :::
-

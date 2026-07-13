@@ -18,9 +18,9 @@ description: "Reproducible R analysis investigating the effects of intermittent 
 
 abstract: |
   Apnea of prematurity is a common condition in premature infants that can lead to intermittent hypoxia (IH) episodes, potentially affecting brain development. This study investigated how IH affects cerebellar vascular development using a murine model. We collected and analyzed two complementary datasets: RT-qPCR data measuring expression of angiogenesis-related genes, and 3D immunohistochemistry data quantifying morphological features of the cerebellar vascular network obtained through tissue clearing protocols.
-  
+
   The data was analyzed using generalized linear mixed-effects models. PCR data was modeled using Gaussian distributions, while vascular morphology data used Gamma distributions for continuous measures and negative binomial distributions for count data. All models included random effects to account for pseudo-replication and inter-animal variability.
-  
+
   The repository provides open data, reproducible R code, and key figures used in the associated article. All analyses were conducted in a version-controlled environment using R & {renv}, ensuring full reproducibility of results.
 
 website:
@@ -37,7 +37,7 @@ categories:
   - Transcriptomics
   - RT-qPCR
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
@@ -51,14 +51,13 @@ about:
       aria-label: "See the R code for this project"
 
 execute:
-    eval: true
-    echo: false
+  eval: true
+  echo: false
 ---
 
 {{< include /content/_hr.qmd >}}
 
-:::{.callout-note appearance="simple"}
-
+::: {.callout-note appearance="simple"}
 ## My role in this project
 
 **1)** Managed the data processing, modeling, and hypothesis testing (R/Markdown).
@@ -66,7 +65,6 @@ execute:
 **2)** Helped write the methodology/statistics part of the paper ([preprint](https://www.biorxiv.org/content/10.1101/2025.10.17.683055v1)).
 
 **3)** Open-sourced the resulting reproducible R code on [GitHub](https://github.com/agalic-rd/Vasc-AoP/) and registered it on [Zenodo](https://doi.org/10.5281/zenodo.15319300).
-
 :::
 
 # Summary
@@ -78,7 +76,7 @@ This study used a murine model to investigate how **Intermittent Hypoxia (IH)**,
 # Data
 
 ```{r}
-source(here::here("src", "init_min.R"), echo = FALSE)
+source(here::here("R", "init.R"), echo = FALSE)
 
 library(openxlsx2)
 library(dplyr)
@@ -103,24 +101,40 @@ library(DT)
 library(patchwork)
 library(gtools)
 
-source2("https://raw.githubusercontent.com/ma-riviere/DE-AoP-23/gh-pages/src/scripts/viz.R", NA, include.only = c("make_suburst_plot"))
+source2(
+    "https://raw.githubusercontent.com/ma-riviere/DE-AoP-23/gh-pages/src/scripts/viz.R",
+    NA,
+    include.only = c("make_suburst_plot")
+)
 
-source("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/src/scripts/data.R")
-source("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/src/scripts/viz.R")
-source("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/src/scripts/utils.R")
+# Pinned to a commit: the Vasc-AoP repo's `main` was later restructured (scripts moved out of
+# src/scripts/, clearing_processed.rds dropped), which breaks this post's data-loading contract.
+vasc_aop_ref <- "f5f2429ec6b83ec27b12f7f9cc48d8fe970fde46"
 
-colors_cond <- c("#cf4040", "#4053cf")   # Condition: N, IH
-colors_fold <- c("#f02b00", "#01944b")   # Expression: Downregulated, Upregulated
+source(str_glue("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/src/scripts/data.R"))
+source(str_glue("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/src/scripts/viz.R"))
+source(str_glue("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/src/scripts/utils.R"))
+
+colors_cond <- c("#cf4040", "#4053cf") # Condition: N, IH
+colors_fold <- c("#f02b00", "#01944b") # Expression: Downregulated, Upregulated
 colors_effect <- c("#b625bb", "#0264cc") # Effect: Bad, Good
 
-data_url_pcr <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/pcr_processed.rds"
-data_url_ihc <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/clearing_processed.rds"
-data_dict_url <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/__data_dictionary.xlsx"
-gene_data_url <- "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/main/data/__gene_data.xlsx"
+data_url_pcr <- str_glue("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/data/pcr_processed.rds")
+data_url_ihc <- str_glue(
+    "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/data/clearing_processed.rds"
+)
+data_dict_url <- str_glue(
+    "https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/data/__data_dictionary.xlsx"
+)
+gene_data_url <- str_glue("https://raw.githubusercontent.com/agalic-rd/Vasc-AoP/{vasc_aop_ref}/data/__gene_data.xlsx")
 
 ## Main
 
 pcr_data <- readRDS(url(data_url_pcr))
+
+# These glmmTMB models were serialized under an older glmmTMB/TMB: refresh their internal
+# TMB objects so residual-based diagnostics (check_model, etc.) work under the current version.
+pcr_data$models$mod <- purrr::map(pcr_data$models$mod, glmmTMB::up2date)
 
 ihc_data <- readRDS(url(data_url_ihc))
 ihc_data <- ihc_data$normal
@@ -135,12 +149,17 @@ data_dict <- purrr::map(
 
 gene_data_wb <- openxlsx2::wb_load(gene_data_url)
 gene_data <- list(
-    ref = openxlsx2::wb_to_df(gene_data_wb, sheet = 1) |> 
-        janitor::clean_names() |> 
+    ref = openxlsx2::wb_to_df(gene_data_wb, sheet = 1) |>
+        janitor::clean_names() |>
         filter(!is.na(gene)),
-    fx = openxlsx2::wb_to_df(gene_data_wb, sheet = 2) |> 
-        janitor::clean_names() |> 
-        tidyr::pivot_longer(ends_with("_effect"), names_pattern = "(.+)_effect", names_to = "effect", values_to = "gene") |> 
+    fx = openxlsx2::wb_to_df(gene_data_wb, sheet = 2) |>
+        janitor::clean_names() |>
+        tidyr::pivot_longer(
+            ends_with("_effect"),
+            names_pattern = "(.+)_effect",
+            names_to = "effect",
+            values_to = "gene"
+        ) |>
         tidyr::separate_longer_delim(gene, delim = "; ")
 )
 ```
@@ -148,19 +167,17 @@ gene_data <- list(
 ```{r}
 #| code-fold: true
 #| code-summary: "Applying a custom theme to all `gt` tables"
-#| file: !expr here("src", "common", "knitr", "knit_print_gt_mono.R")
+#| file: !expr here("R", "knitr", "knit_print_gt_mono.R")
 ```
 
 The project analyzed two complementary datasets from a murine model of intermittent hypoxia (IH):
 
 ::: {.panel-tabset}
-
 ### PCR
 
 **RT-qPCR** targeted an angiogenesis-focused gene panel curated via network and pathway analysis using Cytoscape with STRING-DB and ClueGO to prioritize regulators of vascular development. Primers were designed in Primer Express from NCBI sequences, validated by linear regression on serial dilutions, and checked for specificity by NCBI BLAST. Expression was quantified as $\Delta Cq$.
 
-:::: {layout="[64,36]" layout-valign="center"}
-
+::::: {layout="[64,36]" layout-valign="center"}
 ```{r}
 #| output: true
 
@@ -171,8 +188,8 @@ make_suburst_plot(gene_data$ref, layers = c("pathway", "gene"), colors = NULL)
 #| output: true
 
 DT::datatable(
-    pcr_data$clean |> 
-        select(-experiment, -id, -mean_cq) |> 
+    pcr_data$clean |>
+        select(-experiment, -id, -mean_cq) |>
         mutate(across(where(is.numeric), \(x) round(x, 3))) |>
         arrange(stage, gene, condition),
     rownames = FALSE,
@@ -180,8 +197,8 @@ DT::datatable(
     extensions = c("RowGroup", "Responsive"),
     filter = "none",
     options = list(
-        pageLength = 15, 
-        autoWidth = TRUE, 
+        pageLength = 15,
+        autoWidth = TRUE,
         rowGroup = list(dataSrc = 2),
         columnDefs = list(list(visible = FALSE, targets = 2)),
         searching = FALSE
@@ -189,8 +206,7 @@ DT::datatable(
     escape = FALSE
 )
 ```
-
-::::
+:::::
 
 ### IHC
 
@@ -207,20 +223,18 @@ DT::datatable(
     extensions = c("Responsive"),
     filter = "none",
     options = list(
-        pageLength = 20, 
+        pageLength = 20,
         autoWidth = TRUE,
         searching = FALSE
     ),
     escape = FALSE
 )
 ```
-
 :::
 
 ## Supplementary data
 
 ::: {.panel-tabset}
-
 ### Data Dictionary
 
 Data preprocessing involved standardizing variable names and metadata using a **data dictionary** to ensure consistency:
@@ -229,9 +243,8 @@ Data preprocessing involved standardizing variable names and metadata using a **
 #| output: true
 
 make_data_dict_reactable <- function(data, data_dict) {
-
     data_dict_main <- data_dict[[1]]
-  
+
     get_var_details <- function(idx) {
         sheet <- pluck(data_dict_main[idx, ], 1)
 
@@ -239,18 +252,18 @@ make_data_dict_reactable <- function(data, data_dict) {
             reactable(data_dict[[sheet]], fullWidth = TRUE, compact = TRUE)
         }
     }
-  
+
     reactable(
-        data_dict_main
-        , defaultColDef = colDef(sortNALast = TRUE, vAlign = "center", headerVAlign = "center", align = "center")
-        , columns = list(Description = colDef(html = TRUE), Label = colDef(html = TRUE))
-        , details = \(idx) get_var_details(idx)
-        , outlined = TRUE
-        , striped = TRUE
-        , highlight = TRUE
-        , compact = TRUE
-        , fullWidth = TRUE
-        , defaultPageSize = 20
+        data_dict_main,
+        defaultColDef = colDef(sortNALast = TRUE, vAlign = "center", headerVAlign = "center", align = "center"),
+        columns = list(Description = colDef(html = TRUE), Label = colDef(html = TRUE)),
+        details = \(idx) get_var_details(idx),
+        outlined = TRUE,
+        striped = TRUE,
+        highlight = TRUE,
+        compact = TRUE,
+        fullWidth = TRUE,
+        defaultPageSize = 20
     )
 }
 
@@ -265,17 +278,19 @@ The 'gene data' file provides detailed information about the genes analyzed in t
 #| output: true
 
 link_papers <- function(refs) {
-    if (is.na(refs)) return(NA)
+    if (is.na(refs)) {
+        return(NA)
+    }
 
     refs <- str_split_1(refs, ";|,")
     res <- purrr::map_chr(
-        refs, 
+        refs,
         function(ref) {
             ref <- str_trim(ref)
             str_glue("<a target=_blank href='https://doi.org/{ref}'>{ref}</a>")
         }
     )
-    
+
     return(paste(res, collapse = "; "))
 }
 
@@ -283,9 +298,9 @@ link_ncbi <- function(ref) {
     str_glue("<a target=_blank href='https://www.ncbi.nlm.nih.gov/gene/?term={ref}'>{ref}</a>")
 }
 
-gene_data$ref |> 
+gene_data$ref |>
     mutate(
-        Papers = purrr::map_chr(ref, link_papers), 
+        Papers = purrr::map_chr(ref, link_papers),
         NCBI_reference = purrr::map_chr(ncbi_reference, link_ncbi),
         .keep = "unused"
     ) |>
@@ -294,15 +309,15 @@ gene_data$ref |>
         `Gene Name` = gene_name,
         `Putative Function` = putative_function,
         `NCBI Reference` = NCBI_reference
-    ) |> 
+    ) |>
     DT::datatable(
         rownames = FALSE,
         class = "cell-border stripe compact",
         extensions = c("RowGroup", "Responsive"),
         filter = "none",
         options = list(
-            pageLength = 5, 
-            autoWidth = TRUE, 
+            pageLength = 5,
+            autoWidth = TRUE,
             rowGroup = list(dataSrc = 0),
             columnDefs = list(list(visible = FALSE, targets = 0)),
             searching = FALSE
@@ -323,7 +338,7 @@ DT::datatable(
     extensions = c("Responsive"),
     filter = "none",
     options = list(
-        pageLength = 10, 
+        pageLength = 10,
         autoWidth = TRUE,
         searching = FALSE,
         paging = FALSE,
@@ -332,7 +347,6 @@ DT::datatable(
     escape = FALSE
 )
 ```
-
 :::
 
 # Models
@@ -340,7 +354,6 @@ DT::datatable(
 Models were fitted using the [glmmTMB](https://glmmtmb.github.io/glmmTMB/) package [@glmmTMB], and model fit was assessed using a combination of diagnostic plots, statistical tests, and posterior predictive checks using simulated residuals. Model validation employed the [DHARMa](https://florianhartig.github.io/DHARMa/) [@DHARMa] and [performance](https://easystats.github.io/performance/) [@performance] packages.
 
 ::: {.panel-tabset}
-
 ## PCR
 
 Gene expression data ($\Delta Cq$ values) were modeled using simple linear models per gene (Gaussian likelihood with identity link function), with the condition (IH vs control) as the single fixed effect.
@@ -353,8 +366,7 @@ $$
 \end{aligned}
 $$
 
-:::: {.callout-note appearance="simple" collapse="true"}
-
+::::: {.callout-note appearance="simple" collapse="true"}
 ### Equivalent R model
 
 ```{r}
@@ -363,8 +375,7 @@ $$
 
 glmmTMB(dcq ~ condition, family = gaussian("identity"))
 ```
-
-::::
+:::::
 
 ### Model fit
 
@@ -378,13 +389,12 @@ Random sample of `r n_samp` models checked for quality of fit using `performance
 #| output: true
 
 make_diagnostic_plots <- function(mod) {
-    
     diag_list <- c("normality", "pp_check") # "qq" & "homogeneity" -> buggy on 1.1.12 & 0.15.1 -> TODO
 
     return(
-        purrr::map(diag_list, \(x) plot(check_model(mod, check = x, panel = FALSE))[[1]])
-        |> patchwork::wrap_plots(ncol = 2)
-        |> ggiraph::girafe(ggobj = _)
+        purrr::map(diag_list, \(x) plot(check_model(mod, check = x, panel = FALSE))[[1]]) |>
+            patchwork::wrap_plots(ncol = 2) |>
+            ggiraph::girafe(ggobj = _)
     )
 }
 
@@ -393,21 +403,21 @@ mods_sample <- pcr_data$models |> slice_sample(n = n_samp)
 diagnostic_plot_list <- purrr::map(mods_sample$mod, make_diagnostic_plots)
 
 reactable(
-    mods_sample
-    , defaultColDef = colDef(sortNALast = TRUE, vAlign = "center", headerVAlign = "center", align = "center")
-    , columns = list(
+    mods_sample,
+    defaultColDef = colDef(sortNALast = TRUE, vAlign = "center", headerVAlign = "center", align = "center"),
+    columns = list(
         mod = colDef(
             details = \(idx) diagnostic_plot_list[[idx]],
             cell = \(x, idx) "Click for diagnostics"
         ),
         fold = colDef(format = colFormat(digits = 3))
-    )
-    , outlined = TRUE
-    , striped = TRUE
-    , highlight = TRUE
-    , compact = TRUE
-    , fullWidth = TRUE
-    , defaultPageSize = 5
+    ),
+    outlined = TRUE,
+    striped = TRUE,
+    highlight = TRUE,
+    compact = TRUE,
+    fullWidth = TRUE,
+    defaultPageSize = 5
 )
 ```
 
@@ -417,8 +427,7 @@ Vascular morphology responses were modeled using **generalized linear mixed-effe
 
 Here is a sample of two of the models we fitted to study changes in cerebellar vascular morphology:
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 ### 'Vascular Volume'
 
 Vascular volume data was modeled using a Gamma distribution to account for strict positivity and positive skewness.
@@ -450,28 +459,25 @@ b_{\mathrm{mouse}[j]} &\sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{mouse}}\bigr),\
 \end{aligned}
 $$
 
-::::: {.callout-note appearance="simple" collapse="true"}
-
+::::::: {.callout-note appearance="simple" collapse="true"}
 ### Equivalent R model
 
 ```{r}
 #| echo: true
 
 mod_vol <- glmmTMB(
-  volume ~ condition * stage * level + offset(log(cerebellar_volume)) + (1 | mouse),
-  dispformula = ~ stage,
-  family = Gamma("log"),
-  data = ihc_data |> filter(level != "Total"),
-  REML = TRUE
+    volume ~ condition * stage * level + offset(log(cerebellar_volume)) + (1 | mouse),
+    dispformula = ~stage,
+    family = Gamma("log"),
+    data = ihc_data |> filter(level != "Total"),
+    REML = TRUE
 )
 ```
-
-:::::
+:::::::
 
 #### Model fit
 
-::::: {.panel-tabset}
-
+::::::: {.panel-tabset}
 #### Plots
 
 ```{r}
@@ -506,9 +512,7 @@ plot(mod_vol_dharma)
 
 ppc_stat_plots(mod_vol, simulations = mod_vol_dharma_t, term = "condition")
 ```
-
-:::::
-
+:::::::
 
 ### 'Branchpoints'
 
@@ -541,28 +545,25 @@ b_{\mathrm{mouse}[j]} &\sim \mathcal{N}\bigl(0,\sigma^2_{\mathrm{mouse}}\bigr),\
 \end{aligned}
 $$
 
-::::: {.callout-note appearance="simple" collapse="true"}
-
+::::::: {.callout-note appearance="simple" collapse="true"}
 ### Equivalent R model
 
 ```{r}
 #| echo: true
 
 mod_branchpoints <- glmmTMB(
-  branchpoints ~ condition * stage * level + offset(log(cerebellar_volume)) + (1 | mouse),
-  dispformula = ~ stage,
-  family = nbinom1("log"),
-  data = ihc_data |> filter(level != "Total"),
-  REML = TRUE
+    branchpoints ~ condition * stage * level + offset(log(cerebellar_volume)) + (1 | mouse),
+    dispformula = ~stage,
+    family = nbinom1("log"),
+    data = ihc_data |> filter(level != "Total"),
+    REML = TRUE
 )
 ```
-
-:::::
+:::::::
 
 #### Model fit
 
-::::: {.panel-tabset}
-
+::::::: {.panel-tabset}
 #### Plots
 
 ```{r}
@@ -597,11 +598,9 @@ plot(mod_branchpoints_dharma)
 
 ppc_stat_plots(mod_branchpoints, simulations = mod_branchpoints_dharma_t, term = "condition")
 ```
-
+:::::::
 :::::
-::::
 :::
-
 
 # Hypotheses
 
@@ -610,15 +609,13 @@ The central research question investigated whether intermittent hypoxia (IH) exp
 Contrasts for hypotheses of interest were tested with [emmeans](https://rvlenth.github.io/emmeans/) [@emmeans].
 
 ::: {.panel-tabset}
-
 ## PCR
 
 We hypothesized that intermittent hypoxia would alter expression of genes involved in angiogenesis pathways, potentially showing both pro- and anti-angiogenic responses depending on the specific gene and developmental stage.
 
 The analysis focused on identifying genes that showed significant differential expression between IH and control conditions across developmental stages. Fold changes were calculated and significance was assessed using the fitted linear models, with genes classified as upregulated, downregulated, or unchanged based on p-values and effect sizes.
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 ### Overview
 
 Here's a general overview of the gene expression changes between IH and control, across developmental stages:
@@ -627,13 +624,13 @@ Here's a general overview of the gene expression changes between IH and control,
 #| output: true
 
 pcr_data$predictions |>
-  filter(expression != regulation_type$NOT_REG) |>
-  left_join(gene_data$ref, join_by(gene)) |>
-  make_suburst_plot(
-    layers = c("stage", "expression", "gene"),
-    tooltips = c("gene", "pathway", "fold", "p_value"),
-    plot_options = list(insidetextorientation = "radial")
-  )
+    filter(expression != regulation_type$NOT_REG) |>
+    left_join(gene_data$ref, join_by(gene)) |>
+    make_suburst_plot(
+        layers = c("stage", "expression", "gene"),
+        tooltips = c("gene", "pathway", "fold", "p_value"),
+        plot_options = list(insidetextorientation = "radial")
+    )
 ```
 
 ### Regulation
@@ -648,11 +645,11 @@ Timeline of gene expression changes across developmental stages, providing insig
 heatmap_data <- pcr_data$predictions |>
     dplyr::filter(p_value <= .05) |>
     dplyr::left_join(gene_data$fx, by = "gene", relationship = "many-to-many") |>
-    dplyr::select(stage, gene, fold, p_value, fx, effect, abb) |> 
+    dplyr::select(stage, gene, fold, p_value, fx, effect, abb) |>
     dplyr::mutate(tile_label = paste(round(fold, 2), stars.pval(p_value), sep = " "))
 
-make_heatmap(heatmap_data, xaxis = "gene", yaxis = "abb", facet = "stage") + 
-    labs(x = "Gene", y = "Function") + 
+make_heatmap(heatmap_data, xaxis = "gene", yaxis = "abb", facet = "stage") +
+    labs(x = "Gene", y = "Function") +
     facet_grid(rows = vars(stage), scales = "free_y", space = "free_y")
 ```
 
@@ -665,41 +662,40 @@ Timeline of the gene's putative effects (anti- vs pro-angiogenic) across develop
 #| fig-width: 12
 #| fig-height: 8
 
-pcr_data$predictions |> 
-    dplyr::left_join(gene_data$ref, join_by(gene)) |> 
-    dplyr::filter(p_value <= .05) |> 
-    dplyr::select(stage, gene, fold, p_value, expression, pathway, effect) |> 
-    dplyr::mutate(effect = case_when(
-        stringr::str_detect(expression, "Downregulated") & effect == "Pro" ~ "Anti",
-        stringr::str_detect(expression, "Downregulated") & effect == "Anti" ~ "Pro",
-        .default = effect
-    )) |> 
+pcr_data$predictions |>
+    dplyr::left_join(gene_data$ref, join_by(gene)) |>
+    dplyr::filter(p_value <= .05) |>
+    dplyr::select(stage, gene, fold, p_value, expression, pathway, effect) |>
+    dplyr::mutate(
+        effect = case_when(
+            stringr::str_detect(expression, "Downregulated") & effect == "Pro" ~ "Anti",
+            stringr::str_detect(expression, "Downregulated") & effect == "Anti" ~ "Pro",
+            .default = effect
+        )
+    ) |>
     make_fold_timeline_plot(facet_rows = "pathway", color_by = "effect", size_boost = 1.5)
 ```
-
-::::
+:::::
 
 ## IHC
 
 We hypothesized that intermittent hypoxia would affect the morphological development of the cerebellar vascular network, potentially altering vascular density, complexity, and branching patterns.
 
-:::: {.panel-tabset}
-
+::::: {.panel-tabset}
 ### Vascular Volume
 
 Analysis of total vascular volume tested whether IH exposure affected overall vascularization of the cerebellum, accounting for developmental stage differences and normalizing for brain size using cerebellar volume as an offset.
 
-::::: {.panel-tabset}
-
+::::::: {.panel-tabset}
 #### Condition
 
 ```{r}
 #| echo: true
 #| output: asis
 
-emmeans(mod_vol, specs = "condition", type = "response") |> 
-  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame()
+emmeans(mod_vol, specs = "condition", type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame()
 ```
 
 ```{r}
@@ -716,9 +712,9 @@ make_signif_boxplot(mod_vol, xaxis = "condition")
 #| echo: true
 #| output: asis
 
-emmeans(mod_vol, specs = ~ condition | stage, type = "response") |> 
-  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame()
+emmeans(mod_vol, specs = ~ condition | stage, type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame()
 ```
 
 ```{r}
@@ -735,9 +731,9 @@ make_signif_boxplot(mod_vol, xaxis = "condition", facet = "stage", ncol = 4)
 #| echo: true
 #| output: asis
 
-emmeans(mod_vol, specs = ~ condition | level, by = "stage", type = "response") |> 
-  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame()
+emmeans(mod_vol, specs = ~ condition | level, by = "stage", type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame()
 ```
 
 ```{r}
@@ -747,24 +743,22 @@ emmeans(mod_vol, specs = ~ condition | level, by = "stage", type = "response") |
 
 make_signif_boxplot_inter(mod_vol, pred1 = "condition", pred2 = "level", facet = "stage", ncol = 5, only_signif = FALSE)
 ```
-
-:::::
+:::::::
 
 ### Branchpoints
 
 The branchpoint analysis examined whether IH affected vascular network complexity and branching architecture, testing for condition effects across developmental stages while controlling for overall brain size.
 
-::::: {.panel-tabset}
-
+::::::: {.panel-tabset}
 #### Condition
 
 ```{r}
 #| echo: true
 #| output: asis
 
-emmeans(mod_branchpoints, specs = "condition", type = "response") |> 
-  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame()
+emmeans(mod_branchpoints, specs = "condition", type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame()
 ```
 
 ```{r}
@@ -781,9 +775,9 @@ make_signif_boxplot(mod_branchpoints, xaxis = "condition")
 #| echo: true
 #| output: asis
 
-emmeans(mod_branchpoints, specs = ~ condition | stage, type = "response") |> 
-  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame()
+emmeans(mod_branchpoints, specs = ~ condition | stage, type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame()
 ```
 
 ```{r}
@@ -800,9 +794,9 @@ make_signif_boxplot(mod_branchpoints, xaxis = "condition", facet = "stage", ncol
 #| echo: true
 #| output: asis
 
-emmeans(mod_branchpoints, specs = ~ condition | level, by = "stage", type = "response") |> 
-  contrast(method = "pairwise", adjust = "none", infer = TRUE) |> 
-  as.data.frame()
+emmeans(mod_branchpoints, specs = ~ condition | level, by = "stage", type = "response") |>
+    contrast(method = "pairwise", adjust = "none", infer = TRUE) |>
+    as.data.frame()
 ```
 
 ```{r}
@@ -810,9 +804,15 @@ emmeans(mod_branchpoints, specs = ~ condition | level, by = "stage", type = "res
 #| fig-width: 15
 #| fig-height: 7
 
-make_signif_boxplot_inter(mod_branchpoints, pred1 = "condition", pred2 = "level", facet = "stage", ncol = 5, only_signif = FALSE)
+make_signif_boxplot_inter(
+    mod_branchpoints,
+    pred1 = "condition",
+    pred2 = "level",
+    facet = "stage",
+    ncol = 5,
+    only_signif = FALSE
+)
 ```
-
+:::::::
 :::::
-::::
 :::

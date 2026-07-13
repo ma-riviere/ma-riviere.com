@@ -22,7 +22,28 @@ details > summary { color: rgb(136, 136, 136); }
   justify-content: center;
 }
 
-.about-entity > img.about-image {
+/* Hexagonal frame behind the clipped avatar (a border cannot be drawn on a clip-path'ed element).
+   Rendered as the first flex item of the (column) about-entity, then the negative bottom margin
+   pulls the image up over it. Must match the about-image: width 20em (template default),
+   aspect-ratio of res/avatar.jpg (3327x3522).
+   Scoped to the trestles template (home page only): the listing/project/pub pages reuse
+   .about-entity without an avatar, so an unscoped rule paints stray black hexagons there. */
+.quarto-about-trestles .about-entity::before {
+  content: "";
+  width: 20em;
+  aspect-ratio: 3327 / 3522;
+  margin-bottom: calc(-20em * (3522 / 3327));
+  clip-path: polygon(50% 0%, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
+  background: #000;
+  transform: scale(1.012);
+}
+
+body.quarto-dark .quarto-about-trestles .about-entity::before {
+  background: #adb5bd;
+}
+
+.quarto-about-trestles .about-entity > img.about-image {
+  position: relative; /* paint above the ::before frame */
   clip-path: polygon(50% 0%, 94% 25%, 94% 75%, 50% 100%, 6% 75%, 6% 25%);
 }
 

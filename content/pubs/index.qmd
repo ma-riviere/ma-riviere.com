@@ -13,4 +13,3 @@ listing:
   filter-ui: false
   # sort-ui: [date]
 ---
-

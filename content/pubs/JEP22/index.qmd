@@ -14,12 +14,12 @@ author:
   - name: "Laure Lejeune"
     affiliations:
       - ref: cerrev
-    
+
   - name: "Marc-Aurèle Rivière"
     orcid: 0000-0002-5108-3382
     affiliations:
       - ref: litis
-    
+
   - name: "Bruno Mantel"
     affiliations:
       - ref: cerrev
@@ -49,7 +49,7 @@ citation:
   page: "606-628"
   issn: "1939-2192, 1076-898X"
 
-# Dirty trick to get some links/buttons
+  # Dirty trick to get some links/buttons
 about:
   template: solana
   links:
