@@ -129,6 +129,7 @@ format:
       light: [default, libs/css/light.scss]
       dark: [libs/css/dark.scss]
     css: libs/css/style.css
+    include-after-body: libs/html/cookie-preferences.html
     grid:
       sidebar-width: 250px
       body-width: 1000px
